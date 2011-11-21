@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="UTF-8">
+    <title>Carrie_mongodb</title>
+    <%= stylesheet_link_tag "application" %>
+    <link rel="shortcut icon" href="/favicon.ico">
+  </head>
+
+  <body>
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
+  </body>
+</html>
