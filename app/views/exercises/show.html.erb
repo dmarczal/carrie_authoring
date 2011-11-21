@@ -1,0 +1,25 @@
+<h1>Exercise <strong> <%= @exercise.title %> </strong> </h1>
+
+<h2>New Question</h2>
+<%= form_for [@learning_object, @exercise, Question.new] do |f| %>
+  <p><%= f.label :title %> <%= f.text_field :title %></p>
+  <p><%= f.label :enunciation %> </p><p> <%= f.text_area :enunciation, :rows => 10 %></p>
+  <p><%= f.submit %></p>
+<% end %>
+
+<div id='div_table_exercise', data-iterations='<%= @exercise.iterations %>' data-axiom='<%= @exercise.axiom %>'
+  data-questions='<%= @exercise.questions.size %>' >
+
+ <table>
+   <tr>
+     <th>Iteration</th>
+     <th>Fractal</th>
+     <% @exercise.questions.each do |question| %>
+       <th title=' <%= question.title %> | <%= question.enunciation %>'>
+         <%= question.title %>
+       </th>
+     <%end%>
+   </tr>
+ </table>
+</div>
+

@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="/favicon.ico">
   </head>
 
-  <body>
+  <body data-controller='<%= controller_name %>', data-action='<%= controller.action_name %>'>
     <%= yield %>
     <%= javascript_include_tag "application" %>
   </body>

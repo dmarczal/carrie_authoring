@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @learning_object.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @learning_object.description %>
+</p>
+
+<h1> Exercises </h1>
+<p>
+  <% if @learning_object.exercises.size > 0 %>
+    <h2>Exercises</h2>
+    <% for exercise in @learning_object.exercises %>
+      <h3><%= link_to exercise.title, [@learning_object, exercise] %></h3>
+    <% end %>
+  <% end %>
+</p>
+
+<h2>New Exercise</h2>
+<%= form_for [@learning_object, Exercise.new] do |f| %>
+  <p><%= f.label :title %> <%= f.text_field :title %></p>
+  <p><%= f.label :axiom %> <%= f.text_field :axiom %></p>
+  <p><%= f.label :iterations %> <%= f.text_field :iterations %></p>
+  <p><%= f.label :enunciation %></p>
+  <p><%= f.text_area :enunciation, :rows => 10 %></p>
+  <p><%= f.submit %></p>
+<% end %>
+
+<%= link_to 'Edit', edit_learning_object_path(@learning_object) %> |
+<%= link_to 'Back', learning_objects_path %>
