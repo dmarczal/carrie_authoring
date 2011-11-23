@@ -15,3 +15,12 @@ pt-BR:
     hints:
       user:
         password: "Quanto mais difícil, melhor!"
+    placeholders:
+      learning_object:
+        name: "Nome do OA"
+        description: "Descreva seu OA"
+  helpers:
+    submit:
+      learning_object:
+        create: "Salvar %{model}"
+        update: "Salvar Alterações"

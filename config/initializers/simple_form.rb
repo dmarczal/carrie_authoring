@@ -29,7 +29,7 @@ SimpleForm.setup do |config|
   # config.error_notification_id = nil
 
   # You can wrap all inputs in a pre-defined tag.
-  config.wrapper_tag = :p
+  #config.wrapper_tag = :div
 
   # CSS class to add to all wrapper tags.
   # config.wrapper_class = :input
@@ -50,7 +50,7 @@ SimpleForm.setup do |config|
   # config.collection_value_methods = [ :id, :to_s ]
 
   # How the label text should be generated altogether with the required text.
-  # config.label_text = lambda { |label, required| "#{required} #{label}" }
+   config.label_text = lambda { |label, required| "#{label} #{required} "}
 
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
@@ -74,4 +74,6 @@ SimpleForm.setup do |config|
 
   # When false, do not use translations for labels, hints or placeholders.
   # config.translate = true
+
+  config.browser_validations = false
 end

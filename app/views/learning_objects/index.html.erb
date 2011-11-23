@@ -1,25 +1,30 @@
-<h1>Listing learning_objects</h1>
+<h1>Objetos de Aprendizagem</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<p class="right">
+  <%= link_to 'Criar novo Objeto de Aprendizagem', new_learning_object_path, :class => "btn large" %>
+</p>
 
-<% @learning_objects.each do |learning_object| %>
-  <tr>
-    <td><%= learning_object.name %></td>
-    <td><%= learning_object.description %></td>
-    <td><%= link_to 'Show', learning_object %></td>
-    <td><%= link_to 'Edit', edit_learning_object_path(learning_object) %></td>
-    <td><%= link_to 'Destroy', learning_object, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<table class="zebra-striped bordered-table has_actions" id="learning_objects">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th class="center">Opções</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @learning_objects.each do |learning_object| %>
+      <tr>
+        <td><%= learning_object.name %></td>
+        <td><%= learning_object.description %></td>
+        <td class="list-actions">
+          <ul>
+            <li><%= link_to image_tag('detail-icon.png'), learning_object %></li>
+            <li><%= link_to image_tag('edit-icon.png'), edit_learning_object_path(learning_object) %></li>
+            <li><%= link_to image_tag('delete-icon.png'), learning_object, confirm: 'Are you sure?', method: :delete %></li>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Learning object', new_learning_object_path %>

@@ -1,0 +1,46 @@
+/*
+*= require twitter/bootstrap
+*= require exercises
+*= require form_style
+*= require_self
+*/
+
+/* styles **/
+$bc: #DDD;
+
+.right { text-align:right; }
+.center { text-align:center; }
+.bordered {
+  border: 1px solid $bc;
+}
+
+section{
+  padding:10px 0 10px 0;
+  header h1{
+    border-bottom: 1px solid $bc;
+  }
+}
+
+
+/* styles for actions on table */
+.list-actions {
+
+  text-align: center;
+  width: 75px;
+
+  ul {
+    float: right;
+    list-style-type: none;
+    margin: 0;
+
+    li {
+      float: left;
+      margin-right: 5px;
+      width: 20px;
+      height: 20px;
+    }
+    li:last-child {
+      margin-right: 0;
+    }
+ }
+}

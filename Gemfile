@@ -6,6 +6,14 @@ gem "bson_ext"
 gem "simple_form"
 gem "thin"
 
+gem "on_the_spot"
+gem "breadcrumbs_on_rails"
+gem 'redcarpet'
+
+gem 'faker'
+
+gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'

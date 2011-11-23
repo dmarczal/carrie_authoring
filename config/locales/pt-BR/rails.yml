@@ -1,4 +1,13 @@
 "pt-BR":
+  attributes:
+    created_at: Criado em
+    updated_at: Atualizado em
+    name: Nome
+    title: Título
+    image: Imagem
+    description: Descrição
+    body: Conteúdo
+
   date:
     formats:
       day_of_week: "%a"
@@ -101,7 +110,12 @@
       two_words_connector: " e "
       last_word_connector: " e "
       skip_last_comma: true
-  activerecord:
+  mongoid:
+    models:
+      learning_object:
+        one: "Objeto de Aprendizagem"
+        other: "Objetos de Aprendizagem"
+
     errors:
       template:
         header:

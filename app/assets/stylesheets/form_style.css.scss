@@ -1,0 +1,41 @@
+form {
+  span.error {
+    position: absolute;
+    display: block;
+    margin: -5px 0 0 -10px;
+    padding: 5px 10px;
+
+    //background: rgba(229, 28, 28, 0.8);
+    //-moz-border-radius: 7px;
+    //-webkit-border-radius: 7px;
+
+    font-size: 11px !important;
+    color: red !important;
+    text-shadow: none !important;
+  }
+
+  label {
+    text-align: left;
+    width: auto;
+    margin-right: 5px;
+  }
+
+  input, textarea {
+    width: 90%;
+    display: block;
+    clear: both;
+  }
+
+  textarea {
+    height: 100px;
+  }
+
+  .input {
+    margin: 20px 10px 0 0;
+  }
+
+  .button {
+    margin-top: 20px;
+    padding: 10px;
+  }
+}

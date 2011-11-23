@@ -5,10 +5,18 @@
     <title>Carrie_mongodb</title>
     <%= stylesheet_link_tag "application" %>
     <link rel="shortcut icon" href="/favicon.ico">
+    <%= csrf_meta_tag %>
   </head>
 
   <body data-controller='<%= controller_name %>', data-action='<%= controller.action_name %>'>
-    <%= yield %>
+
+    <div class="container">
+      <%= render "shared/main_nav" %>
+
+      <%= render :partial => "shared/flash", :locals => {:flash => flash} %>
+
+      <%= yield %>
+    </div>
     <%= javascript_include_tag "application" %>
   </body>
 </html>

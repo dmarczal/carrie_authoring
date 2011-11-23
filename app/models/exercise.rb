@@ -1,11 +1,13 @@
 class Exercise
   include Mongoid::Document
+
   field :title, :type => String
   field :enunciation, :type => String
 
-  field :axiom
-  field :iterations, :type => Integer
+  field :position, :type => Integer
 
-  embedded_in :learning_object, :inverse_of => :exercises
+  referenced_in :learning_object
+  referenced_in :fractal
+
   embeds_many :questions
 end

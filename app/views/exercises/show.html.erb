@@ -1,5 +1,9 @@
 <h1>Exercise <strong> <%= @exercise.title %> </strong> </h1>
 
+<div>
+  <%= on_the_spot_edit @exercise, :title -%>
+</div>
+
 <h2>New Question</h2>
 <%= form_for [@learning_object, @exercise, Question.new] do |f| %>
   <p><%= f.label :title %> <%= f.text_field :title %></p>
@@ -10,12 +14,12 @@
 <div id='div_table_exercise', data-iterations='<%= @exercise.iterations %>' data-axiom='<%= @exercise.axiom %>'
   data-questions='<%= @exercise.questions.size %>' >
 
- <table>
+ <table class="bordered-table" >
    <tr>
-     <th>Iteration</th>
-     <th>Fractal</th>
+     <th title="Iteração" data-content='Iteração' data-placement="above" rel="popover" >Iteration</th>
+     <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >Fractal</th>
      <% @exercise.questions.each do |question| %>
-       <th title=' <%= question.title %> | <%= question.enunciation %>'>
+       <th title='<%= question.title %>' data-content='<%= question.enunciation %>' data-placement="above" rel="popover">
          <%= question.title %>
        </th>
      <%end%>

@@ -1,31 +1,49 @@
-<p id="notice"><%= notice %></p>
+<section>
+  <header>
+    <h1>Objeto de Aprendizagem <em><%= @learning_object.name %></em> </h1>
+  </header>
+  <article>
+    <%= markdown @learning_object.description %>
+  </article>
 
-<p>
-  <b>Title:</b>
-  <%= @learning_object.name %>
-</p>
 
-<p>
-  <b>Description:</b>
-  <%= @learning_object.description %>
-</p>
+  <article>
+    <header>
+      <h1> Exercícios </h1>
+    </header>
 
-<h1> Exercises </h1>
-<p>
-  <% if @learning_object.exercises.size > 0 %>
-    <h2>Exercises</h2>
-    <% for exercise in @learning_object.exercises %>
-      <h3><%= link_to exercise.title, [@learning_object, exercise] %></h3>
-    <% end %>
-  <% end %>
-</p>
+    <table class="zebra-striped bordered-table">
+      <thead>
+        <tr>
+          <th>Ordene</th>
+          <th>Título</th>
+          <th>Enunciation</th>
+          <th>Fractal</th>
+        </tr>
+      </thead>
+      <tbody id="exercises" data-update-url="<%= sort_exercises_learning_objects_url %>">
+        <% @exercises.each do |exercise| %>
+          <%= content_tag_for :tr, exercise do %>
+            <td class="handle">[DRAG]</td>
+            <td><%= exercise.title %></td>
+            <td><%= markdown exercise.enunciation %></td>
+            <td><%= exercise.fractal.name %></td>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+  </article>
+
+</section>
+
 
 <h2>New Exercise</h2>
 <%= form_for [@learning_object, Exercise.new] do |f| %>
   <p><%= f.label :title %> <%= f.text_field :title %></p>
-  <p><%= f.label :axiom %> <%= f.text_field :axiom %></p>
-  <p><%= f.label :iterations %> <%= f.text_field :iterations %></p>
   <p><%= f.label :enunciation %></p>
+  <p><%= f.label :Fractal %> <%= f.collection_select :fractal_id, Fractal.all, :id, :name %></p>
+
   <p><%= f.text_area :enunciation, :rows => 10 %></p>
   <p><%= f.submit %></p>
 <% end %>

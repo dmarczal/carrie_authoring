@@ -1,22 +1,25 @@
-// Exercises
-
+// Exercises Controller
 $(document).ready(function() {
-
   if (request.controller == "exercises" && request.action == "show"){
+
     var table = $('#div_table_exercise table:first-child');
     var iterations = parseInt($('#div_table_exercise').attr('data-iterations'));
 
+    var obj = $("#div_table_exercise table:first-child");
     var questions = parseInt($('#div_table_exercise').attr('data-questions'));
+
     create_table(table, iterations, questions);
 
+    register_event_mouse_over(obj);
 
-    $("#div_table_exercise table:first-child th").each(function (index, element){
-      var th = $(this).attr('title')
-      if (th != undefined){
-        $(this).cluetip({splitTitle: '|'})
-      }
+  }
+
+  function register_event_mouse_over(obj){
+    $(obj).find("th").each(function (index, element){
+      $(this).popover();
     });
   }
+
 
   function create_table(table, iterations, questions) {
     for (var i = 0; i < iterations; i++) {

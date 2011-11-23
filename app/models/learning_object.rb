@@ -3,7 +3,7 @@ class LearningObject
   field :name, :type => String
   field :description, :type => String
 
-  embeds_many :exercises
+  references_many :exercises, :dependent => :delete
 
   validates_presence_of :name, :description
 end
