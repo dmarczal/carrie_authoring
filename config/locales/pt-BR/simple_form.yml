@@ -1,4 +1,6 @@
 pt-BR:
+  prompt: "Selecione"
+
   simple_form:
     "yes": "Sim"
     "no": "Não"
@@ -21,6 +23,5 @@ pt-BR:
         description: "Descreva seu OA"
   helpers:
     submit:
-      learning_object:
-        create: "Salvar %{model}"
-        update: "Salvar Alterações"
+      create: "Salvar %{model}"
+      update: "Salvar Alterações"

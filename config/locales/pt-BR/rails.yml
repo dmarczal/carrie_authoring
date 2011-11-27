@@ -110,11 +110,17 @@
       two_words_connector: " e "
       last_word_connector: " e "
       skip_last_comma: true
+    select:
+      prompt: "Por favor selecione"
+
   mongoid:
     models:
       learning_object:
         one: "Objeto de Aprendizagem"
         other: "Objetos de Aprendizagem"
+      exercise:
+        one: "Exercício"
+        other: "Exercícios"
 
     errors:
       template:

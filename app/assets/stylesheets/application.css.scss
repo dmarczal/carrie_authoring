@@ -2,6 +2,8 @@
 *= require twitter/bootstrap
 *= require exercises
 *= require form_style
+*= require dragtable-default
+*= require jquery-ui/jquery-ui.css
 *= require_self
 */
 
@@ -9,18 +11,19 @@
 $bc: #DDD;
 
 .right { text-align:right; }
+.left { float: left; }
 .center { text-align:center; }
-.bordered {
-  border: 1px solid $bc;
-}
+.bordered { border: 1px solid $bc;}
 
 section{
   padding:10px 0 10px 0;
-  header h1{
-    border-bottom: 1px solid $bc;
+  header{
+    h1 {
+      padding-right: 20px;
+      border-bottom: 1px solid $bc;
+    }
   }
 }
-
 
 /* styles for actions on table */
 .list-actions {

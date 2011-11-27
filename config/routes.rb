@@ -11,5 +11,11 @@ Carrie_mongodb::Application.routes.draw do
     end
   end
 
+  resources :fractals do
+    collection do
+      post :update_size
+    end
+  end
+
   root :to => "site#home"
 end

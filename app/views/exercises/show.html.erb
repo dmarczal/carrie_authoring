@@ -1,29 +1,39 @@
-<h1>Exercise <strong> <%= @exercise.title %> </strong> </h1>
+<section>
+  <header>
+    <h1> Exercício </h1>
+  </header>
 
-<div>
-  <%= on_the_spot_edit @exercise, :title -%>
-</div>
+  <article class="enunciation" >
+    <header>
+      <h2 class="center"> <%= on_the_spot_edit @exercise, :title %> </h2>
+    </header>
 
-<h2>New Question</h2>
-<%= form_for [@learning_object, @exercise, Question.new] do |f| %>
-  <p><%= f.label :title %> <%= f.text_field :title %></p>
-  <p><%= f.label :enunciation %> </p><p> <%= f.text_area :enunciation, :rows => 10 %></p>
-  <p><%= f.submit %></p>
-<% end %>
+    <p>
+      <%= on_the_spot_edit @exercise, :enunciation, type: :textarea %>
+    </p>
+  </article>
 
-<div id='div_table_exercise', data-iterations='<%= @exercise.iterations %>' data-axiom='<%= @exercise.axiom %>'
-  data-questions='<%= @exercise.questions.size %>' >
+  <table id="exercise_table" class="bordered-table" data-fractal="<%= @exercise.fractal.to_json %>"
+         data-questions="<%= @exercise.questions.to_json %>"
+         data-fractal-update-url= "<%= update_size_fractals_url %>"
+         >
+    <thead>
+      <tr>
+        <th title="Iteração" data-content='Iteração' data-placement="above" rel="popover" >Iteração</th>
+        <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >Fractal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @exercise.questions.each do |question| %>
+        <tr>
+          <td title='<%= question.title %>' data-content='<%= question.enunciation %>'
+              data-placement="above" rel="popover">
 
- <table class="bordered-table" >
-   <tr>
-     <th title="Iteração" data-content='Iteração' data-placement="above" rel="popover" >Iteration</th>
-     <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >Fractal</th>
-     <% @exercise.questions.each do |question| %>
-       <th title='<%= question.title %>' data-content='<%= question.enunciation %>' data-placement="above" rel="popover">
-         <%= question.title %>
-       </th>
-     <%end%>
-   </tr>
- </table>
-</div>
+              <%= question.title %>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
 
+</section>

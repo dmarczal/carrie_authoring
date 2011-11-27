@@ -6,4 +6,7 @@ class QuestionsController < ApplicationController
     redirect_to [@learning_object, @exercise], :notice => "Question Created"
   end
 
+  def new
+
+  end
 end

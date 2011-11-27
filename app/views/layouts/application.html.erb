@@ -8,8 +8,7 @@
     <%= csrf_meta_tag %>
   </head>
 
-  <body data-controller='<%= controller_name %>', data-action='<%= controller.action_name %>'>
-
+  <body data-controller='<%= controller_name %>', data-action='<%= controller.action_name %>' data-url='<%= request.url %>'>
     <div class="container">
       <%= render "shared/main_nav" %>
 

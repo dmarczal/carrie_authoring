@@ -4,6 +4,7 @@
 
 //= require twitter/bootstrap
 //= require jquery.tablesorter
+// require jquery.dragtable
 
 //= require lsystem/lsystems
 //= require lsystem/jquery.lsystem
@@ -18,13 +19,7 @@ $(document).ready(function() {
   function request_info (){
     this.controller = $('body').attr('data-controller');
     this.action = $('body').attr('data-action');
+    this.url = $('body').attr('data-url');
   }
   window.request = new request_info();
-
-  /** Navigation active **/
-  $("#navigation > ul > li > a ").parent().removeClass("active");
-  if (request.controller == "site")
-    $("#navigation > ul > li > a[href='/']").parent().addClass("active");
-  else
-    $("#navigation > ul > li > a[href *='" + request.controller + "']").parent().addClass("active");
 });

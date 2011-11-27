@@ -1,9 +1,20 @@
+#encoding: utf-8
 class ExercisesController < ApplicationController
 
+  before_filter :find_learning_object, :only => [:create, :new, :show]
+
   def create
-    @learning_object = LearningObject.find(params[:learning_object_id])
-    @learning_object.exercises.create!(params[:exercise])
-    redirect_to @learning_object, :notice => "Exercise Created"
+    @exercise = @learning_object.exercises.new(params[:exercise])
+    if @exercise.save
+      redirect_to @learning_object, :notice => "Exercício criado com sucesso, defina agora as questões"
+    else
+      p @exercise.errors
+      render :new
+    end
+  end
+
+  def new
+    @exercise = @learning_object.exercises.new
   end
 
   # for on_sot TODO: do this in a better way
@@ -27,8 +38,12 @@ class ExercisesController < ApplicationController
 
 
   def show
-    @learning_object = LearningObject.find(params[:learning_object_id])
     @exercise = @learning_object.exercises.find(params[:id])
+  end
+
+  private
+  def find_learning_object
+    @learning_object = LearningObject.find(params[:learning_object_id])
   end
 
 end

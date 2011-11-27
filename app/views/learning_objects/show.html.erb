@@ -9,7 +9,10 @@
 
   <article>
     <header>
-      <h1> Exercícios </h1>
+      <h1 class='left'> Exercícios </h1>
+      <p class='right'>
+        <%= link_to 'Criar novo Exercício', new_learning_object_exercise_path(@learning_object), :class => "btn large" %>
+      </p>
     </header>
 
     <table class="zebra-striped bordered-table">
@@ -17,7 +20,7 @@
         <tr>
           <th>Ordene</th>
           <th>Título</th>
-          <th>Enunciation</th>
+          <th>Enunciado</th>
           <th>Fractal</th>
         </tr>
       </thead>
@@ -25,7 +28,7 @@
         <% @exercises.each do |exercise| %>
           <%= content_tag_for :tr, exercise do %>
             <td class="handle">[DRAG]</td>
-            <td><%= exercise.title %></td>
+            <td><%= link_to exercise.title, [@learning_object, exercise] %></td>
             <td><%= markdown exercise.enunciation %></td>
             <td><%= exercise.fractal.name %></td>
           <% end %>
@@ -36,17 +39,3 @@
   </article>
 
 </section>
-
-
-<h2>New Exercise</h2>
-<%= form_for [@learning_object, Exercise.new] do |f| %>
-  <p><%= f.label :title %> <%= f.text_field :title %></p>
-  <p><%= f.label :enunciation %></p>
-  <p><%= f.label :Fractal %> <%= f.collection_select :fractal_id, Fractal.all, :id, :name %></p>
-
-  <p><%= f.text_area :enunciation, :rows => 10 %></p>
-  <p><%= f.submit %></p>
-<% end %>
-
-<%= link_to 'Edit', edit_learning_object_path(@learning_object) %> |
-<%= link_to 'Back', learning_objects_path %>

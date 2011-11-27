@@ -1,1 +1,24 @@
+@import "twitter/bootstrap";
 
+.enunciation {
+  textarea, input {
+    width: 100%;
+  }
+  input{
+   width: 100% !important;
+   text-align: center !important;
+  }
+  p {
+    clear: both;
+    padding: 10px 0;
+  }
+  h2 button {
+    float: left;
+    margin-bottom: 10px;
+  }
+  button {
+    @extend .btn;
+  }
+}
+
+.ui-resizable-helper { border: 1px dotted gray; }
