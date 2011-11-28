@@ -1,6 +1,6 @@
 @import "twitter/bootstrap";
 
-.enunciation {
+section.exercise {
   textarea, input {
     width: 100%;
   }
@@ -16,6 +16,14 @@
     float: left;
     margin-bottom: 10px;
   }
+
+  table {
+    th span.title {
+      float: left;
+      margin-right: 5px;
+    }
+  }
+
   button {
     @extend .btn;
   }

@@ -5,4 +5,8 @@ class FractalsController < ApplicationController
     render nothing: true;
   end
 
+  def show
+    @fractal = Fractal.find(params[:id])
+    render :json => @fractal
+  end
 end

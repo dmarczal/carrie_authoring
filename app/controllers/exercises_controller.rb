@@ -39,6 +39,7 @@ class ExercisesController < ApplicationController
 
   def show
     @exercise = @learning_object.exercises.find(params[:id])
+    @fractals = Fractal.all.map{|fractal| [fractal.id, fractal.name]}
   end
 
   private

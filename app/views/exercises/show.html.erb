@@ -1,11 +1,11 @@
-<section>
+<section class="exercise" >
   <header>
     <h1> Exercício </h1>
   </header>
 
-  <article class="enunciation" >
+  <article>
     <header>
-      <h2 class="center"> <%= on_the_spot_edit @exercise, :title %> </h2>
+      <h2 class="center"> <%= on_the_spot_edit @exercise, :title  %> </h2>
     </header>
 
     <p>
@@ -20,7 +20,10 @@
     <thead>
       <tr>
         <th title="Iteração" data-content='Iteração' data-placement="above" rel="popover" >Iteração</th>
-        <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >Fractal</th>
+        <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >
+          <span class="title"> Fractal </span> <%= on_the_spot_edit @exercise, :fractal_id, :type => :select,
+                      :data => @fractals,  :callback => 'fractalCallback' %>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -28,7 +31,6 @@
         <tr>
           <td title='<%= question.title %>' data-content='<%= question.enunciation %>'
               data-placement="above" rel="popover">
-
               <%= question.title %>
           </td>
         </tr>

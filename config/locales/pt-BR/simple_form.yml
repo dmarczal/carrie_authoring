@@ -1,5 +1,4 @@
 pt-BR:
-  prompt: "Selecione"
 
   simple_form:
     "yes": "Sim"
@@ -25,3 +24,6 @@ pt-BR:
     submit:
       create: "Salvar %{model}"
       update: "Salvar Alterações"
+  helpers:
+    select:
+      prompt: "Selecione"

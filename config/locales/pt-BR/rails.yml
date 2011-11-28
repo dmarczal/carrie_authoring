@@ -8,6 +8,10 @@
     description: Descrição
     body: Conteúdo
 
+  helpers:
+    select:
+      prompt: "Selecione"
+
   date:
     formats:
       day_of_week: "%a"
