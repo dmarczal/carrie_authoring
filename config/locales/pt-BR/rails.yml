@@ -6,6 +6,7 @@
     title: Título
     image: Imagem
     description: Descrição
+    enunciation: Enunciado
     body: Conteúdo
 
   helpers:
@@ -125,6 +126,9 @@
       exercise:
         one: "Exercício"
         other: "Exercícios"
+      question:
+        one: "Questão"
+        other: "Questões"
 
     errors:
       template:

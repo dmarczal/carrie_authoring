@@ -18,10 +18,20 @@ section.exercise {
   }
 
   table {
+    td {
+      text-align: center;
+      vertical-align: middle;
+    }
     th span.title {
+      text-align: center;
       float: left;
       margin-right: 5px;
     }
+    th{clear:both;}
+  }
+
+  .right {
+    margin-bottom: 5px;
   }
 
   button {

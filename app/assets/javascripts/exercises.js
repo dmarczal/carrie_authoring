@@ -17,7 +17,7 @@ $(document).ready(function() {
     createTable();
     resizableFractal();
     register_event_mouse_over();
-    dragableColumns();
+    //dragableColumns();
   }
 
   /*
@@ -27,36 +27,39 @@ $(document).ready(function() {
 
     for (var i = 0; i < exercise.fractal.iterations; i++) {
       var row = $('<tr>');
-      var iteration = $('<td>' + i + '</td>');
-      var fracCell = $('<td class="fractal">');
-
-      createQuestions(row, exercise.questions);
-      $(exercise.table).append(row);
+      var iteration = $('<td width="10">' + i + '</td>');
+      var fracCell = $('<td class="fractal" width='+exercise.fractal.width +'; ">');
 
       fracCell.append(createFractal(i, exercise.fractal));
       row.append(iteration, fracCell);
+
+      createQuestions(row);
+      $(exercise.table).append(row);
     }
+    var row = $('<tr>');
+    row.append("<td> n </td>");
+    row.append("<td> Limite da Figura </td>");
+    createQuestions(row);
+    $(exercise.table).append(row);
   }
 
-  function createQuestions(row, questions){
-     for(var q = 0; q < questions; q++){
-       var side = $('<td>');
-       row.append(side)
+  function createQuestions(row){
+    for(var q = 0; q < exercise.questions.length; q++){
+       row.append($('<td>'));
      }
   }
 
   function dragableColumns(){
-    //     $('table').dragtable({
-    //		change:function(e,ui){
-    //			console.info('widget option change callback triggered');
-    //			console.log(ui);
-    //		},
-    //		displayHelper: function(e,ui){
-    //			console.log(ui);
-    //			ui.draggable.append('<span>I was added<br>in the callback</span>')
-    //		}
-    //	});
-        //register_event_mouse_over(obj);
+         $(exercise.table).dragtable({
+    		change:function(e,ui){
+    			console.info('widget option change callback triggered');
+    			console.log(ui);
+    		},
+    		displayHelper: function(e,ui){
+    			console.log(ui);
+    			ui.draggable.append('<span>I was added<br>in the callback</span>')
+    		}
+    	});
   }
 
 
@@ -79,13 +82,15 @@ $(document).ready(function() {
 
   function register_event_mouse_over() {
     $(exercise.table).find("th").each(function (index, element){
-      $(this).popover();
+      if (index !== 0 && index !== 1){
+         $(this).popover();
+      }
     });
   }
 });
 
 function fractalCallback(object, value, settings) {
-  var key = value.trim().toLowerCase().replace(/\s+/g, '-');
+  var key = value.trim().toLowerCase().replace(/\s/g, '-');
 
   $.getJSON('/fractals/'+ key, function(data){
     exercise.fractal = data;

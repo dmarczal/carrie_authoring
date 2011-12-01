@@ -5,6 +5,7 @@ class Exercise
   field :title
   field :enunciation
   field :position, :type => Integer
+  key :title
 
   referenced_in :learning_object
   referenced_in :fractal
@@ -14,11 +15,17 @@ class Exercise
   validates_presence_of :fractal, :title, :enunciation
   validates_associated :fractal
   validates_associated :learning_object
+  validates_uniqueness_of :title
 
-  #before_create :set_position
+  before_create :set_position
 
-  #def set_position
-    #lo = learning_object.exercises
-    #self.position= lo.desc(:position) ? lo.first.position + 1 : 1
-  #end
+private
+  def set_position
+    lo = learning_object.exercises.order_by([[ :position, :desc ]])
+    if (lo.empty?)
+      self.position= 1
+    else
+      self.position= lo.first.position + 1
+    end
+  end
 end

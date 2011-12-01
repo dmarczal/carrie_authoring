@@ -24,6 +24,5 @@ pt-BR:
     submit:
       create: "Salvar %{model}"
       update: "Salvar Alterações"
-  helpers:
     select:
       prompt: "Selecione"

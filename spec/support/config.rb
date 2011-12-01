@@ -1,1 +1,1 @@
-require "swiss_knife/rspec"
+#require "swiss_knife/rspec"

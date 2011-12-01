@@ -12,6 +12,8 @@
     <div class="container">
       <%= render "shared/main_nav" %>
 
+      <%= render "shared/breadcrumbs" %>
+
       <%= render :partial => "shared/flash", :locals => {:flash => flash} %>
 
       <%= yield %>

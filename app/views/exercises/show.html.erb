@@ -13,6 +13,12 @@
     </p>
   </article>
 
+  <div class="right">
+    <%= link_to "Criar Questão",
+      new_learning_object_exercise_question_path(@learning_object, @exercise),
+      :class => "btn large"%>
+  </div>
+
   <table id="exercise_table" class="bordered-table" data-fractal="<%= @exercise.fractal.to_json %>"
          data-questions="<%= @exercise.questions.to_json %>"
          data-fractal-update-url= "<%= update_size_fractals_url %>"
@@ -22,19 +28,17 @@
         <th title="Iteração" data-content='Iteração' data-placement="above" rel="popover" >Iteração</th>
         <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >
           <span class="title"> Fractal </span> <%= on_the_spot_edit @exercise, :fractal_id, :type => :select,
-                      :data => @fractals,  :callback => 'fractalCallback' %>
+            :data => @fractals,  :callback => 'fractalCallback' %>
         </th>
+        <% @exercise.questions.each do |question| %>
+          <th title='<%= question.title %>' data-content='<%= question.enunciation %>'
+            data-placement="above" rel="popover">
+            <%= question.title %>
+          </th>
+        <%end%>
       </tr>
     </thead>
     <tbody>
-      <% @exercise.questions.each do |question| %>
-        <tr>
-          <td title='<%= question.title %>' data-content='<%= question.enunciation %>'
-              data-placement="above" rel="popover">
-              <%= question.title %>
-          </td>
-        </tr>
-      <%end%>
     </tbody>
   </table>
 

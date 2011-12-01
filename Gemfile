@@ -32,9 +32,18 @@ group :development, :test do
 end
 
 group :test do
-  gem "factory_girl"
-  gem "factory_girl-preload"
-  gem "test_notifier", :require => "test_notifier/runner/rspec"
+#  gem "factory_girl"
+#  gem "factory_girl-preload"
+
+  gem 'database_cleaner'
+  gem 'fabrication'
+#  gem "test_notifier", :require => "test_notifier/runner/rspec"
+  gem 'growl_notify'
   gem "spork", "~> 0.9.0.rc9"
   gem "capybara"
+
+  gem 'mongoid-rspec'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem "guard-spork"
 end

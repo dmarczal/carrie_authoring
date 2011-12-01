@@ -24,12 +24,12 @@ describe LearningObjectsController do
   # LearningObject. As you add validations to LearningObject, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    Fabricate.build(:learning_object).attributes
   end
 
   describe "GET index" do
     it "assigns all learning_objects as @learning_objects" do
-      learning_object = LearningObject.create! valid_attributes
+      learning_object = Fabricate(:learning_object) #LearningObject.create! valid_attributes
       get :index
       assigns(:learning_objects).should eq([learning_object])
     end
@@ -37,7 +37,7 @@ describe LearningObjectsController do
 
   describe "GET show" do
     it "assigns the requested learning_object as @learning_object" do
-      learning_object = LearningObject.create! valid_attributes
+      learning_object = Fabricate(:learning_object)
       get :show, :id => learning_object.id
       assigns(:learning_object).should eq(learning_object)
     end
@@ -52,33 +52,33 @@ describe LearningObjectsController do
 
   describe "GET edit" do
     it "assigns the requested learning_object as @learning_object" do
-      learning_object = LearningObject.create! valid_attributes
+      learning_object = Fabricate(:learning_object)
       get :edit, :id => learning_object.id
       assigns(:learning_object).should eq(learning_object)
     end
   end
 
-  describe "POST create" do
+  describe "POST create"  do
     describe "with valid params" do
       it "creates a new LearningObject" do
         expect {
-          post :create, :learning_object => valid_attributes
+          post :create, :learning_object => Fabricate.build(:learning_object).attributes
         }.to change(LearningObject, :count).by(1)
       end
 
       it "assigns a newly created learning_object as @learning_object" do
-        post :create, :learning_object => valid_attributes
+        post :create, :learning_object => Fabricate.build(:learning_object).attributes
         assigns(:learning_object).should be_a(LearningObject)
         assigns(:learning_object).should be_persisted
       end
 
-      it "redirects to the created learning_object" do
-        post :create, :learning_object => valid_attributes
+      it "redirects to the created learning_object"  do
+        post :create, :learning_object => Fabricate.build(:learning_object).attributes
         response.should redirect_to(LearningObject.last)
       end
     end
 
-    describe "with invalid params" do
+    describe "with invalid params"  do
       it "assigns a newly created but unsaved learning_object as @learning_object" do
         # Trigger the behavior that occurs when invalid params are submitted
         LearningObject.any_instance.stub(:save).and_return(false)
@@ -98,7 +98,7 @@ describe LearningObjectsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested learning_object" do
-        learning_object = LearningObject.create! valid_attributes
+        learning_object = Fabricate(:learning_object)
         # Assuming there are no other learning_objects in the database, this
         # specifies that the LearningObject created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -108,14 +108,14 @@ describe LearningObjectsController do
       end
 
       it "assigns the requested learning_object as @learning_object" do
-        learning_object = LearningObject.create! valid_attributes
-        put :update, :id => learning_object.id, :learning_object => valid_attributes
+        learning_object = Fabricate(:learning_object)
+        put :update, :id => learning_object.id, :learning_object => learning_object.attributes
         assigns(:learning_object).should eq(learning_object)
       end
 
       it "redirects to the learning_object" do
         learning_object = LearningObject.create! valid_attributes
-        put :update, :id => learning_object.id, :learning_object => valid_attributes
+        put :update, :id => learning_object.id, :learning_object => learning_object.attributes
         response.should redirect_to(learning_object)
       end
     end
@@ -151,6 +151,21 @@ describe LearningObjectsController do
       learning_object = LearningObject.create! valid_attributes
       delete :destroy, :id => learning_object.id
       response.should redirect_to(learning_objects_url)
+    end
+  end
+
+  describe "UPDATE exercises position", :focus => true do
+    it "should update exercises position" do
+      learning_object = Fabricate(:learning_object)
+      learning_object.exercises.create Fabricate.build(:exercise, :learning_object => nil).attributes
+      learning_object.exercises.create Fabricate.build(:exercise, :learning_object => nil).attributes
+
+      exer_one, exer_two = learning_object.exercises
+      post :sort_exercises, :exercise => [exer_two.id,  exer_one.id]
+
+      Exercise.find(exer_one.id).position.should == 2
+      Exercise.find(exer_two.id).position.should == 1
+      response.body.should be_blank
     end
   end
 

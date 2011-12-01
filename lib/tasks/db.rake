@@ -5,7 +5,7 @@ namespace :db do
   task :populate => :environment do
     require 'faker'
 
-    [LearningObject, Fractal].each(&:destroy_all)
+    [LearningObject, Fractal, Exercise].each(&:destroy_all)
 
     oas = 10.times.map do
       LearningObject.create(
@@ -23,7 +23,7 @@ namespace :db do
 
     oas.each do |oa|
       3.times do
-        oa.exercises.create(:title => Faker::Name.title, :enunciation => Faker::Lorem.paragraphs(3).join,
+        oa.exercises.create!(:title => Faker::Name.title, :enunciation => Faker::Lorem.paragraphs(3).join,
                             :fractal => fractals.sample)
       end
     end
