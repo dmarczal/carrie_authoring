@@ -13,9 +13,6 @@ $(document).ready(function() {
        axis: 'y',
        handle: '.handle',
        update: function(event, ui) {
-          //$($(this).sortable('toArray') ).each(function (index, value) {
-          //console.log(value);
-          //});
           $.post($(this).data('update-url'), { 'exercise' : $(this).sortable('toArray') });
        }
     });

@@ -1,1 +1,1 @@
-# Carrie_mongodb
+# Carrie - Math Authoring System

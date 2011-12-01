@@ -32,9 +32,6 @@ group :development, :test do
 end
 
 group :test do
-#  gem "factory_girl"
-#  gem "factory_girl-preload"
-
   gem 'database_cleaner'
   gem 'fabrication'
 #  gem "test_notifier", :require => "test_notifier/runner/rspec"
