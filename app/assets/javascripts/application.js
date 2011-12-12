@@ -12,6 +12,7 @@
 //= require on_the_spot
 //= require_self
 
+//= require fractal
 //= require exercises
 //= require learning_objects
 

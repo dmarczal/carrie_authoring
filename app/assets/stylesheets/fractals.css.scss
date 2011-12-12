@@ -1,3 +1,17 @@
 // Place all the styles related to the fractals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#fractal-index {
+  .list-actions{
+    width: 10px;
+  }
+
+  td.fractal {
+   width: 230px;
+  }
+
+  canvas {
+    margin-right: 5px;
+  }
+}

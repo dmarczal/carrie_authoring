@@ -30,7 +30,7 @@ $(document).ready(function() {
       var iteration = $('<td width="10">' + i + '</td>');
       var fracCell = $('<td class="fractal" width='+exercise.fractal.width +'; ">');
 
-      fracCell.append(createFractal(i, exercise.fractal));
+      fracCell.append(createFractalResizable(i, exercise.fractal));
       row.append(iteration, fracCell);
 
       createQuestions(row);
@@ -106,17 +106,4 @@ function reloadFractal(){
 
     $(this).append(createFracCanvas(index, exercise.fractal));
   });
-}
-
-function createFractal(i, fractal){
-  var canvas = createFracCanvas(i, fractal);
-  return $('<div class="resizable">').append(canvas)
-    .css('width', fractal.width + 8)
-    .css('height', fractal.height + 8)
-}
-
-function createFracCanvas(i, fractal){
-  var canvas = $('<canvas id="canvas_'+ i +'" width="'+ fractal.width +'" height="'+ fractal.height +'" />')
-    canvas.lsystem(i, fractal.angle, "", fractal.axiom, fractal.rules);
-  return canvas;
 }
