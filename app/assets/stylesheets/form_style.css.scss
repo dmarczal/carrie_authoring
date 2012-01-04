@@ -1,6 +1,8 @@
 @import "twitter/bootstrap";
 
-form {
+.simple_form {
+  padding-left: 0px;
+
   span.error {
     position: absolute;
     display: block;
@@ -22,7 +24,7 @@ form {
     margin-right: 5px;
   }
 
-  input, textarea {
+  input[type="text"], textarea {
     width: 90%;
     display: block;
     clear: both;
@@ -33,7 +35,7 @@ form {
   }
 
   .input {
-    margin: 20px 10px 0 0;
+    margin: 20px 10px 0px 0px;
   }
 
   .button {
@@ -42,3 +44,4 @@ form {
     padding: 10px;
   }
 }
+

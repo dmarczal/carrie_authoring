@@ -1,9 +1,9 @@
-<section>
+<section id="show-learning_object">
   <header>
-    <h1>Objeto de Aprendizagem <em><%= @learning_object.name %></em> </h1>
+    <h1>Objeto de Aprendizagem: <em><%= @learning_object.name %> </h1>
   </header>
   <article>
-    <%= markdown @learning_object.description %>
+    <%= best_in_place @learning_object, :description, type: :textarea, display_as: :mk_description %>
   </article>
 
 

@@ -7,7 +7,7 @@ class LearningObjectsController < ApplicationController
   end
 
   def show
-    @learning_object = LearningObject.find(params[:id])
+    @learning_object = LearningObject.find_by_slug(params[:id])
     @exercises = @learning_object.exercises.order_by([[ :position, :asc ]])
 
     add_breadcrumb "OA: #{@learning_object.name}", learning_object_path(@learning_object_path)
@@ -19,7 +19,7 @@ class LearningObjectsController < ApplicationController
   end
 
   def edit
-    @learning_object = LearningObject.find(params[:id])
+    @learning_object = LearningObject.find_by_slug(params[:id])
     add_breadcrumb "Editar #{@learning_object.name}", :edit_learning_object_path
   end
 
@@ -34,26 +34,35 @@ class LearningObjectsController < ApplicationController
   end
 
   def update
-    @learning_object = LearningObject.find(params[:id])
+    @learning_object = LearningObject.find_by_slug(params[:id])
 
-    if @learning_object.update_attributes(params[:learning_object])
-      redirect_to @learning_object, notice: "As nformações do OA #{@learning_object.name} foram atualizadas."
-    else
-      render :edit
+    respond_to do |format|
+      if  @learning_object.update_attributes(params[:learning_object])
+        format.html { redirect_to(@learning_object,
+                      notice: "As nformações do OA #{@learning_object.name} foram atualizadas.") }
+        format.json { head :ok }
+      else
+        format.html { render :edit }
+        format.json { render :json => @learning_object.errors.full_messages, :status => :unprocessable_entity }
+      end
     end
+
+
+   # if @learning_object.update_attributes(params[:learning_object])
+   #   redirect_to @learning_object, notice: "As nformações do OA #{@learning_object.name} foram atualizadas."
+   # else
+    #  render :edit
+    #end
   end
 
   def destroy
-    @learning_object = LearningObject.find(params[:id])
+    @learning_object = LearningObject.find_by_slug(params[:id])
     @learning_object.destroy
 
     redirect_to learning_objects_url, notice: "OA deletado com sucesso"
   end
 
   def sort_exercises
-    puts "_-________"
-    puts params
-
     params[:exercise].each_with_index do |id, index|
       Exercise.find(id).update_attribute(:position, index+1)
     end

@@ -38,7 +38,7 @@ describe LearningObjectsController do
   describe "GET show" do
     it "assigns the requested learning_object as @learning_object" do
       learning_object = Fabricate(:learning_object)
-      get :show, :id => learning_object.id
+      get :show, :id => learning_object.slug
       assigns(:learning_object).should eq(learning_object)
     end
   end
@@ -53,7 +53,7 @@ describe LearningObjectsController do
   describe "GET edit" do
     it "assigns the requested learning_object as @learning_object" do
       learning_object = Fabricate(:learning_object)
-      get :edit, :id => learning_object.id
+      get :edit, :id => learning_object.slug
       assigns(:learning_object).should eq(learning_object)
     end
   end
@@ -104,18 +104,18 @@ describe LearningObjectsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         LearningObject.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => learning_object.id, :learning_object => {'these' => 'params'}
+        put :update, :id => learning_object.slug, :learning_object => {'these' => 'params'}
       end
 
       it "assigns the requested learning_object as @learning_object" do
         learning_object = Fabricate(:learning_object)
-        put :update, :id => learning_object.id, :learning_object => learning_object.attributes
+        put :update, :id => learning_object.slug, :learning_object => learning_object.attributes
         assigns(:learning_object).should eq(learning_object)
       end
 
       it "redirects to the learning_object" do
         learning_object = LearningObject.create! valid_attributes
-        put :update, :id => learning_object.id, :learning_object => learning_object.attributes
+        put :update, :id => learning_object.slug, :learning_object => learning_object.attributes
         response.should redirect_to(learning_object)
       end
     end
@@ -125,7 +125,7 @@ describe LearningObjectsController do
         learning_object = LearningObject.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         LearningObject.any_instance.stub(:save).and_return(false)
-        put :update, :id => learning_object.id, :learning_object => {}
+        put :update, :id => learning_object.slug, :learning_object => {}
         assigns(:learning_object).should eq(learning_object)
       end
 
@@ -133,7 +133,7 @@ describe LearningObjectsController do
         learning_object = LearningObject.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         LearningObject.any_instance.stub(:save).and_return(false)
-        put :update, :id => learning_object.id, :learning_object => {}
+        put :update, :id => learning_object.slug, :learning_object => {}
         response.should render_template("edit")
       end
     end
@@ -143,18 +143,18 @@ describe LearningObjectsController do
     it "destroys the requested learning_object" do
       learning_object = LearningObject.create! valid_attributes
       expect {
-        delete :destroy, :id => learning_object.id
+        delete :destroy, :id => learning_object.slug
       }.to change(LearningObject, :count).by(-1)
     end
 
     it "redirects to the learning_objects list" do
       learning_object = LearningObject.create! valid_attributes
-      delete :destroy, :id => learning_object.id
+      delete :destroy, :id => learning_object.slug
       response.should redirect_to(learning_objects_url)
     end
   end
 
-  describe "UPDATE exercises position", :focus => true do
+  describe "UPDATE exercises position"  do
     it "should update exercises position" do
       learning_object = Fabricate(:learning_object)
       learning_object.exercises.create Fabricate.build(:exercise, :learning_object => nil).attributes

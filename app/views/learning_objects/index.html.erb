@@ -6,7 +6,7 @@
     </p>
   </header>
 
-  <table class="zebra-striped bordered-table has_actions" id="learning_objects">
+  <table class="zebra-striped bordered-table" id="learning_objects">
     <thead>
       <tr>
         <th>Título</th>
@@ -21,9 +21,9 @@
           <td><%= learning_object.description %></td>
           <td class="list-actions">
             <ul>
-              <li><%= link_to image_tag('detail-icon.png'), learning_object %></li>
-              <li><%= link_to image_tag('edit-icon.png'), edit_learning_object_path(learning_object) %></li>
-              <li><%= link_to image_tag('delete-icon.png'), learning_object, confirm: 'Are you sure?', method: :delete %></li>
+              <li><%= link_to 'Visualizar', learning_object %></li>
+              <li><%= link_to 'Editar', edit_learning_object_path(learning_object) %></li>
+              <li><%= link_to 'Deletar', learning_object, confirm: true, method: :delete %></li>
             </ul>
           </td>
         </tr>

@@ -4,15 +4,17 @@ gem "rails", "3.1.1"
 gem "mongoid"
 gem "bson_ext"
 gem "simple_form"
-gem "thin"
 
-gem "on_the_spot"
+#gem "on_the_spot"
+gem 'best_in_place_mongoid'
 gem "breadcrumbs_on_rails"
 gem 'redcarpet'
-
-gem 'faker'
+gem 'mongoid_slug'
 
 gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+gem 'faker'
+gem "thin"
 
 group :assets do
   gem 'sass-rails'

@@ -9,12 +9,15 @@
 //= require lsystem/lsystems
 //= require lsystem/jquery.lsystem
 
-//= require on_the_spot
+// require on_the_spot
 //= require_self
 
 //= require fractal
 //= require exercises
 //= require learning_objects
+
+//= require jquery.purr
+//= require best_in_place
 
 $(document).ready(function() {
   function request_info (){
@@ -23,4 +26,6 @@ $(document).ready(function() {
     this.url = $('body').attr('data-url');
   }
   window.request = new request_info();
+
+  $('.best_in_place').best_in_place();
 });
