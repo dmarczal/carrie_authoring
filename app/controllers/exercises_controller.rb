@@ -1,7 +1,7 @@
 #encoding: utf-8
 class ExercisesController < ApplicationController
 
-  before_filter :find_learning_object, :only => [:create, :new, :show]
+  before_filter :find_learning_object, :only => [:create, :new, :show, :update]
 
   def create
     @exercise = @learning_object.exercises.new(params[:exercise])
@@ -17,36 +17,32 @@ class ExercisesController < ApplicationController
     add_breadcrumb "Novo Exercício #{@exercise.title}", :new_learning_object_exercise_path
   end
 
-  # for on_sot TODO: do this in a better way
-  def update_attribute_on_the_spot
-    klass, field, id = params[:id].split('__')
-    select_data = params[:select_array]
 
-    object = LearningObject.find(params[:learning_object_id]).exercises.find(id)
+  def update
+    @exercise = @learning_object.exercises.find_by_slug(params[:id])
 
-    if object.update_attributes(field => params[:value])
-      if select_data.nil?
-        render :text => CGI::escapeHTML(object.send(field).to_s)
+    respond_to do |format|
+      if  @exercise.update_attributes(params[:exercise])
+        format.html { redirect_to(@exercise,
+                      notice: "As nformações do Exercício #{@exercise.title} foram atualizadas.") }
+        format.json { respond_with_bip(@exercise) }
       else
-        parsed_data = JSON.parse(select_data.gsub("'", '"'))
-        render :text => parsed_data[object.send(field).to_s]
+        format.html { render :edit }
+        format.json { respond_with_bip(@exercise) }
       end
-    else
-      render :text => object.errors.full_messages.join("\n"), :status => 422
     end
   end
 
-
   def show
-    @exercise = @learning_object.exercises.find(params[:id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:id])
     @fractals = Fractal.all.map{|fractal| [fractal.id, fractal.name]}
 
     add_breadcrumb "Exercício: #{@exercise.title}", :learning_object_exercise_path
   end
 
-  private
+private
   def find_learning_object
-    @learning_object = LearningObject.find(params[:learning_object_id])
+    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
 
     add_breadcrumb "Objetos de Aprendizagem", learning_objects_path
     add_breadcrumb "OA: #{@learning_object.name}", learning_object_path(@learning_object)

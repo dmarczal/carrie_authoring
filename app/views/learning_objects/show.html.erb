@@ -3,7 +3,9 @@
     <h1>Objeto de Aprendizagem: <em><%= @learning_object.name %> </h1>
   </header>
   <article>
-    <%= best_in_place @learning_object, :description, type: :textarea, display_as: :mk_description %>
+      <div class="do_hover">
+        <%= best_in_place @learning_object, :description, :display_as => :markdown_desc, :type => :textarea %>
+      </div>
   </article>
 
 

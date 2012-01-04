@@ -9,6 +9,13 @@ GIT
       less-rails (~> 2.1.0)
       railties
 
+PATH
+  remote: ~/projects/github/best_in_place/
+  specs:
+    best_in_place (1.0.4.preMongo)
+      jquery-rails
+      rails (~> 3.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -43,10 +50,6 @@ GEM
     addressable (2.2.6)
     arel (2.2.1)
     awesome_print (0.4.0)
-    best_in_place_mongoid (1.0.2)
-      jquery-rails
-      mongoid (~> 2.3.3)
-      rails (~> 3.1.0)
     breadcrumbs_on_rails (2.1.0)
     bson (1.4.0)
     bson_ext (1.4.0)
@@ -233,7 +236,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  best_in_place_mongoid
+  best_in_place (= 1.0.4.preMongo)!
   breadcrumbs_on_rails
   bson_ext
   capybara

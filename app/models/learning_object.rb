@@ -13,8 +13,7 @@ class LearningObject
   validates_presence_of :name, :description
   validates_uniqueness_of :name
 
-  def mk_description
-    puts "000000000"
+  def markdown_desc
     options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
     Redcarpet.new(self.description, *options).to_html.html_safe
   end

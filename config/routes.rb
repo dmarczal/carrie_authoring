@@ -1,10 +1,10 @@
 Carrie_mongodb::Application.routes.draw do
+
+  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
+
   resources :learning_objects do
     resources :exercises do
       resources :questions
-      collection do
-        put :update_attribute_on_the_spot
-      end
     end
     collection do
       post :sort_exercises

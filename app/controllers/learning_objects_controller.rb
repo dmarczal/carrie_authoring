@@ -40,19 +40,12 @@ class LearningObjectsController < ApplicationController
       if  @learning_object.update_attributes(params[:learning_object])
         format.html { redirect_to(@learning_object,
                       notice: "As nformações do OA #{@learning_object.name} foram atualizadas.") }
-        format.json { head :ok }
+        format.json { respond_with_bip(@learning_object) }
       else
         format.html { render :edit }
-        format.json { render :json => @learning_object.errors.full_messages, :status => :unprocessable_entity }
+        format.json { respond_with_bip(@learning_object) }
       end
     end
-
-
-   # if @learning_object.update_attributes(params[:learning_object])
-   #   redirect_to @learning_object, notice: "As nformações do OA #{@learning_object.name} foram atualizadas."
-   # else
-    #  render :edit
-    #end
   end
 
   def destroy

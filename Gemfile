@@ -6,7 +6,7 @@ gem "bson_ext"
 gem "simple_form"
 
 #gem "on_the_spot"
-gem 'best_in_place_mongoid'
+gem 'best_in_place', '1.0.4.preMongo',  path: '~/projects/github/best_in_place/'
 gem "breadcrumbs_on_rails"
 gem 'redcarpet'
 gem 'mongoid_slug'
@@ -36,7 +36,6 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'fabrication'
-#  gem "test_notifier", :require => "test_notifier/runner/rspec"
   gem 'growl_notify'
   gem "spork", "~> 0.9.0.rc9"
   gem "capybara"

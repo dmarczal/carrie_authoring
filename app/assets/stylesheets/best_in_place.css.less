@@ -1,4 +1,4 @@
-.best_in_place {
+.best_in_place, .do_hover {
   padding: .1m;
   cursor: hand;
   cursor: pointer;
@@ -11,11 +11,24 @@
   -ms-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
+  margin-bottom: 5px;
 }
+
+.do_hover:hover {
+  background: url("red_pen.png") no-repeat right;
+  background-color: #CCC;
+}
+
 .best_in_place:hover {
   padding-right: 1.5em;
   background: url("red_pen.png") no-repeat right;
   background-color: #CCC;
+}
+
+.do_hover .best_in_place:hover {
+  padding: 0px;
+  margin: 0px;
+  background: none;
 }
 
 .info_edit {
@@ -24,8 +37,14 @@
   cursor: pointer;
 }
 
-.best_in_place textarea {
-  height:15em;
+.best_in_place textarea  {
+  height: 100px;
+  width: 100%;
+}
+
+
+.best_in_place input {
+  padding: 10px;
   width: 100%;
   margin-bottom: 5px;
 }
@@ -33,14 +52,17 @@
 /* Missatges Flotants */
 
 .purr {
-	position: fixed;
-	width: 324px;
-	top: 20px;
-	right: 15px;
-	padding: 20px;
-	background-color: #000000;
-	color: #FFFFFF;
-	border: 2px solid #FFFFFF;
+    position: fixed;
+    top: -2px;
+    padding: 5px;
+    right: 156px;
+    width: 300px;
+    text-align: center;
+    background-color: #C43C35;
+    color: #FFF;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 .purr:hover .close	{
 	position: absolute;
@@ -59,19 +81,7 @@
 .purr {
   @extend .alert-message.error;
   position: fixed;
-  top: 2px;
-  right: 160px;
-  width: 300px;
-  padding: 10px;
+
   &:first-letter { text-transform: uppercase; }
 }**/
 
-/** LearningObject **/
-
-#show-learning_object .form_in_place {
-  float: right;
-}
-
-#show-learning_object .best_in_place input {
-  width: 550px;
-}

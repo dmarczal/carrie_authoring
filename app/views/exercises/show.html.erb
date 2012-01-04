@@ -5,12 +5,15 @@
 
   <article>
     <header>
-      <h2 class="center"> <%= on_the_spot_edit @exercise, :title  %> </h2>
+      <h2> <%= best_in_place @exercise, :title,
+                              :path => [@learning_object, @exercise], class: 'inline_key' %> </h2>
     </header>
 
-    <p>
-      <%= on_the_spot_edit @exercise, :enunciation, type: :textarea %>
-    </p>
+    <div class="do_hover">
+      <%= best_in_place @exercise, :enunciation, display_as: :markdown_desc,
+                                   type: :textarea, path: [@learning_object, @exercise]  %>
+    </div>
+
   </article>
 
   <div class="right">
@@ -26,10 +29,7 @@
     <thead>
       <tr>
         <th title="Iteração" data-content='Iteração' data-placement="above" rel="popover" >Iteração</th>
-        <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >
-          <span class="title"> Fractal </span> <%= on_the_spot_edit @exercise, :fractal_id, :type => :select,
-            :data => @fractals,  :callback => 'fractalCallback' %>
-        </th>
+        <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" ></th>
         <% @exercise.questions.each do |question| %>
           <th title='<%= question.title %>' data-content='<%= question.enunciation %>'
             data-placement="above" rel="popover">
