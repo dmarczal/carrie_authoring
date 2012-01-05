@@ -1,4 +1,12 @@
 GIT
+  remote: git@github.com:dmarczal/best_in_place.git
+  revision: 0d943b4c70335d3f998b816d2fbb280c84330839
+  specs:
+    best_in_place (1.0.4.preMongo)
+      jquery-rails
+      rails (~> 3.1.0)
+
+GIT
   remote: http://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 4296bb9105ca6b0660419ac50e8a0682782de0a2
   specs:
@@ -8,13 +16,6 @@ GIT
       less
       less-rails (~> 2.1.0)
       railties
-
-PATH
-  remote: ~/projects/github/best_in_place/
-  specs:
-    best_in_place (1.0.4.preMongo)
-      jquery-rails
-      rails (~> 3.1.0)
 
 GEM
   remote: http://rubygems.org/
