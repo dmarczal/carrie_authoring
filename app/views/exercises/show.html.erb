@@ -5,14 +5,10 @@
 
   <article>
     <header>
-      <h2> <%= best_in_place @exercise, :title,
-                              :path => [@learning_object, @exercise], class: 'inline_key' %> </h2>
+      <h2>  <%= @exercise.title %> </h2>
     </header>
 
-    <div class="do_hover">
-      <%= best_in_place @exercise, :enunciation, display_as: :markdown_desc,
-                                   type: :textarea, path: [@learning_object, @exercise]  %>
-    </div>
+    <%= markdown @exercise.enunciation %>
 
   </article>
 
@@ -30,15 +26,10 @@
     <thead>
       <tr>
         <th title="Iterações" data-content='Iteração' data-placement="above" rel="popover" >
-          Iteração:
-          <%= best_in_place @fractal, :iterations,
-              path: [@learning_object, @exercise],
-              type: :select, :collection => (1..7).to_a.map{ |e| [e, e.to_s] } %>
+          Número de Iterações: <%= @fractal.iterations %>
         </th>
         <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >
-           Fractal: <%= best_in_place @exercise, :fractal,
-              path: [@learning_object, @exercise],
-              type: :select, :collection => @fractals %>
+          Fractal: <%= @fractal.name %>
         </th>
         <% @exercise.questions.each do |question| %>
           <th title='<%= question.title %>' data-content='<%= question.enunciation %>'

@@ -25,10 +25,6 @@ class ExercisesController < ApplicationController
 
 
   def update
-    if params[:fractal_exercise]
-      update_fractal
-    else
-
       @exercise = @learning_object.exercises.find_by_slug(params[:id])
       @exercise.update_attributes(params[:exercise])
 
@@ -47,7 +43,6 @@ class ExercisesController < ApplicationController
           format.json { respond_with_bip(@exercise) }
         end
       end
-    end
   end
 
   def show
@@ -85,21 +80,6 @@ private
                                       rules: fractal.rules)
 
       return frac_exer
-    end
-  end
-
-  def update_fractal
-    @exercise = @learning_object.exercises.find_by_slug(params[:id])
-    @fractal = @exercise.fractal
-    respond_to do |format|
-      if  @fractal.update_attributes(params[:fractal_exercise])
-        format.html { redirect_to(@fractal,
-                      notice: "As informações foram atualizadas.") }
-        format.json { respond_with_bip(@fractal) }
-      else
-        format.html { render :edit }
-        format.json { respond_with_bip(@fractal) }
-      end
     end
   end
 end

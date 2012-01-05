@@ -19,8 +19,8 @@ class QuestionsController < ApplicationController
 
   private
   def load_parents_breadcrumbs
-    @learning_object = LearningObject.find(params[:learning_object_id])
-    @exercise = @learning_object.exercises.find(params[:exercise_id])
+    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
 
     add_breadcrumb "Objetos de Aprendizagem", learning_objects_path
     add_breadcrumb "OA: #{@learning_object.name}", learning_object_path(@learning_object)

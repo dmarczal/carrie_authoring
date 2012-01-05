@@ -30,7 +30,7 @@ group :development, :test do
   gem "awesome_print", :require => false
   gem "pry", :require => false
   gem "rspec-rails"
-  gem "rb-fsevent"
+  #gem "rb-fsevent"
 end
 
 group :test do

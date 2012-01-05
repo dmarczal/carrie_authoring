@@ -19,8 +19,6 @@ $(document).ready(function() {
                                 $('#exercise_table').attr('data-oa-id')
                                 );
 
-    console.log(exercise);
-
     createTable();
     resizableFractal();
     register_event_mouse_over();
@@ -34,7 +32,7 @@ $(document).ready(function() {
 
     for (var i = 0; i < exercise.fractal.iterations; i++) {
       var row = $('<tr>');
-      var iteration = $('<td width="10">' + i + '</td>');
+      var iteration = $('<td width="100">' + i + '</td>');
       var fracCell = $('<td class="fractal" width='+exercise.fractal.width +'; ">');
 
       fracCell.append(createFractalResizable(i, exercise.fractal));
