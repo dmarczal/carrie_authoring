@@ -35,7 +35,7 @@ group :test do
   gem 'database_cleaner'
   gem 'fabrication'
 #  gem "test_notifier", :require => "test_notifier/runner/rspec"
-  gem 'growl_notify'
+#  gem 'growl_notify'
   gem "spork", "~> 0.9.0.rc9"
   gem "capybara"
 
