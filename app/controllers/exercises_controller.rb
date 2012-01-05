@@ -4,7 +4,13 @@ class ExercisesController < ApplicationController
   before_filter :find_learning_object, :only => [:create, :new, :show, :update]
 
   def create
-    @exercise = @learning_object.exercises.new(params[:exercise])
+    frac = create_fractal(params[:exercise][:fractal_exercise])
+    params[:exercise][:fractal_exercise] = nil
+    @exercise = @learning_object.exercises.new
+    @exercise.title= params[:exercise][:title]
+    @exercise.enunciation= params[:exercise][:enunciation]
+    @exercise.fractal_exercise= frac
+
     if @exercise.save
       redirect_to @learning_object, :notice => "Exercício criado com sucesso, defina agora as questões"
     else
@@ -19,26 +25,49 @@ class ExercisesController < ApplicationController
 
 
   def update
-    @exercise = @learning_object.exercises.find_by_slug(params[:id])
+    if params[:fractal_exercise]
+      update_fractal
+    else
 
-    respond_to do |format|
-      if  @exercise.update_attributes(params[:exercise])
-        format.html { redirect_to(@exercise,
-                      notice: "As nformações do Exercício #{@exercise.title} foram atualizadas.") }
-        format.json { respond_with_bip(@exercise) }
-      else
-        format.html { render :edit }
-        format.json { respond_with_bip(@exercise) }
+      @exercise = @learning_object.exercises.find_by_slug(params[:id])
+      @exercise.update_attributes(params[:exercise])
+
+      if params[:exercise][:fractal]
+        frac = create_fractal(params[:exercise][:fractal])
+        @exercise.fractal_exercise= frac
+      end
+
+      respond_to do |format|
+        if @exercise.save
+          format.html { redirect_to(@exercise,
+                        notice: "As informações do Exercício #{@exercise.title} foram atualizadas.") }
+          format.json { respond_with_bip(@exercise) }
+        else
+          format.html { render :edit }
+          format.json { respond_with_bip(@exercise) }
+        end
       end
     end
   end
 
   def show
     @exercise = @learning_object.exercises.find_by_slug(params[:id])
+    @fractal  = @exercise.fractal
     @fractals = Fractal.all.map{|fractal| [fractal.id, fractal.name]}
 
     add_breadcrumb "Exercício: #{@exercise.title}", :learning_object_exercise_path
   end
+
+  def update_fractal_size
+    oa = LearningObject.find_by_slug(params[:oa_id])
+    exerc = oa.exercises.find_by_slug(params[:id])
+    frac = exerc.fractal
+    frac.width= params[:width].to_f
+    frac.height= params[:height].to_f
+    exerc.save!
+    render nothing: true;
+  end
+
 
 private
   def find_learning_object
@@ -48,4 +77,29 @@ private
     add_breadcrumb "OA: #{@learning_object.name}", learning_object_path(@learning_object)
   end
 
+  def create_fractal(id)
+    fractal = Fractal.find_by_slug(id)
+    if fractal
+      frac_exer = FractalExercise.new(name: fractal.name, angle: fractal.angle,
+                                      axiom: fractal.axiom, constant: fractal.constant,
+                                      rules: fractal.rules)
+
+      return frac_exer
+    end
+  end
+
+  def update_fractal
+    @exercise = @learning_object.exercises.find_by_slug(params[:id])
+    @fractal = @exercise.fractal
+    respond_to do |format|
+      if  @fractal.update_attributes(params[:fractal_exercise])
+        format.html { redirect_to(@fractal,
+                      notice: "As informações foram atualizadas.") }
+        format.json { respond_with_bip(@fractal) }
+      else
+        format.html { render :edit }
+        format.json { respond_with_bip(@fractal) }
+      end
+    end
+  end
 end

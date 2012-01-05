@@ -22,14 +22,24 @@
       :class => "btn large"%>
   </div>
 
-  <table id="exercise_table" class="bordered-table" data-fractal="<%= @exercise.fractal.to_json %>"
-         data-questions="<%= @exercise.questions.to_json %>"
-         data-fractal-update-url= "<%= update_size_fractals_url %>"
-         >
+  <table id="exercise_table" class="bordered-table" data-fractal="<%= @fractal.to_json %>"
+    data-questions="<%= @exercise.questions.to_json %>" data-exercise-id="<%= @exercise.slug %>"
+    data-fractal-update-url= "<%= update_fractal_size_learning_object_exercises_url %>"
+    data-oa-id="<%= @learning_object.slug %>"
+    >
     <thead>
       <tr>
-        <th title="Iteração" data-content='Iteração' data-placement="above" rel="popover" >Iteração</th>
-        <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" ></th>
+        <th title="Iterações" data-content='Iteração' data-placement="above" rel="popover" >
+          Iteração:
+          <%= best_in_place @fractal, :iterations,
+              path: [@learning_object, @exercise],
+              type: :select, :collection => (1..7).to_a.map{ |e| [e, e.to_s] } %>
+        </th>
+        <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >
+           Fractal: <%= best_in_place @exercise, :fractal,
+              path: [@learning_object, @exercise],
+              type: :select, :collection => @fractals %>
+        </th>
         <% @exercise.questions.each do |question| %>
           <th title='<%= question.title %>' data-content='<%= question.enunciation %>'
             data-placement="above" rel="popover">

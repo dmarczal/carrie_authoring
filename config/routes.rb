@@ -5,17 +5,16 @@ Carrie_mongodb::Application.routes.draw do
   resources :learning_objects do
     resources :exercises do
       resources :questions
+      collection do
+        post :update_fractal_size
+      end
     end
     collection do
       post :sort_exercises
     end
   end
 
-  resources :fractals do
-    collection do
-      post :update_size
-    end
-  end
+  resources :fractals
 
   root :to => "site#home"
 end

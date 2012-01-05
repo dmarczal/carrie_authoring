@@ -1,9 +1,8 @@
 <%= simple_form_for @fractal do |f| %>
   <%= f.input :name %>
   <%= f.input :angle %>
+  <%= f.input :constant %>
   <%= f.input :axiom %>
-  <%= f.input :rules %>
-  <%= f.input :width %>
-  <%= f.input :height %>
+  <%= f.input :rules, :placeholder  => "['F=F-G+F+G-F', 'G=GG']" %>
   <%= f.button :submit %>
 <% end %>

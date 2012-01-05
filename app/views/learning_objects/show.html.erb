@@ -32,7 +32,7 @@
             <td class="handle">[DRAG]</td>
             <td><%= link_to exercise.title, [@learning_object, exercise] %></td>
             <td><%= markdown exercise.enunciation %></td>
-            <td><%= exercise.fractal.name %></td>
+            <td><%= exercise.fractal_exercise.name %></td>
           </tr>
         <% end %>
       </tbody>

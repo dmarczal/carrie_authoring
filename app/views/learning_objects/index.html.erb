@@ -23,7 +23,7 @@
             <ul>
               <li><%= link_to 'Visualizar', learning_object %></li>
               <li><%= link_to 'Editar', edit_learning_object_path(learning_object) %></li>
-              <li><%= link_to 'Deletar', learning_object, confirm: true, method: :delete %></li>
+              <li><%= link_to 'Deletar', learning_object, confirm: 'Tem certeza?', method: :delete %></li>
             </ul>
           </td>
         </tr>
