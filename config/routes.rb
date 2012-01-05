@@ -1,9 +1,12 @@
 Carrie_mongodb::Application.routes.draw do
+
+  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
+
   resources :learning_objects do
     resources :exercises do
       resources :questions
       collection do
-        put :update_attribute_on_the_spot
+        post :update_fractal_size
       end
     end
     collection do
@@ -11,11 +14,7 @@ Carrie_mongodb::Application.routes.draw do
     end
   end
 
-  resources :fractals do
-    collection do
-      post :update_size
-    end
-  end
+  resources :fractals
 
   root :to => "site#home"
 end

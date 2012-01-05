@@ -2,13 +2,12 @@ class FractalsController < ApplicationController
 
   before_filter :load_breadcrumb
 
-  def update_size
-    Fractal.find(params[:id]).update_attributes({width: params[:width].to_f, height: params[:height].to_f})
-    render nothing: true;
+  def index
+    @fractals = Fractal.all
   end
 
   def show
-    @fractal = Fractal.find(params[:id])
+    @fractal = Fractal.find_by_slug(params[:id])
     render :json => @fractal
   end
 
@@ -17,8 +16,14 @@ class FractalsController < ApplicationController
     @fractal = Fractal.new
   end
 
-  def index
-    @fractals = Fractal.all
+  def create
+    @fractal = Fractal.new(params[:fractal])
+
+    if @fractal.save
+      redirect_to @fractal, notice: 'Fractal criado com sucesso.'
+    else
+      render :new
+    end
   end
 
 private

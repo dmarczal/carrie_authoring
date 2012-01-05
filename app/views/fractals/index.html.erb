@@ -21,8 +21,9 @@
           <td><%= fractal.name %></td>
           <td class="list-actions">
             <ul>
-              <li><%= link_to image_tag('edit-icon.png'), edit_fractal_path(fractal) %></li>
-              <li><%= link_to image_tag('delete-icon.png'), fractal, confirm: true, method: :delete %></li>
+              <li><%= link_to 'Visualizar', "#" %></li>
+              <li><%= link_to 'Editar', edit_fractal_path(fractal) %></li>
+              <li><%= link_to 'Deletar', fractal, confirm: true, method: :delete %></li>
             </ul>
           </td>
         </tr>

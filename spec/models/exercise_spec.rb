@@ -5,8 +5,8 @@ describe Exercise do
   before(:each) do
     @learning_object = Fabricate(:learning_object)
   end
+  it { should have_fields(:title, :enunciation, :position) }
 
-  it { should validate_presence_of(:title) }
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:enunciation) }
 

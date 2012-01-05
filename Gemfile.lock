@@ -9,6 +9,13 @@ GIT
       less-rails (~> 2.1.0)
       railties
 
+PATH
+  remote: ~/projects/github/best_in_place/
+  specs:
+    best_in_place (1.0.4.preMongo)
+      jquery-rails
+      rails (~> 3.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -123,10 +130,11 @@ GEM
     mongoid-rspec (1.4.4)
       mongoid (~> 2.0)
       rspec (~> 2)
+    mongoid_slug (0.8.3)
+      mongoid (~> 2.0)
+      stringex (~> 1.3)
     multi_json (1.0.3)
     nokogiri (1.5.0)
-    on_the_spot (0.0.17)
-      json_pure (>= 1.4.6)
     polyglot (0.3.2)
     pry (0.9.7.3)
       coderay (~> 0.9.8)
@@ -201,6 +209,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    stringex (1.3.0)
     therubyracer (0.9.9)
       libv8 (~> 3.3.10)
     thin (1.2.11)
@@ -224,6 +233,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  best_in_place (= 1.0.4.preMongo)!
   breadcrumbs_on_rails
   bson_ext
   capybara
@@ -238,7 +248,7 @@ DEPENDENCIES
   jquery-rails
   mongoid
   mongoid-rspec
-  on_the_spot
+  mongoid_slug
   pry
   rails (= 3.1.1)
   rb-fsevent

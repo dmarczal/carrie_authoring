@@ -1,23 +1,32 @@
 class Exercise
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
 
   field :title
   field :enunciation
   field :position, :type => Integer
-  key :title
+  slug :title
 
   referenced_in :learning_object
-  referenced_in :fractal
 
   embeds_many :questions
+  embeds_one :fractal_exercise
 
-  validates_presence_of :fractal, :title, :enunciation
-  validates_associated :fractal
+  validates_presence_of :title, :enunciation, :fractal_exercise
   validates_associated :learning_object
   validates_uniqueness_of :title
 
   before_create :set_position
+
+  def markdown_desc
+    options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
+    Redcarpet.new(self.enunciation, *options).to_html.html_safe
+  end
+
+  def fractal
+    fractal_exercise
+  end
 
 private
   def set_position

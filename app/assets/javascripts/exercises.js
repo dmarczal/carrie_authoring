@@ -4,7 +4,9 @@
 $(document).ready(function() {
   if (request.controller == "exercises" && request.action == "show"){
 
-    var Exercise = function(table, fractal, questions){
+    var Exercise = function(table, fractal, questions, exercise_id, oa_id){
+      this.exercise_id = exercise_id;
+      this.oa_id = oa_id;
       this.table = table;
       this.fractal = fractal;
       this.questions = questions;
@@ -12,7 +14,12 @@ $(document).ready(function() {
 
     window.exercise = new Exercise($('#exercise_table'),
                                 jQuery.parseJSON($($('#exercise_table')).attr('data-fractal')),
-                                jQuery.parseJSON($($('#exercise_table')).attr('data-questions')));
+                                jQuery.parseJSON($($('#exercise_table')).attr('data-questions')),
+                                $('#exercise_table').attr('data-exercise-id'),
+                                $('#exercise_table').attr('data-oa-id')
+                                );
+
+    console.log(exercise);
 
     createTable();
     resizableFractal();
@@ -70,7 +77,7 @@ $(document).ready(function() {
             exercise.fractal.height= ui.size.height;
 
             $.post($(exercise.table).attr('data-fractal-update-url'),
-              {id: exercise.fractal._id, width: ui.size.width, height: ui.size.height},
+              {id: exercise.exercise_id, oa_id: exercise.oa_id,  width: ui.size.width, height: ui.size.height},
               function (data) {
                 reloadFractal();
               }
@@ -90,7 +97,7 @@ $(document).ready(function() {
 });
 
 function fractalCallback(object, value, settings) {
-  var key = value.trim().toLowerCase().replace(/\s/g, '-');
+  var key = value.trim().toLowerCase().replace(/(\s+-\s+)|(\s)/g, '-');
 
   $.getJSON('/fractals/'+ key, function(data){
     exercise.fractal = data;

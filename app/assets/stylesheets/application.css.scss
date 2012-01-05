@@ -1,10 +1,11 @@
 /*
 *= require twitter/bootstrap
-*= require exercises
-*= require form_style
 *= require dragtable-default
 *= require jquery-ui/jquery-ui.css
+*= require best_in_place
+*= require form_style
 *= require fractals
+*= require exercises
 *= require_self
 */
 
@@ -20,7 +21,6 @@ section{
   padding:10px 0 10px 0;
   header{
     h1 {
-      padding-right: 20px;
       border-bottom: 1px solid $bc;
     }
   }
@@ -30,7 +30,8 @@ section{
 .list-actions {
 
   text-align: center;
-  width: 75px;
+  width: 140px;
+  font-size: 12px;
 
   ul {
     float: right;
@@ -40,11 +41,7 @@ section{
     li {
       float: left;
       margin-right: 5px;
-      width: 20px;
-      height: 20px;
-    }
-    li:last-child {
-      margin-right: 0;
     }
  }
 }
+

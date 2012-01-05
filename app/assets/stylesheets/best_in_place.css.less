@@ -1,0 +1,87 @@
+.best_in_place, .do_hover {
+  padding: .1m;
+  cursor: hand;
+  cursor: pointer;
+  -moz-transition: background 0.5s linear;
+  -o-transition: background 0.5s linear;
+  -webkit-transition: background 0.5s linear;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.do_hover:hover {
+  background: url("red_pen.png") no-repeat right;
+  background-color: #CCC;
+}
+
+.best_in_place:hover {
+  padding-right: 1.5em;
+  background: url("red_pen.png") no-repeat right;
+  background-color: #CCC;
+}
+
+.do_hover .best_in_place:hover {
+  padding: 0px;
+  margin: 0px;
+  background: none;
+}
+
+.info_edit {
+  float: right;
+  cursor: hand;
+  cursor: pointer;
+}
+
+.best_in_place textarea  {
+  height: 100px;
+  width: 100%;
+}
+
+
+.best_in_place input {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+/* Missatges Flotants */
+
+.purr {
+    position: fixed;
+    top: -2px;
+    padding: 5px;
+    right: 156px;
+    width: 300px;
+    text-align: center;
+    background-color: #C43C35;
+    color: #FFF;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.purr:hover .close	{
+	position: absolute;
+	top: 5px;
+	right: 3px;
+	display: block;
+	width: 25px;
+	height: 25px;
+	text-indent: -9999px;
+	background: url("close-button.gif") no-repeat;
+}
+
+/** BEST IN PLACE
+
+@import "twitter/bootstrap";
+.purr {
+  @extend .alert-message.error;
+  position: fixed;
+
+  &:first-letter { text-transform: uppercase; }
+}**/
+

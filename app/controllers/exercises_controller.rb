@@ -1,10 +1,16 @@
 #encoding: utf-8
 class ExercisesController < ApplicationController
 
-  before_filter :find_learning_object, :only => [:create, :new, :show]
+  before_filter :find_learning_object, :only => [:create, :new, :show, :update]
 
   def create
-    @exercise = @learning_object.exercises.new(params[:exercise])
+    frac = create_fractal(params[:exercise][:fractal_exercise])
+    params[:exercise][:fractal_exercise] = nil
+    @exercise = @learning_object.exercises.new
+    @exercise.title= params[:exercise][:title]
+    @exercise.enunciation= params[:exercise][:enunciation]
+    @exercise.fractal_exercise= frac
+
     if @exercise.save
       redirect_to @learning_object, :notice => "Exercício criado com sucesso, defina agora as questões"
     else
@@ -17,39 +23,83 @@ class ExercisesController < ApplicationController
     add_breadcrumb "Novo Exercício #{@exercise.title}", :new_learning_object_exercise_path
   end
 
-  # for on_sot TODO: do this in a better way
-  def update_attribute_on_the_spot
-    klass, field, id = params[:id].split('__')
-    select_data = params[:select_array]
 
-    object = LearningObject.find(params[:learning_object_id]).exercises.find(id)
-
-    if object.update_attributes(field => params[:value])
-      if select_data.nil?
-        render :text => CGI::escapeHTML(object.send(field).to_s)
-      else
-        parsed_data = JSON.parse(select_data.gsub("'", '"'))
-        render :text => parsed_data[object.send(field).to_s]
-      end
+  def update
+    if params[:fractal_exercise]
+      update_fractal
     else
-      render :text => object.errors.full_messages.join("\n"), :status => 422
+
+      @exercise = @learning_object.exercises.find_by_slug(params[:id])
+      @exercise.update_attributes(params[:exercise])
+
+      if params[:exercise][:fractal]
+        frac = create_fractal(params[:exercise][:fractal])
+        @exercise.fractal_exercise= frac
+      end
+
+      respond_to do |format|
+        if @exercise.save
+          format.html { redirect_to(@exercise,
+                        notice: "As informações do Exercício #{@exercise.title} foram atualizadas.") }
+          format.json { respond_with_bip(@exercise) }
+        else
+          format.html { render :edit }
+          format.json { respond_with_bip(@exercise) }
+        end
+      end
     end
   end
 
-
   def show
-    @exercise = @learning_object.exercises.find(params[:id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:id])
+    @fractal  = @exercise.fractal
     @fractals = Fractal.all.map{|fractal| [fractal.id, fractal.name]}
 
     add_breadcrumb "Exercício: #{@exercise.title}", :learning_object_exercise_path
   end
 
-  private
+  def update_fractal_size
+    oa = LearningObject.find_by_slug(params[:oa_id])
+    exerc = oa.exercises.find_by_slug(params[:id])
+    frac = exerc.fractal
+    frac.width= params[:width].to_f
+    frac.height= params[:height].to_f
+    exerc.save!
+    render nothing: true;
+  end
+
+
+private
   def find_learning_object
-    @learning_object = LearningObject.find(params[:learning_object_id])
+    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
 
     add_breadcrumb "Objetos de Aprendizagem", learning_objects_path
     add_breadcrumb "OA: #{@learning_object.name}", learning_object_path(@learning_object)
   end
 
+  def create_fractal(id)
+    fractal = Fractal.find_by_slug(id)
+    if fractal
+      frac_exer = FractalExercise.new(name: fractal.name, angle: fractal.angle,
+                                      axiom: fractal.axiom, constant: fractal.constant,
+                                      rules: fractal.rules)
+
+      return frac_exer
+    end
+  end
+
+  def update_fractal
+    @exercise = @learning_object.exercises.find_by_slug(params[:id])
+    @fractal = @exercise.fractal
+    respond_to do |format|
+      if  @fractal.update_attributes(params[:fractal_exercise])
+        format.html { redirect_to(@fractal,
+                      notice: "As informações foram atualizadas.") }
+        format.json { respond_with_bip(@fractal) }
+      else
+        format.html { render :edit }
+        format.json { respond_with_bip(@fractal) }
+      end
+    end
+  end
 end

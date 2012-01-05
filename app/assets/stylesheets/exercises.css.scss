@@ -1,23 +1,14 @@
-@import "twitter/bootstrap";
-
 section.exercise {
-  textarea, input {
-    width: 100%;
-  }
-  input{
-   width: 100% !important;
-   text-align: center !important;
-  }
-  p {
-    clear: both;
-    padding: 10px 0;
-  }
-  h2 button {
-    float: left;
-    margin-bottom: 10px;
+
+  h2, h2 input{
+    text-align: center;
+    span {
+      padding-right: 1.5em;
+    }
   }
 
   table {
+    margin-top: 5px;
     td {
       text-align: center;
       vertical-align: middle;
@@ -30,13 +21,6 @@ section.exercise {
     th{clear:both;}
   }
 
-  .right {
-    margin-bottom: 5px;
-  }
-
-  button {
-    @extend .btn;
-  }
 }
 
 .ui-resizable-helper { border: 1px dotted gray; }
