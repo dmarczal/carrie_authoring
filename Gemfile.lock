@@ -1,4 +1,12 @@
 GIT
+  remote: git@github.com:dmarczal/best_in_place.git
+  revision: 0d943b4c70335d3f998b816d2fbb280c84330839
+  specs:
+    best_in_place (1.0.4.preMongo)
+      jquery-rails
+      rails (~> 3.1.0)
+
+GIT
   remote: http://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 4296bb9105ca6b0660419ac50e8a0682782de0a2
   specs:
@@ -8,13 +16,6 @@ GIT
       less
       less-rails (~> 2.1.0)
       railties
-
-PATH
-  remote: ~/projects/github/best_in_place/
-  specs:
-    best_in_place (1.0.4.preMongo)
-      jquery-rails
-      rails (~> 3.1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -90,8 +91,6 @@ GEM
     faker (1.0.1)
       i18n (~> 0.4)
     ffi (1.0.9)
-    growl_notify (0.0.3)
-      rb-appscript
     guard (0.8.8)
       thor (~> 0.14.6)
     guard-livereload (0.3.1)
@@ -168,8 +167,6 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.6)
     rake (0.9.2)
-    rb-appscript (0.6.1)
-    rb-fsevent (0.4.3.1)
     rdoc (3.11)
       json (~> 1.4)
     redcarpet (1.17.2)
@@ -245,7 +242,6 @@ DEPENDENCIES
   eco
   fabrication
   faker
-  growl_notify
   guard-livereload
   guard-rspec
   guard-spork
@@ -255,7 +251,6 @@ DEPENDENCIES
   mongoid_slug
   pry
   rails (= 3.1.1)
-  rb-fsevent
   redcarpet
   rspec-rails
   sass-rails

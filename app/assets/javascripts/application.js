@@ -29,22 +29,5 @@ $(document).ready(function() {
 
   $('.best_in_place').best_in_place();
 
-  $('.best_in_place').bind("ajax:success", function () {
-
-    if ($(this).hasClass('inline_key')) {
-
-      // Need redefined id of the model
-      url_split = window.location.toString().split('/');
-      old_id = url_split[url_split.length-1];
-      new_id = $(this).text().trim().toLowerCase().replace(/(\s+-\s+)|(\s)/g, '-');
-
-      url = $(this).attr('data-url');
-      obj_id = $(this).attr('id');
-
-      $(this).attr('data-url', url.replace(old_id, new_id));
-      $(this).attr('id', url.replace(old_id, new_id));
-
-      jQuery(this).data('bestInPlaceEditor').initOptions();
-    }
-  });
+  //$('.best_in_place').bind("ajax:success", function () {}
 });

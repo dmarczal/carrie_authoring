@@ -30,13 +30,13 @@ group :development, :test do
   gem "awesome_print", :require => false
   gem "pry", :require => false
   gem "rspec-rails"
-  gem "rb-fsevent"
+  #gem "rb-fsevent"
 end
 
 group :test do
   gem 'database_cleaner'
   gem 'fabrication'
-  gem 'growl_notify'
+  #gem 'growl_notify'
   gem "spork", "~> 0.9.0.rc9"
   gem "capybara"
 
