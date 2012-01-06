@@ -1,7 +1,8 @@
 // Exercises Controller
 
+var $j = jQuery.noConflict();
 
-$(document).ready(function() {
+$j(document).ready(function() {
   if (request.controller == "exercises" && request.action == "show"){
 
     var Exercise = function(table, fractal, questions, exercise_id, oa_id){
@@ -97,18 +98,18 @@ $(document).ready(function() {
 function fractalCallback(object, value, settings) {
   var key = value.trim().toLowerCase().replace(/(\s+-\s+)|(\s)/g, '-');
 
-  $.getJSON('/fractals/'+ key, function(data){
+  $j.getJSON('/fractals/'+ key, function(data){
     exercise.fractal = data;
     reloadFractal();
   });
 }
 
 function reloadFractal(){
-  $('.resizable').each( function (index, value){
-    $(this).find('canvas').remove();
-    $(this).css('width', exercise.fractal.width + 8)
+  $j('.resizable').each( function (index, value){
+    $j(this).find('canvas').remove();
+    $j(this).css('width', exercise.fractal.width + 8)
     .css('height', exercise.fractal.height + 8)
 
-    $(this).append(createFracCanvas(index, exercise.fractal));
+    $j(this).append(createFracCanvas(index, exercise.fractal));
   });
 }

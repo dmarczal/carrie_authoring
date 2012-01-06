@@ -100,7 +100,7 @@
  * 
  * @author Christian Bach/christian.bach@polyester.se
  */
-
+var $j = jQuery.noConflict();
 (function ($) {
     $.extend({
         tablesorter: new

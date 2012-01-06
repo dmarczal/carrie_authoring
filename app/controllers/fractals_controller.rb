@@ -26,6 +26,13 @@ class FractalsController < ApplicationController
     end
   end
 
+  def destroy
+    @fractal = Fractal.find_by_slug(params[:id])
+    if @fractal then @fractal.destroy end
+
+    redirect_to fractal_path, notice: "Fractal deletado com sucesso"
+  end
+
 private
   def load_breadcrumb
     add_breadcrumb "Fractais", fractals_path
