@@ -19,8 +19,8 @@
   </div>
 
   <table id="exercise_table" class="bordered-table" data-fractal="<%= @fractal.to_json %>"
-    data-questions="<%= @exercise.questions.to_json %>" data-exercise-id="<%= @exercise.slug %>"
-    data-fractal-update-url= "<%= update_fractal_size_learning_object_exercises_url %>"
+    data-questions="<%= @exercise.questions.to_json %>" data-id="<%= @exercise.slug %>"
+    fractal-update-url= "<%= update_fractal_size_learning_object_exercises_url %>"
     data-oa-id="<%= @learning_object.slug %>"
     >
     <thead>

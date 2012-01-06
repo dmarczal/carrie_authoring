@@ -1,0 +1,6 @@
+<%= simple_form_for [@learning_object, @exercise] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :fractal_exercise, :collection => Fractal.all, :prompt => true %>
+  <%= f.input :enunciation, :as => :text %>
+  <%= f.button :submit %>
+<% end %>

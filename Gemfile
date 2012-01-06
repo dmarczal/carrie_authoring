@@ -18,7 +18,7 @@ gem "thin"
 
 group :assets do
   gem 'sass-rails'
-  gem 'coffee-rails'
+#  gem 'coffee-rails'
   gem 'uglifier'
   gem 'spine-rails'
   gem 'eco'

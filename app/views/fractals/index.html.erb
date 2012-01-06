@@ -23,7 +23,7 @@
             <ul>
               <li><%= link_to 'Visualizar', "#" %></li>
               <li><%= link_to 'Editar', edit_fractal_path(fractal) %></li>
-              <li><%= link_to 'Deletar', fractal, confirm: true, method: :delete %></li>
+              <li><%= link_to 'Deletar', fractal, confirm: 'Tem certeza?', method: :delete %></li>
             </ul>
           </td>
         </tr>

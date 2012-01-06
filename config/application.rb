@@ -18,7 +18,7 @@ module Carrie_mongodb
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
     config.generators.test_framework :rspec, :fixtures => false, :view_specs => false
-    
+
     config.assets.enabled = true
     config.assets.version = '1.0'
   end

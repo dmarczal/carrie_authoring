@@ -1,164 +1,158 @@
-var $j = jQuery.noConflict();
+$(document).ready(function() {
 
-$j(document).ready(function() {
-    // Executes a callback detecting changes with a frequency of 1 second
+  if (request.controller === "fractals") {
+     if (request.action === "new" || request.action === "create"){
+        create_action();
+     }else
+        if (request.action === "index"){
+          show_fractals();
+        }
+  }
+});
 
-    var f = new Fractal(null, null, null, null, 128, 128);
-    $j("input").observe_field(1, function( ) {
-      if (this.id == 'fractal_axiom') f.setAxiom(this.value);
-      if (this.id == 'fractal_rules') f.setRules(replaceAll(this.value, ' ', '').split(','));
-      if (this.id == 'fractal_angle') f.setAngle(this.value);
-      f.genPreview();
-      console.log(this.id + " " + this.value);
-    });
-
-  if (request.controller == "fractals" && request.action == "index"){
-
-    $j("td.fractal").each(function (){
-      var fractalJSON = $j(this).data("fractal");
+var show_fractals = function() {
+   $("td.fractal").each(function (){
+      var fractalJSON = $(this).data("fractal");
       fractalJSON.width=64;
       fractalJSON.height=64;
 
+      var fractal = Fractal.create(fractalJSON);
+
       for (var i = 0; i < 3; i++) {
-        var fractal = createFracCanvas(i, fractalJSON);
-        $j(this).append(fractal);
+         $(this).append(fractal.nextIteration());
       };
-    });
-  }
-});
-
-function replaceAll(string, token, newtoken) {
-  var regexp = new RegExp("/"+token+"/g");
-  var string = string.replace( regexp, newtoken )
-  return string;
+   });
 }
 
-function createFractalDiv(i, fractal){
-  var canvas = createFracCanvas(i, fractal);
-  return $j('<div class="fractal">').append(canvas);
-}
 
-function createFractalResizable(i, fractal){
-  var canvas = createFracCanvas(i, fractal);
-  return $j('<div class="resizable">').append(canvas)
-    .css('width', fractal.width + 8)
-    .css('height', fractal.height + 8)
-}
 
-function createFracCanvas(i, fractal){
-  var canvas = $j('<canvas id="canvas_'+ i +'" width="'+ fractal.width +'" height="'+ fractal.height +'" />')
-    canvas.lsystem(i, fractal.angle, "", fractal.axiom, fractal.rules);
-  return canvas;
-}
+// Executes a callback detecting changes with a frequency of 1 second
+var create_action =  function () {
+   var frac = Fractal.create({name: $('#fractal_name').val(),
+                              axiom: $('#fractal_axiom').val(),
+                              constant: $('#fractal_constant').val(),
+                              angle:  $('#fractal_angle').val(),
+                              rules: rules_to_array($('#fractal_rules').val()),
+                              height: 128, width: 128});
 
-var Fractal = Class.create(LSystems, {
-  initialize:  function(name, angle, axiom, rules, width, height) {
-    this.setName(name);
-    this.setAngle(angle);
-    this.setAxiom(axiom);
-    this.rules = new Array();
-    this.setRules(rules);
-    this.setWidth(width);
-    this.setHeight(height);
-    this.it = 0;
-  },
+   loadPreview(frac);
+   $("input").observe_field(1, function() {
+      if (this.id == 'fractal_name') frac.setName(this.value);
+      if (this.id == 'fractal_axiom') frac.setAxiom(this.value);
+      if (this.id == 'fractal_rules') frac.setRules(rules_to_array(this.value));
+      if (this.id == 'fractal_angle') frac.setAngle(this.value);
 
-  iterate: function() {
-    var row = $j('<tr>');
-    var iteration = $j('<td>' + this.getIteration() + '</td>');
-    var fractal = $j('<td>');
-    var canvas = $j('<canvas id="canvas_' + this.getName() + '_' + this.getIteration() + 
-          '" width="' + this.getWidth()  +'" height="' + this.getHeight() + '" />');
-    row.append(iteration, fractal);
-    $j('table').append(row);
-    fractal.append(canvas);
-    canvas.lsystem(this.getIteration(), this.getAngle(), "", this.getAxiom(), this.getRules());
-    
-    this.it++;
+      frac.setIteration(0);
+      loadPreview(frac);
+   });
 
-  },
+   function rules_to_array(rules){
+      return rules.replace(/\s/, '').split(',');
+   };
 
-  buildPreview: function() {
-    var row = $j('<tr id="preview">');
+   function loadPreview(frac){
+      if (frac.isValid()) {
+        var row = $('<tr id="preview">');
 
-    console.log(this);
-    for (i=0; i<3; i++) {
-      var fractal = $j("<td>");
-      var canvas = $j('<canvas id="canvas_' + this.getName() + '_' + this.getIteration() + 
-          '" width="' + this.getWidth()  +'" height="' + this.getHeight() + '" />');
-      row.append(fractal);
-      fractal.append(canvas);
-      canvas.lsystem(i, this.getAngle(), "", this.getAxiom(), this.getRules());
-    }
-    $j('table tr:#preview').remove();
-    $j('table').append(row);
-  },
-  genPreview: function() {
-    if (this.getAngle() != null &&
-        this.getAxiom() != null && 
-        this.getRules() != null) {
-          try {
-            this.buildPreview()
-          } catch (e) {
-              console.log(e);
-          }
+        for (i=0; i<3; i++) {
+           var td_tag = frac.embedIn('td');
+           frac.nextIteration()
+           row.append(td_tag);
         }
-  },
 
-  setName:  function(name) {
-    this.name = name;
-  },
-  
-  setAngle: function(angle) {
-    this.angle = new Number(angle);
-  },
+        $('table tr:#preview').remove();
+        $('table').append(row);
+      }
+   }
+};
 
-  setAxiom: function(axiom) {
-    this.axiom = axiom;
-  },
-  
-  setRules: function(rules) {
-    this.rules = rules;
-  },
+var Fractal = Fractal || {
+   create: function(data) {
+      this.name = data.name;
+      this.angle = data.angle;
+      this.axiom = data.axiom;
+      this.constant = data.constant === undefined ? "" : data.constant;
+      this.rules = data.rules;
+      this.width = data.width;
+      this.height = data.height;
+      this.iteration = 0;
+      var that = this;
 
-  setWidth: function(width) {
-    this.width = width;
-  },
+      var fractal = function() {
+         var canvas = $('<canvas id="canvas_' + that.name + '_' + that.iteration +
+               '" width="' + that.width  +'" height="' + that.height + '" />');
 
-  setHeight: function(height) {
-    this.height = height;
-  },
+         canvas.lsystem(that.iteration, that.angle, that.constant, that.axiom, that.rules);
+         current = canvas;
+         return canvas;
+      };
 
-  getName: function() {
-    return this.name;
-  },
+      var nextIteration = function () {
+         var frac = fractal();
+         that.iteration++;
+         return frac;
+      };
 
-  getAngle: function() {
-    return this.angle;
-  },
+      var embedIn = function(_element) {
+         var element = $("<"+_element+">");
+         var frac = fractal();
+         element.append(frac);
+         return element;
+      };
 
-  getAxiom: function() {
-    return this.axiom;
-  },
+      var isValid = function () {
+         return (that.angle !== undefined && that.axiom !== undefined && that.rules !== undefined);
+      };
 
-  getRules: function() {
-    return this.rules;
-  },
+      var setName = function(name) { that.name = name; return this; };
+      var getName = function() { return that.name; };
 
-  getWidth: function() {
-    return this.width
-  },
+      var setAxiom = function(axiom) { that.axiom = axiom; return this; };
+      var getAxiom = function() { return that.axiom; };
 
-  getHeight: function() {
-    return this.height;
-  },
-    
-  getIteration: function() {
-    return this.it;
-  }
+      var setConstant = function(constant) { that.constant = constant;  return this; };
+      var getConstant = function() { return that.constant; };
 
-});
+      var setAngle = function(angle) { that.angle = angle;  return this; };
+      var getAngle = function() { return that.angle; };
 
-function teste(a) {
-  console.log(a);
+      var setRules = function(rules) { that.rules = rules;  return this; };
+      var getRules = function() { return that.rules; };
+
+      var setWidth = function(witdh) { that.witdh = witdh;  return this; };
+      var getWidth = function() { return that.width; };
+
+      var setHeight = function(height) { that.height = height;  return this; };
+      var getHeight = function() { return that.height; };
+
+      var getIteration = function() { return that.iteration; };
+      var setIteration = function(iteration) { return that.iteration = iteration; return this; };
+
+      return {
+         getAxiom: getAxiom,
+            setAxiom: setAxiom,
+
+            setConstant: setConstant,
+            getConstant: getConstant,
+
+            setAngle: setAngle,
+            getAngle: getAngle,
+
+            getRules: getRules,
+            setRules: setRules,
+
+            getHeight: getHeight,
+            setHeight: setHeight,
+
+            getWidth: getWidth,
+            setWidth: setWidth,
+
+            setIteration: setIteration,
+            getIteration: getIteration,
+
+            nextIteration: nextIteration,
+            isValid: isValid,
+            embedIn: embedIn
+      };
+   }
 }

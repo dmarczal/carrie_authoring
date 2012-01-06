@@ -15,19 +15,29 @@ namespace :db do
     end
 
     fractals = []
-    fractals << Fractal.create({:name => "HeighWay Dragon", :angle => 90, :axiom => "FX", :rules => ['X=X+YF+', 'Y=-FX-Y']})
-    fractals << Fractal.create({:name => "Kevs Tree", :angle => 22, :axiom => "F", :rules => ['F=C0FF-[C1-F+F+F]+[C2+F-F-F]']})
-    fractals << Fractal.create({:name => "Sierpinsk Triangle", :angle => 120, :axiom => "F-G-G", :rules => ['F=F-G+F+G-F', 'G=GG']})
-    fractals << Fractal.create({:name => "Knoch Snowflake", :angle => 60, :axiom => "F++F++F", :rules => ['F=F-F++F-F', 'X=FF']})
-    fractals << Fractal.create({:name => "Knoch Curve", :angle => 90, :axiom => "-F", :rules => ['F=F+F-F-F+F']})
+    fractals << Fractal.create({:name => "HeighWay Dragon", :angle => 90, :axiom => "FX",
+                                :rules => ['X=X+YF+', 'Y=-FX-Y']})
+    fractals << Fractal.create({:name => "Kevs Tree", :angle => 22, :axiom => "F",
+                                :rules => ['F=C0FF-[C1-F+F+F]+[C2+F-F-F]']})
+    fractals << Fractal.create({:name => "Sierpinsk Triangle", :angle => 120, :axiom => "F-G-G",
+                                :rules => ['F=F-G+F+G-F', 'G=GG']})
+    fractals << Fractal.create({:name => "Knoch Snowflake", :angle => 60, :axiom => "F++F++F",
+                                :rules => ['F=F-F++F-F', 'X=FF']})
+    fractals << Fractal.create({:name => "Knoch Curve", :angle => 90, :axiom => "-F",
+                                :rules => ['F=F+F-F-F+F']})
 
 
     fractals_exerc = []
-    fractals_exerc << FractalExercise.new({:name => "HeighWay Dragon" ,:iterations => 12, :angle => 90, :axiom => "FX", :rules => ['X=X+YF+', 'Y=-FX-Y']})
-    fractals_exerc << FractalExercise.new({:name => "Kevs Tree", :iterations => 5, :angle => 22, :axiom => "F", :rules => ['F=C0FF-[C1-F+F+F]+[C2+F-F-F]']})
-    fractals_exerc << FractalExercise.new({:name => "Sierpinsk Triangle", :iterations => 6, :angle => 120, :axiom => "F-G-G", :rules => ['F=F-G+F+G-F', 'G=GG']})
-    fractals_exerc << FractalExercise.new({:name => "Knoch Snowflake", :iterations => 4, :angle => 60, :axiom => "F++F++F", :rules => ['F=F-F++F-F', 'X=FF']})
-    fractals_exerc << FractalExercise.new({:name => "Knoch Curve", :iterations => 4, :angle => 90, :axiom => "-F", :rules => ['F=F+F-F-F+F']})
+    fractals_exerc << FractalExercise.new({:name => "HeighWay Dragon" ,:iterations => 12, :angle => 90,
+                                           :axiom => "FX", :rules => ['X=X+YF+', 'Y=-FX-Y']})
+    fractals_exerc << FractalExercise.new({:name => "Kevs Tree", :iterations => 5, :angle => 22,
+                                           :axiom => "F", :rules => ['F=C0FF-[C1-F+F+F]+[C2+F-F-F]']})
+    fractals_exerc << FractalExercise.new({:name => "Sierpinsk Triangle", :iterations => 6, :angle => 120,
+                                           :axiom => "F-G-G", :rules => ['F=F-G+F+G-F', 'G=GG']})
+    fractals_exerc << FractalExercise.new({:name => "Knoch Snowflake", :iterations => 4, :angle => 60,
+                                           :axiom => "F++F++F", :rules => ['F=F-F++F-F', 'X=FF']})
+    fractals_exerc << FractalExercise.new({:name => "Knoch Curve", :iterations => 4, :angle => 90,
+                                           :axiom => "-F", :rules => ['F=F+F-F-F+F']})
 
     oas.each do |oa|
       3.times do
