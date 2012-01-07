@@ -3,6 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #fractal-index {
+  
+  td.fractal {
+   width: 230px;
+  }
+
+  canvas {
+    margin-right: 5px;
+  }
+}
+
+
+#fractal-show {
+  
+  td.iteration {
+  	width: 30px;
+  }
 
   td.fractal {
    width: 230px;

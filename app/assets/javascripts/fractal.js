@@ -3,10 +3,15 @@ $(document).ready(function() {
   if (request.controller === "fractals") {
      if (request.action === "new" || request.action === "create"){
         create_action();
-     }else
-        if (request.action === "index"){
-          show_fractals();
-        }
+     } else
+         if (request.action === "index"){
+            show_fractals();
+         }
+         else {
+            if (request.action == "show") {
+               show_this_fractal();
+            }
+         }
   }
 });
 
@@ -22,6 +27,42 @@ var show_fractals = function() {
       };
    });
 }
+
+var show_this_fractal = function() {
+   var fractalJSON = $("tbody.fdata").data("fractal");
+   fractalJSON.width=200;
+   fractalJSON.height=200;
+   var fractal = Fractal.create(fractalJSON);      
+   for (var i = 0; i < 6; i++) {
+      var row = $("<tr>");
+      var itData = $("<td class='iteration'>");
+      var frData = $("<td class='fractal'>");
+      $(itData).append(fractal.getIteration());
+      $(frData).append(fractal.nextIteration());
+      $("tbody.fdata").append(row);
+
+      $(row).append(itData);
+      $(row).append(frData);
+   };
+};
+
+var show_next_it = function() {
+   var fractalJSON = $("tbody.fdata").data("fractal");
+   fractalJSON.width=200;
+   fractalJSON.height=200;
+   var fractal = Fractal.create(fractalJSON);
+   var rowcount = $("tr").size() - 1;
+   var row = $("<tr>");
+   var itData = $("<td class='iteration'>");
+   var frData = $("<td class='fractal'>");
+   fractal.setIteration(rowcount);
+   $(itData).append(fractal.getIteration());
+   $(frData).append(fractal.nextIteration());
+   $("tbody.fdata").append(row);
+   $(row).append(itData);
+   $(row).append(frData);
+}
+
 
 function rules_to_array(rules){
    return rules.toString().replace(/\s/, '').split(',');
