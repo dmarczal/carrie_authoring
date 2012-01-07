@@ -15,7 +15,6 @@ var show_fractals = function() {
       var fractalJSON = $(this).data("fractal");
       fractalJSON.width=64;
       fractalJSON.height=64;
-
       var fractal = Fractal.create(fractalJSON);
 
       for (var i = 0; i < 3; i++) {
@@ -24,7 +23,9 @@ var show_fractals = function() {
    });
 }
 
-
+function rules_to_array(rules){
+   return rules.toString().replace(/\s/, '').split(',');
+};
 
 // Executes a callback detecting changes with a frequency of 1 second
 var create_action =  function () {
@@ -45,11 +46,7 @@ var create_action =  function () {
       frac.setIteration(0);
       loadPreview(frac);
    });
-
-   function rules_to_array(rules){
-      return rules.replace(/\s/, '').split(',');
-   };
-
+ 
    function loadPreview(frac){
       if (frac.isValid()) {
         var row = $('<tr id="preview">');
@@ -69,10 +66,10 @@ var create_action =  function () {
 var Fractal = Fractal || {
    create: function(data) {
       this.name = data.name;
-      this.angle = data.angle;
+      this.angle = new Number(data.angle);
       this.axiom = data.axiom;
       this.constant = data.constant === undefined ? "" : data.constant;
-      this.rules = data.rules;
+      this.rules = Array.isArray(data.rules) ? data.rules :  rules_to_array(data.rules);
       this.width = data.width;
       this.height = data.height;
       this.iteration = 0;
@@ -81,7 +78,6 @@ var Fractal = Fractal || {
       var fractal = function() {
          var canvas = $('<canvas id="canvas_' + that.name + '_' + that.iteration +
                '" width="' + that.width  +'" height="' + that.height + '" />');
-
          canvas.lsystem(that.iteration, that.angle, that.constant, that.axiom, that.rules);
          current = canvas;
          return canvas;
@@ -113,7 +109,7 @@ var Fractal = Fractal || {
       var setConstant = function(constant) { that.constant = constant;  return this; };
       var getConstant = function() { return that.constant; };
 
-      var setAngle = function(angle) { that.angle = angle;  return this; };
+      var setAngle = function(angle) { that.angle = new Number(angle);  return this; };
       var getAngle = function() { return that.angle; };
 
       var setRules = function(rules) { that.rules = rules;  return this; };
