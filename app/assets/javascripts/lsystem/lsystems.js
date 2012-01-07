@@ -492,7 +492,8 @@ LSystems.LSystemsProcessor.prototype =
       result = new StringBuffer();
 
       // process each character of the Axiom
-      for (var c, len = axiom.length, rule, rules=this.rules, n=0; n<len; n++)
+      rules= (i == 0) ? [""] : this.rules;
+      for (var c, len = axiom.length, rule, n=0; n<len; n++)
       {
         c = axiom.charAt(n);
 
