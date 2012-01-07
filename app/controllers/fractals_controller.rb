@@ -11,6 +11,26 @@ class FractalsController < ApplicationController
     render :show
   end
 
+  def edit
+    @fractal = Fractal.find_by_slug(params[:id])
+    add_breadcrumb "Editar #{@fractal.name}", :edit_fractal_path
+  end
+
+  def update
+    @fractal = Fractal.find_by_slug(params[:id])
+
+    respond_to do |format|
+      if  @fractal.update_attributes(params[:fractal])
+        format.html { redirect_to(@fractal,
+                      notice: "O Fractal #{@fractal.name} foi atualizado.") }
+        format.json { respond_with_bip(@fractal) }
+      else
+        format.html { render :edit }
+        format.json { respond_with_bip(@fractal) }
+      end
+    end
+  end
+
   def new
     add_breadcrumb "Novo fractal", :new_fractal_path
     @fractal = Fractal.new

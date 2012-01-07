@@ -1,7 +1,6 @@
 $(document).ready(function() {
-
   if (request.controller === "fractals") {
-     if (request.action === "new" || request.action === "create"){
+     if (request.action === "new" || request.action === "create"  || request.action === "edit" ){
         create_action();
      } else
          if (request.action === "index"){
@@ -76,7 +75,6 @@ var create_action =  function () {
                               angle:  $('#fractal_angle').val(),
                               rules: rules_to_array($('#fractal_rules').val()),
                               height: 128, width: 128});
-
    loadPreview(frac);
    $("input").observe_field(1, function() {
       if (this.id == 'fractal_name') frac.setName(this.value);
