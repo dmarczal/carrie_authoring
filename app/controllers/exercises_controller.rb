@@ -9,7 +9,7 @@ class ExercisesController < ApplicationController
     @exercise = @learning_object.exercises.new
     @exercise.title= params[:exercise][:title]
     @exercise.enunciation= params[:exercise][:enunciation]
-    @exercise.fractal_exercise= frac
+    @exercise.fractal_exercise = frac
 
     if @exercise.save
       redirect_to @learning_object, :notice => "Exercício criado com sucesso, defina agora as questões"
@@ -73,7 +73,7 @@ private
   end
 
   def create_fractal(id)
-    fractal = Fractal.find_by_slug(id)
+    fractal = Fractal.find(id)
     if fractal
       frac_exer = FractalExercise.new(name: fractal.name, angle: fractal.angle,
                                       axiom: fractal.axiom, constant: fractal.constant,
