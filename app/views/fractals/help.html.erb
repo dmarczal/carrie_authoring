@@ -1,0 +1,35 @@
+<p>
+	O Sistema-L (ou Sistema de Lindenmayer, L-system), é um modelo matemático apresentado pelo biólogo Aristid Lindenmayer, em 1968, para descrever o crescimento e desenvolvimento de plantas. Este modelo utiliza o conceito de gramática, isto é, um conjunto de regras que permitem gerar algoritmicamente sequências de símbolos duma dada linguagem a partir de um alfabeto inicial. Depois de se definir uma interpretação geométrica para cada símbolo, torna-se possível gerar imagens a partir de sequências de símbolos (palavras). Os sistemas-L podem ser usados na computação de fractais e na modelação de plantas de uma maneira muito realista.
+</p>
+
+<p>Um L-system consiste de:
+	<ul id="list" class="list-f">
+	 	<li>Um <em>alfabeto de símbolos</em> usados para construção de palavras</li>
+	 	<li>Um axioma inicial, a palavra que inicia a construção</li>
+	 	<li>Uma coleção de <em>regras de produção</em> que são usadas para expandir cada símbolo em uma nova sequência de símbolos (formando uma nova palavra)</li>
+	 	<li>Um mecanismo que transforma palavras geradas em éstruturas geométricas</li>
+	 </ul><!-- /list -->
+ </p>
+
+<p>
+	Considere-se sequências de caracteres construídas com as duas letras a e b, que podem ocorrer várias vezes numa cadeia. Para cada letra especificamos uma regra de substituição. A regra a &rarr; ab, transforma a letra a na sequência ab e a regra b &rarr; a , do mesmo modo, transforma a letra b na letra a. Cada regra de substituição descreve como é a transformação de um caracter em particular. No início, a cadeia é representada por uma sequência de caracteres, designada axioma. Tomemos a palavra &lsaquo; b &rsaquo; como axioma. A primeira iteração consiste em substituir o axioma b por a, isto porque usamos a instrução b &rarr; a. Na segunda iteração &lsaquo; a &rsaquo; é substituído por ab usando a regra a &rarr; ab , obtendo a palavra &lsaquo; ab &rsaquo; constituída por duas letras. Na próxima iteração as duas letras são simultaneamente substituídas, em que a é substituída por ab, e b por a, resultando na palavra, &lsaquo;aba&rsaquo;. Este processo continua de forma similar, de tal modo, que da palavra &lsaquo; aba &rsaquo; produz-se &lsaquo; abaab &rsaquo;, que por sua vez origina &lsaquo; abaababa &rsaquo;, e assim sucessivamente.
+</p>
+<p class="mid">
+	<%= image_tag("lsystem/ex01.png") %>
+</p>
+<p> Para construção de Fractais utilizando L-system, consideramos também:
+	<ul>
+		<li>Um ângulo &delta; </li>
+		<li>As operações + e -</li>
+	</ul><!-- /list -->
+</p>
+<p>
+	Podemos exemplificar utilizando o fractal conhecido como <em>Curva de Koch</em>.
+</p>
+
+
+<footer>
+	<p>
+		Utilização de Maplets para a interpretação gráfica de Sistemas de Lindenmayer. Disponível em: &lt;www.fc.up.pt/fcup/contactos/teses/t_040370099.pdf&gt;. Acesso em: 8/1/2012.</p>
+	</p>
+</footer>
