@@ -3,9 +3,17 @@ $(document).ready(function() {
     if (request.controller == "exercises") {
        if (request.action == "show") {
           show_exercise();
+       } else if (request.action == "new") {
+          render_fractal();
        }
     }
 });
+
+var render_fractal = function () {
+  $("select").bind('change', function() {
+    console.log("Preview fractal");
+  });
+};
 
 var show_exercise = function () {
     var exercTable = $('#exercise_table');
