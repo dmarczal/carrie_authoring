@@ -1,15 +1,14 @@
 #encoding: utf-8
 class ExercisesController < ApplicationController
 
-  before_filter :find_learning_object, :only => [:create, :new, :show, :update]
+  before_filter :find_learning_object, :except => [:update_fractal_size]
 
   def create
-    frac = create_fractal(params[:exercise][:fractal_exercise])
-    params[:exercise][:fractal_exercise] = nil
     @exercise = @learning_object.exercises.new
+    create_fractal(params[:exercise][:fractal_exercise])
+    params[:exercise][:fractal_exercise] = nil
     @exercise.title= params[:exercise][:title]
     @exercise.enunciation= params[:exercise][:enunciation]
-    @exercise.fractal_exercise = frac
 
     if @exercise.save
       redirect_to @learning_object, :notice => "Exercício criado com sucesso, defina agora as questões"
@@ -24,19 +23,17 @@ class ExercisesController < ApplicationController
   end
 
   def edit
-    @learning_object = LearningObject.find_by_slug(params[:id])
-    @exercise = @learning_object.exercises.find_by_slug(params[:learning_object_id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:id])
+    @fractal  = @exercise.fractal
   end
 
   def update
       @exercise = @learning_object.exercises.find_by_slug(params[:id])
-      # @exercise.update_attributes(params[:exercise])
       @exercise.title= params[:exercise][:title]
       @exercise.enunciation= params[:exercise][:enunciation]
 
       if params[:exercise][:fractal_exercise]
-        frac = create_fractal(params[:exercise][:fractal_exercise])
-        @exercise.fractal_exercise= frac
+          create_fractal(params[:exercise][:fractal_exercise])
       end
 
       respond_to do |format|
@@ -67,6 +64,13 @@ class ExercisesController < ApplicationController
     render nothing: true;
   end
 
+  def destroy
+    @exercise = @learning_object.exercises.find_by_slug(params[:id]);
+    @exercise.destroy
+
+    redirect_to @learning_object, notice: "OA deletado com sucesso"
+  end
+
 
 private
   def find_learning_object
@@ -77,13 +81,13 @@ private
   end
 
   def create_fractal(id)
-    fractal = Fractal.find(id)
+    fractal = Fractal.find_by_slug(id)
     if fractal
-      frac_exer = FractalExercise.new(name: fractal.name, angle: fractal.angle,
+      frac_exer = @exercise.build_fractal_exercise(name: fractal.name, angle: fractal.angle,
                                       axiom: fractal.axiom, constant: fractal.constant,
-                                      rules: fractal.rules)
+                                      rules: fractal.rules, slug: fractal.slug )
 
-      return frac_exer
+      #return frac_exer
     end
   end
 end
