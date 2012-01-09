@@ -24,6 +24,7 @@
           <th>Título</th>
           <th>Enunciado</th>
           <th>Fractal</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody id="exercises" data-update-url="<%= sort_exercises_learning_objects_url %>">
@@ -33,6 +34,7 @@
             <td><%= link_to exercise.title, [@learning_object, exercise] %></td>
             <td><%= markdown exercise.enunciation %></td>
             <td><%= exercise.fractal_exercise.name %></td>
+            <td><li><%= link_to 'Editar', edit_learning_object_exercise_path(exercise) %></li></td>
           </tr>
         <% end %>
       </tbody>

@@ -1,6 +1,9 @@
 <%= simple_form_for [@learning_object, @exercise] do |f| %>
   <%= f.input :title %>
-  <%= f.input :fractal_exercise, :collection => Fractal.all, :prompt => true %>
+  <p>
+		<%= f.input :fractal_exercise, :collection => Fractal.all, :prompt => true %> <br />
+		<%= link_to "Criar novo Fractal", new_fractal_path %>
+	</p>
   <%= f.input :enunciation, :as => :text %>
   <%= f.button :submit %>
 <% end %>

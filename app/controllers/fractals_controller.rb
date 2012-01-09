@@ -33,6 +33,7 @@ class FractalsController < ApplicationController
 
   def new
     add_breadcrumb "Novo fractal", :new_fractal_path
+    session[:return_to] = request.referer
     @fractal = Fractal.new
   end
 
@@ -46,7 +47,7 @@ class FractalsController < ApplicationController
     end
 
     if @fractal.save
-      redirect_to fractals_path, notice: "Fractal criado com sucesso"
+      redirect_to session[:return_to], notice: "Fractal criado com sucesso"
     else
       @fractal.rules= params[:fractal][:rules]
       render :new

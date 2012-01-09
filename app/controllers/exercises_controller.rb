@@ -23,24 +23,28 @@ class ExercisesController < ApplicationController
     add_breadcrumb "Novo Exercício #{@exercise.title}", :new_learning_object_exercise_path
   end
 
+  def edit
+    @learning_object = LearningObject.find_by_slug(params[:id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:learning_object_id])
+  end
 
   def update
       @exercise = @learning_object.exercises.find_by_slug(params[:id])
-      @exercise.update_attributes(params[:exercise])
+      # @exercise.update_attributes(params[:exercise])
+      @exercise.title= params[:exercise][:title]
+      @exercise.enunciation= params[:exercise][:enunciation]
 
-      if params[:exercise][:fractal]
-        frac = create_fractal(params[:exercise][:fractal])
+      if params[:exercise][:fractal_exercise]
+        frac = create_fractal(params[:exercise][:fractal_exercise])
         @exercise.fractal_exercise= frac
       end
 
       respond_to do |format|
         if @exercise.save
-          format.html { redirect_to(@exercise,
+          format.html { redirect_to(@learning_object,
                         notice: "As informações do Exercício #{@exercise.title} foram atualizadas.") }
-          format.json { respond_with_bip(@exercise) }
         else
           format.html { render :edit }
-          format.json { respond_with_bip(@exercise) }
         end
       end
   end
