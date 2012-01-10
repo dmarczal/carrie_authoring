@@ -245,6 +245,7 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   jquery-rails
+  kaminari
   mongoid
   mongoid-rspec
   mongoid_slug

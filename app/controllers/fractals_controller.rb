@@ -3,7 +3,7 @@ class FractalsController < ApplicationController
   before_filter :load_breadcrumb
 
   def index
-    @fractals = Fractal.all
+    @fractals = Fractal.page(params[:page]).per(6)
   end
 
   def show
