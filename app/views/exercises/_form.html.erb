@@ -6,7 +6,7 @@
         :prompt => true, :selected => @exercise.fractal.slug %>
     <% end %>
     <%= link_to "Criar novo Fractal", new_fractal_path %>
-    <%= @exercise.fractal_exercise.slug %>
+    <% @exercise.fractal_exercise.slug %>
   </div>
   <%= f.input :enunciation, :as => :text %>
   <%= f.button :submit %>
