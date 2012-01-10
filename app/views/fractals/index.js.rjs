@@ -1,0 +1,7 @@
+page.insert_html :bottom, :fractals, :partial => @fractals
+
+if @fractals.total_pages > @fractals.current_page
+  page.call 'checkScroll'
+else
+  page[:loading].hide
+end
