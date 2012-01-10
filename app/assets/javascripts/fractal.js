@@ -31,7 +31,7 @@ var show_this_fractal = function() {
    var fractalJSON = $("tbody.fdata").data("fractal");
    fractalJSON.width=200;
    fractalJSON.height=200;
-   var fractal = Fractal.create(fractalJSON);      
+   var fractal = Fractal.create(fractalJSON);
    for (var i = 0; i < 6; i++) {
       var row = $("<tr>");
       var itData = $("<td class='iteration'>");
@@ -85,7 +85,7 @@ var create_action =  function () {
       frac.setIteration(0);
       loadPreview(frac);
    });
- 
+
    function loadPreview(frac){
       if (frac.isValid()) {
         var row = $('<tr id="preview">');

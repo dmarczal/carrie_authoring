@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #fractal-index {
-  
+
   td.fractal {
    width: 230px;
   }
@@ -15,7 +15,7 @@
 
 
 #fractal-show {
-  
+
   td.iteration {
   	width: 30px;
   }
@@ -31,4 +31,29 @@
 
 p.mid {
   text-align: center;
+}
+
+#fractal-form {
+  .inline .input {
+    float: left;
+  }
+
+  input[type="text"] {
+    width: 270px;
+  }
+
+  .button {
+    float: right;
+    margin-top: 45px;
+    margin-right: 10px;
+  }
+
+  #fractal_angle {width: 40px;}
+  #fractal_constant {width: 100px;}
+  #fractal_axiom {width: 450px;}
+}
+
+#fractal_preview {
+  clear: both;
+  padding-top: 10px;
 }
