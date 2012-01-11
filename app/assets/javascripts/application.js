@@ -4,6 +4,7 @@
 
 //= require twitter/bootstrap
 //= require jquery/jquery.dragtable
+//= require jquery/jquery.tablesorter.js
 
 //= require lsystem/lsystems
 //= require lsystem/jquery.lsystem
