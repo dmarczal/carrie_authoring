@@ -4,8 +4,10 @@
   <%= f.error_notification %>
 
   <%= f.input :email, :required => true, :autofocus => true %>
+  <%= f.input :name, :require => true %>
   <%= f.input :password, :required => true %>
-  <%= f.input :password_confirmation, :required => true %>
-  <%= f.button :submit, "Registrar-se" %>
+  <%= f.input :password_confirmation, :required => true, :label => "Confirme sua senha" %>
+  <%= f.button :submit, "Registrar-se", :class => "btn large" %>
+
 <% end %>
 
