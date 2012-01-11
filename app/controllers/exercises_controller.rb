@@ -5,10 +5,11 @@ class ExercisesController < ApplicationController
 
   def create
     @exercise = @learning_object.exercises.new
-    create_fractal(params[:exercise][:fractal_exercise])
+    create_fractal(params[:exercise][:fractal])
     params[:exercise][:fractal_exercise] = nil
     @exercise.title= params[:exercise][:title]
     @exercise.enunciation= params[:exercise][:enunciation]
+
 
     if @exercise.save
       redirect_to @learning_object, :notice => "Exercício criado com sucesso, defina agora as questões"
@@ -19,6 +20,7 @@ class ExercisesController < ApplicationController
 
   def new
     @exercise = @learning_object.exercises.new
+    @exercise.fractal_exercise = FractalExercise.new
     add_breadcrumb "Novo Exercício #{@exercise.title}", :new_learning_object_exercise_path
   end
 
@@ -32,9 +34,17 @@ class ExercisesController < ApplicationController
       @exercise.title= params[:exercise][:title]
       @exercise.enunciation= params[:exercise][:enunciation]
 
-      if params[:exercise][:fractal_exercise]
-          create_fractal(params[:exercise][:fractal_exercise])
+
+      if params[:exercise][:fractal]
+          create_fractal(params[:exercise][:fractal])
       end
+      @exercise.fractal.name = params[:exercise][:fractal_exercise][:name]
+      @exercise.fractal.angle = params[:exercise][:fractal_exercise][:angle]
+      @exercise.fractal.constant = params[:exercise][:fractal_exercise][:constant]
+      @exercise.fractal.axiom= params[:exercise][:fractal_exercise][:axiom]
+      @exercise.fractal.iterations = params[:exercise][:fractal_exercise][:iterations]
+      @exercise.fractal.width = params[:exercise][:fractal_exercise][:width]
+      @exercise.fractal.height = params[:exercise][:fractal_exercise][:height]
 
       respond_to do |format|
         if @exercise.save

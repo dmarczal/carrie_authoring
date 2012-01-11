@@ -5,6 +5,9 @@ $(document).ready(function() {
           show_exercise();
        } else if (request.action == "new") {
           render_fractal();
+          observe_fields();
+       } else if (request.action == "edit") {
+         observe_fields();
        }
     }
 });
@@ -13,6 +16,38 @@ var render_fractal = function () {
   $("select").bind('change', function() {
     console.log("Preview fractal");
   });
+};
+
+
+var observe_fields = function () {
+  var rules = toText($('.rules').attr('value'));
+  $("#exercise_fractal_exercise_rules").val(rules);      
+  $("select").bind('change', function() {
+    $.getJSON('/fractals/'+$("select").val(), function(data) {
+      $("#exercise_fractal_exercise_name").val(data.name);
+      $("#exercise_fractal_exercise_angle").val(data.angle);
+      $("#exercise_fractal_exercise_constant").val(data.constant);
+      $("#exercise_fractal_exercise_axiom").val(data.axiom);
+      $("#exercise_fractal_exercise_rules").val(data.rules);      
+    })
+  });
+};
+
+function toText(string) {
+  string = string.replace(/^\[/, "");
+  string = string.replace(/\]$/, "");
+  while (string.indexOf('"') != -1) {
+    string = string.replace('"', "");
+  }
+  return string;
+}
+
+var show_hidden_fields = function (link) {
+  if ($(".hidden-fields").is(":visible")) {
+    $(".hidden-fields").hide();
+  } else {
+    $(".hidden-fields").show();
+  }
 };
 
 var show_exercise = function () {

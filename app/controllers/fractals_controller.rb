@@ -8,7 +8,10 @@ class FractalsController < ApplicationController
 
   def show
     @fractal = Fractal.find_by_slug(params[:id])
-    render :show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render :json => @fractal }
+    end  
   end
 
   def edit

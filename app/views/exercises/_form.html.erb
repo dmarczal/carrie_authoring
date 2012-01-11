@@ -1,13 +1,27 @@
 <%= simple_form_for [@learning_object, @exercise] do |f| %>
   <%= f.input :title %>
-  <div class="field-with-link">
-    <%= f.input :fractal_exercise do %>
-      <%= f.select :fractal_exercise, Fractal.all.map { |frac| [frac.name, frac.slug] },
+  <div class="field-with-link" >
+    <%= f.input :fractal do %>
+      <%= f.select :fractal, Fractal.all.map { |frac| [frac.name, frac.slug] },
         :prompt => true, :selected => @exercise.fractal.slug %>
     <% end %>
-    <%= link_to "Criar novo Fractal", new_fractal_path %>
-    <% @exercise.fractal_exercise.slug %>
-  </div>
+    <%= link_to "Criar novo Fractal", new_fractal_path %>  
+    
+    <%= link_to_function "Editar detalhes do fractal", "show_hidden_fields(this)", 
+    :data_frac => @exercise.fractal.to_json,
+    :id => "show" %>
+
+    <div class="hidden-fields">
+    <% if @exercise.fractal_exercise != nil %>
+      <div class="rules" value='<%= @exercise.fractal.rules %>'> </div>
+      <%= f.fields_for @exercise.fractal_exercise do |builder| %>
+        <%= render "fractal_fields", :f => builder %>
+      <% end %>
+    <% end %>
+    </div>
+  </div> 
+  <br \>
+  <br \>
   <%= f.input :enunciation, :as => :text %>
   <%= f.button :submit %>
 <% end %>
