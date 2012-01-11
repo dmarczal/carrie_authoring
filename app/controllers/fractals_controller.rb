@@ -16,11 +16,15 @@ class FractalsController < ApplicationController
 
   def edit
     @fractal = Fractal.find_by_slug(params[:id])
+    @fractal.rules = @fractal.rules.join(",")
     add_breadcrumb "Editar #{@fractal.name}", :edit_fractal_path
   end
 
   def update
     @fractal = Fractal.find_by_slug(params[:id])
+
+    rules = params[:fractal][:rules]
+    params[:fractal][:rules] = rules.gsub(/\s/, '').split(',')
 
     respond_to do |format|
       if  @fractal.update_attributes(params[:fractal])
@@ -28,6 +32,7 @@ class FractalsController < ApplicationController
                       notice: "O Fractal #{@fractal.name} foi atualizado.") }
         format.json { respond_with_bip(@fractal) }
       else
+        params[:fractal][:rules] = rules
         format.html { render :edit }
         format.json { respond_with_bip(@fractal) }
       end
