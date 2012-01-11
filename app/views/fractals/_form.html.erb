@@ -1,8 +1,27 @@
-<%= simple_form_for @fractal do |f| %>
-  <%= f.input :name %>
-  <%= f.input :angle %>
-  <%= f.input :constant %>
-  <%= f.input :axiom %>
-  <%= f.input :rules, :placeholder  => "F=F-G+F+G-F, G=GG"  %>
-  <%= f.button :submit %>
-<% end %>
+<div id="fractal-form">
+
+  <%= simple_form_for @fractal do |f| %>
+    <div class="inline">
+      <%= f.input :name %>
+      <%= f.input :angle %>
+      <%= f.input :constant %>
+      <%= f.input :axiom %>
+    </div>
+    <div class="inline">
+      <%= f.input :rules, :placeholder  => "F=F-G+F+G-F", :hint => "Preencha as regras separadas por ',' ",
+          label_html: {class: 'clear' } %>
+       <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>
+
+<div id="fractal_preview">
+  <h3> Prévia do Fractal</h2>
+  <table>
+    <tr>
+      <th>Iteração 0</th>
+      <th>Iteração 1</th>
+      <th>Iteração 2</th>
+    </tr>
+  </table>
+</div>

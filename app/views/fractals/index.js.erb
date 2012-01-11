@@ -1,0 +1,19 @@
+var novos = $('<%= j render(@fractals) %>');
+
+novos.find("td.fractal").each(function (){
+  var fractalJSON = $(this).data("fractal");
+  fractalJSON.width=64;
+  fractalJSON.height=64;
+  var fractal = Fractal.create(fractalJSON);
+  for (var i = 0; i < 3; i++) {
+    $(this).append(fractal.nextIteration());
+  };
+});
+
+
+$('#fractals').append(novos);
+<% if @fractals.page %>
+  $('.pagination').replaceWith('<%= j paginate(@fractals) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>

@@ -15,8 +15,10 @@ $(document).ready(function() {
 });
 
 var show_fractals = function() {
+    console.log('------1');
    $("td.fractal").each(function (){
       var fractalJSON = $(this).data("fractal");
+      console.log(fractalJSON);
       fractalJSON.width=64;
       fractalJSON.height=64;
       var fractal = Fractal.create(fractalJSON);
@@ -31,7 +33,7 @@ var show_this_fractal = function() {
    var fractalJSON = $("tbody.fdata").data("fractal");
    fractalJSON.width=200;
    fractalJSON.height=200;
-   var fractal = Fractal.create(fractalJSON);      
+   var fractal = Fractal.create(fractalJSON);
    for (var i = 0; i < 6; i++) {
       var row = $("<tr>");
       var itData = $("<td class='iteration'>");
@@ -85,7 +87,7 @@ var create_action =  function () {
       frac.setIteration(0);
       loadPreview(frac);
    });
- 
+
    function loadPreview(frac){
       if (frac.isValid()) {
         var row = $('<tr id="preview">');

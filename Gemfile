@@ -1,16 +1,14 @@
-source :rubygems
+ource :rubygems
 
 gem "rails", "3.1.1"
 gem "mongoid"
 gem "bson_ext"
 gem "simple_form"
-#gem "devise"
-
-#gem "on_the_spot"
-gem 'best_in_place', '1.0.4.preMongo', git: 'git@github.com:dmarczal/best_in_place.git' #path: '~/projects/github/best_in_place/'
+gem 'best_in_place', '1.0.4.preMongo', git: 'git@github.com:dmarczal/best_in_place.git'
 gem "breadcrumbs_on_rails"
 gem 'redcarpet'
 gem 'mongoid_slug'
+gem 'kaminari'
 
 gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
 
@@ -47,3 +45,4 @@ group :test do
   gem 'guard-livereload'
   gem "guard-spork"
 end
+
