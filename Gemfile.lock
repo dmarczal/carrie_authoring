@@ -56,6 +56,7 @@ GEM
     bson_ext (1.5.2)
       bson (= 1.5.2)
     builder (3.0.0)
+    cancan (1.6.7)
     capybara (1.1.2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -244,6 +245,7 @@ DEPENDENCIES
   best_in_place (= 1.0.4.preMongo)!
   breadcrumbs_on_rails
   bson_ext
+  cancan
   capybara
   database_cleaner
   devise

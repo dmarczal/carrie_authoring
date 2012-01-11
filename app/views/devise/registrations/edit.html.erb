@@ -1,10 +1,13 @@
+
+<section>
 <h2>Editar usuário</h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :email, :required => true, :autofocus => true %>
-  <%= f.input :name, :required => false %>
+  <%= f.input :user_type, :as => :select, :collection => ["Aluno", "Professor"], :label => "Eu sou", :include_blank => false, :disabled => true %>
+  <%= f.input :email, :required => true, :disabled => true %>
+  <%= f.input :name, :required => false, :auto_focus => true %>
   <%= f.input :password, :hint => " Deixe em branco se não deseja alterar", :required => false, :label => "Nova senha" %>
   <%= f.input :password_confirmation, :required => false, :label => "Confirme sua nova senha" %>
   <%= f.input :current_password, :required => true, :label => "Senha atual" %>
@@ -12,3 +15,4 @@
 <% end %>
 
 <%= link_to "Voltar", :back, :class => "btn small" %>
+</section>

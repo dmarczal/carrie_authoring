@@ -5,6 +5,7 @@ gem "mongoid"
 gem "bson_ext"
 gem "simple_form"
 gem "devise"
+gem "cancan"
 
 #gem "on_the_spot"
 gem 'best_in_place', '1.0.4.preMongo', git: 'git@github.com:dmarczal/best_in_place.git' #path: '~/projects/github/best_in_place/'

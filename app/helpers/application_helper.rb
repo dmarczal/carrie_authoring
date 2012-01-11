@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def menu_link_to(*args, &block)
-    link_path = args[1]
+    link_path = args[1].match(/(\/{1}\w*)\/?/)[1]
     path = request.path.match(/(\/{1}\w*)\/?/)[1] # extract the father controller
 
     class_property = "active" if path == link_path
