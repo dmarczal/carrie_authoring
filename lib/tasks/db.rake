@@ -26,6 +26,10 @@ namespace :db do
     fractals << Fractal.create({:name => "Knoch Curve", :angle => 90, :axiom => "-F",
                                 :rules => ['F=F+F-F-F+F']})
 
+    10.times.each do |i|
+      Fractal.create({:name => "Knoch Curve #{i}", :angle => 90, :axiom => "-F",
+                                :rules => ['F=F+F-F-F+F']})
+    end
 
     fractals_exerc = []
 

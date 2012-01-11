@@ -1,5 +1,3 @@
-<% javascript_include_tag :defaults, 'endless_page' %>
-
 <section>
   <header>
     <h1 class="left"> Fractais </h1>
@@ -16,21 +14,9 @@
         <th class="center">Opções</th>
       </tr>
     </thead>
-    <tbody>
-      <% @fractals.each do |fractal| %>
-        <tr>
-          <td class="fractal" data-fractal="<%= fractal.to_json %>"</td>
-          <td><%= fractal.name %></td>
-          <td class="list-actions">
-            <ul>
-              <li><%= link_to 'Visualizar', fractal_path(fractal) %></li>
-              <li><%= link_to 'Editar', edit_fractal_path(fractal) %></li>
-              <li><%= link_to 'Deletar', fractal, confirm: 'Tem certeza?', method: :delete %></li>
-            </ul>
-          </td>
-        </tr>
-      <% end %>
+    <tbody id="fractals">
+        <%= render @fractals %>
     </tbody>
   </table>
-
+<%= paginate @fractals %>
 </section>

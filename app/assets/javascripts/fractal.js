@@ -15,8 +15,10 @@ $(document).ready(function() {
 });
 
 var show_fractals = function() {
+    console.log('------1');
    $("td.fractal").each(function (){
       var fractalJSON = $(this).data("fractal");
+      console.log(fractalJSON);
       fractalJSON.width=64;
       fractalJSON.height=64;
       var fractal = Fractal.create(fractalJSON);
