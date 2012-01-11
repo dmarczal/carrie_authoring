@@ -1,4 +1,12 @@
 "pt-BR":
+  views:
+    pagination:
+      first: "&laquo; Primeiro"
+      last: "Último &raquo;"
+      previous: "&lsaquo; Anterior"
+      next: "Próximo &rsaquo;"
+      truncate: "..."
+
   attributes:
     created_at: Criado em
     updated_at: Atualizado em
