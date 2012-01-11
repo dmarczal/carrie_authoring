@@ -7,5 +7,6 @@ class User
 
   field :name, :type => String
   field :is_admin, :type => Boolean
+  field :user_type, :type => String
 
 end
