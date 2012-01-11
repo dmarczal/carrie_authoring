@@ -3,5 +3,8 @@
 </div>
 
 <%= link_to 'Registrar-se', new_user_registration_path,  :class => "btn large" %>
-<%= link_to 'Logar-se', new_user_session_path,  :class => "btn large" %>
-<%= link_to 'Sair', destroy_user_session_path, :method => "delete", :class => "btn large" %>
+<% if !user_signed_in? %>
+  <%= link_to 'Logar-se', new_user_session_path,  :class => "btn large" %>
+<% else %>
+  <%= link_to 'Sair', destroy_user_session_path, :method => "delete", :class => "btn large" %>
+<% end %>
