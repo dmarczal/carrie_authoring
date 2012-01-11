@@ -8,6 +8,9 @@
       <li><%= menu_link_to "Editar perfil", edit_user_registration_path(current_user) %></li>
     <% end %>
     <li><a href="#">Sobre</a></li>
+    <% if user_signed_in? %>
+      <p class="right"> <%= link_to 'Sair', destroy_user_session_path, :method => "delete", :class => "btn medium" %> </p>
+    <% end %>
   </ul>
 </div>
 
