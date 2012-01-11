@@ -12,6 +12,7 @@
 //= require_self
 
 //= require fractal
+//= require endless_page
 //= require exercises
 //= require learning_objects
 
