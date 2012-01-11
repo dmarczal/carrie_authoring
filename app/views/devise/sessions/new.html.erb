@@ -4,8 +4,7 @@
   <%= f.input :email, :required => false, :autofocus => true %>
   <%= f.input :password, :required => false %>
   <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-
-  <%= f.button :submit, "Entrar" %>
+  <p><%= f.button :submit, "Entrar" %></p>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>
