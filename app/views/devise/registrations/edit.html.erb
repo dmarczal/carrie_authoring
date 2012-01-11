@@ -1,4 +1,4 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Editar usuário</h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= f.error_notification %>
@@ -8,8 +8,7 @@
   <%= f.input :password, :hint => " Deixe em branco se não deseja alterar", :required => false, :label => "Nova senha" %>
   <%= f.input :password_confirmation, :required => false, :label => "Confirme sua nova senha" %>
   <%= f.input :current_password, :required => true, :label => "Senha atual" %>
-
-  <%= f.button :submit, "Update", :class => "btn medium" %>
+  <%= f.button :submit, "Salvar alterações", :class => "btn medium" %>
 <% end %>
 
-<%= link_to "Back", :back, :class => "btn small" %>
+<%= link_to "Voltar", :back, :class => "btn small" %>

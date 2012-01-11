@@ -6,5 +6,6 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   field :name, :type => String
+  field :is_admin, :type => Boolean
 
 end
