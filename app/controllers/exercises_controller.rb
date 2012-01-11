@@ -1,6 +1,7 @@
 #encoding: utf-8
 class ExercisesController < ApplicationController
 
+  before_filter :authenticate_user!
   before_filter :find_learning_object, :only => [:create, :new, :show, :update]
 
   def create

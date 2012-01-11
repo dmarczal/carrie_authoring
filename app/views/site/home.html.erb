@@ -1,10 +1,7 @@
 <div class="page-header">
   <h1>Welcome<small> this is CARRIE, the best math authoring system</small></h1>
 </div>
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipisicing
-  elit, sed do eiusmod tempor incididunt ut labore et
-  dolore magna aliqua. Ut enim ad minim veniam, quis
-  nostrud exercitation ullamco laboris nisi ut aliquip
-  ex ea commodo consequat.
-</p>
+
+<%= link_to 'Registrar-se', new_user_registration_path,  :class => "btn large" %>
+<%= link_to 'Logar-se', new_user_session_path,  :class => "btn large" %>
+<%= link_to 'Sair', destroy_user_session_path, :method => "delete", :class => "btn large" %>
