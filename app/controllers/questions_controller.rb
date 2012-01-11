@@ -1,6 +1,7 @@
 #encoding: utf-8
 class QuestionsController < ApplicationController
 
+  before_filter :authenticate_user!
   before_filter :load_parents_breadcrumbs
 
   def new

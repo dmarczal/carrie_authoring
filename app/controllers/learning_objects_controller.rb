@@ -1,5 +1,7 @@
 #ecoding: utf-8
 class LearningObjectsController < ApplicationController
+
+  before_filter :authenticate_user!
   add_breadcrumb "Objetos de Aprendizagem", :learning_objects_path
 
   def index

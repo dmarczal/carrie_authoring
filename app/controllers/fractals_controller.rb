@@ -1,5 +1,6 @@
 class FractalsController < ApplicationController
 
+  before_filter :authenticate_user!
   before_filter :load_breadcrumb
 
   def index
