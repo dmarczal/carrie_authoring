@@ -17,4 +17,33 @@ section.exercise {
 
 }
 
+section#fractal-exercise {
+  clear: both;
+  .inline {
+    clear: both;
+    .input {
+      float: left;
+    }
+  }
+
+  input[type="text"] {
+    width: 300px;
+  }
+
+/*  .button {
+    float: right;
+    margin-top: 45px;
+    margin-right: 10px;
+  }
+  */
+
+  #exercise_fractal_exercise_angle,
+  #exercise_fractal_exercise_iterations,
+  #exercise_fractal_exercise_width,
+  #exercise_fractal_exercise_height,
+  {width: 50px;}
+
+  #exercise_fractal_exercise_constant {width: 100px;}
+}
+
 .ui-resizable-helper { border: 1px dotted gray; }

@@ -21,14 +21,14 @@ var render_fractal = function () {
 
 var observe_fields = function () {
   var rules = toText($('.rules').attr('value'));
-  $("#exercise_fractal_exercise_rules").val(rules);      
+  $("#exercise_fractal_exercise_rules").val(rules);
   $("select").bind('change', function() {
     $.getJSON('/fractals/'+$("select").val(), function(data) {
       $("#exercise_fractal_exercise_name").val(data.name);
       $("#exercise_fractal_exercise_angle").val(data.angle);
       $("#exercise_fractal_exercise_constant").val(data.constant);
       $("#exercise_fractal_exercise_axiom").val(data.axiom);
-      $("#exercise_fractal_exercise_rules").val(data.rules);      
+      $("#exercise_fractal_exercise_rules").val(data.rules);
     })
   });
 };
