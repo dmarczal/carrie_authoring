@@ -17,7 +17,7 @@ class FractalExercise
   embedded_in :exercise
 
   validates_uniqueness_of :name
-  validates_presence_of :name, :angle, :axiom, :rules
+  validates_presence_of :name, :angle, :axiom, :rules, :width, :height, :iterations
 
   validates_numericality_of :height, greater_than: 10, less_than: 512
   validates_numericality_of :width, greater_than: 10, less_than: 512
