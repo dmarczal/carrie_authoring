@@ -81,6 +81,12 @@ class ExercisesController < ApplicationController
     redirect_to @learning_object, notice: "OA deletado com sucesso"
   end
 
+  def show_questions
+    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
+    render :show_questions
+  end
+
 
 private
   def find_learning_object
@@ -100,4 +106,13 @@ private
       #return frac_exer
     end
   end
+  def sort_questions
+    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
+    params[:question].each_with_index do |id, index|
+      @exercise.questions.find(id).update_attribute(:position, index+1)
+    end
+    render nothing: true
+  end
+
 end

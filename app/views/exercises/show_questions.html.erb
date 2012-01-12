@@ -1,0 +1,10 @@
+<h1> Ordenar questões </h1>
+
+<ul id="sortable" data-update-url="<%= sort_questions_learning_objects_url %>" class="ui-sortable">
+<% @exercise.questions.each do |question| %>
+ <%= content_tag_for :li, question do %>
+   <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+   <%= question.title %>
+ <% end %>
+<% end %>
+</ul>

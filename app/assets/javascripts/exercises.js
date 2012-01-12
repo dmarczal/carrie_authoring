@@ -1,5 +1,6 @@
 // Exercises Controller
 $(document).ready(function() {
+
     if (request.controller == "exercises") {
        if (request.action == "show") {
           show_exercise();
@@ -8,6 +9,14 @@ $(document).ready(function() {
           observe_fields();
        } else if (request.action == "edit") {
           observe_fields();
+       } else if (request.action == "show_questions") {
+          $('#sortable').sortable({
+            axis: 'y',
+            update: function(event, ui) {
+                $.post($(this).data('update-url'), { 'question' : $(this).sortable('toArray') });
+             }
+          });
+          $('#sortable').disableSelection();
        }
     }
 });
