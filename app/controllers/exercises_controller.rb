@@ -60,6 +60,7 @@ class ExercisesController < ApplicationController
     @exercise = @learning_object.exercises.find_by_slug(params[:id])
     @fractal  = @exercise.fractal
     @fractals = Fractal.all.map{|fractal| [fractal.id, fractal.name]}
+    @questions = @exercise.questions.order_by([[ :position, :asc ]])
 
     add_breadcrumb "Exercício: #{@exercise.title}", :learning_object_exercise_path
   end
@@ -84,9 +85,22 @@ class ExercisesController < ApplicationController
   def show_questions
     @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
     @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
+    @questions = @exercise.questions.order_by([[ :position, :asc ]])
+
+    add_breadcrumb "Exercício: #{@exercise.title}", learning_object_exercise_path(@learning_object, @exercise)
+    add_breadcrumb "Ordenação de Questões", :learning_object_exercise_show_questions_path
+
     render :show_questions
   end
 
+  def sort_questions
+    @exercise = @learning_object.exercises.find_by_slug(params[:id])
+    params[:question].each_with_index do |id, index|
+      id = id.gsub('question_', '')
+      @exercise.questions.find(id).update_attribute(:position, index+1)
+    end
+    render nothing: true
+  end
 
 private
   def find_learning_object
@@ -106,13 +120,6 @@ private
       #return frac_exer
     end
   end
-  def sort_questions
-    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
-    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
-    params[:question].each_with_index do |id, index|
-      @exercise.questions.find(id).update_attribute(:position, index+1)
-    end
-    render nothing: true
-  end
+
 
 end

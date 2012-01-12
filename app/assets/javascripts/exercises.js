@@ -13,7 +13,9 @@ $(document).ready(function() {
           $('#sortable').sortable({
             axis: 'y',
             update: function(event, ui) {
-                $.post($(this).data('update-url'), { 'question' : $(this).sortable('toArray') });
+                $.post($(this).data('update-url'),
+                   { learning_object_id: $(this).data('oa-id'), id: $(this).data('exercise-id'),
+                    'question' : $(this).sortable('toArray') });
              }
           });
           $('#sortable').disableSelection();
@@ -52,7 +54,7 @@ var observe_fields = function () {
                             constant: $('#exercise_fractal_exercise_constant').val(),
                             angle:  $('#exercise_fractal_exercise_angle').val(),
                             rules: rules_to_array($('#exercise_fractal_exercise_rules').val()),
-                            height: $('#exercise_fractal_exercise_height').val(), 
+                            height: $('#exercise_fractal_exercise_height').val(),
                             width: $('#exercise_fractal_exercise_width').val()});
     if (frac.isValid()) {
       var row = $('<tr id="preview">');
@@ -92,7 +94,7 @@ var create_preview =  function () {
                               constant: $('#exercise_fractal_exercise_constant').val(),
                               angle:  $('#exercise_fractal_exercise_angle').val(),
                               rules: rules_to_array($('#exercise_fractal_exercise_rules').val()),
-                              height: $('#exercise_fractal_exercise_height').val(), 
+                              height: $('#exercise_fractal_exercise_height').val(),
                               width: $('#exercise_fractal_exercise_width').val()});
    loadPreview(frac);
    $("input").observe_field(1, function() {

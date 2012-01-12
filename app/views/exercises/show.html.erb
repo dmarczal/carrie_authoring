@@ -22,7 +22,7 @@
   </div>
 
   <table id="exercise_table" class="bordered-table" data-fractal="<%= @fractal.to_json %>"
-    data-questions="<%= @exercise.questions.to_json %>" data-id="<%= @exercise.slug %>"
+    data-questions="<%= @questions.to_json %>" data-id="<%= @exercise.slug %>"
     fractal-update-url= "<%= update_fractal_size_learning_object_exercises_url %>"
     data-oa-id="<%= @learning_object.slug %>"
     >
@@ -34,7 +34,7 @@
         <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >
           Fractal: <%= @fractal.name %>
         </th>
-        <% @exercise.questions.each do |question| %>
+        <% @questions.each do |question| %>
           <th title='<%= question.title %>' data-content='<%= question.enunciation %>'
             data-placement="above" rel="popover">
             <%= question.title %>
