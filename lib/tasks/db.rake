@@ -43,8 +43,9 @@ namespace :db do
 
     oas.each do |oa|
       3.times do
-        oa.exercises.create!(:title => Faker::Name.title, :enunciation => Faker::Lorem.paragraphs(3).join,
+        exe = oa.exercises.create!(:title => Faker::Name.title, :enunciation => Faker::Lorem.paragraphs(3).join,
                             :fractal_exercise => fractals_exerc.sample)
+        3.times { |i| exe.questions.create!( title: "Lado Maior #{i}", enunciation: "Enunciado #{i}") }
       end
     end
 

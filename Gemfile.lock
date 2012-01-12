@@ -108,6 +108,8 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.6.4)
+    kaminari (0.12.4)
+      rails (>= 3.0.0)
     less (2.0.8)
       commonjs (~> 0.2.0)
       therubyracer (~> 0.9.9)
