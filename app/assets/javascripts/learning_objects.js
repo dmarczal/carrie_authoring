@@ -1,5 +1,3 @@
-$ = jQuery.noConflict();
-
 $(document).ready(function() {
   if (request.controller == "learning_objects") {
 
