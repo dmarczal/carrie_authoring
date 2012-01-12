@@ -1,0 +1,12 @@
+var learning = $('<%= j render(@learning_objects) %>');
+
+learning.find("td.learning").each(function (){
+  load_learning_objects_index(this);
+});
+
+$('#learning').append(learning);
+<% unless @learning_objects.last_page? %>
+  $('.pagination').replaceWith('<%= j paginate(@learning_objects) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>
