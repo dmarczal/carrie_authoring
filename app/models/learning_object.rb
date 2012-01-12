@@ -14,7 +14,9 @@ class LearningObject
   validates_uniqueness_of :name
 
   def markdown_desc
-    options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
-    Redcarpet.new(self.description, *options).to_html.html_safe
+    options = {:hard_wrap => true, :filter_html => true, :autolink => true,
+               :no_intraemphasis => true, :fenced_code => true, :gh_blockcode => true}
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, options)
+    markdown.render(self.description).html_safe
   end
 end
