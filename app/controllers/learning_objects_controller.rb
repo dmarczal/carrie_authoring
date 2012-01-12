@@ -3,7 +3,7 @@ class LearningObjectsController < ApplicationController
   add_breadcrumb "Objetos de Aprendizagem", :learning_objects_path
 
   def index
-    @learning_objects = LearningObject.all
+      @learning_objects = LearningObject.page(params[:page]).per(3)
   end
 
   def show

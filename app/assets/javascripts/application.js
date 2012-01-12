@@ -3,6 +3,7 @@
 //= require jquery_ujs
 
 //= require twitter/bootstrap
+//= require jquery/jquery.tablesorter
 //= require jquery/jquery.dragtable
 
 //= require lsystem/lsystems

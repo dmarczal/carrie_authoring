@@ -259,4 +259,3 @@ DEPENDENCIES
   thin
   twitter-bootstrap-rails!
   uglifier
-
