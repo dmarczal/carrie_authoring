@@ -31,7 +31,7 @@ var show_this_fractal = function() {
    var fractalJSON = $("tbody.fdata").data("fractal");
    fractalJSON.width=200;
    fractalJSON.height=200;
-   var fractal = Fractal.create(fractalJSON);      
+   var fractal = Fractal.create(fractalJSON);
    for (var i = 0; i < 6; i++) {
       var row = $("<tr>");
       var itData = $("<td class='iteration'>");
@@ -64,7 +64,9 @@ var show_next_it = function() {
 
 
 function rules_to_array(rules){
-   return rules.toString().replace(/\s/, '').split(',');
+   if (rules) {
+      return rules.toString().replace(/\s/, '').split(',');
+   }
 };
 
 // Executes a callback detecting changes with a frequency of 1 second
@@ -77,6 +79,7 @@ var create_action =  function () {
                               height: 128, width: 128});
    loadPreview(frac);
    $("input").observe_field(1, function() {
+
       if (this.id == 'fractal_name') frac.setName(this.value);
       if (this.id == 'fractal_axiom') frac.setAxiom(this.value);
       if (this.id == 'fractal_rules') frac.setRules(rules_to_array(this.value));
@@ -85,7 +88,7 @@ var create_action =  function () {
       frac.setIteration(0);
       loadPreview(frac);
    });
- 
+
    function loadPreview(frac){
       if (frac.isValid()) {
         var row = $('<tr id="preview">');

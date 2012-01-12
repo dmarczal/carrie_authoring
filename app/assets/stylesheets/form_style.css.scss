@@ -3,6 +3,19 @@
 .simple_form {
   padding-left: 0px;
 
+  .field-with-link {
+    select {
+      float: left;
+    }
+    a {
+      padding-left: 10px;
+    }
+  }
+
+  .hidden-fields {
+    display: none;
+  }
+
   span.error {
     position: absolute;
     display: block;

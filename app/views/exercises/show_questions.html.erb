@@ -1,0 +1,18 @@
+<section>
+
+  <header>
+    <h1> Ordenar questões do exercício <em><%= @exercise.title %> </em> </h1>
+  </header>
+
+
+  <ul id="sortable" data-update-url="<%= sort_questions_learning_object_exercises_url %>"
+    data-oa-id="<%= @learning_object.slug %>" data-exercise-id="<%= @exercise.slug %>"  class="ui-sortable">
+    <% @questions.each do |question| %>
+      <%= content_tag_for :li, question do %>
+        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+        <%= question.title %>
+      <% end %>
+    <% end %>
+  </ul>
+
+</section>

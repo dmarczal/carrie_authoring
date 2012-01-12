@@ -129,6 +129,18 @@
       question:
         one: "Questão"
         other: "Questões"
+      fractal_exercise: "Exercício do fractal"
+
+    attributes:
+      fractal_exercise:
+        width: Largura
+        height: Altura
+        constant:  Constante
+        rules: Regras
+        angle: Ângulo
+        axiom: Axioma
+        iterations: Iterações
+
 
     errors:
       template:

@@ -3,8 +3,8 @@
 //= require jquery_ujs
 
 //= require twitter/bootstrap
-//= require jquery.tablesorter
-//= require jquery.dragtable
+//= require jquery/jquery.dragtable
+//= require jquery/jquery.tablesorter.js
 
 //= require lsystem/lsystems
 //= require lsystem/jquery.lsystem
@@ -31,3 +31,10 @@ $(document).ready(function() {
 
   //$('.best_in_place').bind("ajax:success", function () {}
 });
+
+
+function remove_fields(link) {
+	console.log($(link));
+	$(link).previous("input[type=hidden]").value = 1;
+	$(link).up("fields").hide();
+}

@@ -1,21 +1,11 @@
 <section>
-	  <header>
-	    <h1 class="left"> Editar Fractal </h1>
-	    <p class="right">
-	      <%= link_to 'Voltar', fractals_path, :class => "btn large" %>
-	    </p>
-	  </header>
-	  
-	<%= render 'form' %>
+  <header>
+    <h1 class="left"> Editar Fractal </h1>
+    <p class="right">
+      <%= link_to 'Voltar', fractals_path, :class => "btn large" %>
+    </p>
+  </header>
 
-	<h3> Prévia do Fractal</h2>
-	<div id="div_table">
-	  <table>
-	    <tr>
-	      <th>Iteração 1</th>
-	      <th>Iteração 2</th>
-	      <th>Iteração 3</th>
-	    </tr>
-	  </table>
-	</div>
+  <%= render 'form' %>
+
 </section>

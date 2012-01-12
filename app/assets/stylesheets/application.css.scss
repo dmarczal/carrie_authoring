@@ -1,6 +1,7 @@
 /*
-*= require twitter/bootstrap
-*= require dragtable-default
+* require twitter/bootstrap
+* require bootstrap.css.less
+* require util
 *= require jquery-ui/jquery-ui.css
 *= require best_in_place
 *= require form_style
@@ -16,6 +17,7 @@ $bc: #DDD;
 .left { float: left; }
 .center { text-align:center; }
 .bordered { border: 1px solid $bc;}
+.clear {clear:both;}
 
 section{
   padding:10px 0 10px 0;
