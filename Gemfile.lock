@@ -50,6 +50,7 @@ GEM
     addressable (2.2.6)
     arel (2.2.1)
     awesome_print (1.0.2)
+    bcrypt-ruby (3.0.1)
     breadcrumbs_on_rails (2.1.0)
     bson (1.5.2)
     bson_ext (1.5.2)
