@@ -17,17 +17,21 @@ $(document).ready(function() {
 var show_fractals = function() {
     console.log('------1');
    $("td.fractal").each(function (){
-      var fractalJSON = $(this).data("fractal");
-      console.log(fractalJSON);
-      fractalJSON.width=64;
-      fractalJSON.height=64;
-      var fractal = Fractal.create(fractalJSON);
-
-      for (var i = 0; i < 3; i++) {
-         $(this).append(fractal.nextIteration());
-      };
+     load_fractals_index(this);
    });
 }
+
+var load_fractals_index =  function (obj) {
+   var fractalJSON = $(obj).data("fractal");
+   fractalJSON.width=64;
+   fractalJSON.height=64;
+   var fractal = Fractal.create(fractalJSON);
+
+   for (var i = 0; i < 3; i++) {
+      $(obj).append(fractal.nextIteration());
+   };
+}
+
 
 var show_this_fractal = function() {
    var fractalJSON = $("tbody.fdata").data("fractal");

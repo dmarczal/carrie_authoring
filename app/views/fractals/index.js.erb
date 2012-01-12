@@ -1,18 +1,11 @@
-var novos = $('<%= j render(@fractals) %>');
+var fracs = $('<%= j render(@fractals) %>');
 
-novos.find("td.fractal").each(function (){
-  var fractalJSON = $(this).data("fractal");
-  fractalJSON.width=64;
-  fractalJSON.height=64;
-  var fractal = Fractal.create(fractalJSON);
-  for (var i = 0; i < 3; i++) {
-    $(this).append(fractal.nextIteration());
-  };
+fracs.find("td.fractal").each(function (){
+  load_fractals_index(this);
 });
 
-
-$('#fractals').append(novos);
-<% if @fractals.page %>
+$('#fractals').append(fracs);
+<% unless @fractals.last_page? %>
   $('.pagination').replaceWith('<%= j paginate(@fractals) %>');
 <% else %>
   $('.pagination').remove();

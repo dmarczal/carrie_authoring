@@ -27,8 +27,9 @@ namespace :db do
                                 :rules => ['F=F+F-F-F+F']})
 
     10.times.each do |i|
-      Fractal.create({:name => "Knoch Curve #{i}", :angle => 90, :axiom => "-F",
-                                :rules => ['F=F+F-F-F+F']})
+      frac = fractals.sample
+      Fractal.create({:name => " #{frac.name} #{i}", :angle => frac.angle, :axiom => frac.axiom,
+                                :rules => frac.rules})
     end
 
     fractals_exerc = []
