@@ -39,6 +39,7 @@ class ExercisesController < ApplicationController
           create_fractal(params[:exercise][:fractal])
       end
       @exercise.fractal.name = params[:exercise][:fractal_exercise][:name]
+      @exercise.fractal.infinite = params[:exercise][:fractal_exercise][:infinite]
       @exercise.fractal.angle = params[:exercise][:fractal_exercise][:angle]
       @exercise.fractal.constant = params[:exercise][:fractal_exercise][:constant]
       @exercise.fractal.axiom= params[:exercise][:fractal_exercise][:axiom]

@@ -43,6 +43,12 @@
     clear: both;
   }
 
+  input[type="radio"] {
+    width: 20px;
+    margin: 30px 0;
+  }
+
+
   textarea {
     height: 100px;
   }
@@ -56,5 +62,17 @@
     margin-top: 20px;
     padding: 10px;
   }
+
+}
+
+
+.simple_form div.boolean label, .simple_form label.collection_radio {
+  float: none;
+  margin-top: 0;
+}
+
+.simple_form label.collection_radio {
+  margin-right: 10px;
+  margin-left: 2px;
 }
 

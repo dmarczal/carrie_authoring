@@ -210,6 +210,16 @@ var Exercise = Exercise || {
           createQuestions(row);
           $(that.table).append(row);
        }
+      if (that.fractal.infinite) {
+        var row = $('<tr>');
+        var iterationN = $('<td width="100"> N </td>');
+        var tdTag = $('<td class="fractal" width='+ that.fractal.width +' "> Figura limite </td>')
+        .css('height', that.fractal.height + 8);
+        row.append(iterationN, tdTag);
+	 createQuestions(row);
+        $(that.table).append(row);
+
+      }
     };
 
     var createQuestions = function (row) {
