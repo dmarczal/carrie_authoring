@@ -1,5 +1,6 @@
 <%= simple_form_for [@learning_object, @exercise, @question] do |f| %>
   <%= f.input :title %>
   <%= f.input :enunciation, :as => :text %>
+  <%= f.input :answer %>
   <%= f.button :submit %>
 <% end %>

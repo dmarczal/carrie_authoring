@@ -36,8 +36,8 @@
         </th>
         <% @questions.each do |question| %>
           <th title='<%= question.title %>' data-content='<%= question.enunciation %>'
-            data-placement="above" rel="popover">
-            <%= question.title %>
+            data-placement="above" rel="popover" >
+            <%= link_to question.title, edit_learning_object_exercise_question_path(@learning_object, @exercise, question) %>
           </th>
         <%end%>
       </tr>
@@ -45,5 +45,7 @@
     <tbody>
     </tbody>
   </table>
+
+  <div class="hidden"> <%= render "calculator" %> </div>
 
 </section>
