@@ -1,0 +1,74 @@
+.calc {
+	div.center {
+		border-radius: 0 0 0 0;
+		border-style: solid;
+		border-width: 0;
+		margin: 0 auto;
+		overflow: hidden;
+		width: 100%;
+		min-width: 50px;
+		resize: none;
+	}
+	div.center div.bg {
+		border-radius: 0 0 0 0;
+		padding: 6px;
+	}
+	div.display {
+		min-height: 115px;
+		overflow-x: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	div.history div.input {
+		left: 111px;
+		top: -29px;
+	}
+	div.history {
+		width: 99%;
+		display: none;
+	}
+	div.helper {
+		display: none;
+	}
+	footer p {
+		display: none;
+	}
+	footer p a {
+		color: #8BA6BC;
+	}
+	a.favicon
+	{
+		position: fixed;
+		top: 0px;
+		left: 0px;
+	}
+	div.center a.create
+	{
+		display: none;
+	}
+	div.options {
+		position: fixed;
+		right: 3px;
+		top: 0;
+		padding-top: 0;
+	}
+	label.option .label {
+		color: #aaa
+	}
+	.btns {
+		max-width: 2000px;
+		overflow: hidden;
+		resize: none;
+	}
+	.center
+	{
+		bottom: 0px;
+	}
+	.table.num
+	{
+		width: 100%;
+	}
+	label.option .label {
+		font-size: 7pt;
+	}
+}
