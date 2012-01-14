@@ -62,4 +62,11 @@ class LearningObjectsController < ApplicationController
     end
     render nothing: true
   end
+
+  def sort_introductions
+    params[:introduction].each_with_index do |id, index|
+      Introduction.find(id).update_attribute(:position, index+1)
+    end
+    render nothing: true
+  end
 end

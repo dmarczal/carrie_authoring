@@ -16,6 +16,7 @@ Carrie_mongodb::Application.routes.draw do
     end
     collection do
       post :sort_exercises
+      post :sort_introductions
     end
   end
 

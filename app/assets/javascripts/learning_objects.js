@@ -17,5 +17,12 @@ $(document).ready(function() {
        }
     });
 
+    $("#introductions").sortable({
+       axis: 'y',
+       handle: '.handle',
+       update: function(event, ui) {
+          $.post($(this).data('update-url'), { 'introduction' : $(this).sortable('toArray') });
+       }
+    });
   }
 });

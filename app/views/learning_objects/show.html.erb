@@ -25,7 +25,7 @@
           <th class="center">Opções</th>
         </tr>
       </thead>
-      <tbody id="introductions">
+      <tbody id="introductions" data-update-url="<%= sort_introductions_learning_objects_url %>">
         <% @introductions.each do |introduction| %>
           <tr id='<%= introduction.id %>' >
             <td class="handle">[DRAG]</td>
