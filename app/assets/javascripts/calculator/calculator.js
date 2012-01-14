@@ -31,6 +31,7 @@ var lastequalinputcount = 0;
 
 // Store formula to eval
 var formula = "";
+var htmlFormula = "";
 
 // Add factorial to Math (to be use by eval)
 Math.factorial = function(number) {
@@ -45,7 +46,9 @@ Math.factorial = function(number) {
     return f;
 };
 
-
+Math.root = function(number) {
+    return Math.sqrt(number);
+}
 
 
 function checkEqual(inputstr) {
@@ -83,19 +86,102 @@ function equal() {
     histories.unshift(inputstr);
 
     // request = 1;
-    console.log(inputstr);
 
     setLoadingImg(false);
     checkforinputchanges_input = input.val();
     request = null;
     
     var size = $('table tbody tr').size();
-    $('table tbody tr td').get(row*size + col).innerHTML = inputstr;
     $('#dialog-calc').dialog('close');
+
+    htmlFormula = inputstr;
+    formula = formatFormula(inputstr);
+    $('table tbody tr td').get(row*size + col).innerHTML = htmlFormula;
+
     return inputstr;
 
 }
 
+function isNumber(s) {
+    return s == '1' ||    s == '2' ||    
+    s == '3' ||    s == '4' ||    s == '5' || s == '6' ||
+    s == '7' ||    s == '8' ||    s == '9' || s == '0' 
+}
+
+function isOperation(s) {
+    return s == '-' || s == '+' || s == '/' || s == '*';
+}
+
+function isParenthesis(s) {
+    return s == ')' || s == '(';
+}
+
+function isOpenPar(s) {
+    return s == "("
+}
+
+function getPrevNumber(string, p) {
+    //123-1234
+    var insidePar;
+    var i = 1;
+    if (string.charAt(p-1) == ")") {
+        insidePar = true;
+    }
+    else
+        insidePar = false;
+    var stop;
+    if (insidePar) {
+        stop = isOpenPar;
+    } else {
+        stop = isOperation;
+    }
+    var token = string.charAt(p-i);
+    var number = "";
+    while(!stop(token) && token != "") {
+        number = token + number;
+        i++;
+        token = string.charAt(p-i);
+    }
+    return number;
+}
+
+function replaceSqrt(string) {
+    while (string.indexOf("sqrt") != -1) {
+        string = string.replace("sqrt", "Math.root");
+        htmlFormula = htmlFormula.replace("sqrt", "&radic;");
+    }
+
+    return string;
+}
+
+function replaceFact(string) {
+    var p;
+    while ((p = string.indexOf("!")) != -1) {
+        var i = 1;
+        number = getPrevNumber(string, p);
+        string = string.replace(number + "!", "Math.factorial(" + number + ")");
+    } 
+    return string;
+}
+
+function replacePow(string) {
+    var p;
+    while ((p = string.indexOf("^2")) != -1) {
+        var i = 1;
+        number = getPrevNumber(string, p);
+        string = string.replace(number + "^2", "Math.pow(" + number + ", 2)");
+        htmlFormula =  htmlFormula.replace(number + "^2", number + "<sup> 2 </sup>");
+    } 
+    return string;
+}
+
+
+function formatFormula(raw) {
+    raw = replaceSqrt(raw);
+    raw = replaceFact(raw);   
+    raw = replacePow(raw);
+    return raw;
+}
 
 
 
@@ -388,7 +474,7 @@ function setInputCaretPosition(pos) {
     }
 }
 function smartinsert(val, parameters) {
-   
+    
     var sellen;
     if ((sellen = getInputSelectionLength()) > 0) {
         var inp = input.val();
@@ -403,10 +489,12 @@ function smartinsert(val, parameters) {
     } else {
         var regex = /^[-]?[0-9.abcdef]+$/;
         if (!regex.test(input.val())) {
-            if (parameters == 1)
+            if (parameters == 1){
                 ins(val + "(");
-            else
-                ins(val + "(");
+            }
+            else {
+               ins(val + "(");
+            }
         } else {
             if (parameters == 1)
                 input.val( (val + "(" + input.val() + ")") );
@@ -524,7 +612,6 @@ function setoperation(op) {
 }
 
 function ins(s) {
-    console.log(s);
     if (checksyntax)
         checksyntax(false);
     if ($.browser.mozilla || $.browser.webkit
@@ -544,23 +631,12 @@ function ins(s) {
         setInputCaretPosition(insertposition);
     } else
         input.val( inputval.value + s);
-    if (isFinite(s) || isOperation(s) || isParenthesis(s)) {
-        formula += s;
-    } else
-        formula += "Math." + s;
     operation = "";
     checkForInputChanges();
     checkForInputChanges();
     return false;
 }
 
-function isOperation(s) {
-    return s == '-' || s == '+' || s == '/' || s == '*';
-}
-
-function isParenthesis(s) {
-    return s == ')' || s == '(';
-}
 
 function sign() {
     var inputval = input.val();
@@ -580,6 +656,8 @@ function sign() {
     }
     input.val( inputval );
 }
+
+/*
 function doundo() {
    
     if (getInputSelectionLength() > 1) {
@@ -601,7 +679,7 @@ function doundo() {
     input.val( inputval );
     setInputCaretPosition(pos > 0 ? pos - 1 : 0);
 }
-
+*/
 
 
 function doundo() {
@@ -619,7 +697,7 @@ function doundo() {
         pos = 1;
     inputval = (pos > 0 ? inputval.substring(0, pos - 1) : "") + inputval.substring(pos);
     input.val( inputval );
-    formula = formula.substring(0, formula.length - 1);
+    formula =  (pos > 0 ? formula.substring(0, pos - 1) : "") + formula.substring(pos);
     if (formula.substring(formula.length-5, formula.length) == "Math.") {
         formula.substring(0, formula.length - 5)
     }

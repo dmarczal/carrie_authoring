@@ -19,6 +19,7 @@ $(document).ready(function() {
             }*/
             close: function() {
               $("input.input").val(""); 
+
             }
           });
           show_exercise();
@@ -263,7 +264,6 @@ var Exercise = Exercise || {
 var row;
 var col;
 var openDialog = function(element) {
-  console.log("Abrir calculadora. Target: Row = " + element.data('row') + " Col = " +element.data('col'));
   row = element.data('row');
   col = element.data('col');
   formula = "";
