@@ -235,6 +235,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
+    truncate_html (0.5.1)
     tzinfo (0.3.31)
     uglifier (1.2.1)
       execjs (>= 0.3.0)
@@ -274,5 +275,6 @@ DEPENDENCIES
   spine-rails
   spork (~> 0.9.0.rc9)
   thin
+  truncate_html
   twitter-bootstrap-rails!
   uglifier

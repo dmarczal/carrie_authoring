@@ -8,9 +8,6 @@
       </div>
   </article>
 
-
-
-
   <article>
     <header>
       <h1 class='left'> Introduções </h1>
@@ -28,12 +25,12 @@
           <th class="center">Opções</th>
         </tr>
       </thead>
-      <tbody id="exercises">
+      <tbody id="introductions">
         <% @introductions.each do |introduction| %>
           <tr id='<%= introduction.id %>' >
             <td class="handle">[DRAG]</td>
             <td><%= link_to introduction.title, [@learning_object, introduction] %></td>
-            <td><%= introduction.content %></td>
+            <td><%= raw truncate introduction.content, :length => 150 %></td>
             <td class="list-actions">
               <ul>
                 <li><%= link_to 'Visualizar', [@learning_object, introduction]  %></li>
@@ -45,11 +42,7 @@
         <% end %>
       </tbody>
     </table>
-
   </article>
-
-
-
 
   <article>
     <header>
@@ -87,7 +80,5 @@
         <% end %>
       </tbody>
     </table>
-
   </article>
-
 </section>
