@@ -22,5 +22,7 @@ Carrie_mongodb::Application.routes.draw do
 
   resources :fractals
 
+  devise_for :users, :controllers => { :sessions => "users/sessions" }
+
   root :to => "site#home"
 end

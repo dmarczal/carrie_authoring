@@ -2,7 +2,9 @@
   <header>
     <h1 class="left">Objeto de Aprendizagens </h1>
     <p class="right">
-      <%= link_to 'Criar novo Objeto de Aprendizagem', new_learning_object_path, :class => "btn large" %>
+      <% if can? :manage, LearningObject %>
+        <%= link_to 'Criar novo Objeto de Aprendizagem', new_learning_object_path, :class => "btn large" %>
+      <% end %>
     </p>
   </header>
 

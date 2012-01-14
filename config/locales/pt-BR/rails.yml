@@ -22,6 +22,7 @@
       signed_out: 'Você encerrou sua sessão'
     failure:
       already_authenticated: 'Você já está logado'
+      unauthenticated: 'Faça login primeiro'
     registrations:
       user:
         updated: "Perfil alterado com sucesso!"

@@ -6,6 +6,9 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.is_admin?
       can :manage, :all
+    elsif user.user_type == "Professor"
+      can :manage, Fractal
+      can :manage, LearningObject
     else
       can :read, :all
     end

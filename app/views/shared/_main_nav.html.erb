@@ -9,7 +9,7 @@
     <% end %>
     <li><a href="#">Sobre</a></li>
     <% if user_signed_in? %>
-      <p class="right"> <%= link_to 'Sair', destroy_user_session_path, :method => "delete", :class => "btn medium" %> </p>
+      <p class="right"> <%= current_user.email %> <%= link_to 'Sair', destroy_user_session_path, :method => "delete", :class => "btn medium" %> </p>
     <% end %>
   </ul>
 </div>
