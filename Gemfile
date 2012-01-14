@@ -17,6 +17,9 @@ gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-boots
 gem 'faker'
 gem "thin"
 
+gem "ckeditor", "3.7.0.rc2"
+gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
+
 group :assets do
   gem 'sass-rails'
 #  gem 'coffee-rails'

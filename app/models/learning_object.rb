@@ -9,6 +9,7 @@ class LearningObject
   slug :name
 
   references_many :exercises, :dependent => :delete
+  references_many :introductions, :dependent => :delete
 
   validates_presence_of :name, :description
   validates_uniqueness_of :name

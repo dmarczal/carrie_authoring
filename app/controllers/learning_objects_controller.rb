@@ -9,6 +9,7 @@ class LearningObjectsController < ApplicationController
   def show
     @learning_object = LearningObject.find_by_slug(params[:id])
     @exercises = @learning_object.exercises.order_by([[ :position, :asc ]])
+    @introductions = @learning_object.introductions.order_by([[ :position, :asc ]])
 
     add_breadcrumb "OA: #{@learning_object.name}", learning_object_path(@learning_object_path)
   end

@@ -120,6 +120,4 @@ private
       #return frac_exer
     end
   end
-
-
 end

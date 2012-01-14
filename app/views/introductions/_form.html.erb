@@ -1,0 +1,9 @@
+<%= simple_form_for [ @learning_object, @introduction ] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content, :as => :text %>
+
+  <%= f.button :submit %>
+<% end %>
+
+
+

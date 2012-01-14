@@ -11,6 +11,8 @@
 //= require lsystem/jquery.lsystem
 //= require lsystem/jquery.observe_field
 
+//= require ckeditor/ckeditor
+
 //= require_self
 
 //= require fractal

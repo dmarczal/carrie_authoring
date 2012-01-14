@@ -13,7 +13,6 @@ class Exercise
   embeds_many :questions
   embeds_one :fractal_exercise
 
-
   validates_presence_of :title, :enunciation, :fractal_exercise
   validates_associated :learning_object
   validates_uniqueness_of :title
