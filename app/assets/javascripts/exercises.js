@@ -3,6 +3,24 @@ $(document).ready(function() {
 
     if (request.controller == "exercises") {
        if (request.action == "show") {
+
+          $("#dialog-calc").hide();
+          $("#dialog:ui-dialog" ).dialog( "destroy" );
+          $("#dialog-calc" ).dialog({
+            autoOpen: false,
+            height: 410,
+            width: 480,
+            modal: true,
+            resizable: false, /*,
+            buttons: {
+              "OK" : function() {
+                $(this).dialog("close");
+              }
+            }*/
+            close: function() {
+              $("input.input").val(""); 
+            }
+          });
           show_exercise();
        } else if (request.action == "new") {
           render_fractal();
@@ -176,6 +194,7 @@ var show_exercise = function () {
           }
        });
     })();
+
 };
 
 var Exercise = Exercise || {
@@ -240,6 +259,14 @@ var Exercise = Exercise || {
   }
 };
 
+
+var row;
+var col;
 var openDialog = function(element) {
   console.log("Abrir calculadora. Target: Row = " + element.data('row') + " Col = " +element.data('col'));
+  row = element.data('row');
+  col = element.data('col');
+  formula = "";
+  $("#dialog-calc" ).dialog( "open");
+
 }
