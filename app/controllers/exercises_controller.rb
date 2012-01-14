@@ -3,6 +3,7 @@ class ExercisesController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :find_learning_object, :except => [:update_fractal_size]
+  load_and_authorize_resource :find_by => :slug
 
   def create
     @exercise = @learning_object.exercises.new

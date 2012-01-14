@@ -1,5 +1,7 @@
 Carrie_mongodb::Application.routes.draw do
 
+  resources :learning_groups
+
   devise_for :users
 
 #  devise_for :users
@@ -21,8 +23,6 @@ Carrie_mongodb::Application.routes.draw do
   end
 
   resources :fractals
-
-  devise_for :users, :controllers => { :sessions => "users/sessions" }
 
   root :to => "site#home"
 end

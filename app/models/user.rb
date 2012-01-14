@@ -9,4 +9,10 @@ class User
   field :is_admin, :type => Boolean
   field :user_type, :type => String
 
+  references_many :learning_group, :dependent => :delete
+  has_and_belongs_to_many :learning_group
+
+  def is_teacher?
+    self.user_type == "Professor"
+  end
 end

@@ -2,7 +2,7 @@ class FractalsController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :load_breadcrumb
-  load_and_authorize_resource
+  load_and_authorize_resource :find_by => :slug
 
   def index
     @fractals = Fractal.page(params[:page]).per(6)

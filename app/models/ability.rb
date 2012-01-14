@@ -9,6 +9,10 @@ class Ability
     elsif user.user_type == "Professor"
       can :manage, Fractal
       can :manage, LearningObject
+      can :manage, Exercise
+      can :manage, Question
+      can :manage, LearningGroup
+      can :read, :all
     else
       can :read, :all
     end
