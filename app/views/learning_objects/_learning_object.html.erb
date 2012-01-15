@@ -4,8 +4,10 @@
   <td class="list-actions">
     <ul>
       <li><%= link_to 'Visualizar', learning_object %></li>
-      <li><%= link_to 'Editar', edit_learning_object_path(learning_object) %></li>
-      <li><%= link_to 'Deletar', learning_object, confirm: 'Tem certeza?', method: :delete %></li>
+      <% if can? :manage, LearningObject %>
+        <li><%= link_to 'Editar', edit_learning_object_path(learning_object) %></li>
+        <li><%= link_to 'Deletar', learning_object, confirm: 'Tem certeza?', method: :delete %></li>
+      <% end %>
     </ul>
       <% if learning_object.published %> Publicado <% else %> Não Publicado <% end %>
   </td>

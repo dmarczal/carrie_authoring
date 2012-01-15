@@ -4,6 +4,8 @@ gem "rails", "3.1.1"
 gem "mongoid"
 gem "bson_ext"
 gem "simple_form"
+gem "devise"
+gem "cancan"
 
 gem 'best_in_place', '1.0.4.preMongo', git: 'git@github.com:dmarczal/best_in_place.git'
 

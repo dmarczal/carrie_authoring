@@ -1,6 +1,9 @@
-#ecoding: utf-8
+#encoding: utf-8
 class LearningObjectsController < ApplicationController
+
+  before_filter :authenticate_user!
   add_breadcrumb "Objetos de Aprendizagem", :learning_objects_path
+  load_and_authorize_resource :find_by => :slug
 
   def index
       @learning_objects = LearningObject.page(params[:page]).per(6)

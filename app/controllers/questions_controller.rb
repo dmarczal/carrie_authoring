@@ -1,7 +1,9 @@
 #encoding: utf-8
 class QuestionsController < ApplicationController
 
+  before_filter :authenticate_user!
   before_filter :load_parents_breadcrumbs
+  load_and_authorize_resource :find_by => :slug
 
   def new
     @question = @exercise.questions.new

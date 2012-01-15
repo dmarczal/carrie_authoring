@@ -2,7 +2,9 @@
   <header>
     <h1 class="left"> Fractais </h1>
     <p class="right">
-      <%= link_to 'Criar novo Fractal', new_fractal_path, :class => "btn large" %>
+      <% if can? :manage, Fractal %>
+        <%= link_to 'Criar novo Fractal', new_fractal_path, :class => "btn large" %>
+      <% end %>
     </p>
   </header>
 

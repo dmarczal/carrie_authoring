@@ -47,3 +47,10 @@ section{
  }
 }
 
+#navigation {
+  margin-top: 10px;
+
+  li.active {
+    padding-top: 2px;
+  }
+}
