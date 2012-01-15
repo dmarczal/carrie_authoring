@@ -101,9 +101,17 @@ function equal() {
     var url = $('table th').get(col);
     url = $(url).data('validate-url');
     cell = $('table tbody tr td').get((row*size) + col);
-    $('table tbody tr td').get((row*size) + col).innerHTML = eval(formula);
+    console.log(size);
+    if ($('table tbody tr td').get(row*size).innerHTML == ' N ') {
+        $('table tbody tr td').get((row*size) + col).innerHTML = htmlFormula;
+        formula = "0"
+    }
+    else {
+        $('table tbody tr td').get((row*size) + col).innerHTML = eval(formula);
+    }
     var first = $('table tbody tr td').get(col).innerHTML;
-    $.post(url, { answer: eval(formula), first: first, col: col, row: row }, function(response) {
+    $.post(url, { answer: eval(formula), first: first, col: col, row: row, 
+                   size: rowCount, rawFormula: inputstr }, function(response) {
         console.log(response)
         if (response == true) {
             $(cell).css('background-color', '#00FF99');
