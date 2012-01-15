@@ -4,7 +4,7 @@ class Question
   field :enunciation, :type => String
   field :answer, :type => String
 
-  embedded_in :exercise, :inverse_of => :questions
+  referenced_in :exercise, :inverse_of => :questions
 
   validates_presence_of :title, :enunciation
   validates_associated :exercise

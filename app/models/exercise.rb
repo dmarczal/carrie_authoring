@@ -10,7 +10,7 @@ class Exercise
 
   referenced_in :learning_object
 
-  embeds_many :questions
+  references_many :questions
   embeds_one :fractal_exercise
 
   validates_presence_of :title, :enunciation, :fractal_exercise
