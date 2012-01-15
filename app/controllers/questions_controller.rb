@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :load_parents_breadcrumbs
-  load_and_authorize_resource :find_by => :slug
+  load_and_authorize_resource
 
   def new
     @question = @exercise.questions.new
@@ -41,12 +41,12 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def validate 
+  def validate
     @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
     @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
     @question  = @exercise.questions.find(params[:question_id])
 
-    respond_to do |format| 
+    respond_to do |format|
       if CorrectAnswer.eql?(@question.answer, params[:answer], params[:first], params[:row])
         format.json { render :json => true }
       else
