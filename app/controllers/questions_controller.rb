@@ -19,6 +19,47 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
+    @question  = @exercise.questions.find(params[:id])
+  end
+
+  def update
+    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
+    @question  = @exercise.questions.find(params[:id])
+
+    respond_to do |format|
+      if @question.update_attributes(params[:question])
+        format.html { redirect_to([@learning_object, @exercise],
+                      notice: "A questão #{@question.title} foi atualizada.") }
+        format.json { respond_with_bip(@question) }
+      else
+        render :edit
+      end
+    end
+  end
+
+  def validate 
+    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
+    @question  = @exercise.questions.find(params[:question_id])
+
+    respond_to do |format| 
+      if CorrectAnswer.eql?(@question.answer, params[:answer], params[:first], params[:row])
+        format.json { render :json => true }
+      else
+        format.json { render :json => false }
+      end
+    end
+  end
+
+
+  def show_form_help
+    render :help
+  end
+
   private
   def load_parents_breadcrumbs
     @learning_object = LearningObject.find_by_slug(params[:learning_object_id])

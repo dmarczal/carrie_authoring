@@ -13,9 +13,12 @@ Carrie_mongodb::Application.routes.draw do
   resources :learning_objects do
     resources :introductions
     resources :exercises do
-      resources :questions
+      resources :questions do
+        post :validate
+      end
       get :show_questions
       collection do
+        get :show_help_question
         post :sort_questions
         post :update_fractal_size
       end
