@@ -1,6 +1,7 @@
 #encoding: utf-8
 class IntroductionsController < ApplicationController
   before_filter :find_learning_object
+  load_and_authorize_resource
 
   def create
     @introduction = @learning_object.introductions.new

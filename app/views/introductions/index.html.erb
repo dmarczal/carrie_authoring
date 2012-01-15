@@ -10,8 +10,10 @@
 <% @introductions.each do |introduction| %>
   <tr>
     <td><%= link_to 'Show', introduction %></td>
-    <td><%= link_to 'Edit', edit_introduction_path(introduction) %></td>
-    <td><%= link_to 'Destroy', introduction, confirm: 'Are you sure?', method: :delete %></td>
+    <% if can? :manage, Introduction %>
+      <td><%= link_to 'Edit', edit_introduction_path(introduction) %></td>
+      <td><%= link_to 'Destroy', introduction, confirm: 'Are you sure?', method: :delete %></td>
+    <<% end %>
   </tr>
 <% end %>
 </table>

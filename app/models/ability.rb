@@ -12,6 +12,7 @@ class Ability
       can :manage, Exercise
       can :manage, Question
       can :manage, LearningGroup
+      can :manage, Introduction
       can :read, :all
     else
       can :read, :all

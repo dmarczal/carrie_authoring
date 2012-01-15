@@ -3,8 +3,12 @@
     <h1>Objeto de Aprendizagem: <em><%= @learning_object.name %> </h1>
   </header>
   <article>
-      <div class="do_hover">
-        <%= best_in_place @learning_object, :description, :display_as => :markdown_desc, :type => :textarea %>
+    <div class="do_hover">
+        <% if can? :manage, LearningObject %>
+          <%= best_in_place @learning_object, :description, :display_as => :markdown_desc, :type => :textarea %>
+        <% else %>
+          <%= @learning_object.description %>
+        <% end %>
       </div>
   </article>
 
@@ -12,7 +16,9 @@
     <header>
       <h1 class='left'> Introduções </h1>
       <p class='right'>
-        <%= link_to "Criar nova Introdução", new_learning_object_introduction_path(@learning_object), :class => "btn large" %>
+        <% if can? :manage, Introduction  %>
+          <%= link_to "Criar nova Introdução", new_learning_object_introduction_path(@learning_object), :class => "btn large" %>
+        <% end %>
       </p>
     </header>
 
@@ -34,8 +40,10 @@
             <td class="list-actions">
               <ul>
                 <li><%= link_to 'Visualizar', [@learning_object, introduction]  %></li>
-                <li><%= link_to 'Editar', edit_learning_object_introduction_path(@learning_object, introduction) %></li>
-                <li><%= link_to 'Deletar', [@learning_object, introduction], confirm: 'Tem certeza?', method: :delete %></li>
+                <% if can? :manage, Introduction %>
+                  <li><%= link_to 'Editar', edit_learning_object_introduction_path(@learning_object, introduction) %></li>
+                  <li><%= link_to 'Deletar', [@learning_object, introduction], confirm: 'Tem certeza?', method: :delete %></li>
+                <% end %>
               </ul>
             </td>
           </tr>
