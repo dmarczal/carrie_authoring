@@ -786,7 +786,7 @@ $(document).ready(function () {
     $("#trigorad").attr("checked", false);
     $("#trigodeg").attr("checked", true);
 
-    $('.btn').each(function (index) {
+    $('.calc .btn').each(function (index) {
         var btn = $(this);
 
         btn.attr("href", "#" + btn.attr("title"));
