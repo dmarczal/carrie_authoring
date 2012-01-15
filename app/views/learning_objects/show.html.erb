@@ -21,7 +21,6 @@
         <tr>
           <th>Ordene</th>
           <th>Título</th>
-          <th>Conteúdo</th>
           <th class="center">Opções</th>
         </tr>
       </thead>
@@ -30,7 +29,6 @@
           <tr id='<%= introduction.id %>' >
             <td class="handle">[DRAG]</td>
             <td><%= link_to introduction.title, [@learning_object, introduction] %></td>
-            <td><%= raw truncate introduction.content, :length => 150 %></td>
             <td class="list-actions">
               <ul>
                 <li><%= link_to 'Visualizar', [@learning_object, introduction]  %></li>
