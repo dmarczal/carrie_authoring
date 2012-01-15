@@ -91,7 +91,9 @@ function equal() {
     checkforinputchanges_input = input.val();
     request = null;
     
-    var size = $('table tbody tr').size();
+    var rowCount = $('table tbody tr').size();
+    var colCount = $('table tbody tr td').size();
+    var size = colCount / rowCount;
     $('#dialog-calc').dialog('close');
 
     htmlFormula = inputstr;
