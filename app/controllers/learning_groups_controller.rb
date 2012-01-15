@@ -3,11 +3,12 @@ class LearningGroupsController < ApplicationController
   # GET /learning_groups
   # GET /learning_groups.json
   add_breadcrumb "Turmas", :learning_groups_path
+  load_and_authorize_resource
   def index
     if current_user.is_teacher?
       @learning_groups = LearningGroup.where(user_id: current_user.id)
     else
-      @learning_groups = LearningGroup.all
+      @learning_groups = LearningGroup.all_in(user_ids: [current_user.id])
     end
 
     respond_to do |format|
