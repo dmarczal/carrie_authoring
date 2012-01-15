@@ -55,6 +55,15 @@ section#fractal-exercise {
 #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
 #sortable li span { position: absolute; margin-left: -1.3em; }
 
+#code {
+    border: 1px dashed #ABABAB;
+    background-color: #EFEFEF;
+    font-size: 8pt;
+    font-family: Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
+    padding: 10px;
+    margin: 5px;
+}
+
 #dialog-calc {
   display: none;
 }

@@ -53,6 +53,11 @@ class QuestionsController < ApplicationController
     end
   end
 
+
+  def show_form_help
+    render :help
+  end
+
   private
   def load_parents_breadcrumbs
     @learning_object = LearningObject.find_by_slug(params[:learning_object_id])

@@ -103,6 +103,10 @@ class ExercisesController < ApplicationController
     render nothing: true
   end
 
+  def show_help_question
+    render :help
+  end
+
 private
   def find_learning_object
     @learning_object = LearningObject.find_by_slug(params[:learning_object_id])

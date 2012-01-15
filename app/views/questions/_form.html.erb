@@ -1,6 +1,9 @@
 <%= simple_form_for [@learning_object, @exercise, @question] do |f| %>
   <%= f.input :title %>
   <%= f.input :enunciation, :as => :text %>
-  <%= f.input :answer %>
+  
+	<%= f.input :answer %> <br />
+  <%= link_to "Ajuda na construção da fórmula", show_help_question_learning_object_exercises_path %>
+  <br /> <br />
   <%= f.button :submit %>
 <% end %>
