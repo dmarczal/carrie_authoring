@@ -1,8 +1,28 @@
 // Exercises Controller
+
 $(document).ready(function() {
 
     if (request.controller == "exercises") {
        if (request.action == "show") {
+
+          $("#dialog-calc").hide();
+          $("#dialog:ui-dialog" ).dialog( "destroy" );
+          $("#dialog-calc" ).dialog({
+            autoOpen: false,
+            height: 410,
+            width: 480,
+            modal: true,
+            resizable: false, /*,
+            buttons: {
+              "OK" : function() {
+                $(this).dialog("close");
+              }
+            }*/
+            close: function() {
+              
+              $("input.input").val(""); 
+            }
+          });
           show_exercise();
        } else if (request.action == "new") {
           render_fractal();
@@ -176,6 +196,7 @@ var show_exercise = function () {
           }
        });
     })();
+
 };
 
 var Exercise = Exercise || {
@@ -195,7 +216,8 @@ var Exercise = Exercise || {
 
     var loadTable = function () {
        fracCanvas = Fractal.create(that.fractal);
-       for (var i = 0; i < that.fractal.iterations; i++) {
+       var i;
+       for (i = 0; i < that.fractal.iterations; i++) {
           var row = $('<tr>');
           var iteration = $('<td width="100">' + i + '</td>');
           var tdTag = $('<td class="fractal" width='+ that.fractal.width +' ">');
@@ -207,14 +229,24 @@ var Exercise = Exercise || {
           tdTag.append(fracResizable);
           row.append(iteration, tdTag);
 
-          createQuestions(row);
+          createQuestions(row, i);
           $(that.table).append(row);
        }
+      if (that.fractal.infinite) {
+        var row = $('<tr>');
+        var iterationN = $('<td width="100"> N </td>');
+        var tdTag = $('<td class="fractal" width='+ that.fractal.width +' "> Figura limite </td>')
+        .css('height', that.fractal.height + 8);
+        row.append(iterationN, tdTag);
+        createQuestions(row, i);
+        $(that.table).append(row);
+
+      }
     };
 
-    var createQuestions = function (row) {
+    var createQuestions = function (row, index) {
        for(var i = 0; i < that.questions.length; i++){
-          row.append($('<td>'));
+          row.append($('<td data-row=' + index +' data-col=' + new Number(i+2) +' onClick="openDialog($(this))" >'));
        }
     };
 
@@ -228,3 +260,14 @@ var Exercise = Exercise || {
     };
   }
 };
+
+
+var row;
+var col;
+var openDialog = function(element) {
+  row = element.data('row');
+  col = element.data('col');
+  formula = "";
+  $("#dialog-calc" ).dialog( "open");
+
+}

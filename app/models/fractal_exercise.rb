@@ -9,6 +9,7 @@ class FractalExercise
   field :axiom
   field :constant
   field :rules, :type => Array
+  field :infinite, :type => Boolean
 
   field :iterations, :type => Integer, default: 3
   field :width , :type => Float, default: 128

@@ -33,15 +33,17 @@
           Fractal: <%= @fractal.name %>
         </th>
         <% @questions.each do |question| %>
-          <th title='<%= question.title %>' data-content='<%= question.enunciation %>'
-            data-placement="above" rel="popover">
-            <%= question.title %>
-          </th>
+        <th title='<%= question.title %>' data-content='<%= question.enunciation %>' 
+          data-validate-url='<%= learning_object_exercise_question_validate_url(@learning_object, @exercise, question) %>' data-placement="above" rel="popover" >
+          <%= link_to question.title, edit_learning_object_exercise_question_path(@learning_object, @exercise, question) %>
+        </th>
         <%end%>
       </tr>
     </thead>
-    <tbody>
+    <tbody id='abody'>
     </tbody>
   </table>
+
+  <div id="dialog-calc" > <%= render "calculator" %> </div>
 
 </section>

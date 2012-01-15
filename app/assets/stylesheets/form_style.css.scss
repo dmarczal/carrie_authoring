@@ -7,6 +7,10 @@
     select {
       float: left;
     }
+    input[type="text"] {
+      float: left;
+      width: 50%;
+    }
     a {
       padding-left: 10px;
     }
@@ -43,7 +47,6 @@
     clear: both;
   }
 
-
   select {
     display: block;
     clear: both;
@@ -53,6 +56,11 @@
     float: left;
     margin-right: 5px;
     margin-top: 9px;
+  }
+
+  input[type="radio"] {
+    width: 20px;
+    margin: 30px 0;
   }
 
   textarea {
@@ -72,5 +80,17 @@
     margin-top: 20px;
     padding: 10px;
   }
+
+}
+
+
+.simple_form div.boolean label, .simple_form label.collection_radio {
+  float: none;
+  margin-top: 0;
+}
+
+.simple_form label.collection_radio {
+  margin-right: 10px;
+  margin-left: 2px;
 }
 
