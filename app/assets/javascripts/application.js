@@ -4,6 +4,7 @@
 
 //= require twitter/bootstrap
 //= require jquery/jquery.tablesorter
+//= require jquery/jquery-ui-1.8.16.custom.min
 //= require jquery/jquery.dragtable
 //= require jquery/jquery.tablesorter.js
 
@@ -12,6 +13,7 @@
 //= require lsystem/jquery.observe_field
 
 //= require ckeditor/ckeditor
+//= require calculator/calculator
 
 //= require_self
 
