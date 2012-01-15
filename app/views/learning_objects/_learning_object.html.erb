@@ -9,6 +9,20 @@
         <li><%= link_to 'Deletar', learning_object, confirm: 'Tem certeza?', method: :delete %></li>
       <% end %>
     </ul>
-      <% if learning_object.published %> Publicado <% else %> Não Publicado <% end %>
+
+
+    <%
+        unless current_user.is_student?
+          if learning_object.published
+          %>
+        Publicado
+      <% else %>
+         Não Publicado
+       <%
+        end
+      end
+    %>
+
+
   </td>
 </tr>

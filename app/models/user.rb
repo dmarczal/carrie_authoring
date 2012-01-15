@@ -12,6 +12,10 @@ class User
   references_many :learning_group, :dependent => :delete
   has_and_belongs_to_many :learning_group
 
+  def is_student?
+      self.user_type == "Aluno"
+  end
+
   def is_teacher?
     self.user_type == "Professor"
   end
