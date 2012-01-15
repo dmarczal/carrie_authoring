@@ -40,7 +40,7 @@ class LearningObjectsController < ApplicationController
     respond_to do |format|
       if  @learning_object.update_attributes(params[:learning_object])
         format.html { redirect_to(@learning_object,
-                      notice: "As nformações do OA #{@learning_object.name} foram atualizadas.") }
+                      notice: "As informações do OA #{@learning_object.name} foram atualizadas.") }
         format.json { respond_with_bip(@learning_object) }
       else
         format.html { render :edit }
