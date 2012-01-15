@@ -98,10 +98,19 @@ function equal() {
     formula = formatFormula(inputstr);
     var url = $('table th').get(col);
     url = $(url).data('validate-url');
-    $('table tbody tr td').get(row*(size+1) + col).innerHTML = eval(formula);
+    cell = $('table tbody tr td').get((row*size) + col);
+    $('table tbody tr td').get((row*size) + col).innerHTML = eval(formula);
     var first = $('table tbody tr td').get(col).innerHTML;
-    $.post(url, { answer: eval(formula), first: first, col: col }, function(r) {
-        console.log(r);
+    $.post(url, { answer: eval(formula), first: first, col: col, row: row }, function(response) {
+        console.log(response)
+        if (response == true) {
+            $(cell).css('background-color', '#00FF99');
+            $(cell).css('border-color', '#006633');
+        }
+        else {
+            $(cell).css('background-color', '#FF6666')
+            $(cell).css('border-color', '#8B0000');
+        }
     }, 'json');
 
     return inputstr;
