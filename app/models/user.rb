@@ -15,4 +15,8 @@ class User
   def is_teacher?
     self.user_type == "Professor"
   end
+
+  def is_student?
+    self.user_type == "Aluno"
+  end
 end
