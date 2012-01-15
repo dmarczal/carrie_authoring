@@ -47,7 +47,9 @@ class QuestionsController < ApplicationController
     @question  = @exercise.questions.find(params[:question_id])
 
     respond_to do |format|
-      if CorrectAnswer.eql?(@question.answer, params[:answer], params[:first], params[:row])
+      if CorrectAnswer.eql?(@question.answer, params[:answer], params[:first], params[:row], 
+                            @exercise.fractal_exercise.infinite, params[:size], params[:rawFormula],
+                            params[:row])
         format.json { render :json => true }
       else
         format.json { render :json => false }
