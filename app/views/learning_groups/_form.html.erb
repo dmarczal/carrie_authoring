@@ -1,0 +1,6 @@
+<%= simple_form_for @learning_group do |f| %>
+  <%= f.input :name %>
+  <%= f.input :code, :label => "Código da turma" %>
+  <%= f.button :submit, "Salvar", :class => "btn medium" %>
+
+<% end %>

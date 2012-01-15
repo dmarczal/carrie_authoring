@@ -48,7 +48,9 @@
     <header>
       <h1 class='left'> Exercícios </h1>
       <p class='right'>
-        <%= link_to 'Criar novo Exercício', new_learning_object_exercise_path(@learning_object), :class => "btn large" %>
+        <% if can? :manage, Exercise %>
+          <%= link_to 'Criar novo Exercício', new_learning_object_exercise_path(@learning_object), :class => "btn large" %>
+        <% end %>
       </p>
     </header>
 
@@ -72,8 +74,10 @@
             <td class="list-actions">
               <ul>
                 <li><%= link_to 'Visualizar', [@learning_object, exercise]  %></li>
-                <li><%= link_to 'Editar', edit_learning_object_exercise_path(@learning_object, exercise) %></li>
-                <li><%= link_to 'Deletar', [@learning_object, exercise], confirm: 'Tem certeza?', method: :delete %></li>
+                <% if can? :manage, Exercise %>
+                  <li><%= link_to 'Editar', edit_learning_object_exercise_path(@learning_object, exercise) %></li>
+                  <li><%= link_to 'Deletar', [@learning_object, exercise], confirm: 'Tem certeza?', method: :delete %></li>
+                <% end %>
               </ul>
             </td>
           </tr>

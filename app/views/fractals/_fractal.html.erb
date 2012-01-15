@@ -4,8 +4,10 @@
   <td class="list-actions">
     <ul>
       <li><%= link_to 'Visualizar', fractal_path(fractal) %></li>
-      <li><%= link_to 'Editar', edit_fractal_path(fractal) %></li>
-      <li><%= link_to 'Deletar', fractal, confirm: 'Tem certeza?', method: :delete %></li>
+      <% if can? :manage, Fractal %>
+        <li><%= link_to 'Editar', edit_fractal_path(fractal) %></li>
+        <li><%= link_to 'Deletar', fractal, confirm: 'Tem certeza?', method: :delete %></li>
+      <% end %>
     </ul>
   </td>
 </tr>

@@ -37,10 +37,22 @@
     margin-right: 5px;
   }
 
-  input[type="text"], textarea {
+  input[type="text"], input[type="password"], input[type="email"],  textarea {
     width: 90%;
     display: block;
     clear: both;
+  }
+
+
+  select {
+    display: block;
+    clear: both;
+  }
+
+  input[type="checkbox"] {
+    float: left;
+    margin-right: 5px;
+    margin-top: 9px;
   }
 
   textarea {
@@ -49,6 +61,10 @@
 
   .input {
     margin: 20px 10px 0px 0px;
+  }
+
+  p {
+    clear: both;
   }
 
   .button {

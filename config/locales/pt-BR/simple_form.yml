@@ -1,5 +1,13 @@
 pt-BR:
-
+  devise:
+    sessions:
+      signed_in: 'Você está logado agora'
+      signed_out: 'Você encerrou sua sessão'
+    failure:
+      already_authenticated: 'Você já está logado'
+    registrations:
+      user:
+        signed_up: 'Bem vindo ao Carrie'
   simple_form:
     "yes": "Sim"
     "no": "Não"

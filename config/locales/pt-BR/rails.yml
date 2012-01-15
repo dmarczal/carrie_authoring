@@ -16,6 +16,17 @@
     description: Descrição
     enunciation: Enunciado
     body: Conteúdo
+  devise:
+    sessions:
+      signed_in: 'Você está logado agora'
+      signed_out: 'Você encerrou sua sessão'
+    failure:
+      already_authenticated: 'Você já está logado'
+      unauthenticated: 'Faça login primeiro'
+    registrations:
+      user:
+        updated: "Perfil alterado com sucesso!"
+        signed_up: 'Bem vindo ao Carrie'
 
   helpers:
     select:

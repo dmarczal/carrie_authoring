@@ -1,6 +1,8 @@
 class FractalsController < ApplicationController
 
+  before_filter :authenticate_user!
   before_filter :load_breadcrumb
+  load_and_authorize_resource :find_by => :slug
 
   def index
     @fractals = Fractal.page(params[:page]).per(6)
@@ -11,7 +13,7 @@ class FractalsController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.json { render :json => @fractal }
-    end  
+    end
   end
 
   def edit
