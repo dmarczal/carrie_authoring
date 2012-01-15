@@ -1,6 +1,9 @@
 Carrie_mongodb::Application.routes.draw do
 
-  resources :learning_groups
+  resources :learning_groups do
+    get :matriculate_user
+    get :matriculate
+  end
 
   devise_for :users
 

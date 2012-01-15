@@ -7,12 +7,18 @@
 <table class="zebra-striped bordered-table" id="learning_objects">
   <tr>
     <th>Nome da turma</th>
+    <% if current_user.is_teacher? %>
+      <th> Código </th>
+    <% end %>
     <th></th>
   </tr>
 
 <% @learning_groups.each do |learning_group| %>
   <tr>
     <td><%= learning_group.name %></td>
+    <% if current_user.is_teacher? %>
+      <td><%= learning_group.code %></td>
+    <% end %>
     <td class="list-actions">
       <ul>
         <li><%= link_to 'Visualizar', learning_group %></li>
@@ -21,13 +27,11 @@
           <li><%= link_to 'Deletar', learning_group, confirm: 'Tem certeza?', method: :delete %></li>
         <% end %>
         <% if !current_user.is_teacher? %>
-          <li><a href=#>Matricular-se<a></li>
+          <li><%= link_to 'Matricular-se',  learning_group_matriculate_path(learning_group) %></li>
         <% end %>
       </ul>
     </td>
   </tr>
 <% end %>
 </table>
-
-<br />
 

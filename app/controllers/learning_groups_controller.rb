@@ -1,3 +1,4 @@
+#encoding: utf-8
 class LearningGroupsController < ApplicationController
   # GET /learning_groups
   # GET /learning_groups.json
@@ -46,7 +47,7 @@ class LearningGroupsController < ApplicationController
   # POST /learning_groups.json
   def create
     @learning_group = LearningGroup.new(params[:learning_group])
-    @learning_group.user_id = current_user.id
+    @learning_group.user_id = current_user.id.to_s
 
     respond_to do |format|
       if @learning_group.save
@@ -84,6 +85,27 @@ class LearningGroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to learning_groups_url }
       format.json { head :ok }
+    end
+  end
+
+  def matriculate
+    @learning_group = LearningGroup.find(params[:learning_group_id])
+    add_breadcrumb "Matricular na turma #{@learning_group.name}", :learning_group_matriculate_path
+  end
+
+  def matriculate_user
+    puts params
+    @learning_group = LearningGroup.find(params[:learning_group_id])
+
+    if @learning_group.code == params[:code]
+      @learning_group.user_ids += [current_user.id.to_s]
+      @learning_group.save
+      current_user.learning_group_ids += [@learning_group.id.to_s]
+      current_user.save
+      redirect_to learning_groups_path, :notice => "Matriculado na turma #{@learning_group.name}"
+    else
+      flash[:alert] = "Código errado"
+      redirect_to learning_group_matriculate_path(@learning_group)
     end
   end
 end
