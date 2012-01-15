@@ -1,4 +1,5 @@
 // Exercises Controller
+
 $(document).ready(function() {
 
     if (request.controller == "exercises") {
@@ -18,8 +19,8 @@ $(document).ready(function() {
               }
             }*/
             close: function() {
+              
               $("input.input").val(""); 
-
             }
           });
           show_exercise();

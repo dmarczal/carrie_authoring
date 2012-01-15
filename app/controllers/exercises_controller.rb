@@ -5,7 +5,7 @@ class ExercisesController < ApplicationController
 
   def create
     @exercise = @learning_object.exercises.new
-    create_fractal(params[:exercise][:fractal])
+    create_fractal([:exercise][:fractal])
     params[:exercise][:fractal_exercise] = nil
     @exercise.title= params[:exercise][:title]
     @exercise.enunciation= params[:exercise][:enunciation]

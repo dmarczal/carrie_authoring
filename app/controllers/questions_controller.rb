@@ -39,6 +39,19 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def validate 
+    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
+    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
+    @question  = @exercise.questions.find(params[:question_id])
+
+    respond_to do |format| 
+      if CorrectAnswer.eql?(@question.answer, params[:answer], params[:first], params[:col])
+        format.json { render :json => true }
+      else
+        format.json { render :json => false }
+      end
+    end
+  end
 
   private
   def load_parents_breadcrumbs

@@ -96,7 +96,13 @@ function equal() {
 
     htmlFormula = inputstr;
     formula = formatFormula(inputstr);
-    $('table tbody tr td').get(row*size + col).innerHTML = htmlFormula;
+    var url = $('table th').get(col);
+    url = $(url).data('validate-url');
+    $('table tbody tr td').get(row*(size+1) + col).innerHTML = eval(formula);
+    var first = $('table tbody tr td').get(col).innerHTML;
+    $.post(url, { answer: eval(formula), first: first, col: col }, function(r) {
+        console.log(r);
+    }, 'json');
 
     return inputstr;
 

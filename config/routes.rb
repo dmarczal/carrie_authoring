@@ -6,7 +6,9 @@ Carrie_mongodb::Application.routes.draw do
 
   resources :learning_objects do
     resources :exercises do
-      resources :questions
+      resources :questions do
+        post :validate
+      end
       get :show_questions
       collection do
         post :sort_questions
