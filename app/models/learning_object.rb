@@ -5,7 +5,7 @@ class LearningObject
 
   field :name, :type => String
   field :description, :type => String
-
+  field :published, :type => Boolean, :default => false
   slug :name
 
   references_many :exercises, :dependent => :delete
