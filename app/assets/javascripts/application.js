@@ -11,6 +11,7 @@
 //= require lsystem/jquery.lsystem
 //= require lsystem/jquery.observe_field
 
+//= require ckeditor/ckeditor
 //= require calculator/calculator
 
 //= require_self
@@ -19,6 +20,7 @@
 //= require endless_page
 //= require exercises
 //= require learning_objects
+//= require learning_groups
 
 //= require jquery.purr
 //= require best_in_place
@@ -42,3 +44,4 @@ function remove_fields(link) {
 	$(link).previous("input[type=hidden]").value = 1;
 	$(link).up("fields").hide();
 }
+

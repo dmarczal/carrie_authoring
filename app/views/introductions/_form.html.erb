@@ -1,0 +1,10 @@
+<%= simple_form_for [ @learning_object, @introduction ] do |f| %>
+  <%= f.input :title %><br />
+  <%= f.label "Conteúdo:" %>
+  <%= f.ckeditor :content, :label => false, :input_html => { :toolbar => 'Full' } %>
+  <%= f.button :submit %>
+<% end %>
+
+
+
+

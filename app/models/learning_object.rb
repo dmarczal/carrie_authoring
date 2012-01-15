@@ -5,10 +5,12 @@ class LearningObject
 
   field :name, :type => String
   field :description, :type => String
-
+  field :published, :type => Boolean, :default => false
   slug :name
 
   references_many :exercises, :dependent => :delete
+  references_many :introductions, :dependent => :delete
+  has_and_belongs_to_many :learning_groups
 
   validates_presence_of :name, :description
   validates_uniqueness_of :name

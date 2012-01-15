@@ -12,6 +12,7 @@ Bundler.require *Rails.groups(:assets => %w(development test production))
 module Carrie_mongodb
   class Application < Rails::Application
     config.autoload_paths += %W[#{config.root}/lib]
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
     config.time_zone = "Brasilia"
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml").to_s]
     config.i18n.default_locale = :'pt-BR'

@@ -1,5 +1,6 @@
 <%= simple_form_for @learning_object do |f| %>
   <%= f.input :name %>
   <%= f.input :description, :as => :text %>
+  <%= f.input :published, :as => :select %>
   <%= f.button :submit %>
 <% end %>

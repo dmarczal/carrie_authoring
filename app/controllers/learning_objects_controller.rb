@@ -1,6 +1,9 @@
-#ecoding: utf-8
+#encoding: utf-8
 class LearningObjectsController < ApplicationController
+
+  before_filter :authenticate_user!
   add_breadcrumb "Objetos de Aprendizagem", :learning_objects_path
+  load_and_authorize_resource :find_by => :slug
 
   def index
       @learning_objects = LearningObject.page(params[:page]).per(6)
@@ -9,6 +12,7 @@ class LearningObjectsController < ApplicationController
   def show
     @learning_object = LearningObject.find_by_slug(params[:id])
     @exercises = @learning_object.exercises.order_by([[ :position, :asc ]])
+    @introductions = @learning_object.introductions.order_by([[ :position, :asc ]])
 
     add_breadcrumb "OA: #{@learning_object.name}", learning_object_path(@learning_object_path)
   end
@@ -39,7 +43,7 @@ class LearningObjectsController < ApplicationController
     respond_to do |format|
       if  @learning_object.update_attributes(params[:learning_object])
         format.html { redirect_to(@learning_object,
-                      notice: "As nformações do OA #{@learning_object.name} foram atualizadas.") }
+                      notice: "As informações do OA #{@learning_object.name} foram atualizadas.") }
         format.json { respond_with_bip(@learning_object) }
       else
         format.html { render :edit }
@@ -58,6 +62,13 @@ class LearningObjectsController < ApplicationController
   def sort_exercises
     params[:exercise].each_with_index do |id, index|
       Exercise.find(id).update_attribute(:position, index+1)
+    end
+    render nothing: true
+  end
+
+  def sort_introductions
+    params[:introduction].each_with_index do |id, index|
+      Introduction.find(id).update_attribute(:position, index+1)
     end
     render nothing: true
   end

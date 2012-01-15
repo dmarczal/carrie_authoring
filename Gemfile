@@ -4,6 +4,8 @@ gem "rails", "3.1.1"
 gem "mongoid"
 gem "bson_ext"
 gem "simple_form"
+gem "devise"
+gem "cancan"
 
 gem 'best_in_place', '1.0.4.preMongo', git: 'git@github.com:dmarczal/best_in_place.git'
 
@@ -16,6 +18,9 @@ gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-boots
 
 gem 'faker'
 gem "thin"
+
+gem "ckeditor", "3.7.0.rc2"
+gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
 
 group :assets do
   gem 'sass-rails'

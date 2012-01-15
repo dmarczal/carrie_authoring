@@ -13,12 +13,10 @@
   </article>
 
   <div class="right">
-    <%= link_to "Ordenar Questões",
-      learning_object_exercise_show_questions_path(@learning_object, @exercise),
-      :class => "btn large"%>
-    <%= link_to "Criar Questão",
-      new_learning_object_exercise_question_path(@learning_object, @exercise),
-      :class => "btn large"%>
+    <% if can? :manage, Exercise %>
+      <%= link_to "Ordenar Questões", learning_object_exercise_show_questions_path(@learning_object, @exercise), :class => "btn large"%>
+      <%= link_to "Criar Questão", new_learning_object_exercise_question_path(@learning_object, @exercise),:class => "btn large"%>
+    <% end %>
   </div>
 
   <table id="exercise_table" class="bordered-table" data-fractal="<%= @fractal.to_json %>"

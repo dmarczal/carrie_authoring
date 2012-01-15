@@ -1,0 +1,7 @@
+<%= form_tag(learning_group_matriculate_user_path(@learning_group), :method => "get", :class => "simple_form") do %>
+  <div class="input">
+    <p>Código da turma</p>
+    <%= text_field_tag 'code' %>
+  </div>
+  <%= submit_tag 'Matricular-se', :class => "button bnt medium" %>
+<% end %>

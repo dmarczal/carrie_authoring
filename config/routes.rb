@@ -1,10 +1,18 @@
 Carrie_mongodb::Application.routes.draw do
 
-#  devise_for :users
+  mount Ckeditor::Engine => '/ckeditor'
+  resources :learning_groups do
+    get :matriculate_user
+    get :matriculate
+  end
+
+  devise_for :users
 
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
 
+
   resources :learning_objects do
+    resources :introductions
     resources :exercises do
       resources :questions do
         post :validate
@@ -18,6 +26,7 @@ Carrie_mongodb::Application.routes.draw do
     end
     collection do
       post :sort_exercises
+      post :sort_introductions
     end
   end
 
