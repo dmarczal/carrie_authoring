@@ -6,7 +6,11 @@ class LearningObjectsController < ApplicationController
   load_and_authorize_resource :find_by => :slug
 
   def index
+    if current_user.is_teacher? or current_user.is_admin?
       @learning_objects = LearningObject.page(params[:page]).per(6)
+    else
+      @learning_objects = all_published.page(params[:page]).per(6)
+    end
   end
 
   def show
@@ -72,4 +76,10 @@ class LearningObjectsController < ApplicationController
     end
     render nothing: true
   end
+
+  private
+    def all_published
+      LearningObject.where(published: true)
+    end
+
 end
