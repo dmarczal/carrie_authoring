@@ -4,7 +4,6 @@
 
 //= require twitter/bootstrap
 //= require jquery/jquery.tablesorter
-//= require jquery/jquery-ui-1.8.16.custom.min
 //= require jquery/jquery.dragtable
 //= require jquery/jquery.tablesorter.js
 
