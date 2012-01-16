@@ -65,7 +65,7 @@ if (canvas !== undefined && canvas !== null)
 }
 
 
-this._colourList = ["rgba(140, 80, 60, 0.75)", "rgba(24, 180, 24, 0.75)", "rgba(48, 220, 48, 0.5)", "rgba(64, 255, 64, 0.5)"];
+this._colourList = ["rgba(0, 200, 0, 1)", "rgba(0, 0, 0, 1)", "rgba(48, 220, 48, 0.5)", "rgba(64, 255, 64, 0.5)"];
 this._constants = [];
 
 return this;

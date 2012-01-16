@@ -69,7 +69,7 @@ function checkEqual(inputstr) {
 }
 
 
-function equal() {   
+function equal() {
 
     var inputstr = $("input.input").val();
 
@@ -90,7 +90,7 @@ function equal() {
     setLoadingImg(false);
     checkforinputchanges_input = input.val();
     request = null;
-    
+
     var rowCount = $('table tbody tr').size();
     var colCount = $('table tbody tr td').size();
     var size = colCount / rowCount;
@@ -110,16 +110,14 @@ function equal() {
         $('table tbody tr td').get((row*size) + col).innerHTML = eval(formula);
     }
     var first = $('table tbody tr td').get(col).innerHTML;
-    $.post(url, { answer: eval(formula), first: first, col: col, row: row, 
+    $.post(url, { answer: eval(formula), first: first, col: col, row: row,
                    size: rowCount, rawFormula: inputstr }, function(response) {
         console.log(response)
         if (response == true) {
-            $(cell).css('background-color', '#00FF99');
-            $(cell).css('border-color', '#006633');
+          $(cell).css('border', 'solid 5px #00FF99');
         }
         else {
-            $(cell).css('background-color', '#FF6666')
-            $(cell).css('border-color', '#8B0000');
+          $(cell).css('border', 'solid 5px #FF6666');
         }
     }, 'json');
 
@@ -128,9 +126,9 @@ function equal() {
 }
 
 function isNumber(s) {
-    return s == '1' ||    s == '2' ||    
+    return s == '1' ||    s == '2' ||
     s == '3' ||    s == '4' ||    s == '5' || s == '6' ||
-    s == '7' ||    s == '8' ||    s == '9' || s == '0' 
+    s == '7' ||    s == '8' ||    s == '9' || s == '0'
 }
 
 function isOperation(s) {
@@ -185,7 +183,7 @@ function replaceFact(string) {
         var i = 1;
         number = getPrevNumber(string, p);
         string = string.replace(number + "!", "Math.factorial(" + number + ")");
-    } 
+    }
     return string;
 }
 
@@ -196,14 +194,14 @@ function replacePow(string) {
         number = getPrevNumber(string, p);
         string = string.replace(number + "^2", "Math.pow(" + number + ", 2)");
         htmlFormula =  htmlFormula.replace(number + "^2", number + "<sup> 2 </sup>");
-    } 
+    }
     return string;
 }
 
 
 function formatFormula(raw) {
     raw = replaceSqrt(raw);
-    raw = replaceFact(raw);   
+    raw = replaceFact(raw);
     raw = replacePow(raw);
     return raw;
 }
@@ -235,7 +233,7 @@ function historyScroll(down) {
             if (history_index < histories.length)
               $("input.input").val(histories[history_index]);
         }
-         
+
     }
 }
 
@@ -297,7 +295,7 @@ function showcmd(cmd, btn) {
                 $("#unitsinput").empty();
 
                 $("#matrixinput").load("/js/helpers/?" + cmd, function () {
-                
+
                     $("#matrixinput").removeClass("invisible");
                 });
 
@@ -306,7 +304,7 @@ function showcmd(cmd, btn) {
             case "units":
                 $("#solveinput").empty();
                 $("#plotinput").empty();
-                $("#matrixinput").empty();                
+                $("#matrixinput").empty();
                 $("#unitsinput").load("/js/helpers/?" + cmd, function () {
 
                     $("#unitsinput").removeClass("invisible");
@@ -354,7 +352,7 @@ function checkForInputChanges() {
         return;
     }
     checkforinputchanges_input_last = inputval;
-        
+
     var img_preview_server = servers["preview"][0];
     for (var i = 1; i < servers["preview"].length; i++) {
         if (servers["preview"][i]["time"] < img_preview_server["time"])
@@ -394,8 +392,8 @@ function checkForInputChanges() {
     checkforinputchanges_count++;
     checkforinputchanges_lasttime = new Date();
 
-    
-   
+
+
     plot.css({ opacity: "0.5" });
 
 }
@@ -416,7 +414,7 @@ function resultLoaded() {
         checkforinputchanges_timeouts++;
     }
     checkforinputchanges_interval = loadtime;
-    
+
     updateMinHeight();
 
     result.css({
@@ -474,7 +472,7 @@ function getInputSelectionLength() {
     return (pos);
 }
 function setInputCaretPosition(pos) {
-    
+
     if (input[0].setSelectionRange) {
         try {
             input.focus();
@@ -499,7 +497,7 @@ function setInputCaretPosition(pos) {
     }
 }
 function smartinsert(val, parameters) {
-    
+
     var sellen;
     if ((sellen = getInputSelectionLength()) > 0) {
         var inp = input.val();
@@ -592,7 +590,7 @@ function cmd(name) {
     return false;
 }
 function clearall() {
-    
+
     if (checksyntax)
         checksyntax(false);
 
@@ -684,15 +682,15 @@ function sign() {
 
 /*
 function doundo() {
-   
+
     if (getInputSelectionLength() > 1) {
         clearall();
-       
+
         return;
     }
     var pos = getInputCaretPosition();
     var inputval = input.val();
- 
+
     if (pos < 0)
         return;
     if (pos > inputval.length)
@@ -732,7 +730,7 @@ function doundo() {
 
 
 function onKey(event) {
-   
+
     if (event.target && event.target.nodeName && event.target.nodeName.toLowerCase() == "input") {
         if (event.keyCode == 13)
             equal();
@@ -740,7 +738,7 @@ function onKey(event) {
             clearall();
         return;
     }
-    
+
     switch (event.keyCode) {
         case 94: setoperation('^'); break;
         case 48: ins('0'); break;
@@ -766,7 +764,7 @@ function onKey(event) {
 
             if (event.charCode >= 32 && event.charCode <= 125)
                 ins(String.fromCharCode(event.charCode));
-            
+
             return;
     }
     if (event.keyCode != 0)
@@ -906,15 +904,15 @@ function onSolveTypeChange(type, order) {
     });
 
     $("#solveinput").load("/js/helpers/?solve&type=" + type + "&order=" + order, function () {
-        
+
             while (solveInputBackup.length > 0) {
                 var arr = solveInputBackup.shift();
                 $("#"+arr[0]).removeClass("unfocused");
                 $("#"+arr[0]).val(arr[1]);
             }
-        
+
     });
-    
+
 }
 
 
@@ -936,7 +934,7 @@ function onMatrixTypeChange(typea, typeb, op) {
 
         onMatrixInputChange();
     });
-    
+
 }
 
 
@@ -954,7 +952,7 @@ function onUnitTypeChange(type) {
             $("#" + arr[0]).removeClass("unfocused");
             $("#" + arr[0]).val(arr[1]);
         }
-                
+
     });
 }
 
@@ -992,7 +990,7 @@ function onMatrixInputChange() {
         if (rowb.length > 0)
         b += (bisvec ? "" : "[") + rowb.replace(/[, ]+$/g, '') + (bisvec ? "" : "]") + ", ";
     }
-    
+
     a = a.replace(/[, ]+$/g, '');
     b = b.replace(/[, ]+$/g, '');
     if (aisvec)
@@ -1005,7 +1003,7 @@ function onMatrixInputChange() {
         b = "[" + b + "]";
 
     if (b.length == 2)
-        $("#input").val(a); 
+        $("#input").val(a);
     else
     switch ($("#view_matrix_op").val())
     {
@@ -1014,10 +1012,10 @@ function onMatrixInputChange() {
         case "mult": $("#input").val(a + "*" + b); break;
         case "cross": $("#input").val(a + "#" + b); break;
         case "inv": $("#input").val(a + "^-1"); break;
-        case "trans": $("#input").val(a + "^T"); break;        
+        case "trans": $("#input").val(a + "^T"); break;
     }
-    
-    
+
+
 }
 
 function onSolveInputChange(type) {
@@ -1054,7 +1052,7 @@ function onSolveInputChange(type) {
             $("#input").val(inputstr);
             break;
     }
-    
+
 }
 
 function onPlotInputChange()
@@ -1112,7 +1110,7 @@ function onPlotInputChange()
 
 
 function plotmousemove(e) {
-   
+
 }
 function plotmouseup(e) {
     var offset = $(this).offset();
@@ -1129,7 +1127,7 @@ function plotmouseup(e) {
         minx -= d / 2;
         maxx += d / 2;
     }
-    
+
     var text = input.val();
 
     if (text.indexOf("plot") < 0)
