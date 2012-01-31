@@ -7,11 +7,16 @@ namespace :db do
 
     [LearningObject, Fractal, Exercise].each(&:destroy_all)
 
+    User.delete_all
+    User.create(email: 'carrie@gmail.com', password: 'carrie', password_confirmation: 'carrie', user_type: 'Professor')
+
     oas = 10.times.map do
-      LearningObject.create(
+      oa = LearningObject.create(
         :name => Faker::Name.name,
         :description => Faker::Lorem.paragraphs(2).join
       )
+      3.times {oa.introductions.create( title: Faker::Name.title , content: Faker::Lorem.paragraphs(3).join) }
+      oa
     end
 
     fractals = []
@@ -45,7 +50,10 @@ namespace :db do
       3.times do
         exe = oa.exercises.create!(:title => Faker::Name.title, :enunciation => Faker::Lorem.paragraphs(3).join,
                             :fractal_exercise => fractals_exerc.sample)
-        3.times { |i| exe.questions.create!( title: "Lado Maior #{i}", enunciation: "Enunciado #{i}") }
+        3.times do |i|
+          exe.questions.create!( title: "Lado Maior #{i}", enunciation: "Enunciado #{i}")
+        end
+
       end
     end
 
