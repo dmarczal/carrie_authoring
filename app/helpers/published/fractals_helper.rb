@@ -1,0 +1,2 @@
+module Published::FractalsHelper
+end
