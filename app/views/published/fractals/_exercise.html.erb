@@ -1,0 +1,39 @@
+<section class="exercise" >
+  <header>
+    <h1> Exercício </h1>
+  </header>
+
+  <article>
+    <header>
+      <h2>  <%= @page.title %> </h2>
+    </header>
+
+    <%= markdown @page.enunciation %>
+  </article>
+
+  <table id="exercise_table" class="bordered-table" data-fractal="<%= @page.fractal.to_json %>"
+    data-questions="<%= @page.questions.to_json %>" data-id="<%= @page.slug %>"
+    data-oa-id="<%= @lo.slug %>"
+    >
+    <thead>
+      <tr>
+        <th title="Iterações" data-content='Iteração' data-placement="above" rel="popover" >
+          Número de Iterações: <%= @page.fractal.iterations %>
+        </th>
+        <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >
+          Fractal: <%= @page.fractal.name %>
+        </th>
+        <% @page.questions.each do |question| %>
+        <th title='<%= question.title %>' data-content='<%= question.enunciation %>'
+          data-validate-url='<%= learning_object_exercise_question_validate_url(@lo, @page, question) %>' data-placement="above" rel="popover" >
+          <%= question.title %>
+        </th>
+        <%end%>
+      </tr>
+    </thead>
+    <tbody id='abody'>
+    </tbody>
+  </table>
+
+
+</section>

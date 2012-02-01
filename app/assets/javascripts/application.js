@@ -26,11 +26,14 @@
 //= require jquery.purr
 //= require best_in_place
 
+//= require published/fractals
+
 $(document).ready(function() {
   function request_info (){
     this.controller = $('body').attr('data-controller');
     this.action = $('body').attr('data-action');
     this.url = $('body').attr('data-url');
+    this.namespace = $('body').attr('data-namespace');
   }
   window.request = new request_info();
 

@@ -1,3 +1,9 @@
-<h1> OA <%= @oa.name %> </h1>
+<% if @page.instance_of? Introduction %>
+  <%= render 'introduction' %>
+<% else %>
+  <%= render 'exercise' %>
+<% end %>
 
-<%= render 'introduction' %>
+<%= paginate @pages, :theme => 'lo_pagination' %>
+
+

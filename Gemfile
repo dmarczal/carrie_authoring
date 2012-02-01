@@ -7,7 +7,7 @@ gem "simple_form"
 gem "devise"
 gem "cancan"
 
-gem 'best_in_place', '1.0.4.preMongo', git: 'git@github.com:dmarczal/best_in_place.git'
+gem 'best_in_place', '1.0.6.preMongo', git: 'git@github.com:dmarczal/best_in_place.git'
 
 gem "breadcrumbs_on_rails"
 gem 'redcarpet'

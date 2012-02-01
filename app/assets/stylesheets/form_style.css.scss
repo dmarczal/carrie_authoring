@@ -94,3 +94,33 @@
   margin-left: 2px;
 }
 
+.lo_pagination {
+  @extend .pagination;
+  margin-right: auto;
+  margin-left: auto;
+  width: 610px;
+  padding-bottom: 5px;
+  select {
+    margin: 5px;
+  }
+
+  li.first, li.prev, li.last, li.next  {
+    padding: 0 14px;
+    line-height: 34px;
+    border-right: 1px solid;
+    border-right-color: #DDD;
+    border-right-color: rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+  }
+
+  li.next {
+    border-right: none;
+  }
+
+  li a {
+    float: none;
+    padding: 0px;
+    border-right: none;
+  }
+
+}

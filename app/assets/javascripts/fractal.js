@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  if (request.controller === "fractals") {
+  if (request.controller === "fractals" && request.namespace === "") {
      if (request.action === "new" || request.action === "create"  || request.action === "edit" ){
         create_action();
      } else
@@ -15,7 +15,6 @@ $(document).ready(function() {
 });
 
 var show_fractals = function() {
-    console.log('------1');
    $("td.fractal").each(function (){
      load_fractals_index(this);
    });

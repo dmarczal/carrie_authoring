@@ -19,8 +19,8 @@ $(document).ready(function() {
               }
             }*/
             close: function() {
-              
-              $("input.input").val(""); 
+
+              $("input.input").val("");
             }
           });
           show_exercise();
@@ -158,25 +158,27 @@ var show_exercise = function () {
     exercise.loadTable();
 
     // Resize the fractal
-    ( function () {
-       $(".resizable").resizable({ aspectRatio: 1,
-          helper: "ui-resizable-helper",
-          stop: function(event, ui) {
-              $("canvas", this).each(function() {
-                 exercise.getFractal().width= ui.size.width;
-                 exercise.getFractal().height= ui.size.height;
+    if (request.namespace !== "published") {
+       ( function () {
+          $(".resizable").resizable({ aspectRatio: 1,
+             helper: "ui-resizable-helper",
+             stop: function(event, ui) {
+                 $("canvas", this).each(function() {
+                    exercise.getFractal().width= ui.size.width;
+                    exercise.getFractal().height= ui.size.height;
 
-                 $.post($(exercise.getTable()).attr('fractal-update-url'),
-                    {id: exercise.getId(), oa_id: exercise.getOaId(),
-                     width: ui.size.width, height: ui.size.height},
-                     function (data) {
-                        reloadFractal();
-                     }
-                 );
-          });
-        }
-      });
-    })();
+                    $.post($(exercise.getTable()).attr('fractal-update-url'),
+                       {id: exercise.getId(), oa_id: exercise.getOaId(),
+                        width: ui.size.width, height: ui.size.height},
+                        function (data) {
+                           reloadFractal();
+                        }
+                    );
+             });
+           }
+         });
+       })();
+    }
 
     var reloadFractal = function () {
         fracCanvas = Fractal.create(exercise.getFractal());

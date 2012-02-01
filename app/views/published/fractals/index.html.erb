@@ -1,1 +1,12 @@
-<h1>Fractais Publicados</h1>
+<h1> OA <%= @lo.name %> </h1>
+
+<% if @page.instance_of? Introduction %>
+  <%= render 'introduction' %>
+<% else %>
+  <%= render 'exercise' %>
+<% end %>
+
+  <%= paginate @pages, :theme => 'lo_pagination' %>
+  <%= raw( page_entries_info @pages )%>
+
+

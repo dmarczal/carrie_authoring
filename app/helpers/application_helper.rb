@@ -34,4 +34,9 @@ module ApplicationHelper
   def javascript(*args)
     content_for(:head) { javascript_include_tag(*args) }
   end
+
+  def controller_namespace
+    rs = controller.class.name.split("::")
+    rs.size > 1 ? rs.first.downcase : ""
+  end
 end

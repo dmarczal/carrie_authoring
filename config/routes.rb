@@ -30,6 +30,12 @@ Carrie_mongodb::Application.routes.draw do
     end
   end
 
+  namespace :published do
+    resources :fractals do
+       get ':id/page/:page', :action => :show, :on => :collection
+    end
+  end
+
   resources :fractals
 
   root :to => "site#home"

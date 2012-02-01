@@ -30,7 +30,7 @@ Carrie_mongodb::Application.configure do
       am.raise_delivery_errors = true
     end
   end
-  
+
   config.assets.compress = false
   config.assets.debug = true
 end

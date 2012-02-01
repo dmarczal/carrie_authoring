@@ -1,28 +1,16 @@
 <tr>
   <td><%= learning_object.name %></td>
   <td><%= learning_object.description %></td>
+  <td><%= learning_object.published? ? "Publicado" : "Não Publicado" %></td>
   <td class="list-actions">
     <ul>
+      <li><%= link_to 'Ver em modo publicado', published_fractal_path(learning_object) %></li>
+      <hr>
       <li><%= link_to 'Visualizar', learning_object %></li>
       <% if can? :manage, LearningObject %>
         <li><%= link_to 'Editar', edit_learning_object_path(learning_object) %></li>
         <li><%= link_to 'Deletar', learning_object, confirm: 'Tem certeza?', method: :delete %></li>
       <% end %>
     </ul>
-
-
-    <%
-        unless current_user.is_student?
-          if learning_object.published
-          %>
-        Publicado
-      <% else %>
-         Não Publicado
-       <%
-        end
-      end
-    %>
-
-
   </td>
 </tr>

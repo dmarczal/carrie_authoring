@@ -40,7 +40,7 @@ namespace :db do
     fractals_exerc = []
 
     fractals.each do |frac|
-      fractals_exerc << FractalExercise.new({:name => frac.name ,:iterations => (1..10).to_a.sample,
+      fractals_exerc << FractalExercise.new({:name => frac.name ,:iterations => (3..5).to_a.sample,
                                              :angle => frac.angle,
                                              :axiom => frac.axiom, :rules => frac.rules, :slug => frac.slug})
 

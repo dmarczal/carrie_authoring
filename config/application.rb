@@ -13,9 +13,11 @@ module Carrie_mongodb
   class Application < Rails::Application
     config.autoload_paths += %W[#{config.root}/lib]
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+
     config.time_zone = "Brasilia"
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml").to_s]
-    config.i18n.default_locale = :'pt-BR'
+    config.i18n.default_locale = "pt-BR"
+
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
     config.generators.test_framework :rspec, :fixtures => false, :view_specs => false
