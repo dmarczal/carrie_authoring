@@ -5,10 +5,3 @@
     Uma ferramenta de autoria para construção de Objetos de aprendizagem na área de matemática
   </p>
 </div>
-
-<% if !user_signed_in? %>
-  <div class="right" >
-    <%= link_to 'Registrar-se', new_user_registration_path,  :class => "btn" %>
-    <%= link_to 'Fazer login', new_user_session_path,  :class => "btn" %>
-  </div>
-<% end %>

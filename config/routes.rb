@@ -6,7 +6,7 @@ Carrie_mongodb::Application.routes.draw do
     get :matriculate
   end
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
 
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
 
