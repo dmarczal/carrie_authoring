@@ -1,0 +1,26 @@
+<section>
+  <header>
+    <h1 class="left"> Editar meus dados </h1>
+    <div class="right">
+        <%= link_to 'Voltar', :back, :class => "btn" %>
+    </div>
+  </header>
+
+  <article class="well">
+    <%= simple_form_for(resource, :as => resource_name,
+                        :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+
+      <%= f.input :user_type, :disabled => true %>
+      <%= f.input :email, :required => true, :disabled => true %>
+      <%= f.input :name, :auto_focus => true %>
+      <%= f.input :school, :auto_focus => true %>
+      <%= f.input :password, :hint => "Deixe em branco se não deseja alterar",
+                  :required => false, :label => "Nova senha" %>
+      <%= f.input :password_confirmation, :required => false, :label => "Confirme sua nova senha" %>
+      <%= f.input :current_password, :required => true, :label => "Senha atual" %>
+      <%= f.button :submit, "Salvar alterações", :class => "btn btn-primary" %>
+    <% end %>
+
+  </article>
+
+</section>

@@ -1,0 +1,16 @@
+<section class="login_form well">
+
+  <h2>Registrar-se</h2>
+
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+    <%= f.input :type, :as => :select, :collection => [["Estudante","student"], ["Professor", "professor"]],
+      :include_blank => false, :required => true %>
+    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+    <%= f.button :submit, "Registrar-se", class: "btn btn-primary" %>
+
+  <% end %>
+
+</section>
