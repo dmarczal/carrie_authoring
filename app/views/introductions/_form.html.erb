@@ -2,7 +2,7 @@
   <%= f.input :title %><br />
   <%= f.label "Conteúdo:" %>
   <%= f.ckeditor :content, :label => false, :input_html => { :toolbar => 'Full' } %>
-  <%= f.button :submit %>
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
 
 

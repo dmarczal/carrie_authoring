@@ -6,6 +6,7 @@ gem "bson_ext"
 gem "simple_form"
 gem "devise"
 gem "cancan"
+gem "truncate_html", "~> 0.5.1"
 
 gem 'best_in_place', '1.0.6.preMongo', git: 'git@github.com:dmarczal/best_in_place.git'
 
@@ -19,7 +20,7 @@ gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-boots
 gem 'faker'
 gem "thin"
 
-gem "ckeditor", "3.7.0.rc2"
+gem "ckeditor", "3.7.0.rc1"
 gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
 
 group :assets do

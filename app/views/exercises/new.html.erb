@@ -1,3 +1,14 @@
-<h2>Novo Exercício </h2>
+<section>
+  <header>
+    <h1 class="left"> Novo Exercício </h1>
+    <div class="right">
+        <%= link_to 'Ver todos', learning_object_path(@learning_object), :class => "btn" %>
+    </div>
+  </header>
 
-<%= render 'form' %>
+  <article>
+    <%= render 'form' %>
+  </article>
+
+</section>
+

@@ -1,3 +1,12 @@
-<h1>New introduction</h1>
+<section>
+  <header>
+    <h1 class="left">Nova Introdução</h1>
+    <div class="right">
+        <%= link_to 'Ver todas', learning_object_path(@learning_object), :class => "btn" %>
+    </div>
+  </header>
 
-<%= render 'form' %>
+  <article>
+    <%= render 'form' %>
+  </article>
+</section>

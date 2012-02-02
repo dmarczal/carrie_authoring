@@ -8,6 +8,7 @@
 //= require jquery/jquery.dragtable
 //= require jquery/jquery.tablesorter.js
 
+//= require util
 //= require lsystem/lsystems
 //= require lsystem/jquery.lsystem
 //= require lsystem/jquery.observe_field

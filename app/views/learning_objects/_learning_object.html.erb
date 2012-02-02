@@ -1,7 +1,6 @@
 <tr>
   <td><%= learning_object.name %></td>
   <td><%= learning_object.description %></td>
-  <td><%= learning_object.published? ? "Publicado" : "Não Publicado" %></td>
   <td class="list-actions">
     <ul>
       <li><%= link_to 'Ver em modo publicado', published_fractal_path(learning_object) %></li>

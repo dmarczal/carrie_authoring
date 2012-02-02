@@ -36,49 +36,26 @@ var load_fractals_index =  function (obj) {
 
 
 var show_this_fractal = function() {
-   var fractalJSON = $(".thumbnails").data("fractal");
+   var fractalJSON = $("#fractal_preview").data("fractal");
    fractalJSON.width=200;
    fractalJSON.height=200;
-   var fractal = Fractal.create(fractalJSON);
+   var frac = Fractal.create(fractalJSON);
 
-   for (var i = 0; i < 6; i++) {
-      var li = $("<li class='span3'>");
-      var thumb = $("<div class='thumbnail'>");
-      var caption = $("<div class='caption'>");
-      caption.html("<h5>Iteração "+ i +"</h5>");
-      thumb.append(fractal.nextIteration());
-      thumb.append(caption);
-      li.append(thumb);
-      $('.thumbnails').append(li);
-   };
+   FractalPreview.create({fractal: frac, iterations: 6}).load();
 };
 
 var show_next_it = function() {
-   var fractalJSON = $(".thumbnails").data("fractal");
+   var fractalJSON = $("#fractal_preview").data("fractal");
    fractalJSON.width=200;
    fractalJSON.height=200;
+   var frac = Fractal.create(fractalJSON);
 
    var it = $(".thumbnails .span3").size();
-   console.log(it);
-   var fractal = Fractal.create(fractalJSON);
-   fractal.setIteration(it);
-
-   var li = $("<li class='span3'>");
-   var thumb = $("<div class='thumbnail'>");
-   var caption = $("<div class='caption'>");
-   caption.html("<h5>Iteração "+ it +"</h5>");
-   thumb.append(fractal.nextIteration());
-   thumb.append(caption);
-   li.append(thumb);
-   $('.thumbnails').append(li);
+   var ul = $(".thumbnails");
+   frac.setIteration(it);
+   FractalPreview.create({fractal: frac}).load_one(ul, it);
 }
 
-
-function rules_to_array(rules){
-   if (rules) {
-      return rules.toString().replace(/\s/, '').split(',');
-   }
-};
 
 // Executes a callback detecting changes with a frequency of 1 second
 var create_action =  function () {
@@ -88,7 +65,9 @@ var create_action =  function () {
                               angle:  $('#fractal_angle').val(),
                               rules: rules_to_array($('#fractal_rules').val()),
                               height: 128, width: 128});
-   loadPreview(frac);
+
+   FractalPreview.create({fractal: frac, iterations: 3}).load();
+
    $("input").observe_field(1, function() {
 
       if (this.id == 'fractal_name') frac.setName(this.value);
@@ -97,29 +76,46 @@ var create_action =  function () {
       if (this.id == 'fractal_angle') frac.setAngle(this.value);
 
       frac.setIteration(0);
-      loadPreview(frac);
+      FractalPreview.create({fractal: frac, iterations: 3}).load();
    });
 
-   function loadPreview(frac){
-      if (frac.isValid()) {
-        var ul = $('<ul class="thumbnails">');
-
-        for (i=0; i<3; i++) {
-           var li = $("<li class='span3'>");
-           var thumb = $("<div class='thumbnail'>");
-           var caption = $("<div class='caption'>");
-           caption.html("<h5>Iteração "+ i +"</h5>");
-           thumb.append(frac.nextIteration());
-           thumb.append(caption);
-           li.append(thumb);
-           ul.append(li);
-        }
-
-        $('.thumbnails').remove();
-        $('#fractal_preview').append(ul);
-      }
-   }
 };
+
+var FractalPreview = FractalPreview || {
+
+   create: function(data) {
+      this.frac = data.fractal;
+      this.iterations = data.iterations;
+      that = this;
+
+      var load_one = function(ul, i) {
+         var li = $("<li class='span3'>");
+         var thumb = $("<div class='thumbnail'>");
+         var caption = $("<div class='caption'>");
+         caption.html("<h5>Iteração "+ i +"</h5>");
+         thumb.append(that.frac.nextIteration());
+         thumb.append(caption);
+         li.append(thumb);
+         ul.append(li);
+      };
+
+      var load = function(){
+         if (that.frac.isValid()) {
+            var ul = $('<ul class="thumbnails">');
+            for (i=0; i < that.iterations; i++) {
+                load_one(ul, i);
+            }
+            $('.thumbnails').remove();
+            $('#fractal_preview').append(ul);
+         }
+      };
+
+      return {
+        load: load,
+        load_one: load_one
+      };
+   }
+}
 
 var Fractal = Fractal || {
    create: function(data) {

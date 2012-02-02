@@ -1,56 +1,63 @@
 <section id="show-learning_object">
   <header>
-    <h1>Objeto de Aprendizagem: <em><%= @learning_object.name %> </h1>
-  </header>
-  <article>
-    <div class="do_hover">
-        <% if can? :manage, LearningObject %>
-          <%= best_in_place @learning_object, :description, :display_as => :markdown_desc, :type => :textarea %>
-        <% else %>
-          <%= @learning_object.description %>
-        <% end %>
+    <h1 class="clear"> Objeto de Aprendizagem: <em><%= @learning_object.name %> </h1>
+    </header>
+
+    <div class="right btn-los">
+      <div class="btn-group">
+        <%= link_to 'Ver Todos', learning_objects_path, :class => "btn" %>
+        <%= link_to 'Editar', edit_learning_object_path(@learning_object), :class => "btn" %>
+        <%= link_to 'Modo publicado', published_fractal_path(@learning_object_path), :class => "btn" %>
       </div>
-  </article>
+    </div>
 
   <article>
+     <div class="do_hover">
+      <%= best_in_place @learning_object, :description, :display_as => :markdown_desc, :type => :textarea %>
+    </div>
+  </article>
+
+  <section>
     <header>
       <h1 class='left'> Introduções </h1>
       <p class='right'>
-        <% if can? :manage, Introduction  %>
-          <%= link_to "Criar nova Introdução", new_learning_object_introduction_path(@learning_object), :class => "btn large" %>
-        <% end %>
+        <%= link_to "Criar nova Introdução", new_learning_object_introduction_path(@learning_object),
+          :class => "btn large" %>
       </p>
     </header>
 
-    <table class="zebra-striped bordered-table">
-      <thead>
-        <tr>
-          <th>Ordene</th>
-          <th>Título</th>
-          <th class="center">Opções</th>
-        </tr>
-      </thead>
-      <tbody id="introductions" data-update-url="<%= sort_introductions_learning_objects_url %>">
-        <% @introductions.each do |introduction| %>
-          <tr id='<%= introduction.id %>' >
-            <td class="handle">[DRAG]</td>
-            <td><%= link_to introduction.title, [@learning_object, introduction] %></td>
-            <td class="list-actions">
-              <ul>
-                <li><%= link_to 'Visualizar', [@learning_object, introduction]  %></li>
-                <% if can? :manage, Introduction %>
-                  <li><%= link_to 'Editar', edit_learning_object_introduction_path(@learning_object, introduction) %></li>
-                  <li><%= link_to 'Deletar', [@learning_object, introduction], confirm: 'Tem certeza?', method: :delete %></li>
-                <% end %>
-              </ul>
-            </td>
+    <article>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Ordene</th>
+            <th>Título</th>
+            <th class="center">Opções</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </article>
+        </thead>
+        <tbody id="introductions" data-update-url="<%= sort_introductions_learning_objects_url %>">
+          <% @introductions.each do |introduction| %>
+            <tr id='<%= introduction.id %>' >
+              <td class="handle">[DRAG]</td>
+              <td><%= link_to introduction.title, [@learning_object, introduction] %></td>
+              <td class="list-actions">
+                <ul>
+                  <li><%= link_to 'Visualizar', [@learning_object, introduction]  %></li>
+                    <li><%= link_to 'Editar',
+                            edit_learning_object_introduction_path(@learning_object, introduction) %></li>
+                    <li><%= link_to 'Deletar', [@learning_object, introduction],
+                            confirm: 'Tem certeza?', method: :delete %></li>
+                </ul>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </article>
+  </section>
 
-  <article>
+
+  <section>
     <header>
       <h1 class='left'> Exercícios </h1>
       <p class='right'>
@@ -60,35 +67,38 @@
       </p>
     </header>
 
-    <table class="zebra-striped bordered-table">
-      <thead>
-        <tr>
-          <th>Ordene</th>
-          <th>Título</th>
-          <th>Enunciado</th>
-          <th>Fractal</th>
-          <th class="center">Opções</th>
-        </tr>
-      </thead>
-      <tbody id="exercises" data-update-url="<%= sort_exercises_learning_objects_url %>">
-        <% @exercises.each do |exercise| %>
-          <tr id='<%= exercise.id %>' >
-            <td class="handle">[DRAG]</td>
-            <td><%= link_to exercise.title, [@learning_object, exercise] %></td>
-            <td><%= markdown exercise.enunciation %></td>
-            <td><%= exercise.fractal_exercise.name %></td>
-            <td class="list-actions">
-              <ul>
-                <li><%= link_to 'Visualizar', [@learning_object, exercise]  %></li>
-                <% if can? :manage, Exercise %>
-                  <li><%= link_to 'Editar', edit_learning_object_exercise_path(@learning_object, exercise) %></li>
-                  <li><%= link_to 'Deletar', [@learning_object, exercise], confirm: 'Tem certeza?', method: :delete %></li>
-                <% end %>
-              </ul>
-            </td>
+    <article>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Ordene</th>
+            <th>Título</th>
+            <th>Enunciado</th>
+            <th>Fractal</th>
+            <th class="center">Opções</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </article>
+        </thead>
+        <tbody id="exercises" data-update-url="<%= sort_exercises_learning_objects_url %>">
+          <% @exercises.each do |exercise| %>
+            <tr id='<%= exercise.id %>' >
+              <td class="handle">[DRAG]</td>
+              <td><%= link_to exercise.title, [@learning_object, exercise] %></td>
+              <td><%= raw (truncate_html(exercise.enunciation, :length => 100,
+                                         :omission => '...(continua)')) %></td>
+              <td><%= exercise.fractal_exercise.name %></td>
+              <td class="list-actions">
+                <ul>
+                  <li><%= link_to 'Visualizar', [@learning_object, exercise]  %></li>
+                  <li><%= link_to 'Editar',
+                          edit_learning_object_exercise_path(@learning_object, exercise) %></li>
+                  <li><%= link_to 'Deletar',
+                          [@learning_object, exercise], confirm: 'Tem certeza?', method: :delete %></li>
+                </ul>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </article>
+  </section>
 </section>

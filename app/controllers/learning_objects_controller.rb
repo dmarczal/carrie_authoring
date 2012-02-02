@@ -6,11 +6,7 @@ class LearningObjectsController < ApplicationController
   load_and_authorize_resource :find_by => :slug
 
   def index
-    if current_user.is_teacher? or current_user.is_admin?
-      @learning_objects = LearningObject.page(params[:page]).per(6)
-    else
-      @learning_objects = all_published.page(params[:page]).per(6)
-    end
+    @learning_objects = current_user.learning_objects.page(params[:page]).per(6)
   end
 
   def show

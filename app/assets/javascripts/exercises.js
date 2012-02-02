@@ -19,15 +19,13 @@ $(document).ready(function() {
               }
             }*/
             close: function() {
-
               $("input.input").val("");
             }
           });
           show_exercise();
-       } else if (request.action == "new") {
-          render_fractal();
+       } else if (request.action == "new" || request.action === "create") {
           observe_fields();
-       } else if (request.action == "edit") {
+       } else if (request.action == "edit" || request.action == "update" ) {
           observe_fields();
        } else if (request.action == "show_questions") {
           $('#sortable').sortable({
@@ -41,14 +39,12 @@ $(document).ready(function() {
           $('#sortable').disableSelection();
        }
     }
+
+    $(".toggle_fractal").click(function(){
+       console.log('oi');
+       $(".hidden-fields").toggle();
+    });
 });
-
-var render_fractal = function () {
-  $("select").bind('change', function() {
-    console.log("Preview fractal");
-  });
-};
-
 
 var observe_fields = function () {
   var rules = toText($('.rules').attr('value'));
@@ -60,15 +56,19 @@ var observe_fields = function () {
       $("#exercise_fractal_exercise_constant").val(data.constant);
       $("#exercise_fractal_exercise_axiom").val(data.axiom);
       $("#exercise_fractal_exercise_rules").val(data.rules);
+
       loadPreview();
-    })
+      $(".hidden-fields").show();
+    });
   });
+
   loadPreview();
+
   $("input").bind('keyup', function() {
     loadPreview();
   });
 
-  function loadPreview(frac){
+  function loadPreview(){
     var frac = Fractal.create({name: $('#exercise_fractal_exercise_name').val(),
                             axiom: $('#exercise_fractal_exercise_axiom').val(),
                             constant: $('#exercise_fractal_exercise_constant').val(),
@@ -76,39 +76,11 @@ var observe_fields = function () {
                             rules: rules_to_array($('#exercise_fractal_exercise_rules').val()),
                             height: $('#exercise_fractal_exercise_height').val(),
                             width: $('#exercise_fractal_exercise_width').val()});
-    if (frac.isValid()) {
-      var row = $('<tr id="preview">');
-
-      for (i=0; i<3; i++) {
-        var td_tag = frac.embedIn('td');
-        frac.nextIteration()
-        row.append(td_tag);
-      }
-
-      $('table tr:#preview').remove();
-      $('table').append(row);
-    }
+     FractalPreview.create({fractal: frac, iterations: 3}).load();
   }
 };
 
-function toText(string) {
-  string = string.replace(/^\[/, "");
-  string = string.replace(/\]$/, "");
-  while (string.indexOf('"') != -1) {
-    string = string.replace('"', "");
-  }
-  return string;
-}
-
-var show_hidden_fields = function (link) {
-  if ($(".hidden-fields").is(":visible")) {
-    $(".hidden-fields").hide();
-  } else {
-    $(".hidden-fields").show();
-  }
-};
-
-var create_preview =  function () {
+/*var create_preview =  function () {
    var frac = Fractal.create({name: $('#exercise_fractal_exercise_name').val(),
                               axiom: $('#exercise_fractal_exercise_axiom').val(),
                               constant: $('#exercise_fractal_exercise_constant').val(),
@@ -116,7 +88,9 @@ var create_preview =  function () {
                               rules: rules_to_array($('#exercise_fractal_exercise_rules').val()),
                               height: $('#exercise_fractal_exercise_height').val(),
                               width: $('#exercise_fractal_exercise_width').val()});
-   loadPreview(frac);
+   //loadPreview(frac);
+   create_action.loadPreview(frac);
+
    $("input").observe_field(1, function() {
       console.log(this);
       if (this.id == 'exercise_fractal_exercise_name') frac.setName(this.value);
@@ -127,24 +101,9 @@ var create_preview =  function () {
       if (this.id == 'exercise_fractal_exercise_height') frac.setHeight(this.value);
 
       frac.setIteration(0);
-      loadPreview(frac);
+      create_action.loadPreview(frac);
    });
-
-   function loadPreview(frac){
-      if (frac.isValid()) {
-        var row = $('<tr id="preview">');
-
-        for (i=0; i<3; i++) {
-           var td_tag = frac.embedIn('td');
-           frac.nextIteration()
-           row.append(td_tag);
-        }
-
-        $('table tr:#preview').remove();
-        $('table').append(row);
-      }
-   }
-};
+}; */
 
 var show_exercise = function () {
     var exercTable = $('#exercise_table');

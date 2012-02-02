@@ -9,14 +9,13 @@ class Ability
       can :manage, :all
     elsif user.professor?
       can :manage, Fractal, :user_id => user.id
-      can :manage, LearningObject
+      can :manage, LearningObject, :user_id => user.id
       can :manage, Exercise
       can :manage, Question
-      can :manage, LearningGroup
       can :manage, Introduction
+      can :manage, LearningGroup
       can :read, :all
     elsif user.student?
-      can :read, :all
       can :manage, Fractal, :user_id => user.id
     else
       can :read, Fractal

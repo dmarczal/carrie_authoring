@@ -5,13 +5,14 @@
     <div class="btn-group right">
       <a href="#" id="next_it" class="btn">Próxima Iteração</a>
       <a data-toggle="modal" href="#details" class="btn" >Detalhes</a>
+      <%= link_to 'Editar', edit_fractal_path(@fractal), class: "btn"  %>
       <%= link_to 'Voltar', :back, :class => "btn" %>
     </div>
 
   </header>
 
-  <article class="clear">
-    <ul class="thumbnails" data-fractal="<%= @fractal.to_json %>" ></ul>
+  <article id="fractal_preview" data-fractal="<%= @fractal.to_json %>" >
+    <ul class="thumbnails"></ul>
   </article>
 
 </section>

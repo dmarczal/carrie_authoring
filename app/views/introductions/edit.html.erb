@@ -1,3 +1,17 @@
-<h1>Editing introduction</h1>
+<section>
+  <header>
+    <h1 class="left">Editar Introdução: <em><%= @introduction.title  %></em></h1>
+    <div class="right">
+      <div class="btn-group">
+        <%= link_to 'Visualizar', learning_object_introduction_path(@learning_object, @introduction),
+          :class => "btn" %>
+        <%= link_to 'Ver todas', learning_object_path(@learning_object), :class => "btn" %>
+      </div>
+    </div>
+  </header>
 
-<%= render 'form' %>
+  <article>
+    <%= render 'form' %>
+  </article>
+</section>
+

@@ -16,7 +16,7 @@ namespace :db do
                 password_confirmation: 'student')
 
     oas = 10.times.map do
-      oa = LearningObject.create(
+      oa = professor.learning_objects.create(
         :name => Faker::Name.name,
         :description => Faker::Lorem.paragraphs(2).join
       )

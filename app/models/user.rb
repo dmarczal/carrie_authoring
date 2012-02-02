@@ -16,6 +16,8 @@ class User
   references_many :learning_group, :dependent => :delete
 
   has_many :fractals, dependent: :nullify
+  has_many :learning_objects
+
   has_and_belongs_to_many :learning_group
 
   validates :type, inclusion: { in: %w(professor student)}

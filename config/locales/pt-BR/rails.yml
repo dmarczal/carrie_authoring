@@ -142,7 +142,7 @@
         one: "Questão"
         other: "Questões"
       fractal_exercise: "Exercício do fractal"
-      introductions:
+      introduction:
         one: "Introdução"
         other: "Introduções"
       user:

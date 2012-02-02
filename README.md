@@ -12,6 +12,10 @@
       - can view all OAs
     - Student
       - can register in one or more classes
-      - can
+      - can do oas of owns classes
     - Guest
       - can view and create fractals
+
+
+- TODO:
+  - CKEDITOR upload

@@ -7,19 +7,21 @@
       <% end %>
     </p>
   </header>
+  <article>
 
-  <table class="zebra-striped bordered-table" id="learning_objects">
-    <thead>
-      <tr>
-        <th>Título</th>
-        <th>Descrição</th>
-        <th>Status</th>
-        <th class="center">Opções</th>
-      </tr>
-    </thead>
-    <tbody id="learning">
-      <%= render @learning_objects %>
-    </tbody>
-  </table>
+    <table class="table table-bordered table-striped" id="learning_objects">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th class="center">Opções</th>
+        </tr>
+      </thead>
+      <tbody id="learning">
+        <%= render @learning_objects %>
+      </tbody>
+    </table>
+
+  </article>
 </section>
 <%= paginate @learning_objects %>
