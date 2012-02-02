@@ -4,19 +4,24 @@ class Ability
   def initialize(user)
 
     user ||= User.new # guest user (not logged in)
-    if user.is_admin?
+
+    if user.admin?
       can :manage, :all
-    elsif user.user_type == "Professor"
-      can :manage, Fractal
+    elsif user.professor?
+      can :manage, Fractal, :user_id => user.id
       can :manage, LearningObject
       can :manage, Exercise
       can :manage, Question
       can :manage, LearningGroup
       can :manage, Introduction
       can :read, :all
-    else
+    elsif user.student?
       can :read, :all
+      can :manage, Fractal, :user_id => user.id
+    else
+      can :read, Fractal
     end
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

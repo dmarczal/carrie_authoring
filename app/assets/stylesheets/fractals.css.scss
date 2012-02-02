@@ -3,29 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #fractal-index {
-
-  td.fractal {
-   width: 230px;
-  }
-
   canvas {
-    margin-right: 5px;
-  }
-}
-
-
-#fractal-show {
-
-  td.iteration {
-  	width: 30px;
-  }
-
-  td.fractal {
-   width: 230px;
-  }
-
-  canvas {
-    margin-right: 5px;
+    margin-left: 15px;
   }
 }
 
@@ -44,8 +23,8 @@ p.mid {
 
   .button {
     float: right;
-    margin-top: 45px;
-    margin-right: 10px;
+    margin-top: 40px;
+    margin-right: 0px;
   }
 
   #fractal_angle {width: 40px;}
@@ -55,5 +34,9 @@ p.mid {
 
 #fractal_preview {
   clear: both;
-  padding-top: 10px;
+  padding-top: 5px;
+
+  .thumbnail {
+    text-align: center;
+  }
 }

@@ -22,15 +22,6 @@ Carrie_mongodb::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  config.after_initialize do
-    ActionMailer::Base.tap do |am|
-      am.register_interceptor(MailerInterceptor)
-      am.delivery_method = :sendmail
-      am.perform_deliveries = true
-      am.raise_delivery_errors = true
-    end
-  end
-
   config.assets.compress = false
   config.assets.debug = true
 end

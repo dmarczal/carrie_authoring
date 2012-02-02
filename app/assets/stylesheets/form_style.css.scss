@@ -1,6 +1,7 @@
-@import "twitter/bootstrap";
+/*@import "util";*/
 
 .simple_form {
+  clear: both;
   padding-left: 0px;
 
   .field-with-link {
@@ -76,11 +77,8 @@
   }
 
   .button {
-    @extend .btn;
     margin-top: 20px;
-    padding: 10px;
   }
-
 }
 
 
@@ -123,4 +121,27 @@
     border-right: none;
   }
 
+}
+
+.login_form {
+  width: 40%;
+  margin: 0 auto;
+  padding-right: 0px;
+  padding: 10px;
+
+  .simple_form label[for="user_remember_me"] {
+    padding-top: 5px;
+  }
+
+  .input {
+    margin-top: 5px;
+  }
+
+  .button {
+    margin: 5px 0px 0px 0px;
+  }
+
+  input[type="password"], input[type="email"] {
+    width: 100%;
+  }
 }

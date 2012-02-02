@@ -6,17 +6,37 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   field :name, :type => String
-  field :is_admin, :type => Boolean
-  field :user_type, :type => String
+  field :type, :type => String
 
   references_many :learning_group, :dependent => :delete
+
+  has_many :fractals, dependent: :nullify
+
   has_and_belongs_to_many :learning_group
 
-  def is_student?
-      self.user_type == "Aluno"
+  validates :type, inclusion: { in: %w(professor student)}
+  validates_uniqueness_of :email
+
+  def student?
+      self.type == "student"
   end
 
-  def is_teacher?
-    self.user_type == "Professor"
+  def professor?
+    self.type == "professor"
   end
+
+  def admin?
+    self.type == "admin"
+  end
+
+  def user_type
+    if professor?
+      I18n.translate('autho.professor')
+    elsif student?
+      I18n.translate('autho.student')
+    else
+      self.type
+    end
+  end
+
 end

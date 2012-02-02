@@ -1,5 +1,6 @@
 class Fractal
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Mongoid::Slug
 
   slug :name
@@ -12,4 +13,10 @@ class Fractal
 
   validates_uniqueness_of :name
   validates_presence_of :name, :angle, :axiom, :rules
+
+  belongs_to :user
+
+  def show_rules
+    rules.join(' , ');
+  end
 end

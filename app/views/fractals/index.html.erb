@@ -3,22 +3,28 @@
     <h1 class="left"> Fractais </h1>
     <p class="right">
       <% if can? :manage, Fractal %>
-        <%= link_to 'Criar novo Fractal', new_fractal_path, :class => "btn large" %>
+        <%= link_to 'Criar novo Fractal', new_fractal_path, :class => "btn" %>
       <% end %>
     </p>
   </header>
 
-  <table class="zebra-striped bordered-table" id="fractal-index">
-    <thead>
-      <tr>
-        <th>Figura</th>
-        <th>Fractal</th>
-        <th class="center">Opções</th>
-      </tr>
-    </thead>
-    <tbody id="fractals">
-      <%= render @fractals %>
-    </tbody>
-  </table>
+  <article>
+    <table class="table table-bordered" id="fractal-index">
+      <thead>
+        <tr>
+          <th>Fractal</th>
+          <th>Figura</th>
+          <th>Criador</th>
+
+          <% if can? :manage, Fractal %>
+            <th class="center">Opções</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody id="fractals">
+        <%= render @fractals %>
+      </tbody>
+    </table>
+  </article>
 </section>
 <%= paginate @fractals %>

@@ -8,7 +8,12 @@ namespace :db do
     [LearningObject, Fractal, Exercise].each(&:destroy_all)
 
     User.delete_all
-    User.create(email: 'carrie@gmail.com', password: 'carrie', password_confirmation: 'carrie', user_type: 'Professor')
+    User.create(email: 'carrie.ufpr@gmail.com', password: 'carrie123', type: 'admin',
+                password_confirmation: 'carrie')
+    professor = User.create(email: 'professor@gmail.com', password: 'professor', type: 'professor',
+                password_confirmation: 'professor')
+    student = User.create(email: 'student@gmail.com', password: 'student', type: 'student',
+                password_confirmation: 'student')
 
     oas = 10.times.map do
       oa = LearningObject.create(
@@ -20,21 +25,21 @@ namespace :db do
     end
 
     fractals = []
-    fractals << Fractal.create({:name => "HeighWay Dragon", :angle => 90, :axiom => "FX",
+    fractals << student.fractals.create({:name => "HeighWay Dragon", :angle => 90, :axiom => "FX",
                                 :rules => ['X=X+YF+', 'Y=-FX-Y']})
-    fractals << Fractal.create({:name => "Kevs Tree", :angle => 22, :axiom => "F",
+    fractals << student.fractals.create({:name => "Kevs Tree", :angle => 22, :axiom => "F",
                                 :rules => ['F=C0FF-[C1-F+F+F]+[C2+F-F-F]']})
-    fractals << Fractal.create({:name => "Sierpinsk Triangle", :angle => 120, :axiom => "F-G-G",
+    fractals << professor.fractals.create({:name => "Sierpinsk Triangle", :angle => 120, :axiom => "F-G-G",
                                 :rules => ['F=F-G+F+G-F', 'G=GG']})
-    fractals << Fractal.create({:name => "Knoch Snowflake", :angle => 60, :axiom => "F++F++F",
+    fractals << professor.fractals.create({:name => "Knoch Snowflake", :angle => 60, :axiom => "F++F++F",
                                 :rules => ['F=F-F++F-F', 'X=FF']})
-    fractals << Fractal.create({:name => "Knoch Curve", :angle => 90, :axiom => "-F",
+    fractals << student.fractals.create({:name => "Knoch Curve", :angle => 90, :axiom => "-F",
                                 :rules => ['F=F+F-F-F+F']})
 
     10.times.each do |i|
       frac = fractals.sample
-      Fractal.create({:name => " #{frac.name} #{i}", :angle => frac.angle, :axiom => frac.axiom,
-                                :rules => frac.rules})
+      Fractal.create({:name => " #{frac.name} #{i}", :angle => frac.angle,
+                      :axiom => frac.axiom, :rules => frac.rules, :user_id => frac.user_id })
     end
 
     fractals_exerc = []

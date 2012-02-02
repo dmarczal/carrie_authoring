@@ -19,13 +19,13 @@ module ApplicationHelper
   def twitterized_type(type)
     case type
     when :alert
-      "warning"
+      "alert"
     when :error
-      "error"
+      "alert-error"
     when :notice
-      "info"
+      "alert-info"
     when :success
-      "success"
+      "alert-success"
     else
       type.to_s
     end
@@ -38,5 +38,25 @@ module ApplicationHelper
   def controller_namespace
     rs = controller.class.name.split("::")
     rs.size > 1 ? rs.first.downcase : ""
+  end
+
+
+  def show_link(object, content = "Show")
+    link_to(content, object) if can?(:read, object)
+  end
+
+  def edit_link(object, content = "Edit")
+    link_to(content, [:edit, object]) if can?(:update, object)
+  end
+
+  def destroy_link(object, content = "Destroy")
+    link_to(content, object, :method => :delete, :confirm => "Tem certeza?") if can?(:destroy, object)
+  end
+
+  def create_link(object, content = "New")
+    if can?(:create, object)
+      object_class = (object.kind_of?(Class) ? object : object.class)
+      link_to(content, [:new, object_class.name.underscore.to_sym])
+    end
   end
 end

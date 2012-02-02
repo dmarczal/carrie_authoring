@@ -1,9 +1,12 @@
 <section>
   <header>
     <h1 class="left"> Editar Fractal </h1>
-    <p class="right">
-      <%= link_to 'Voltar', fractals_path, :class => "btn large" %>
-    </p>
+    <div class="right">
+      <div class="btn-group">
+        <%= link_to 'Visualizar', fractal_path(@fractal), :class => "btn" %>
+        <%= link_to 'Voltar', fractals_path, :class => "btn" %>
+      </div>
+    </div>
   </header>
 
   <%= render 'form' %>

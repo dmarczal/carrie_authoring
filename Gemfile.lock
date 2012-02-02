@@ -8,13 +8,12 @@ GIT
 
 GIT
   remote: http://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 7389015df48ad2c6bba1e20fc45be90e3080bb84
+  revision: 890d71ed846f36c44bd45ad0192a1ee217145128
   specs:
-    twitter-bootstrap-rails (1.4.3)
-      actionpack
-      jquery-rails (>= 1.0)
-      less-rails (~> 2.1.0)
-      railties
+    twitter-bootstrap-rails (2.0)
+      actionpack (>= 3.1)
+      less-rails (~> 2.1.2)
+      railties (>= 3.1)
 
 GEM
   remote: http://rubygems.org/
@@ -122,10 +121,10 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
-    less (2.0.8)
+    less (2.0.9)
       commonjs (~> 0.2.0)
       therubyracer (~> 0.9.9)
-    less-rails (2.1.2)
+    less-rails (2.1.5)
       actionpack (>= 3.1)
       less (~> 2.0.7)
     libv8 (3.3.10.4)

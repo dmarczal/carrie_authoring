@@ -1,26 +1,31 @@
 <section>
   <header>
-    <h1 class="left"> <%= @fractal.name %> </h1>
-    <p class="right">
-      <%= link_to 'Voltar', :back, :class => "btn large" %>
-    </p>
+    <h1 class="left"> Fractal: <%= @fractal.name %> </h1>
+
+    <div class="btn-group right">
+      <a href="#" id="next_it" class="btn">Próxima Iteração</a>
+      <a data-toggle="modal" href="#details" class="btn" >Detalhes</a>
+      <%= link_to 'Voltar', :back, :class => "btn" %>
+    </div>
+
   </header>
-  <table class="zebra-striped bordered-table" id="fractal-show">
-    <thead>
-      <tr>
-        <th>Iteração</th>
-        <th>Fractal</th>
-      </tr>
-    </thead>
-    <tbody class="fdata" data-fractal="<%= @fractal.to_json %>">
-    </tbody>
-  </table>
 
-  <footer>
-    <p class="right">
-      <input type="button" value="Próxima Iteração" class="btn med" onClick='show_next_it()'/>
-    </p>
-  </footer>
-
+  <article class="clear">
+    <ul class="thumbnails" data-fractal="<%= @fractal.to_json %>" ></ul>
+  </article>
 
 </section>
+
+<div class="modal hide fade in" id="details">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Detalhes do Fractal</h3>
+  </div>
+  <div class="modal-body">
+    <p><strong>Nome: </strong><%= @fractal.name %></p>
+    <p><strong>Ângulo: </strong><%= @fractal.angle %></p>
+    <p><strong>Axiom: </strong><%= @fractal.axiom %></p>
+    <p><strong>Constantes: </strong><%= @fractal.constant %></p>
+    <p><strong>Regras: </strong><%= @fractal.show_rules %></p>
+  </div>
+</div>

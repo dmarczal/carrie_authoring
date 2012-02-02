@@ -40,6 +40,16 @@ $(document).ready(function() {
   $('.best_in_place').best_in_place();
 
   //$('.best_in_place').bind("ajax:success", function () {}
+//  $(".alert-message").alert()
+//  $(".tabs").button()
+//  $(".carousel").carousel()
+//  $(".collapse").collapse()
+//  $(".dropdown-toggle").dropdown()
+    $(".modal").modal
+//  $("a[rel]").popover
+//  $(".navbar").scrollspy()
+//  $(".tooltip").tooltip
+//  $(".typeahead").typeahead()
 });
 
 

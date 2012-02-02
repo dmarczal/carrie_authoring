@@ -9,6 +9,9 @@ $(document).ready(function() {
          else {
             if (request.action == "show") {
                show_this_fractal();
+               $('#next_it').click(function(){
+                  show_next_it();
+               });
             }
          }
   }
@@ -33,38 +36,41 @@ var load_fractals_index =  function (obj) {
 
 
 var show_this_fractal = function() {
-   var fractalJSON = $("tbody.fdata").data("fractal");
+   var fractalJSON = $(".thumbnails").data("fractal");
    fractalJSON.width=200;
    fractalJSON.height=200;
    var fractal = Fractal.create(fractalJSON);
-   for (var i = 0; i < 6; i++) {
-      var row = $("<tr>");
-      var itData = $("<td class='iteration'>");
-      var frData = $("<td class='fractal'>");
-      $(itData).append(fractal.getIteration());
-      $(frData).append(fractal.nextIteration());
-      $("tbody.fdata").append(row);
 
-      $(row).append(itData);
-      $(row).append(frData);
+   for (var i = 0; i < 6; i++) {
+      var li = $("<li class='span3'>");
+      var thumb = $("<div class='thumbnail'>");
+      var caption = $("<div class='caption'>");
+      caption.html("<h5>Iteração "+ i +"</h5>");
+      thumb.append(fractal.nextIteration());
+      thumb.append(caption);
+      li.append(thumb);
+      $('.thumbnails').append(li);
    };
 };
 
 var show_next_it = function() {
-   var fractalJSON = $("tbody.fdata").data("fractal");
+   var fractalJSON = $(".thumbnails").data("fractal");
    fractalJSON.width=200;
    fractalJSON.height=200;
+
+   var it = $(".thumbnails .span3").size();
+   console.log(it);
    var fractal = Fractal.create(fractalJSON);
-   var rowcount = $("tr").size() - 1;
-   var row = $("<tr>");
-   var itData = $("<td class='iteration'>");
-   var frData = $("<td class='fractal'>");
-   fractal.setIteration(rowcount);
-   $(itData).append(fractal.getIteration());
-   $(frData).append(fractal.nextIteration());
-   $("tbody.fdata").append(row);
-   $(row).append(itData);
-   $(row).append(frData);
+   fractal.setIteration(it);
+
+   var li = $("<li class='span3'>");
+   var thumb = $("<div class='thumbnail'>");
+   var caption = $("<div class='caption'>");
+   caption.html("<h5>Iteração "+ it +"</h5>");
+   thumb.append(fractal.nextIteration());
+   thumb.append(caption);
+   li.append(thumb);
+   $('.thumbnails').append(li);
 }
 
 
@@ -96,16 +102,21 @@ var create_action =  function () {
 
    function loadPreview(frac){
       if (frac.isValid()) {
-        var row = $('<tr id="preview">');
+        var ul = $('<ul class="thumbnails">');
 
         for (i=0; i<3; i++) {
-           var td_tag = frac.embedIn('td');
-           frac.nextIteration()
-           row.append(td_tag);
+           var li = $("<li class='span3'>");
+           var thumb = $("<div class='thumbnail'>");
+           var caption = $("<div class='caption'>");
+           caption.html("<h5>Iteração "+ i +"</h5>");
+           thumb.append(frac.nextIteration());
+           thumb.append(caption);
+           li.append(thumb);
+           ul.append(li);
         }
 
-        $('table tr:#preview').remove();
-        $('table').append(row);
+        $('.thumbnails').remove();
+        $('#fractal_preview').append(ul);
       }
    }
 };

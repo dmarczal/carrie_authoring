@@ -1,5 +1,5 @@
 <% flash.each do |type, message| %>
-  <div class="alert-message <%= twitterized_type(type) %>" data-alert = "alert">
+  <div class="alert <%= twitterized_type(type) %> fade in" data-dismiss = "alert">
     <a class="close" href = "#">x</a>
     <p><%= message %></p>
   </div>

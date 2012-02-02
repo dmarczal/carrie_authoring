@@ -1,5 +1,5 @@
 <div id="navigation">
-  <ul class="tabs">
+  <ul class="nav nav-tabs">
     <li><%= menu_link_to "Home", root_path %></li>
     <li><%= menu_link_to "OAs", learning_objects_path %></li>
     <li><%= menu_link_to "Fractals", fractals_path %></li>
@@ -10,7 +10,15 @@
     <% end %>
     <li><a href="#">Sobre</a></li>
     <% if user_signed_in? %>
-      <p class="right"> <%= current_user.email %> <%= link_to 'Sair', destroy_user_session_path, :method => "delete", :class => "btn medium" %> </p>
+      <span class="user_logged">
+        <%= current_user.email %>
+        <%= link_to 'Sair', destroy_user_session_path, :method => "delete", :class => "btn medium" %>
+      </span>
+    <% else %>
+      <span class="user_logged">
+       <%= link_to 'registrar-se', new_user_registration_path,  :class => "btn" %>
+       <%= link_to 'fazer login', new_user_session_path,  :class => "btn" %>
+      </span>
     <% end %>
   </ul>
 </div>

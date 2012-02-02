@@ -1,6 +1,6 @@
 /*
-* require twitter/bootstrap
-*= require bootstrap.css.less
+*= require twitter/bootstrap
+* require bootstrap.css.less
 * require util
 *= require form_style
 *= require jquery-ui/jquery-ui.css
@@ -14,7 +14,10 @@
 /* styles **/
 $bc: #DDD;
 
-.right { text-align:right; }
+.right {
+  float:right;
+  &:after {clear:both;}
+}
 .left { float: left; }
 .center { text-align:center; }
 .bordered { border: 1px solid $bc;}
@@ -27,31 +30,50 @@ section{
       border-bottom: 1px solid $bc;
     }
   }
+
+  article {
+    padding-top: 10px;
+    clear: both;
+  }
 }
 
 /* styles for actions on table */
 .list-actions {
 
-  text-align: center;
   width: 140px;
   font-size: 12px;
 
+  text-align: center;
+  vertical-align: middle;
+
   ul {
-    float: right;
-    list-style-type: none;
+    text-align: center;
+    list-style: none;
     margin: 0;
 
     li {
-      float: left;
+      display: inline;
+      width: auto;
+
       margin-right: 5px;
+      text-align: center;
     }
  }
 }
 
+.table {
+  margin-top: 10px;
+}
+
+.thumbnails {
+  margin-top: 60px;
+}
+
+.user_logged {
+  float: right;
+  margin-right: 0px;
+}
+
 #navigation {
   margin-top: 10px;
-
-  li.active {
-    padding-top: 2px;
-  }
 }
