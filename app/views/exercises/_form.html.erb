@@ -1,6 +1,6 @@
 <%= simple_form_for [@learning_object, @exercise] do |f| %>
   <%= f.input :title %>
-  <%= f.input :enunciation, :as => :text %>
+  <%= f.ckeditor :enunciation %>
   <div class="field-with-link" >
     <%= f.input :fractal do %>
       <%= f.select :fractal, Fractal.all.map { |frac| [frac.name, frac.slug] },

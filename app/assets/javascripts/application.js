@@ -40,7 +40,7 @@ $(document).ready(function() {
 
   $('.best_in_place').best_in_place();
 
-  //$('.best_in_place').bind("ajax:success", function () {}
+// $('.best_in_place').bind("ajax:success", function () {}
 //  $(".alert-message").alert()
 //  $(".tabs").button()
 //  $(".carousel").carousel()
@@ -52,11 +52,3 @@ $(document).ready(function() {
 //  $(".tooltip").tooltip
 //  $(".typeahead").typeahead()
 });
-
-
-function remove_fields(link) {
-	console.log($(link));
-	$(link).previous("input[type=hidden]").value = 1;
-	$(link).up("fields").hide();
-}
-

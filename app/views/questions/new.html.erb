@@ -1,3 +1,13 @@
-<h1>Prencha as informações sobre a questão</h1>
+<section>
+  <header>
+    <h1 class="left" >Prencha as informações sobre a questão</h1>
+    <p class="right">
+    	<%= link_to 'Voltar', [@learning_object, @exercise], :class => "btn large" %>
+    </p>
+  </header>
 
-<%= render 'form' %>
+  <article>
+    <%= render 'form' %>
+  </article>
+
+</section>

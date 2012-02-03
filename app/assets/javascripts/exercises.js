@@ -39,11 +39,6 @@ $(document).ready(function() {
           $('#sortable').disableSelection();
        }
     }
-
-    $(".toggle_fractal").click(function(){
-       console.log('oi');
-       $(".hidden-fields").toggle();
-    });
 });
 
 var observe_fields = function () {
@@ -79,31 +74,6 @@ var observe_fields = function () {
      FractalPreview.create({fractal: frac, iterations: 3}).load();
   }
 };
-
-/*var create_preview =  function () {
-   var frac = Fractal.create({name: $('#exercise_fractal_exercise_name').val(),
-                              axiom: $('#exercise_fractal_exercise_axiom').val(),
-                              constant: $('#exercise_fractal_exercise_constant').val(),
-                              angle:  $('#exercise_fractal_exercise_angle').val(),
-                              rules: rules_to_array($('#exercise_fractal_exercise_rules').val()),
-                              height: $('#exercise_fractal_exercise_height').val(),
-                              width: $('#exercise_fractal_exercise_width').val()});
-   //loadPreview(frac);
-   create_action.loadPreview(frac);
-
-   $("input").observe_field(1, function() {
-      console.log(this);
-      if (this.id == 'exercise_fractal_exercise_name') frac.setName(this.value);
-      if (this.id == 'exercise_fractal_exercise_axiom') frac.setAxiom(this.value);
-      if (this.id == 'exercise_fractal_exercise_rules') frac.setRules(rules_to_array(this.value));
-      if (this.id == 'exercise_fractal_exercise_angle') frac.setAngle(this.value);
-      if (this.id == 'exercise_fractal_exercise_width') frac.setWidth(this.value);
-      if (this.id == 'exercise_fractal_exercise_height') frac.setHeight(this.value);
-
-      frac.setIteration(0);
-      create_action.loadPreview(frac);
-   });
-}; */
 
 var show_exercise = function () {
     var exercTable = $('#exercise_table');
@@ -153,6 +123,8 @@ var show_exercise = function () {
     (function () {
        $(exercise.getTable()).find("th").each(function (index, element){
           if (index !== 0 && index !== 1){
+            console.log(this);
+
              $(this).popover();
           }
        });
