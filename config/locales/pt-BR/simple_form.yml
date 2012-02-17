@@ -24,10 +24,14 @@ pt-BR:
     hints:
       user:
         password: "Quanto mais difícil, melhor!"
+      question:
+        answer: "Deve ser uma formúla"
     placeholders:
       learning_object:
         name: "Nome do OA"
         description: "Descreva seu OA"
+      question:
+        answer: "X / 2 ^ It"
   helpers:
     submit:
       create: "Salvar %{model}"

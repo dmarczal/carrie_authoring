@@ -162,6 +162,8 @@
         password_confirmation: "Confirmação de senha"
         type: "Sou"
         school: "Escola"
+      question:
+        answer: "Resposta"
 
     errors:
       template:

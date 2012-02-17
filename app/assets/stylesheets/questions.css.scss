@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#correct { 
+#correct {
 	background: #f8ffe8; /* Old browsers */
 	background: -moz-linear-gradient(-45deg, #f8ffe8 0%, #ffffff 3%, #cdd6cd 51%, #38fc35 96%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f8ffe8), color-stop(3%,#ffffff), color-stop(51%,#cdd6cd), color-stop(96%,#38fc35)); /* Chrome,Safari4+ */
@@ -23,3 +23,8 @@
 	background: linear-gradient(-45deg, #f8ffe8 0%,#ffffff 3%,#ffc4c4 51%,#ff3838 96%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ffe8', endColorstr='#ff3838',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
+
+#questions-sort header {
+  margin-bottom: 15px;
+}
+

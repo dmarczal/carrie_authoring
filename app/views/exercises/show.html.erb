@@ -41,7 +41,7 @@
         <th data-original-title='<%= question.title %>' data-content='<%= question.enunciation %>'
           data-validate-url='<%= learning_object_exercise_question_validate_url(@learning_object, @exercise, question) %>'
           data-placement="top" rel="popover" >
-          <%= link_to question.title,
+          <%= link_to "Editar #{question.title}",
             edit_learning_object_exercise_question_path(@learning_object, @exercise, question) %>
         </th>
       <%end%>

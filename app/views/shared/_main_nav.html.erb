@@ -9,7 +9,7 @@
       <li><%= menu_link_to "Minhas turmas", learning_groups_path %></li>
       <li><%= menu_link_to "Meu perfil", edit_user_registration_path %></li>
     <% end %>
-    <li><a href="#">Ajuda</a></li>
+    <li><%= menu_link_to "Ajuda", help_index_path %></li>
     <li><a href="#">Sobre</a></li>
     <% if user_signed_in? %>
       <span class="user_logged">

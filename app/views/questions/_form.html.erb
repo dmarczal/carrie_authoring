@@ -2,8 +2,8 @@
   <%= f.input :title %>
   <%= f.input :enunciation, :as => :text %>
 
-	<%= f.input :answer %> <br />
-  <%= link_to "Ajuda na construção da fórmula", show_help_question_learning_object_exercises_path %>
+  <%= f.input :answer %>
+  <%= link_to "Ajuda na construção da fórmula", help_index_path(anchor: "formula"), target: "blank" %>
   <br />
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>
