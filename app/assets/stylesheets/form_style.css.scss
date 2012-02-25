@@ -4,6 +4,13 @@
   clear: both;
   padding-left: 0px;
 
+  .inline {
+    .input {float: left;}
+    input[type="submit"], a {
+      margin-top: 43px;
+    }
+  }
+
   .field-with-link {
     select {
       float: left;

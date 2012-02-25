@@ -1,3 +1,17 @@
 // Place all the styles related to the LearningGroups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#new_learning_group, form[id^="edit_learning_group"] {
+  input[type="text"] {
+    width: 150px;
+  }
+
+  input[type="submit"] {
+    margin-right: 10px;
+  }
+}
+
+#group_form .btn-group {
+    margin-top: 33px;
+}

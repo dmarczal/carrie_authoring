@@ -56,7 +56,7 @@ namespace :db do
         exe = oa.exercises.create!(:title => Faker::Name.title, :enunciation => Faker::Lorem.paragraphs(3).join,
                             :fractal_exercise => fractals_exerc.sample)
         3.times do |i|
-          exe.questions.create!( title: "Lado Maior #{i}", enunciation: "Enunciado #{i}")
+          exe.questions.create!( title: "Lado Maior #{i}", enunciation: "Enunciado #{i}", answer: 'X / 2 ^ It')
         end
 
       end

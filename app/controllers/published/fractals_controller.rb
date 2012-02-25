@@ -17,7 +17,12 @@ class Published::FractalsController < ApplicationController
     @pages = Kaminari.paginate_array(pages).page(params[:page]).per(1)
     @page = @pages.first
 
-    add_breadcrumb "OA #{@lo.name}", :published_fractal_path
+
+    if @page.instance_of? Introduction
+      add_breadcrumb "OA #{@lo.name} - Introdução", :published_fractal_path
+    else
+      add_breadcrumb "OA #{@lo.name} - Exercício", :published_fractal_path
+    end
   end
 
 end

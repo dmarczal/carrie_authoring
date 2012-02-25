@@ -1,5 +1,7 @@
 class Question
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   field :title, :type => String
   field :enunciation, :type => String
   field :answer, :type => String

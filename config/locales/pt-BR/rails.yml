@@ -164,6 +164,8 @@
         school: "Escola"
       question:
         answer: "Resposta"
+      learning_group:
+        code: 'Código de acesso'
 
     errors:
       template:

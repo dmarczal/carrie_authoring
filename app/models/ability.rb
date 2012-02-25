@@ -13,7 +13,7 @@ class Ability
       can :manage, Exercise
       can :manage, Question
       can :manage, Introduction
-      can :manage, LearningGroup
+      can :manage, LearningGroup, :owner_id => user.id
       can :read, :all
     elsif user.student?
       can :manage, Fractal, :user_id => user.id

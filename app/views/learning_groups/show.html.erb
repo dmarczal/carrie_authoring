@@ -1,5 +1,18 @@
-<p id="notice"><%= notice %></p>
+<section>
+  <header>
+    <h1 class="left"> Turma <%= @learning_group.name %> </h1>
 
+    <div class="btn-group right">
+      <%= link_to 'Editar', edit_learning_group_path(@fractal), class: "btn"  %>
+      <%= link_to 'Ver todos', learning_groups_path, :class => "btn" %>
+      <%= link_to 'Voltar', :back, :class => "btn" %>
+    </div>
+  </header>
 
-<%= link_to 'Edit', edit_learning_group_path(@learning_group) %> |
-<%= link_to 'Back', learning_groups_path %>
+  <article>
+    <header>
+        <h2> Alunos Matriculados</h2>
+    </header>
+  </article>
+
+</section>
