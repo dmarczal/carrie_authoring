@@ -6,27 +6,30 @@
     </p>
   </header>
 
-  <table class="table table-bordered table-striped" id="learning_objects">
-    <tr>
-      <th>Nome da turma</th>
-      <th>Código</th>
-      <th>Opções</th>
-    </tr>
+  <article>
 
-    <% @learning_groups.each do |learning_group| %>
+    <table class="table table-bordered table-striped" id="learning_objects">
       <tr>
-        <td><%= learning_group.name %></td>
-        <td><%= learning_group.code %></td>
-        <td class="list-actions">
-          <ul>
-            <li><%= link_to 'Visualizar', learning_group %></li>
-            <li><%= link_to 'Editar', edit_learning_group_path(learning_group) %></li>
-            <li><%= link_to 'Deletar', learning_group, confirm: 'Tem certeza?', method: :delete %></li>
-          </ul>
-        </td>
+        <th>Nome da turma</th>
+        <th>Código</th>
+        <th>Opções</th>
       </tr>
-    <% end %>
-  </table>
+
+      <% @learning_groups.each do |learning_group| %>
+        <tr>
+          <td><%= learning_group.name %></td>
+          <td><%= learning_group.code %></td>
+          <td class="list-actions">
+            <ul>
+              <li><%= link_to 'Visualizar', learning_group %></li>
+              <li><%= link_to 'Editar', edit_learning_group_path(learning_group) %></li>
+              <li><%= link_to 'Deletar', learning_group, confirm: 'Tem certeza?', method: :delete %></li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </article>
 </section>
 
 <section>
@@ -34,15 +37,18 @@
     <h1 class="left">Turmas que você está matriculado </h1>
   </header>
 
-  <table class="table table-bordered table-striped" id="learning_objects">
-    <tr>
-      <th>Nome da turma</th>
-    </tr>
+  <article>
 
-    <% @learning_groups.each do |learning_group| %>
+    <table class="table table-bordered table-striped" id="learning_objects">
       <tr>
-        <td><%= learning_group.name %></td>
+        <th>Nome da turma</th>
       </tr>
-    <% end %>
-  </table>
+
+      <% @learning_groups.each do |learning_group| %>
+        <tr>
+          <td><%= learning_group.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </article>
 </section>

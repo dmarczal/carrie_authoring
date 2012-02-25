@@ -10,14 +10,17 @@ class LearningGroupsController < ApplicationController
 
   def show
     @learning_group = LearningGroup.where(owner_id: current_user.id).find_by_slug(params[:id])
+    add_breadcrumb "Turma: #{@learning_group.name}", learning_group_path(@learning_groups)
   end
 
   def new
     @learning_group = LearningGroup.new(owner_id: current_user.id)
+    add_breadcrumb "Nova Turma", :new_learning_group_path
   end
 
   def edit
     @learning_group = LearningGroup.where(owner_id: current_user.id).find_by_slug(params[:id])
+    add_breadcrumb "Editar #{@learning_group.name}", edit_learning_group_path(@learning_groups)
   end
 
   def create
@@ -28,6 +31,7 @@ class LearningGroupsController < ApplicationController
       if @learning_group.save
         format.html { redirect_to @learning_group, notice: 'Turma cadastrada com sucesso' }
       else
+        add_breadcrumb "Nova Turma", :new_learning_group_path
         format.html { render action: "new" }
       end
     end
@@ -40,6 +44,7 @@ class LearningGroupsController < ApplicationController
       if @learning_group.update_attributes(params[:learning_group])
         format.html { redirect_to @learning_group, notice: 'Turma atualizada com sucesso' }
       else
+        add_breadcrumb "Editar #{@learning_group.name}", edit_learning_group_path(@learning_groups)
         format.html { render action: "edit" }
       end
     end
