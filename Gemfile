@@ -15,7 +15,9 @@ gem 'redcarpet'
 gem 'mongoid_slug'
 gem 'kaminari'
 
-gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem "twitter-bootstrap-rails", "~> 2.0rc0"
+
+
 
 gem 'faker'
 gem "thin"
