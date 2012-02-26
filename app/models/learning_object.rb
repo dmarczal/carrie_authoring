@@ -22,4 +22,8 @@ class LearningObject
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, options)
     markdown.render(self.description).html_safe
   end
+
+  def token_inputs
+    { :id => _id, :name => name }
+  end
 end

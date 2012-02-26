@@ -1,0 +1,26 @@
+<section>
+    <header>
+      <h1 class="left"> Minhas Turmas</h1>
+      <p class="right">
+        <%= link_to 'Todos as turmas', all_groups_learning_groups_path, class: 'btn' %>
+      </p>
+    </header>
+
+    <article>
+      <table class="table table-striped table-bordered table-condensed">
+        <tr>
+          <th>Nome</th>
+          <th>Professor</th>
+        </tr>
+        <% for group in @learning_groups do %>
+           <tr>
+             <td><%= group.name %></td>
+             <td><%= creator(group.owner) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </article>
+</section>
+
+
+

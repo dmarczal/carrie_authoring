@@ -1,3 +1,4 @@
+#encoding: utf-8
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -45,6 +46,18 @@ class User
     else
       self.type
     end
+  end
+
+  def name
+    unless super.blank?
+      super
+    else
+      I18n.translate('mongoid.attributes.user.unknown')
+    end
+  end
+
+  def has_name?
+    not @name.blank?
   end
 
 end

@@ -1,3 +1,18 @@
-<h1>Editar turma</h1>
+<section>
+    <header>
+      <h1 class="left">Editar turma</h1>
+      <div class="btn-toolbar right">
+        <div class="btn-group">
+          <% unless @learning_group.new_record? %>
+            <%= link_to 'Visualizar', learning_group_path(@learning_group),
+              :class => "btn" %>
+          <% end %>
+          <%= link_to 'Ver todos', learning_groups_path, :class => "btn" %>
+          <%= link_to 'Voltar', :back, :class => "btn" %>
+        </div>
+      </div>
+    </header>
 
-<%= render 'form' %>
+    <%= render 'form' %>
+</section>
+

@@ -1,0 +1,38 @@
+<section id="all_groups">
+    <header>
+      <h1 class="left"> Todas Turmas</h1>
+      <p class="right">
+        <%= link_to 'Voltar', :back, class: 'btn' %>
+      </p>
+    </header>
+
+    <article>
+      <table class="table table-striped table-bordered table-condensed">
+        <tr>
+          <th>Nome</th>
+          <th>Professor</th>
+          <th>Matricule-se</th>
+        </tr>
+        <% for group in @learning_groups do %>
+           <tr>
+             <td><%= group.name %></td>
+             <td><%= creator(group.owner) %></td>
+             <td id="<%= group.slug %>">
+               <% unless group.users.include? current_user %>
+                 <%= form_tag learning_group_enroll_path(group), :method => 'post',
+                   class: 'form-inline', remote: true do %>
+                   <%= label_tag 'Código: ' %>
+                   <%= text_field_tag :group_code, nil, class: "input", placeholder: "código de registro" %>
+                   <span></span>
+                   <%= submit_tag "Registrar", name: nil, class: "btn btn-primary" %>
+                 <% end %>
+               <% else %>
+                 Matriculado
+               <% end %>
+             </td>
+           </tr>
+        <% end %>
+      </table>
+    </article>
+
+</section>

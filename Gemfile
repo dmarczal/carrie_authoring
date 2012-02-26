@@ -16,8 +16,7 @@ gem 'mongoid_slug'
 gem 'kaminari'
 
 gem "twitter-bootstrap-rails", "~> 2.0rc0"
-
-
+gem 'gravatar_image_tag'
 
 gem 'faker'
 gem "thin"

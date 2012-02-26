@@ -1,3 +1,4 @@
+#encoding: utf-8
 class LearningGroup
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -6,6 +7,9 @@ class LearningGroup
   field :code, :type => String
   field :name, :type => String
   field :owner_id, :type => Integer
+
+  attr_reader :learning_object_tokens
+  attr_accessible :learning_object_tokens
 
   slug :name
 
@@ -16,8 +20,25 @@ class LearningGroup
   validates_uniqueness_of :name
 
 
+  def learning_object_tokens=(ids)
+    self.learning_object_ids = ids.split(",")
+    puts "-----"
+    p ids
+  end
+
   def owner
     User.find(self.owner_id)
   end
 
+  def enroll(user, code)
+    if code == self.code
+      self.errors.messages.delete :enroll
+      unless self.users.include?(user)
+        self.users << user
+        self.save
+      end
+    else
+      self.errors.messages[:enroll] = I18n.translate('mongoid.errors.messages.invalid')
+    end
+  end
 end

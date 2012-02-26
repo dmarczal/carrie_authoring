@@ -7,6 +7,13 @@ class LearningObjectsController < ApplicationController
 
   def index
     @learning_objects = current_user.learning_objects.page(params[:page]).per(6)
+
+    if params[:q]
+      @lo_json = current_user.learning_objects.where.where(name: /#{params[:q]}/i)
+      respond_to do |format|
+        format.json { render :json => @lo_json.map(&:token_inputs) }
+      end
+    end
   end
 
   def show

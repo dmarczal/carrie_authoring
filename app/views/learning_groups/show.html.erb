@@ -1,6 +1,6 @@
 <section>
   <header>
-    <h1 class="left"> Turma <%= @learning_group.name %> </h1>
+    <h1 class="left"> Turma: <%= @learning_group.name %> </h1>
 
     <div class="btn-group right">
       <%= link_to 'Editar', edit_learning_group_path(@fractal), class: "btn"  %>
@@ -11,8 +11,47 @@
 
   <article>
     <header>
+        <h2> Objetos de Aprendizagem Cadastrados</h2>
+    </header>
+
+    <table class="table table-bordered table-striped" id="learning_objects">
+      <tr>
+        <th>Objeto de Aprendizagem</th>
+        <th>Ver em modo publicado</th>
+      </tr>
+
+      <% @learning_objects.each do |lo| %>
+        <tr>
+          <td><%= lo.name %></td>
+          <td><%= link_to 'Ver em modo publicado', published_fractal_path(lo) %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  </article>
+  <article>
+    <header>
         <h2> Alunos Matriculados</h2>
     </header>
+
+    <table class="table table-bordered table-striped" id="learning_objects">
+      <tr>
+        <th>Aprendiz</th>
+        <th>Email</th>
+        <th class="gravatar">Gravatar</th>
+      </tr>
+
+      <% @learning_group.users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td class="gravatar">
+            <%= gravatar_image_tag(user.email, :alt => "#{user.name}", gravatar: { size: 30 })   %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
   </article>
 
 </section>

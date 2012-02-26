@@ -6,13 +6,18 @@
     <% end %>
     <li><%= menu_link_to "Fractals", fractals_path %></li>
     <% if user_signed_in? %>
-      <li><%= menu_link_to "Minhas turmas", learning_groups_path %></li>
+      <% if current_user.professor? %>
+        <li><%= menu_link_to "Minhas turmas", learning_groups_path %></li>
+      <% elsif current_user.student? %>
+        <li><%= menu_link_to "Minhas turmas", my_groups_learning_groups_path %></li>
+      <% end %>
       <li><%= menu_link_to "Meu perfil", edit_user_registration_path %></li>
     <% end %>
     <li><%= menu_link_to "Ajuda", help_index_path %></li>
     <li><a href="#">Sobre</a></li>
     <% if user_signed_in? %>
       <span class="user_logged">
+        <%= gravatar_image_tag(current_user.email, :alt => "#{current_user.name}",  gravatar: { size: 25 }) %>
         <%= current_user.email %>
         <%= link_to 'Sair', destroy_user_session_path, :method => "delete", :class => "btn medium" %>
       </span>

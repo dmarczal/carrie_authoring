@@ -2,14 +2,16 @@
 class LearningGroupsController < ApplicationController
 
   load_and_authorize_resource find_by: :slug
-  add_breadcrumb "Turmas", :learning_groups_path
+  before_filter :breadcrumb
 
   def index
     @learning_groups = LearningGroup.where(owner_id: current_user.id)
+    @my_groups = current_user.learning_groups
   end
 
   def show
     @learning_group = LearningGroup.where(owner_id: current_user.id).find_by_slug(params[:id])
+    @learning_objects = @learning_group ? @learning_group.learning_objects : []
     add_breadcrumb "Turma: #{@learning_group.name}", learning_group_path(@learning_groups)
   end
 
@@ -59,24 +61,23 @@ class LearningGroupsController < ApplicationController
     end
   end
 
-#  def matriculate
-#    @learning_group = LearningGroup.find_by_slug(params[:learning_group_id])
-#    add_breadcrumb "Matricular na turma #{@learning_group.name}", :learning_group_matriculate_path
-#  end
-#
-#  def matriculate_user
-#    puts params
-#    @learning_group = LearningGroup.find_by_slug(params[:learning_group_id])
-#
-#    if @learning_group.code == params[:code]
-#      @learning_group.user_ids += [current_user.id.to_s]
-#      @learning_group.save
-#      current_user.learning_group_ids += [@learning_group.id.to_s]
-#      current_user.save
-#      redirect_to learning_groups_path, :notice => "Matriculado na turma #{@learning_group.name}"
-#    else
-#      flash[:alert] = "Código errado"
-#      redirect_to learning_group_matriculate_path(@learning_group)
-#    end
-#  end
+  def my_groups
+    add_breadcrumb "Minhas Turmas", :all_groups_learning_groups_path
+    @learning_groups = current_user.learning_groups
+  end
+
+  def all_groups
+    add_breadcrumb "Todas turmas", :all_groups_learning_groups_path
+    @learning_groups = LearningGroup.all
+  end
+
+  def enroll
+    @learning_group = LearningGroup.find_by_slug(params[:learning_group_id])
+    @learning_group.enroll(current_user, params[:group_code])
+  end
+
+private
+  def breadcrumb
+    add_breadcrumb "Turmas", :learning_groups_path if current_user.professor?
+  end
 end

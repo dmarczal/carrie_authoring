@@ -2,7 +2,7 @@
 *= require twitter/bootstrap
 *= require bootstrap.css.less
 *= require form_style
-*= require jquery-ui/jquery-ui.css
+*= require_tree ./jquery-ui
 *= require best_in_place
 *= require fractals
 *= require exercises
@@ -78,9 +78,18 @@ section{
 .user_logged {
   float: right;
   margin-right: 0px;
+  img {
+    float: left;
+    margin-right: 2px;
+    margin-top: 2px;
+  }
 }
 
 #navigation {
   margin-top: 10px;
 }
 
+th.gravatar, td.gravatar {
+  width: 50px;
+  text-align: center;
+}

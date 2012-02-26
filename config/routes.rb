@@ -4,14 +4,14 @@ Carrie_mongodb::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
   resources :learning_groups do
-    get :matriculate_user
-    get :matriculate
+    post :enroll
+    get 'my_groups', action: :my_groups, :on => :collection
+    get 'all_groups', action: :all_groups, :on => :collection
   end
 
   devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
-
 
   resources :learning_objects do
     resources :introductions

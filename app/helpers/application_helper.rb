@@ -1,3 +1,4 @@
+# encoding: utf-8
 module ApplicationHelper
   def markdown(text)
     options = {:hard_wrap => true, :filter_html => true, :autolink => true,
@@ -57,6 +58,14 @@ module ApplicationHelper
     if can?(:create, object)
       object_class = (object.kind_of?(Class) ? object : object.class)
       link_to(content, [:new, object_class.name.underscore.to_sym])
+    end
+  end
+
+  def creator(user)
+    if user && user.has_name?
+        user.name
+    else
+      user.email
     end
   end
 end

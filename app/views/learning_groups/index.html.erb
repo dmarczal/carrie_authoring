@@ -1,11 +1,11 @@
 <section>
   <header>
-    <h1 class="left">Turmas criadas por você</h1>
-    <p class="right">
+    <h1 class="left">Turmas que criei</h1>
+    <div class="btn-group right">
       <%= link_to 'Nova turma', new_learning_group_path, :class => "btn"%>
-    </p>
+      <%= link_to 'Todos as turmas', all_groups_learning_groups_path, class: 'btn' %>
+    </div>
   </header>
-
   <article>
 
     <table class="table table-bordered table-striped" id="learning_objects">
@@ -34,7 +34,7 @@
 
 <section>
   <header>
-    <h1 class="left">Turmas que você está matriculado </h1>
+    <h1 class="left">Turmas que estou está matriculado </h1>
   </header>
 
   <article>
@@ -42,11 +42,13 @@
     <table class="table table-bordered table-striped" id="learning_objects">
       <tr>
         <th>Nome da turma</th>
+        <th>Professor</th>
       </tr>
 
-      <% @learning_groups.each do |learning_group| %>
+      <% @my_groups.each do |group| %>
         <tr>
-          <td><%= learning_group.name %></td>
+          <td><%= group.name %></td>
+          <td><%= creator(group.owner) %></td>
         </tr>
       <% end %>
     </table>

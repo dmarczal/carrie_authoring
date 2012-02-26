@@ -1,0 +1,10 @@
+<% if @learning_group.errors.messages.empty? %>
+  $("span").removeClass('highlight');
+  $("#<%= @learning_group.slug %>").hide();
+  $("#<%= @learning_group.slug %>").html("<span class='highlight'>Matriculado</span>");
+  $("#<%= @learning_group.slug %>").fadeIn('slow');
+<% else %>
+  error = $("#<%= @learning_group.slug %> span");
+  error.addClass("alert alert-error");
+  error.html("<%= @learning_group.errors.messages[:enroll] %>");
+<% end %>

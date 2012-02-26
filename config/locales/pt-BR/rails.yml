@@ -162,10 +162,13 @@
         password_confirmation: "Confirmação de senha"
         type: "Sou"
         school: "Escola"
+        unknown: "Não definido"
+        user_type: "Tipo de usuário"
       question:
         answer: "Resposta"
       learning_group:
         code: 'Código de acesso'
+        learning_object_tokens: 'Objetos de aprendizagem'
 
     errors:
       template:
@@ -195,3 +198,4 @@
         odd: "precisa ser ímpar"
         even: "precisa ser par"
         record_invalid: "possui erros: %{errors}"
+
