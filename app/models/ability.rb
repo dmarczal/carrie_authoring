@@ -14,6 +14,7 @@ class Ability
       can :manage, Question
       can :manage, Introduction
       can :manage, LearningGroup, :owner_id => user.id
+      can :manage, [Ckeditor::Asset, Ckeditor::AttachmentFile, Ckeditor::Picture]
       can :read, :all
     elsif user.student?
       can :manage, Fractal, :user_id => user.id

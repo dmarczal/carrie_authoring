@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails", "3.1.1"
+gem "rails", "3.2.1"
 gem "mongoid"
 gem "bson_ext"
 gem "simple_form"
@@ -21,13 +21,12 @@ gem 'gravatar_image_tag'
 gem 'faker'
 gem "thin"
 
-gem "ckeditor", "3.7.0.rc1"
+gem "ckeditor", "3.7.0.rc3"
 gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
 
 group :assets do
-  gem 'sass-rails'
-#  gem 'coffee-rails'
-  gem 'uglifier'
+  gem 'sass-rails', "~> 3.2.3"
+  gem 'uglifier', ">= 1.0.3"
   gem 'spine-rails'
   gem 'eco'
 end

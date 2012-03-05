@@ -14,7 +14,7 @@
 //= require lsystem/jquery.lsystem
 //= require lsystem/jquery.observe_field
 
-//= require ckeditor/ckeditor
+//= require ckeditor/init
 //= require calculator/calculator
 
 //= require_self
