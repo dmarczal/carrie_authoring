@@ -1,0 +1,26 @@
+<section>
+  <header>
+    <h1> Turma: <%= @learning_group.name %> </h1>
+  </header>
+
+  <article>
+    <header>
+        <h2> Objetos de Aprendizagem</h2>
+    </header>
+
+    <table class="table table-bordered table-striped" id="learning_objects">
+      <tr>
+        <th>Objeto de Aprendizagem</th>
+        <th>Ver</th>
+      </tr>
+
+      <% @learning_group.learning_objects.each do |lo| %>
+        <tr>
+          <td><%= lo.name %></td>
+          <td><%= link_to 'Ver', published_fractal_path(lo) %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  </article>
+</section>

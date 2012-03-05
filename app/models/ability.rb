@@ -17,7 +17,7 @@ class Ability
       can :read, :all
     elsif user.student?
       can :manage, Fractal, :user_id => user.id
-      can [:my_groups, :all_groups, :enroll], LearningGroup
+      can [:my_groups, :all_groups, :enroll, :my_group], LearningGroup
     else
       can :read, Fractal
     end

@@ -1,16 +1,1 @@
-<section>
-  <header>
-    <h1> OA <%= @lo.name %> </h1>
-  </header>
 
-  <% if @page.instance_of? Introduction %>
-    <%= render 'introduction' %>
-  <% else %>
-    <%= render 'exercise' %>
-  <% end %>
-
-  <%= paginate @pages, :theme => 'lo_pagination' %>
-  <div>
-    <%= raw( page_entries_info @pages )%>
-  </div>
-</section>

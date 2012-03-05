@@ -62,8 +62,12 @@ class LearningGroupsController < ApplicationController
   end
 
   def my_groups
-    add_breadcrumb "Minhas Turmas", :all_groups_learning_groups_path
     @learning_groups = current_user.learning_groups
+  end
+
+  def my_group
+    @learning_group = current_user.learning_groups.find_by_slug(params[:id])
+    add_breadcrumb "Turma #{@learning_group.name}", :my_group_learning_group_path
   end
 
   def all_groups
@@ -78,6 +82,10 @@ class LearningGroupsController < ApplicationController
 
 private
   def breadcrumb
-    add_breadcrumb "Turmas", :learning_groups_path if current_user.professor?
+    if current_user.professor?
+      add_breadcrumb "Turmas", :learning_groups_path
+    else
+      add_breadcrumb "Minhas Turmas", :my_groups_learning_groups_path
+    end
   end
 end
