@@ -1,4 +1,4 @@
-"pt-BR":
+"pt-br":
   views:
     pagination:
       first: "&laquo; Primeiro"
@@ -169,6 +169,8 @@
       learning_group:
         code: 'Código de acesso'
         learning_object_tokens: 'Objetos de aprendizagem'
+      introduction:
+        content: "Conteúdo"
 
     errors:
       template:

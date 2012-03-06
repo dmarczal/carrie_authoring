@@ -1,4 +1,4 @@
-pt-BR:
+pt-br:
   errors:
     messages:
       expired: "sessão expirada"
@@ -36,9 +36,13 @@ pt-BR:
       confirmed: 'Sua conta foi confirmada com sucesso. Agora você está conectado.'
     registrations:
       signed_up: 'Bem-vindo! Login realizado com sucesso.'
-      inactive_signed_up: 'Login realizado com sucesso. No entanto, não pudemos autenticar você porque sua conta está %{reason}.'
       updated: 'A sua conta foi atualizada com sucesso.'
       destroyed: 'Adeus! A sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
+      signed_up_but_unconfirmed: 'Uma mensagem com um link de confirmação foi enviado para seu endereço de e-mail. Por favor, abra o link para ativar sua conta. '
+      signed_up_but_inactive: "Você se inscreveu com êxito. No entanto, não poderia assinar em você porque a sua conta ainda não está ativado. "
+      signed_up_but_locked: "Você se inscreveu com êxito. No entanto, não poderia assinar em você porque a sua conta está bloqueada. "
+
+
     unlocks:
       send_instructions: 'Em alguns minutos, você receberá um email com instruções de desbloqueio da sua conta.'
       unlocked: 'A sua conta foi desbloqueada com sucesso. Agora você está conectado.'

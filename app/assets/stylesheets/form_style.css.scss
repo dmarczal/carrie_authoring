@@ -49,7 +49,7 @@
     margin-right: 5px;
   }
 
-  input[type="text"], input[type="password"], input[type="email"],  textarea {
+  input[type="text"], input[type="password"], input[type="email"], textarea, .ckeditor {
     width: 90%;
     display: block;
     clear: both;
@@ -66,18 +66,18 @@
     margin-top: 9px;
   }
 
-  div.radio {
+  div.radio_buttons {
     input[type="radio"] {
       width: 20px;
     }
     label {
       padding-left: 0px;
-      margin-left: -15px;
+      margin-left: 0px;
     }
     span {
       float: left;
       input, label {
-        margin-right: 25px;
+        margin-right: 20px;
       }
       label {
         margin-left: 5px;
@@ -137,7 +137,7 @@
     }
   }
   span.info {
-    margin-left: 170px;
+    float: right;
     font-size: smaller;
   }
 }

@@ -15,11 +15,13 @@
       <%= prev_page_tag  %>
       <%= first_page_tag  %>
 
-      <li class='active'> <%= _select %> </li>
+      <li class='active'>
+        <%= _select %>
+      </li>
 
       <%= last_page_tag  %>
       <%= next_page_tag %>
     </ul>
-    <span class="clear info"> Mostrando a página <%= current_page %> de <%= num_pages %> </span>
+    <span class="info"> Mostrando a página <%= current_page %> de <%= num_pages %> </span>
   </nav>
 <% end -%>

@@ -14,7 +14,6 @@
 //= require lsystem/jquery.lsystem
 //= require lsystem/jquery.observe_field
 
-//= require ckeditor/init
 //= require calculator/calculator
 
 //= require_self
@@ -29,6 +28,7 @@
 //= require best_in_place
 
 //= require published/fractals
+//= require ckeditor/init
 
 $(document).ready(function() {
   function request_info (){

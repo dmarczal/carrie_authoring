@@ -14,13 +14,13 @@ class Ability
       can :manage, Question
       can :manage, Introduction
       can :manage, LearningGroup, :owner_id => user.id
-      can :manage, [Ckeditor::Asset, Ckeditor::AttachmentFile, Ckeditor::Picture]
       can :read, :all
     elsif user.student?
       can :manage, Fractal, :user_id => user.id
       can [:my_groups, :all_groups, :enroll, :my_group], LearningGroup
     else
       can :read, Fractal
+      can [:index], Ckeditor::Asset
     end
 
     # Define abilities for the passed in user here. For example:

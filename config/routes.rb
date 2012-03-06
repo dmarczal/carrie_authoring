@@ -13,8 +13,6 @@ Carrie_mongodb::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
 
-  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
-
   resources :learning_objects do
     resources :introductions
     resources :exercises do

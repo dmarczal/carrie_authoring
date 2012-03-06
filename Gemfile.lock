@@ -60,10 +60,6 @@ GEM
       orm_adapter (~> 0.0.6)
     cocaine (0.2.1)
     coderay (1.0.5)
-    coffee-script (2.2.0)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.2.0)
     commonjs (0.2.0)
       therubyracer (~> 0.9.9)
     daemons (1.1.8)
@@ -74,11 +70,6 @@ GEM
       railties (~> 3.1)
       warden (~> 1.1.1)
     diff-lcs (1.1.3)
-    eco (1.0.0)
-      coffee-script
-      eco-source
-      execjs
-    eco-source (1.1.0.rc.1)
     em-websocket (0.3.6)
       addressable (>= 2.1.1)
       eventmachine (>= 0.12.9)
@@ -209,8 +200,6 @@ GEM
       actionpack (~> 3.0)
       activemodel (~> 3.0)
     slop (2.4.4)
-    spine-rails (0.1.0)
-      rails (>= 3.1.0)
     spork (0.9.0)
     sprockets (2.1.2)
       hike (~> 1.2)
@@ -255,7 +244,6 @@ DEPENDENCIES
   ckeditor (= 3.7.0.rc3)
   database_cleaner
   devise
-  eco
   fabrication
   faker
   gravatar_image_tag
@@ -274,7 +262,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   simple_form
-  spine-rails
   spork (~> 0.9.0.rc9)
   thin
   truncate_html (~> 0.5.1)

@@ -22,9 +22,12 @@ p.mid {
   }
 
   .button {
-    float: right;
-    margin-top: 40px;
-    margin-right: 0px;
+    float: left;
+    margin-top: 43px;
+  }
+
+  div.field_with_hint {
+    clear:both;
   }
 
   #fractal_angle {width: 40px;}
