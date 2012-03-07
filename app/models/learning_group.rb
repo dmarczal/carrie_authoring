@@ -9,7 +9,7 @@ class LearningGroup
   field :owner_id, :type => Integer
 
   attr_reader :learning_object_tokens
-  attr_accessible :learning_object_tokens
+  attr_accessible :learning_object_tokens, :name, :code, :owner_id
 
   slug :name
 
@@ -19,11 +19,8 @@ class LearningGroup
   validates_presence_of :name, :code
   validates_uniqueness_of :name
 
-
   def learning_object_tokens=(ids)
     self.learning_object_ids = ids.split(",")
-    puts "-----"
-    p ids
   end
 
   def owner
