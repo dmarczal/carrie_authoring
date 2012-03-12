@@ -18,6 +18,7 @@ class Exercise
   validates_uniqueness_of :title
 
   before_create :set_position
+  after_save :update_questions_answers
 
   def markdown_desc
     options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
@@ -28,6 +29,11 @@ class Exercise
     fractal_exercise
   end
 
+  def tokens
+    _questions = questions.order_by([[ :position, :asc ]]).map {|question| question.tokens }
+    {length: self.questions.length, questions: _questions}
+  end
+
 private
   def set_position
     lo = learning_object.exercises.order_by([[ :position, :desc ]])
@@ -36,5 +42,9 @@ private
     else
       self.position= lo.first.position + 1
     end
+  end
+  # needs update questions answers as iterations
+  def update_questions_answers
+      self.questions.each {|question| question.update_answers}
   end
 end

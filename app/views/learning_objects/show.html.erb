@@ -7,7 +7,7 @@
       <div class="btn-group">
         <%= link_to 'Ver Todos', learning_objects_path, :class => "btn" %>
         <%= link_to 'Editar', edit_learning_object_path(@learning_object), :class => "btn" %>
-        <%= link_to 'Modo publicado', published_fractal_path(@learning_object_path), :class => "btn" %>
+        <%= link_to 'Modo publicado', preview_published_fractal_path(@learning_object), :class => "btn" %>
       </div>
     </div>
 

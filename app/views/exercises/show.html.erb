@@ -26,33 +26,37 @@
   <article>
 
     <table id="exercise_table" class="table table-bordered" data-fractal="<%= @fractal.to_json %>"
-      data-questions="<%= @questions.to_json %>" data-id="<%= @exercise.slug %>"
+      data-questions="<%= @exercise.tokens.to_json %>" data-id="<%= @exercise.slug %>"
       fractal-update-url= "<%= update_fractal_size_learning_object_exercises_url %>"
-      data-oa-id="<%= @learning_object.slug %>"
-      >
+      data-oa-id="<%= @learning_object.slug %>" >
       <thead>
         <tr>
-          <th title="Iterações" data-content='Iteração' data-placement="above" rel="popover" >
+          <th>
             Número de Iterações: <%= @fractal.iterations %>
           </th>
-         <th title="Fractal" data-content='Fractal' data-placement="above" rel="popover" >
-          Fractal: <%= @fractal.name %>
-        </th>
-      <% @questions.each do |question| %>
-        <th data-original-title='<%= question.title %>' data-content='<%= question.enunciation %>'
-          data-validate-url='<%= learning_object_exercise_question_validate_url(@learning_object, @exercise, question) %>'
-          data-placement="top" rel="popover" >
-          <%= link_to "Editar #{question.title}",
-            edit_learning_object_exercise_question_path(@learning_object, @exercise, question) %>
-        </th>
-      <%end%>
-    </tr>
-  </thead>
-  <tbody id='abody'>
-  </tbody>
-</table>
+          <th>Fractal: <%= @fractal.name %></th>
+        <% @questions.each do |question| %>
+          <th data-original-title='<%= question.title %>' data-content='<%= question.enunciation %>'
+            data-verify-answer-url='<%= learning_object_exercise_question_verify_answer_path(@learning_object,
+                                                                                             @exercise,
+                                                                                             question) %>'
+            data-placement="top" rel="popover" >
+            <p>
+              <%= question.title %>
+            </p>
+            <%= link_to "Editar",
+              edit_learning_object_exercise_question_path(@learning_object, @exercise, question) %>
+            |
+            <%= link_to 'Remover',
+              [@learning_object, @exercise, question], confirm: 'Tem certeza?', method: :delete %>
+            </th>
+          <%end%>
+        </tr>
+      </thead>
+      <tbody id='abody'>
+      </tbody>
+    </table>
   </article>
 
   <div id="dialog-calc" > <%= render "calculator" %> </div>
-
 </section>

@@ -20,7 +20,6 @@ pt-br:
       password: "Sua senha"
       username: "Usuário"
       email: "E-mail"
-
     hints:
       user:
         password: "Quanto mais difícil, melhor!"
@@ -32,6 +31,11 @@ pt-br:
         description: "Descreva seu OA"
       question:
         answer: "X / 2 ^ It"
+    options:
+      question:
+        "yes": "Simmm"
+        "no": "Nãooo"
+
   helpers:
     submit:
       create: "Salvar %{model}"

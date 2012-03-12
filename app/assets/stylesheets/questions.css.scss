@@ -2,29 +2,68 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#correct {
-	background: #f8ffe8; /* Old browsers */
-	background: -moz-linear-gradient(-45deg, #f8ffe8 0%, #ffffff 3%, #cdd6cd 51%, #38fc35 96%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f8ffe8), color-stop(3%,#ffffff), color-stop(51%,#cdd6cd), color-stop(96%,#38fc35)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(-45deg, #f8ffe8 0%,#ffffff 3%,#cdd6cd 51%,#38fc35 96%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(-45deg, #f8ffe8 0%,#ffffff 3%,#cdd6cd 51%,#38fc35 96%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(-45deg, #f8ffe8 0%,#ffffff 3%,#cdd6cd 51%,#38fc35 96%); /* IE10+ */
-	background: linear-gradient(-45deg, #f8ffe8 0%,#ffffff 3%,#cdd6cd 51%,#38fc35 96%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ffe8', endColorstr='#38fc35',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-}
-
-#wrong {
-	background: #f8ffe8; /* Old browsers */
-	background: -moz-linear-gradient(-45deg, #f8ffe8 0%, #ffffff 3%, #ffc4c4 51%, #ff3838 96%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f8ffe8), color-stop(3%,#ffffff), color-stop(51%,#ffc4c4), color-stop(96%,#ff3838)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(-45deg, #f8ffe8 0%,#ffffff 3%,#ffc4c4 51%,#ff3838 96%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(-45deg, #f8ffe8 0%,#ffffff 3%,#ffc4c4 51%,#ff3838 96%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(-45deg, #f8ffe8 0%,#ffffff 3%,#ffc4c4 51%,#ff3838 96%); /* IE10+ */
-	background: linear-gradient(-45deg, #f8ffe8 0%,#ffffff 3%,#ffc4c4 51%,#ff3838 96%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ffe8', endColorstr='#ff3838',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-}
-
 #questions-sort header {
   margin-bottom: 15px;
 }
 
+#questions-form table {
+  margin-top: 25px;
+  width: 90%;
+  td {
+    vertical-align: middle;
+    text-align: center;
+
+    span.radio + span.error {
+      margin-top: 10px;
+    }
+  }
+}
+table {height:100%}
+
+td.calculator {
+  vertical-align: top;
+  position: relative;
+  height:100%;
+  padding-bottom: 20px;
+
+  span.text-in-border {
+    position: relative;
+    background-color: white;
+    top: 12px;
+    left: -30%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.exercise tr:hover {
+  span.text-in-border {
+    background-color: inherit;
+  }
+}
+
+.wrong-answer, .right-answer {
+  height: 95%;
+  display: table;
+  width: 97%;
+  div {
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.wrong-answer *, .right-answer * {
+  vertical-align: middle;
+}
+
+.wrong-answer {
+  border: 5px solid red;
+}
+
+.wrong-answer + span {
+  color: red;
+}
+.right-answer {
+  border: 5px solid green;
+}

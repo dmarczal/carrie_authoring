@@ -5,7 +5,7 @@ $(document).ready(function() {
     if (request.controller == "exercises") {
        if (request.action == "show") {
 
-          $("#dialog-calc").hide();
+ /*         $("#dialog-calc").hide();
           $("#dialog:ui-dialog" ).dialog( "destroy" );
           $("#dialog-calc" ).dialog({
             autoOpen: false,
@@ -18,10 +18,11 @@ $(document).ready(function() {
                 $(this).dialog("close");
               }
             }*/
-            close: function() {
+       /*     close: function() {
               $("input.input").val("");
             }
           });
+       */
           show_exercise();
        } else if (request.action == "new" || request.action === "create") {
           observe_fields();
@@ -123,8 +124,6 @@ var show_exercise = function () {
     (function () {
        $(exercise.getTable()).find("th").each(function (index, element){
           if (index !== 0 && index !== 1){
-            console.log(this);
-
              $(this).popover();
           }
        });
@@ -177,9 +176,18 @@ var Exercise = Exercise || {
       }
     };
 
+    /*
+     * Create the questions
+     * some questions can have set answers define by attribute ask
+     */
     var createQuestions = function (row, index) {
        for(var i = 0; i < that.questions.length; i++){
-          row.append($('<td data-row=' + index +' data-col=' + new Number(i+2) +' onClick="openDialog($(this))" >'));
+          var answer = that.questions.questions[i].answers[index];
+          var calculator = answer.ask == true ? "calculator" : "";
+          var td = $('<td data-row=' + index +' data-col=' + new Number(i+2)
+                     +' class="' + calculator +'" data-answer-id="'+ answer.id +'">');
+          $(td).html(answer.response);
+          row.append(td);
        }
     };
 
@@ -194,7 +202,7 @@ var Exercise = Exercise || {
   }
 };
 
-
+/*
 var row;
 var col;
 var openDialog = function(element) {
@@ -202,5 +210,5 @@ var openDialog = function(element) {
   col = element.data('col');
   formula = "";
   $("#dialog-calc" ).dialog( "open");
-
 }
+*/

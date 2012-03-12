@@ -30,6 +30,11 @@ class LearningObject
     pages = intro + exer
   end
 
+  def pages_with_name
+    c = 0;
+    self.pages.map {|page| ["#{page.class.model_name.human} #{c+=1}: #{page.title}", c]}
+  end
+
   def token_inputs
     { :id => _id, :name => name }
   end

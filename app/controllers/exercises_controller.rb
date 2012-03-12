@@ -38,7 +38,7 @@ class ExercisesController < ApplicationController
     add_breadcrumb "Editar Exercício #{@exercise.title}", :edit_learning_object_exercise_path
     respond_to do |format|
       if @exercise.save
-        format.html { redirect_to(@learning_object,
+        format.html { redirect_to([@learning_object, @exercise],
                                   notice: "As informações do Exercício #{@exercise.title} foram atualizadas.") }
       else
         format.html { render :edit }

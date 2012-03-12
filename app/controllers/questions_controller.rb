@@ -7,11 +7,13 @@ class QuestionsController < ApplicationController
 
   def new
     @question = @exercise.questions.new
+    @question.load_answers
     add_breadcrumb "Nova questão", :new_learning_object_exercise_question_path
   end
 
   def create
     @question = @exercise.questions.new(params[:question])
+    @question.answers.each_with_index {|answer, i| answer.iteration=i}
     if @question.save
       redirect_to [@learning_object, @exercise], :notice => "Questão criada com sucesso"
     else
@@ -20,14 +22,10 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
-    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
     @question  = @exercise.questions.find(params[:id])
   end
 
   def update
-    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
-    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
     @question  = @exercise.questions.find(params[:id])
 
     respond_to do |format|
@@ -41,13 +39,22 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    @question  = @exercise.questions.find(params[:id])
+
+    @question.destroy
+    redirect_to [@learning_object, @exercise ], notice: "Questão deletada com sucesso"
+  end
+
+  # validates @depreced
+  # Remover this method
   def validate
     @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
     @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
     @question  = @exercise.questions.find(params[:question_id])
 
     respond_to do |format|
-      if CorrectAnswer.eql?(@question.answer, params[:answer], params[:first], params[:row], 
+      if CorrectAnswer.eql?(@question.answer, params[:answer], params[:first], params[:row],
                             @exercise.fractal_exercise.infinite, params[:size], params[:rawFormula],
                             params[:row])
         format.json { render :json => true }
@@ -57,9 +64,16 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def verify_answer
+    @question  = @exercise.questions.find(params[:question_id])
 
-  def show_form_help
-    render :help
+    respond_to do |format|
+      if @question.correct_answer?(params[:answer_id], params[:response])
+        format.json { render :json => true }
+      else
+        format.json { render :json => false }
+      end
+    end
   end
 
   private

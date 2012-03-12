@@ -3,7 +3,7 @@
   <td><%= learning_object.description %></td>
   <td class="list-actions">
     <ul>
-      <li><%= link_to 'Ver em modo publicado', published_fractal_path(learning_object) %></li>
+      <li><%= link_to 'Ver em modo publicado', preview_published_fractal_path(learning_object) %></li>
       <hr>
       <li><%= link_to 'Visualizar', learning_object %></li>
       <% if can? :manage, LearningObject %>

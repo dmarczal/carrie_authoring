@@ -1,0 +1,13 @@
+<section id="fractal-published-preview">
+  <header>
+      <h1> Preview <%= @lo.name %></h1>
+  </header>
+
+  <% if @page.instance_of? Introduction %>
+    <%= render 'introduction' %>
+  <% else %>
+    <%= render 'exercise' %>
+  <% end %>
+
+  <%= paginate @pages, :theme => 'lo_pagination' %>
+</section>

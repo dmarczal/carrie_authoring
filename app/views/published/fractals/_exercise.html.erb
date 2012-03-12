@@ -9,7 +9,7 @@
   </article>
 
   <table id="exercise_table" class="table table-bordered" data-fractal="<%= @page.fractal.to_json %>"
-    data-questions="<%= @page.questions.to_json %>" data-id="<%= @page.slug %>"
+    data-questions="<%= @page.tokens.to_json %>" data-id="<%= @page.slug %>"
     data-oa-id="<%= @lo.slug %>"
     >
     <thead>
@@ -21,12 +21,14 @@
           Fractal <%= @page.fractal.name %>
         </th>
         <% @page.questions.each do |question| %>
-        <th title='<%= question.title %>' data-content='<%= question.enunciation %>'
-          data-validate-url='<%= learning_object_exercise_question_validate_url(@lo, @page, question) %>' data-placement="above" rel="popover" >
-          <%= question.title %>
+        <th data-original-title='<%= question.title %>' data-content='<%= question.enunciation %>'
+          data-verify-answer-url='<%= learning_object_exercise_question_verify_answer_path(@lo, @page,
+                                                                                           question) %>'
+          data-placement="top" rel="popover" >
+           <%= question.title %>
         </th>
-        <%end%>
-      </tr>
+      <%end%>
+    </tr>
     </thead>
     <tbody id='abody'>
     </tbody>

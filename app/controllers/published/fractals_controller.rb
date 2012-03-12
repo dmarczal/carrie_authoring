@@ -6,18 +6,28 @@ class Published::FractalsController < ApplicationController
     @lo = LearningObject.find_by_slug(params[:id])
     @pages = Kaminari.paginate_array(@lo.pages).page(params[:page]).per(1)
     @page = @pages.first
+    @url = "/published/fractals/#{@lo.slug}/page/"
 
-    c = 0;
-    @pagination = @lo.pages.map {|page| ["#{page.class.model_name.human} #{c+=1}: #{page.title}", c]}
+    @pagination = @lo.pages_with_name
     breadcumb(@page)
   end
 
+  def preview
+    @lo = LearningObject.find_by_slug(params[:id])
+    @pages = Kaminari.paginate_array(@lo.pages).page(params[:page]).per(1)
+    @page = @pages.first
+    @url = "/published/fractals/#{@lo.slug}/preview/page/"
+
+    @pagination = @lo.pages_with_name
+    breadcumb(@page, preview=" - Preview")
+  end
+
 private
-  def breadcumb(page)
+  def breadcumb(page, preview = "")
     if page.instance_of? Introduction
-      add_breadcrumb "OA #{@lo.name} - Introdução", :published_fractal_path
+      add_breadcrumb "OA #{@lo.name} - Introdução #{preview}", :published_fractal_path
     else
-      add_breadcrumb "OA #{@lo.name} - Exercício", :published_fractal_path
+      add_breadcrumb "OA #{@lo.name} - Exercício #{preview}", :published_fractal_path
     end
   end
 end

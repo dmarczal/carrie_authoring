@@ -13,6 +13,9 @@ section.exercise {
       text-align: center;
       vertical-align: middle;
     }
+    th {
+      text-align: center;
+    }
   }
 
 }
@@ -150,11 +153,11 @@ section#fractal-exercise {
     color: Black;
   }
 
-  div#top 
+  div#top
   {
     background-color: rgba(0, 0, 0, 0.01);
-  } 
-    
+  }
+
   div#top div {
       margin: 0 auto;
       width: 900px;
@@ -172,9 +175,9 @@ div#menus {
     border-top: 1px solid rgba(255, 255, 255, 0.03);
     clear: both;
     height: 78px;
-} 
+}
 div#menus div {
-    margin: 0 auto;    
+    margin: 0 auto;
     width: 860px;
 }
 
@@ -197,7 +200,7 @@ ul#languages li {
     float: left;
     padding: 4px 11px;
 }
-ul#languages li a 
+ul#languages li a
 {
     font-size: 8pt;
 }
@@ -251,7 +254,7 @@ ul#menu li span.title {
     font-weight: bold;
     padding-bottom: 2px;
 }
-ul#menu li span.title:hover 
+ul#menu li span.title:hover
 {
     text-decoration: underline;
 }
@@ -285,7 +288,7 @@ ul#menu li a {
     text-shadow: 1px 1px 0 #2F3F40;
 }
 ul#menu li a:hover {
-    background-color: rgba(255, 255, 255, 0.035);    
+    background-color: rgba(255, 255, 255, 0.035);
 }
 
 .footer p {
@@ -334,11 +337,11 @@ ul#menu li a:hover {
 .btn {
     background-color: white;
 
-/* 
+/*
     background-image: -moz-linear-gradient(center bottom , rgba(180, 180, 190, 0.5) 3%, rgba(255, 255, 255, 0.5) 73%, rgba(255, 255, 255, 0.8) 96%);
     background-image: -moz-linear-gradient(center bottom , #ddd 3%,#ddd 50%, #e7e7e7 50.1%, white 96%);
 */
-    
+
     background: #f0f0f0; /* Old browsers */
     background: -moz-linear-gradient(top,  #ffffff 4%, #e7e7e7 49%, #dddddd 50%, #dddddd 97%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(4%,#ffffff), color-stop(49%,#e7e7e7), color-stop(50%,#dddddd), color-stop(97%,#dddddd)); /* Chrome,Safari4+ */
@@ -346,9 +349,9 @@ ul#menu li a:hover {
     background: -o-linear-gradient(top,  #ffffff 4%,#e7e7e7 49%,#dddddd 50%,#dddddd 97%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top,  #ffffff 4%,#e7e7e7 49%,#dddddd 50%,#dddddd 97%); /* IE10+ */
     background: linear-gradient(top,  #ffffff 4%,#e7e7e7 49%,#dddddd 50%,#dddddd 97%); /* W3C */
-    
-    
-    
+
+
+
     border-color: silver #7491A5 #7491A5 silver;
     border-radius: 4px 4px 4px 4px;
     border-style: solid;
@@ -375,7 +378,7 @@ ul#menu li a:hover {
 }
 
 
-.ie .btn 
+.ie .btn
 {
     background-image: url("http://cdn.web2.0calc.es/img/iebtnbg.png");
     background-position: 50% 50%;
@@ -383,7 +386,7 @@ ul#menu li a:hover {
     text-shadow: none;
 }
 
-.btn:hover 
+.btn:hover
 {
   /*  background-image: -moz-linear-gradient(center bottom , #A7D9F5 3%,#BEE6FD 50%, #D9F0FC 50.1%, #EAF6FD 96%); */
 background: #eaf6fd; /* Old browsers */
@@ -409,7 +412,7 @@ background: linear-gradient(top,  #eaf6fd 4%,#d9f0fc 49%,#bee6fd 50%,#a7d9f5 97%
 
 
 
-div.center div.bg 
+div.center div.bg
 {
     background-color: silver;
 
@@ -420,11 +423,11 @@ div.center div.bg
     background: -o-linear-gradient(top,  #f2f2f2 4%,#ebebeb 15%,#e6e6e6 77%,#e0e0e0 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top,  #f2f2f2 4%,#ebebeb 15%,#e6e6e6 77%,#e0e0e0 100%); /* IE10+ */
     background: linear-gradient(top,  #f2f2f2 4%,#ebebeb 15%,#e6e6e6 77%,#e0e0e0 100%); /* W3C */
-    
+
 
 
     padding: 25px 5% 20px;
-    border-radius: 3px;    
+    border-radius: 3px;
 }
 
 div.center {
@@ -432,14 +435,14 @@ div.center {
     border-style: solid;
     border-width: 2px;
     box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
-    
+
     margin: 0 auto;
     //min-width: 670px;
     overflow: hidden;
-   
+
     resize: horizontal;
-    //width: 650px;    
-    
+    //width: 650px;
+
     border-radius: 8px;
     border-width: 2px;
     border-color: rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.1);
@@ -460,7 +463,7 @@ div.center:after {
 
 
 
-.table 
+.table
 {
     display: table;
     width: 66%;
@@ -469,53 +472,53 @@ div.center:after {
 ul.row
 {
     display: table-row;
-}                  
+}
 ul.row li
 {
     display: table-cell;
     width: 14.75%;
     vertical-align: top;
-}    
+}
 ul.row li.op
 {
     display: table-cell;
     width: 12%;
-}   
-ul.row li .btn 
+}
+ul.row li .btn
 {
     width: 25px;
     font-size: 1.2em;
     height: 39px;
     line-height: 40px;
-}   
-ul.row li.op .btn 
+}
+ul.row li.op .btn
 {
     font-size: 0.9em;
     width: 15px;
-}    
-ul.row li.op2 .btn 
+}
+ul.row li.op2 .btn
 {
     font-size: 0.9em;
     width: 15px;
-}      
-       
-ul.row.head li .btn 
+}
+
+ul.row.head li .btn
 {
     font-size: 0.8em;
     height: 24px;
     line-height: 24px;
-}     
-ul.row li.sp 
+}
+ul.row li.sp
 {
     width: auto;
 }
-         
-.table.cmds 
+
+.table.cmds
 {
     width: 31%;
     float: left;
 }
-.table.cmds li 
+.table.cmds li
 {
     width: 25%;
 }
@@ -527,18 +530,18 @@ ul.row li.sp
     width: 88%;
 }
 
-.btns 
+.btns
 {
     height: 270px;
     width: 400px;
     position: center;
     overflow: hidden;
     max-width: 603px;
-    margin: 0px auto;  
-    resize: none;  
+    margin: 0px auto;
+    resize: none;
     margin-top: 3px;
 }
-ul.row li.eq 
+ul.row li.eq
 {
     position: relative;
 }
@@ -550,21 +553,21 @@ ul.row li .btn.eq {
 }
 
 
-div.center div.inputs 
+div.center div.inputs
 {
     padding-bottom: 5px;
 }
 
-img#result 
+img#result
 {
     cursor: pointer;
 }
-img#plot 
+img#plot
 {
     cursor: col-resize;
 }
 
-div.center div.inputs input 
+div.center div.inputs input
 {
     resize: none;
     border: 1px solid silver;
@@ -576,11 +579,11 @@ div.center div.inputs input
     outline: medium none;
     position: relative;
     left: -0.2%;
-    width: 100%;  
-     
+    width: 100%;
+
 }
 
-div.center a.create 
+div.center a.create
 {
     float: right;
     font-size: 10pt;
@@ -663,7 +666,7 @@ div.display div.abs {
 }
 
 
-div.helper 
+div.helper
 {
     width: 100%;
     margin: 0px auto;
@@ -720,7 +723,7 @@ div.helper .cmd:hover {
     visibility: hidden;
 }
 
-div.history 
+div.history
 {
     width: 655px;
     margin: 0px auto;
@@ -756,7 +759,7 @@ div.history.expanded div.h {
 }
 
 
-div.history div.input .expand 
+div.history div.input .expand
 {
     float: right;
     line-height: 17px;
@@ -765,11 +768,11 @@ div.history div.input .expand
     text-align: center;
     background-color: #EEEEEE;
     border-left: 1px solid #DDDDDD;
-    color: SlateGray;        
+    color: SlateGray;
     text-decoration: none;
     width: 14px;
 }
-div.history div.input .collapse 
+div.history div.input .collapse
 {
     float: right;
     line-height: 17px;
@@ -778,42 +781,42 @@ div.history div.input .collapse
     display: block;
     background-color: #EEEEEE;
     border-left: 1px solid #DDDDDD;
-    color: SlateGray;        
+    color: SlateGray;
     text-decoration: none;
     width: 14px;
 }
-div.history.expanded div.input .expand 
+div.history.expanded div.input .expand
 {
     display: none;
 }
-div.history.collapsed div.input .collapse 
+div.history.collapsed div.input .collapse
 {
     display: none;
 }
 
 div.history.expanded div.input
 {
-    width: 371px;    
+    width: 371px;
 }
 
-div.history.expanded .entry 
+div.history.expanded .entry
 {
     clear: both;
     font-size: 10pt;
     cursor: pointer;
 }
 
-div.history.expanded .entry:hover 
+div.history.expanded .entry:hover
 {
     background-color: #f0f0f0;
 }
 
-div.history.expanded .entry .l 
+div.history.expanded .entry .l
 {
      width: 49%;
      overflow: hidden;
 }
-div.history.expanded .entry .r 
+div.history.expanded .entry .r
 {
      width: 49%;
      float: right;
@@ -821,7 +824,7 @@ div.history.expanded .entry .r
      text-align: right;
 }
 
-div.history.expanded .entry div:hover 
+div.history.expanded .entry div:hover
 {
     text-decoration: underline;
 }
@@ -838,20 +841,20 @@ div.history div.input p.latest {
 
 
 
-div#hlpr 
+div#hlpr
 {
     clear: both;
 }
 
-.invisible 
+.invisible
 {
     display: none;
 }
 
 
-.plotinput 
+.plotinput
 {
-    
+
 }
 .plotinput select
 {
@@ -880,11 +883,11 @@ div.center div.inputs div.plotinput input
     margin-right: 10px;
     clear: left;
 }
-.plotinput span.color.f1 
+.plotinput span.color.f1
 {
     background-color: #DEE0E2;
 }
-.plotinput span.color.f2 
+.plotinput span.color.f2
 {
     background-color: #5053C3;
 }
@@ -899,7 +902,7 @@ div.center .plotinput div.controls .btn
     width: 27%;
     float: right;
 }
-div.center .plotinput div.controls div 
+div.center .plotinput div.controls div
 {
     text-align: center;
     font-size: 9pt;
@@ -909,7 +912,7 @@ div.center .plotinput div.controls select {
     width: 50px;
 }
 
-div.center.deg .plotinput div.controls select.rad 
+div.center.deg .plotinput div.controls select.rad
 {
     display: none;
 }
@@ -918,9 +921,9 @@ div.center.rad .plotinput div.controls select.deg
     display: none;
 }
 
-div.center .unfocused 
+div.center .unfocused
 {
-    color: #ccc;    
+    color: #ccc;
 }
 
 
@@ -966,7 +969,7 @@ div.center div.inputs div.solveinput div.a
 
 div.center div.inputs div.solveinput div.solver input
 {
-     width: 60%;     
+     width: 60%;
 }
 
 div.center div.inputs div.solveinput div.btns
@@ -987,7 +990,7 @@ div.center div.inputs div.matrixinput div.r
      text-align: right;
      clear: right;
 }
-div.center div.inputs div.matrixinput div.r select 
+div.center div.inputs div.matrixinput div.r select
 {
     float: right;
 }
@@ -998,15 +1001,15 @@ div.center div.inputs div.matrixinput div.l
      clear: left;
 }
 
-div.center div.inputs div.matrixinput div.c 
+div.center div.inputs div.matrixinput div.c
 {
     text-align: center;
 }
-div.center div.inputs div.matrixinput div.c #view_matrix_sizeb 
+div.center div.inputs div.matrixinput div.c #view_matrix_sizeb
 {
     float: right;
 }
-div.center div.inputs div.matrixinput div.c #view_matrix_sizea 
+div.center div.inputs div.matrixinput div.c #view_matrix_sizea
 {
     float: left;
 }
@@ -1019,25 +1022,25 @@ div.center div.inputs div.matrixinput .matrix {
     padding: 2px;
     margin-bottom: 5px;
 }
-div.center div.inputs div.matrixinput .matrix .row 
+div.center div.inputs div.matrixinput .matrix .row
 {
     text-align: center;
 }
 
-div.center div.inputs div.matrixinput option.no 
+div.center div.inputs div.matrixinput option.no
 {
     text-decoration: line-through;
     color: Silver;
 }
-div.center div.inputs div.matrixinput .matrix.no 
+div.center div.inputs div.matrixinput .matrix.no
 {
     border: 1px solid red;
 }
 
 
-div.center div.inputs div.unitsinput .btn 
+div.center div.inputs div.unitsinput .btn
 {
-    width: 8.5%;    
+    width: 8.5%;
 }
 div.center div.inputs div.unitsinput .btns {
     clear: both;
@@ -1045,7 +1048,7 @@ div.center div.inputs div.unitsinput .btns {
 }
 
 
-div.center div.inputs div.unitsinput input 
+div.center div.inputs div.unitsinput input
 {
     width: 49%;
     text-align: right;
@@ -1075,11 +1078,11 @@ div.col2#main {
     min-height: 500px;
     width: 900px;
     background-image: url("http://cdn.web2.0calc.es/img/leftbg.png");
-    background-repeat: repeat-y;    
+    background-repeat: repeat-y;
     border-color: rgba(0,0,0, 0.2) rgba(0,0,0, 0.3) rgba(0,0,0, 0.3) rgba(0,0,0, 0.2);
     border-radius: 8px 8px 8px 8px;
     border-style: solid;
-    border-width: 2px;    
+    border-width: 2px;
 }
 div.col2#main div.contentleft
 {
@@ -1101,7 +1104,7 @@ div.col2#main:after {
 }
 
 
-div.calcletmenu  
+div.calcletmenu
 {
     margin-top: 10px;
 }
@@ -1129,7 +1132,7 @@ div.calcletmenu
     width: 188px;
     margin-bottom: 4px;
     margin-left: 0;
-    margin-top: 0;    
+    margin-top: 0;
 }
 
 .calcletmenu ul li {
@@ -1138,7 +1141,7 @@ div.calcletmenu
     margin: 0;
     padding: 3px 0;
 }
-.calcletmenu ul li a 
+.calcletmenu ul li a
 {
     text-decoration: none;
     color: #555;
@@ -1148,7 +1151,7 @@ div.calcletmenu
     text-decoration: underline;
 }
 
-.calcletmenu .scroll 
+.calcletmenu .scroll
 {
     overflow-y: auto;
     overflow-x: hidden;
@@ -1156,7 +1159,7 @@ div.calcletmenu
 }
 
 
-.content 
+.content
 {
     overflow-x: auto;
 }
@@ -1194,24 +1197,24 @@ div.calcletmenu
     margin-top: 3px;
 }
 
-.content .editor input.submit 
+.content .editor input.submit
 {
     float: right;
     cursor: pointer;
 }
 
-.content .editor input.title 
+.content .editor input.title
 {
     width: 500px;
     font-weight: bold;
 }
 
-.content table 
+.content table
 {
     font-size: 10pt;
     margin-top: 3px;
 }
-.content table td 
+.content table td
 {
     border: 1px solid #f0f0f0;
 }
@@ -1283,12 +1286,12 @@ div.contentleft li a:hover {
     text-decoration: underline;
 }
 
-div.contentleft h3 
+div.contentleft h3
 {
     margin: 0px;
     padding: 15px 8px 8px;
     font-size: 12pt;
-    color: Black;    
+    color: Black;
 }
 
 
@@ -1333,10 +1336,10 @@ div.content div.helpimggrid dd {
     display: block;
     text-align: center;
     margin: 0px;
-    padding: 4px;    
+    padding: 4px;
 }
 
-div.contentright 
+div.contentright
 {
     float: right;
     width: 200px;
@@ -1387,7 +1390,7 @@ div#helpTopicCloud div a:hover {
      margin: 0px;
      padding: 9px 40px 10px;
 }
-ul#menu.auto 
+ul#menu.auto
 {
      overflow: hidden;
      height: 80px;
@@ -1402,22 +1405,22 @@ ul#menu.auto li.ad
 {
     width: 530px;
     transition: width 0.3s;
-} 
-ul#menu.auto:hover li.ad 
+}
+ul#menu.auto:hover li.ad
 {
      width: 0px;
 }
 
-ul#menu.auto li.ad:hover 
+ul#menu.auto li.ad:hover
 {
      width: 530px;
 }
-ul#menu.auto li.ad a:hover 
+ul#menu.auto li.ad a:hover
 {
      background-color: transparent;
 }
 
-ul#menu.auto li.logo a 
+ul#menu.auto li.logo a
 {
     padding-right: 8px;
 }
@@ -1437,7 +1440,7 @@ ul#menu.auto li.logo:after {
     z-index: 3;
 }
 
-ul#menu.auto:hover li.logo:after 
+ul#menu.auto:hover li.logo:after
 {
     opacity: 0;
 }

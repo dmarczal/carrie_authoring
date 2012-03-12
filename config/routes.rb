@@ -18,6 +18,7 @@ Carrie_mongodb::Application.routes.draw do
     resources :exercises do
       resources :questions do
         post :validate
+        post :verify_answer
       end
       get :show_questions
       collection do
@@ -33,7 +34,9 @@ Carrie_mongodb::Application.routes.draw do
 
   namespace :published do
     resources :fractals do
-       get ':id/page/:page', :action => :show, :on => :collection
+       get ':id/page/:page', action: :show, :on => :collection
+       get  :preview, :on => :member
+       get 'preview/page/:page', :action => :preview, :on => :member
     end
   end
 

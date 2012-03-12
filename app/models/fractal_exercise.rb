@@ -22,4 +22,5 @@ class FractalExercise
 
   validates_numericality_of :height, greater_than: 10, less_than: 512
   validates_numericality_of :width, greater_than: 10, less_than: 512
+  validates_numericality_of :iterations, greater_than: 0, less_than: 15
 end

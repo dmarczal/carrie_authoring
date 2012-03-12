@@ -14,8 +14,6 @@
 //= require lsystem/jquery.lsystem
 //= require lsystem/jquery.observe_field
 
-//= require calculator/calculator
-
 //= require_self
 
 //= require fractal
@@ -23,11 +21,14 @@
 //= require exercises
 //= require learning_objects
 //= require learning_groups
+//= require questions
 
 //= require jquery.purr
 //= require best_in_place
 
 //= require published/fractals
+
+//= require calculator/calculator
 //= require ckeditor/init
 
 $(document).ready(function() {

@@ -127,6 +127,7 @@ var Fractal = Fractal || {
       this.width = data.width;
       this.height = data.height;
       this.iteration = 0;
+      this.infinite = data.infinite;
       var that = this;
 
       var fractal = function() {
@@ -178,6 +179,10 @@ var Fractal = Fractal || {
       var getIteration = function() { return that.iteration; };
       var setIteration = function(iteration) { return that.iteration = iteration; return this; };
 
+      var hasInfinite = function() { return that.infinite; };
+      var setInfinite = function(_boolean) { return that.infinite = _boolean; return this; };
+
+
       return {
          getAxiom: getAxiom,
             setAxiom: setAxiom,
@@ -202,7 +207,10 @@ var Fractal = Fractal || {
 
             nextIteration: nextIteration,
             isValid: isValid,
-            embedIn: embedIn
+            embedIn: embedIn,
+
+            hasInfinite: hasInfinite,
+            setInfinite: setInfinite
       };
    }
 }

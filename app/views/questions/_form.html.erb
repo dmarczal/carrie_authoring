@@ -1,9 +1,11 @@
-<%= simple_form_for [@learning_object, @exercise, @question] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :enunciation, :as => :text %>
+<section id="questions-form">
+  <%= simple_form_for [@learning_object, @exercise, @question] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :enunciation, :as => :text %>
 
-  <%= f.input :answer %>
+    <%= render "answers_fields", :f => f %>
+
+    <%= f.button :submit, class: "btn-primary" %>
+  <% end %>
   <%= link_to "Ajuda na construção da fórmula", help_index_path(anchor: "formula"), target: "blank" %>
-  <br />
-  <%= f.button :submit, class: "btn-primary" %>
-<% end %>
+</section>

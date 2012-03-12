@@ -1,0 +1,7 @@
+<tr>
+  <td><%= f.object.iteration %></td>
+  <td class="fractal"></td>
+  <td><%= f.input :response, label: false %></td>
+  <td><%= f.input :ask, :collection => [[true, "Perguntar"],[false, "Mostrar"]], as: :radio,
+    label: false, :label_method => :last, :value_method => :first %></td>
+</tr>

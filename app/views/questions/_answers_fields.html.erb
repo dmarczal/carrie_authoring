@@ -1,0 +1,20 @@
+<table id="answers-table" class="table table-bordered" data-fractal="<%= @exercise.fractal.to_json %>"
+  data-questions="<%= @question.to_json %>" >
+  <thead>
+    <tr>
+      <th>
+        Iteração
+      </th>
+      <th>
+        Fractal: <%= @exercise.fractal.name %>
+      </th>
+      <th>Resposta Correta</th>
+      <th>Perguntar ou Mostrar</th>
+    </tr>
+  </thead>
+  <tbody id='abody'>
+    <%= f.fields_for :answers do |builder| %>
+      <%= render "answer_fields", :f => builder %>
+    <% end %>
+  </tbody>
+</table>
