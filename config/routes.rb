@@ -17,8 +17,8 @@ Carrie_mongodb::Application.routes.draw do
     resources :introductions
     resources :exercises do
       resources :questions do
-        post :validate
         post :verify_answer
+        post :verify_and_save_answer
       end
       get :show_questions
       collection do

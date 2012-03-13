@@ -10,7 +10,7 @@ $(document).ready(function() {
         $(obj).width(frac.getWidth());
      });
 
-     if (frac.hasInfinite === true) {
+     if (frac.hasInfinite() === true) {
         var infinite = answersTable.find("tr:last");
         var tds = $(infinite).find("td");
         $(tds[0]).html("N");

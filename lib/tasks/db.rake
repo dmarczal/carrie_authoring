@@ -57,8 +57,9 @@ namespace :db do
                             :fractal_exercise => fractals_exerc.sample)
         3.times do |i|
           question = exe.questions.build( title: "Lado Maior #{i}", enunciation: "Enunciado #{i}")
-          exe.fractal.iterations.times do |it|
-            question.answers.build( response: it, iteration: it, ask: true)
+          its = exe.fractal.infinite? ? (exe.fractal.iterations + 1) : exe.fractal.iterations.times
+          its.times do |it|
+            question.correct_answers.build( response: it, iteration: it, ask: true)
           end
           question.save
         end

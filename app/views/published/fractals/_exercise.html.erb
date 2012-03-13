@@ -22,8 +22,7 @@
         </th>
         <% @page.questions.each do |question| %>
         <th data-original-title='<%= question.title %>' data-content='<%= question.enunciation %>'
-          data-verify-answer-url='<%= learning_object_exercise_question_verify_answer_path(@lo, @page,
-                                                                                           question) %>'
+          data-verify-answer-url='<%= verify_url(@lo, @page, question, @save) %>'
           data-placement="top" rel="popover" >
            <%= question.title %>
         </th>

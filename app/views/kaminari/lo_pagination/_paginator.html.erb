@@ -8,7 +8,7 @@
 -%>
 
 <% _select = (select_tag :page, options_for_select(@pagination, params[:page]),
-              :onchange => "window.location.href ='#{@url}' + this.value ") %>
+              :onchange => "window.location.href ='#{@pagination_url}' + this.value ") %>
 
 <%= paginator.render do -%>
   <nav class="lo_pagination">

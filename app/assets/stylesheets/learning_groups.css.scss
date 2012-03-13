@@ -35,4 +35,22 @@
     color: #DD0000;
     font-weight: bold;
   }
+
+  table td {
+    height: 60px;
+    vertical-align: middle;
+  }
+}
+
+#my-group {
+  header {
+    margin-bottom: 15px;
+  }
+  article {margin-top: 0px;}
+
+  .thumbnail {
+    h1 {text-align: center}
+    width: 150px;
+    height: 100px;
+  }
 }

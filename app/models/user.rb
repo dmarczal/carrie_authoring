@@ -38,6 +38,7 @@ class User
 
   has_many :fractals, dependent: :nullify
   has_many :learning_objects
+  has_many :answers
 
   has_and_belongs_to_many :learning_groups
 

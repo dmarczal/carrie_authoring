@@ -1,26 +1,27 @@
-<section>
+<section id="my-group">
   <header>
-    <h1> Turma: <%= @learning_group.name %> </h1>
+    <h1> Turma - <%= @learning_group.name %></h1>
+    <br/>
+    <h3>Objetos de Aprendizagem</h3>
   </header>
 
   <article>
-    <header>
-        <h2> Objetos de Aprendizagem</h2>
-    </header>
-
-    <table class="table table-bordered table-striped" id="learning_objects">
-      <tr>
-        <th>Objeto de Aprendizagem</th>
-        <th>Ver</th>
-      </tr>
-
-      <% @learning_group.learning_objects.each do |lo| %>
-        <tr>
-          <td><%= lo.name %></td>
-          <td><%= link_to 'Ver', published_fractal_path(lo) %></td>
-        </tr>
-      <% end %>
-    </table>
-
+      <ul class="thumbnails">
+      <li class="span3">
+        <% @learning_group.learning_objects.each do |lo| %>
+          <% link = capture do %>
+            <div class="thumbnail">
+              <h4><%= lo.name %></h4>
+              <br/>
+              <p>
+                <%= raw (truncate_html(lo.description, :length => 50,
+                                       :omission => '...(continua)')) %>
+               </p>
+             </div>
+          <% end %>
+          <%= link_to link,  published_fractal_path(lo) %>
+        <% end %>
+      </li>
+    </ul>
   </article>
 </section>

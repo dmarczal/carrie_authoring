@@ -2,18 +2,25 @@ class Answer
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  field :correct, type: Boolean
   field :response
-  field :ask, type: Boolean
-  field :iteration, type: Integer
 
-  validates_presence_of :response, :iteration
-  validates :ask, :inclusion => {:in => [true, false]}
+  belongs_to :user
+  belongs_to :correct_answer
 
-  embedded_in :question
+  validates :correct, :inclusion => {:in => [true, false]}
+  validates_associated :correct_answer, :user
+  validates_presence_of :response
 
-  validates_associated :question
+  def question
+    correct_answer.question
+  end
 
-  def tokens
-    {id: _id, ask: ask, response: (ask? ? "" : response) }
+  def exercise
+    question.exercise
+  end
+
+  def lo
+    exercise.learning_object
   end
 end

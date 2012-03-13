@@ -147,7 +147,7 @@ var Exercise = Exercise || {
     var getTable = function () { return that.table; };
 
     var loadTable = function () {
-       fracCanvas = Fractal.create(that.fractal);
+       var fracCanvas = Fractal.create(that.fractal);
        var i;
        for (i = 0; i < that.fractal.iterations; i++) {
           var row = $('<tr>');
@@ -164,16 +164,15 @@ var Exercise = Exercise || {
           createQuestions(row, i);
           $(that.table).append(row);
        }
-      if (that.fractal.infinite) {
-        var row = $('<tr>');
-        var iterationN = $('<td width="100"> N </td>');
-        var tdTag = $('<td class="fractal" width='+ that.fractal.width +' "> Figura limite </td>')
-        .css('height', that.fractal.height + 8);
-        row.append(iterationN, tdTag);
-        createQuestions(row, i);
-        $(that.table).append(row);
-
-      }
+       if (that.fractal.infinite) {
+          var row = $('<tr>');
+          var iterationN = $('<td width="100"> N </td>');
+          var tdTag = $('<td class="fractal" width='+ that.fractal.width +' "> Figura limite </td>')
+             .css('height', that.fractal.height + 8);
+          row.append(iterationN, tdTag);
+          createQuestions(row, i);
+          $(that.table).append(row);
+       }
     };
 
     /*
@@ -183,6 +182,8 @@ var Exercise = Exercise || {
     var createQuestions = function (row, index) {
        for(var i = 0; i < that.questions.length; i++){
           var answer = that.questions.questions[i].answers[index];
+          //console.log(answer);
+          //console.log(index);
           var calculator = answer.ask == true ? "calculator" : "";
           var td = $('<td data-row=' + index +' data-col=' + new Number(i+2)
                      +' class="' + calculator +'" data-answer-id="'+ answer.id +'">');

@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 // $('.best_in_place').bind("ajax:success", function () {}
 //  $(".alert-message").alert()
-//  $(".tabs").button()
+  $(".tabs").button()
 //  $(".carousel").carousel()
 //  $(".collapse").collapse()
 //  $(".dropdown-toggle").dropdown()

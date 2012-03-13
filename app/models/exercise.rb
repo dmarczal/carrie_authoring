@@ -18,7 +18,7 @@ class Exercise
   validates_uniqueness_of :title
 
   before_create :set_position
-  after_save :update_questions_answers
+  after_save :update_questions_correct_answers
 
   def markdown_desc
     options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
@@ -44,7 +44,7 @@ private
     end
   end
   # needs update questions answers as iterations
-  def update_questions_answers
-      self.questions.each {|question| question.update_answers}
+  def update_questions_correct_answers
+      self.questions.each {|question| question.update_correct_answers}
   end
 end

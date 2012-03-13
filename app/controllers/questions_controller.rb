@@ -7,13 +7,13 @@ class QuestionsController < ApplicationController
 
   def new
     @question = @exercise.questions.new
-    @question.load_answers
+    @question.load_correct_answers
     add_breadcrumb "Nova questão", :new_learning_object_exercise_question_path
   end
 
   def create
     @question = @exercise.questions.new(params[:question])
-    @question.answers.each_with_index {|answer, i| answer.iteration=i}
+    @question.correct_answers.each_with_index {|answer, i| answer.iteration=i}
     if @question.save
       redirect_to [@learning_object, @exercise], :notice => "Questão criada com sucesso"
     else
@@ -46,17 +46,11 @@ class QuestionsController < ApplicationController
     redirect_to [@learning_object, @exercise ], notice: "Questão deletada com sucesso"
   end
 
-  # validates @depreced
-  # Remover this method
-  def validate
-    @learning_object = LearningObject.find_by_slug(params[:learning_object_id])
-    @exercise = @learning_object.exercises.find_by_slug(params[:exercise_id])
+  def verify_answer
     @question  = @exercise.questions.find(params[:question_id])
 
     respond_to do |format|
-      if CorrectAnswer.eql?(@question.answer, params[:answer], params[:first], params[:row],
-                            @exercise.fractal_exercise.infinite, params[:size], params[:rawFormula],
-                            params[:row])
+      if @question.correct_answer?(params[:answer_id], params[:response])
         format.json { render :json => true }
       else
         format.json { render :json => false }
@@ -64,11 +58,11 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def verify_answer
+  def verify_and_save_answer
     @question  = @exercise.questions.find(params[:question_id])
 
     respond_to do |format|
-      if @question.correct_answer?(params[:answer_id], params[:response])
+      if @question.correct_and_save_answer?(params[:answer_id], params[:response], current_user)
         format.json { render :json => true }
       else
         format.json { render :json => false }

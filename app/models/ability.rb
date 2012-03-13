@@ -13,13 +13,14 @@ class Ability
       can :manage, Exercise
       can :manage, Question
       can :manage, Answer
+      can :manage, CorrectAnswer
       can :manage, Introduction
       can :manage, LearningGroup, :owner_id => user.id
       can :read, :all
     elsif user.student?
       can :manage, Fractal, :user_id => user.id
       can [:my_groups, :all_groups, :enroll, :my_group], LearningGroup
-      can :verify_answer, Question
+      can :verify_and_save_answer, Question
     else
       can :read, Fractal
       can [:index], Ckeditor::Asset

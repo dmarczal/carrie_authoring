@@ -1,0 +1,54 @@
+<section id="my-group">
+  <header>
+    <h1> Turma: <%= @learning_group.name %> </h1>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        <!--Sidebar content-->
+        <aside class="well">
+          <ul id="lo-options" class="nav nav-list">
+            <li class="active">
+              <a href="#">Turma</a>
+            </li>
+            <li class="nav-header">
+              Respostas
+            </li>
+            <li>
+              <a href="#">Erradas</a>
+            </li>
+            <li>
+              <a href="#">Certas</a>
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="span10">
+        <!--Body content-->
+        <article>
+          <header>
+            <h2> Objetos de Aprendizagem</h2>
+          </header>
+
+          <table class="table table-bordered table-striped" id="learning_objects">
+            <tr>
+              <th>Objeto de Aprendizagem</th>
+              <th>Ver</th>
+            </tr>
+
+            <% @learning_group.learning_objects.each do |lo| %>
+              <tr>
+                <td><%= lo.name %></td>
+                <td><%= link_to 'Ver', published_fractal_path(lo) %></td>
+              </tr>
+            <% end %>
+          </table>
+
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
