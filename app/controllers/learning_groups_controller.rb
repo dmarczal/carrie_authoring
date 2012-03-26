@@ -67,7 +67,7 @@ class LearningGroupsController < ApplicationController
 
   def my_group
     @learning_group = current_user.learning_groups.find_by_slug(params[:id])
-    add_breadcrumb "Turma #{@learning_group.name}", :my_group_learning_group_path
+    add_breadcrumb "Turma: #{@learning_group.name}", :my_group_learning_group_path
   end
 
   def all_groups
@@ -78,6 +78,13 @@ class LearningGroupsController < ApplicationController
   def enroll
     @learning_group = LearningGroup.find_by_slug(params[:learning_group_id])
     @learning_group.enroll(current_user, params[:group_code])
+  end
+
+  def learning_object
+    @learning_group = current_user.learning_groups.find_by_slug(params[:id])
+    @lo = @learning_group.learning_objects.find_by_slug(params[:learning_object])
+    breadcrumb
+    add_breadcrumb "OA: #{@lo.name}", :learning_object_learning_group_path
   end
 
 private

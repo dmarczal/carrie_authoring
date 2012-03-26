@@ -9,7 +9,7 @@ class CorrectAnswer
   validates_presence_of :response, :iteration
   validates :ask, :inclusion => {:in => [true, false]}
 
-  embedded_in :question
+  embedded_in :question, inverse_of: :correct_answers
   has_many :answers
 
   validates_associated :question

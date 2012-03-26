@@ -49,8 +49,23 @@
   article {margin-top: 0px;}
 
   .thumbnail {
-    h1 {text-align: center}
+    h4 {text-align: center}
     width: 150px;
     height: 100px;
+  }
+
+  .container-fluid {
+    padding-left: 0px;
+  }
+
+  .span2,.nav {
+    padding: 0px;
+  }
+
+  a:hover {
+    text-decoration: none;
+    .thumbnail {
+      background: #EEE;
+    }
   }
 }

@@ -1,6 +1,6 @@
 <section id="my-group">
   <header>
-    <h1> Turma - <%= @learning_group.name %></h1>
+    <h1><%= @learning_group.name %></h1>
     <br/>
     <h3>Objetos de Aprendizagem</h3>
   </header>
@@ -19,7 +19,7 @@
                </p>
              </div>
           <% end %>
-          <%= link_to link,  published_fractal_path(lo) %>
+          <%= link_to link, learning_object_learning_group_path(@learning_group, lo) %>
         <% end %>
       </li>
     </ul>

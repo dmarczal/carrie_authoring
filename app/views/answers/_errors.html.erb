@@ -1,0 +1,26 @@
+<section class="errors">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+	    <th>Data e Hora</th>
+        <th>Exercício</th>
+        <th>Questão</th>
+        <th>Iteração</th>
+        <th>Sua Resposta</th>
+        <th>Resposta Correta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @errors.each do |error| %>
+        <tr>
+          <td><%= l error.created_at %></td>
+          <td><%= error.exercise.title %></td>
+          <td><%= error.question.title %></td>
+          <td><%= error.correct_answer.iteration %></td>
+          <td><%= error.response %></td>
+          <td><%= error.correct_answer.response %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

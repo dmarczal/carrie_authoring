@@ -11,13 +11,16 @@
 
   <body data-controller='<%= controller_name %>', data-action='<%= controller.action_name %>'
     data-url='<%= request.url %>' data-namespace='<%= controller_namespace  %>' >
+
     <div class="container">
       <%= render "shared/main_nav" %>
 
       <%= render "shared/breadcrumbs" %>
 
       <%= render :partial => "shared/flash", :locals => {:flash => flash} %>
-
+	 
+	  <div class="loading"></div>
+	
       <%= yield %>
     </div>
   </body>

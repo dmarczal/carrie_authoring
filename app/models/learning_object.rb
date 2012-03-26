@@ -11,7 +11,9 @@ class LearningObject
   references_many :exercises, :dependent => :delete
   references_many :introductions, :dependent => :delete
   belongs_to :user
+
   has_and_belongs_to_many :learning_groups
+  has_many :answers
 
   validates_presence_of :name, :description
   validates_uniqueness_of :name

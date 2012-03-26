@@ -19,8 +19,9 @@ class Ability
       can :read, :all
     elsif user.student?
       can :manage, Fractal, :user_id => user.id
-      can [:my_groups, :all_groups, :enroll, :my_group], LearningGroup
+      can [:my_groups, :all_groups, :enroll, :my_group, :learning_object], LearningGroup
       can :verify_and_save_answer, Question
+      can :errors, Answer, user_id: user.id
     else
       can :read, Fractal
       can [:index], Ckeditor::Asset

@@ -8,6 +8,8 @@ class Question
   referenced_in :exercise, :inverse_of => :questions
   embeds_many :correct_answers
 
+  has_many :answers
+
   validates_presence_of :title, :enunciation
   validates_associated :exercise
 
@@ -25,10 +27,11 @@ class Question
     return correct_answer.response.to_f === value.to_f
   end
 
-  def correct_and_save_answer?(id, value, user)
+  def correct_and_save_answer?(id, value, user, lo, exercise, question)
     correct_answer = correct_answers.find(id)
     correct = correct_answer.response.to_f === value.to_f
-    Answer.create!(user: user, response: value, correct_answer: correct_answer, correct: correct)
+    Answer.create!(user: user, response: value, correct_answer: correct_answer, correct: correct,
+                  learning_object: lo, exercise: exercise, question: question)
     correct
   end
 

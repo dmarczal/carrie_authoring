@@ -1,6 +1,7 @@
 Carrie_mongodb::Application.routes.draw do
 
   get "help/index"
+  get "answers/errors"
 
   mount Ckeditor::Engine => '/ckeditor'
 
@@ -8,6 +9,7 @@ Carrie_mongodb::Application.routes.draw do
     post :enroll
     get 'my_groups', action: :my_groups, :on => :collection
     get 'my_group', action: :my_group, :on => :member
+    get 'my_group/learning_object/:learning_object', action: :learning_object, :on => :member, as: 'learning_object'
     get 'all_groups', action: :all_groups, :on => :collection
   end
 

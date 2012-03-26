@@ -61,14 +61,15 @@ namespace :db do
           its.times do |it|
             question.correct_answers.build( response: it, iteration: it, ask: true)
           end
-          question.save
+          question.save!
         end
 
       end
     end
 
     10.times do |i|
-      LearningGroup.create!(name: "Turma #{i}", code: "1234", owner_id: professor.id )
+      lo = LearningGroup.create!(name: "Turma #{i}", code: "1234", owner_id: professor.id )
+      lo.learning_objects << LearningObject.first
     end
 
   end

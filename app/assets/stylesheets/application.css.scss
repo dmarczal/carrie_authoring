@@ -11,6 +11,16 @@
 *= require learning_groups
 */
 
+/*@import('bootstrap_and_overrides');
+@import('form_style);
+@import('tree ./jquery-ui
+@import('best_in_place
+@import('fractals
+@import('exercises
+@import('questions
+@import('published/fractals
+@import('self
+@import('learning_groups */
 
 /* styles **/
 $bc: #DDD;
@@ -23,6 +33,15 @@ $bc: #DDD;
 .center { text-align:center; }
 .bordered { border: 1px solid $bc;}
 .clear {clear:both;}
+
+.loading {
+	margin: 10px;
+    float: right;
+	height: 16px;
+	width: 16px;
+	display: none;
+	background: #FFF url('loading.gif') no-repeat;
+}
 
 section{
   padding:10px 0 10px 0;
