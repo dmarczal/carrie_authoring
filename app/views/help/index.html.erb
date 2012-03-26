@@ -6,6 +6,81 @@
   <article id="lsystem">
     <header>
       <h1> Como usar o L-system </h1>
+      <ul id="help-lsystem" class="itens">
+        <li>L-Systems (Abreviação de Sistemas de Lindenmayer), é um conjunto de regras e símbolos que modelam um processo de crescimento. O sistema de Lindenmayer foi proposto por Aristid Lindenmayer para simular e modelar o crescimento de algumas plantas e hoje é usado em áreas como a matemática. Os L-systens são da seguinte forma:<p/>
+        <ul>
+          <p>Um ângulo: de 0 a 360º<p/>
+          Um axioma inicial</p>
+          Regras de substituição</p>
+          Constantes que são opcionais.<p/><p/>
+        </ul>
+
+      O ângulo define quanto tiver uma ‘operação’ (+ ou -) quantos graus a reta à direita da operação irá rotacionar.<p/>
+      <p/>O axioma define o estado inicial do Fractal. No qual as próximas iterações iram se basear. <p/>Pode ser uma figura complexa ou apenas uma reta.<p/>
+      A regras de substuições são o que definem como o Fractal irá se comportar em cada iteração. Ex: F=F+F, essa significa que a cada iteração todo F, da regra, deve ser substituído por F+F.<p/>
+      Vamos à um exemplo prático para a construção de um fractal. Vamos construir o fractal chamado a Curva de Koch. Que é da seguinte forma:
+        </li>
+
+        <p>
+           IMAGEM 0
+        </p>
+        <li>
+          Primeiramente, como podemos observar o esse fractal possui apenas ângulos retos, então o ângulo definiremos como 90º (Nota-se que poderia ser 270º também). também todas as retas têm o mesmo tamanho, o que nos faz concluir que possui apenas uma reta, que chamaremos de F.
+        </li>
+        <p>
+          IMAGEM 1
+        </p>
+
+        <li>
+          Esta é a tela onde será criado o Fractal da Curva de Koch. Como já sabemos o ângulo e e que temos somente uma reta, vamos definir o axioma inicla como F, pois a primeira iteração desse fractal é apenas uma reta.
+        </li>
+        <p>
+          IMAGEM 2
+        </p>
+        <li>
+          Podemos ver que ainda não aparece nada. Pois não temos uma regra de geração. Vamos colocar a regra como a mais básica, como F=F
+        </li>
+        <p>
+          IMAGEM 3
+        </p>
+        <li>
+          Podemos ver que ficou apenas uma reta em todas as iterações, pois configuramos o fractal para trocar F por F, ou seja não fazer nada, e não rotacionar nada (nenhum sinal de + ou -). Agora vamos colocar F=F+F para ver o que teremos.
+        </li>
+        <p>
+          IMAGEM 4
+        </p>
+        <li>
+          Foi gerado um quadrado, pois na primeira iteração com a regra F=F+F, aconteceu o seguinte. F foi tranformado em F+F ou seja, a reta F, e logo após gira 90º sentido horário, e desenha F novamente, e ficou metade de um quadrado, ou seja na 3 iteração, geramos o quadro inteiro, pois colocamos novamente F+F.<p/><p/>
+	Agora para começar a dar forma ao fractal Curva de Kock, vamos analisar melhor a segunda iteração
+        </li>
+        <p>
+          IMAGEM da segunda iteração do Curva de Koch, numerar retas
+        </p>
+        <li>
+          Podemos ver que temos 5 retas F. Vamos Colocar F=F+F+F+F+F
+        </li>
+        <p>
+          IMAGEM 5
+        </p>
+        <li>
+          Podemos ver que as retas se sobrepuseram. Mas analisando a imagem novamente, vemos que a Reta 3 da imagem da Curva de Koch, deve ser rotacionada com a operação -, pois assim tiraremos a forma do quadrado, pois as retas não irão se sobrepor.
+        </li>
+        <p>
+          IMAGEM 6
+        </p>
+        <li>
+          Agora devemos também colocar a operação de - no quarto F da regra, pois assim ele ficará no mesmo sentido da primeira reta da figura.
+        </li>
+        <p>
+          IMAGEM 7
+        </p>
+        <li>
+          Pode-se notar que já chegamos ao fractal desejado, a única diferença é que ele está horizontal, enquanto o da figura NUMERO DA FIGURA, está na vertical, para mudar isso, apenas precisamos rodar o Axioma inicial, para - ou + que a reta inicial estará na vertical, assim como todo o resto.
+        </li>
+        <p>
+          IMAGEM 8
+        </p>
+      </ul>
     </header>
   </article>
 
