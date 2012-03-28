@@ -6,7 +6,7 @@
         <%= f.input :name %>
         <%= f.input :code %>
         <%= f.input :learning_object_tokens,
-          input_html: {"data-pre" => @learning_group.learning_objects.map(&:attributes).to_json} %>
+          input_html: {"data-pre" => @learning_group.learning_objects.map(&:token_inputs).to_json} %>
         <%= f.button :submit, "Salvar", :class => "btn btn-primary" %>
       </div>
     <% end %>

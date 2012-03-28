@@ -6,22 +6,21 @@
   </header>
 
   <article>
-      <ul class="thumbnails">
-      <li class="span3">
-        <% @learning_group.learning_objects.each do |lo| %>
+    <ul class="thumbnails">
+      <% @learning_group.learning_objects.each do |lo| %>
+        <li class="span3">
           <% link = capture do %>
             <div class="thumbnail">
               <h4><%= lo.name %></h4>
               <br/>
               <p>
-                <%= raw (truncate_html(lo.description, :length => 50,
-                                       :omission => '...(continua)')) %>
-               </p>
-             </div>
+                <%= raw (truncate_html(lo.description, :length => 50, :omission => '...(continua)')) %>
+              </p>
+            </div>
           <% end %>
           <%= link_to link, learning_object_learning_group_path(@learning_group, lo) %>
-        <% end %>
-      </li>
+        </li>
+      <% end %>
     </ul>
   </article>
 </section>

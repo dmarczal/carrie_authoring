@@ -68,4 +68,8 @@ module ApplicationHelper
       user.email
     end
   end
+
+  def name_or_email(user)
+    creator(user)
+  end
 end

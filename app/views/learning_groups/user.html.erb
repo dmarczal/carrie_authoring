@@ -1,0 +1,30 @@
+<section>
+  <header>
+    <h1> Aprendiz: <%= name_or_email(@user) %> </h1>
+  </header>
+
+  <article>
+    <div class="row-fluid">
+      <div class="span2">
+        <!--Sidebar content-->
+        <h4 class="margin-bottom">Objetos de Aprendizagens</h4>
+        <div class="tabbable tabs-left">
+          <ul class="nav nav-tabs">
+            <% @learning_group.learning_objects.each do |lo| %>
+              <li>
+                <%= link_to lo.name, user_learning_object_errors_url(@user, lo) , remote: true,
+                     class: "load", "data-toggle" => "tab" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="span10">
+        <div id="side-content">
+        </div>
+      </div>
+
+    </div>
+  </article>
+</section>

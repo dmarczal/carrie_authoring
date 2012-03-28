@@ -83,8 +83,15 @@ class LearningGroupsController < ApplicationController
   def learning_object
     @learning_group = current_user.learning_groups.find_by_slug(params[:id])
     @lo = @learning_group.learning_objects.find_by_slug(params[:learning_object])
-    breadcrumb
+    add_breadcrumb "Turma: #{@learning_group.name}", :my_group_learning_group_path
     add_breadcrumb "OA: #{@lo.name}", :learning_object_learning_group_path
+  end
+
+  def user
+    @learning_group = LearningGroup.where(owner_id: current_user.id).find_by_slug(params[:id])
+    @user = User.find(params[:user_id])
+    add_breadcrumb "Turma: #{@learning_group.name}", learning_group_path(@learning_group)
+    add_breadcrumb "Usuário: #{@user.name}", :user_learning_group_path
   end
 
 private

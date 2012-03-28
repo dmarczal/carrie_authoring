@@ -3,7 +3,7 @@
 //= require jquery_ujs
 
 //= require twitter/bootstrap
-//= require jquery/jquery.tablesorter
+//= require jquery/jquery.tablesorter.pager.js
 //= require jquery/jquery-ui-1.8.16.custom.min
 //= require jquery/jquery.dragtable
 //= require jquery/jquery.tablesorter

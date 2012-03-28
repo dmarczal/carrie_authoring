@@ -46,6 +46,7 @@
   header {
     margin-bottom: 15px;
   }
+
   article {margin-top: 0px;}
 
   .thumbnail {
@@ -58,8 +59,26 @@
     padding-left: 0px;
   }
 
-  .span2,.nav {
-    padding: 0px;
+
+
+  a:hover {
+    text-decoration: none;
+    .thumbnail {
+      background: #EEE;
+    }
+  }
+}
+
+.small-thumbnails {
+
+  .thumbnail {
+    h4 {text-align: center}
+    width: 150px;
+    height: 100px;
+  }
+
+  .span2 {
+     padding: 0px;
   }
 
   a:hover {
@@ -69,3 +88,5 @@
     }
   }
 }
+
+.margin-bottom {margin-bottom: 10px;}

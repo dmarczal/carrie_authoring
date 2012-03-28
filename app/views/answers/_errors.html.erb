@@ -1,8 +1,11 @@
 <section class="errors">
-  <table class="table table-bordered table-striped">
+  <header>
+    <h2 id="">Respostas Erradas do OA <%= @lo.name  %></h2>
+  </header>
+  <table id="errors_table" class="table table-bordered table-striped tablesorter">
     <thead>
       <tr>
-	    <th>Data e Hora</th>
+	<th>Data e Hora</th>
         <th>Exercício</th>
         <th>Questão</th>
         <th>Iteração</th>
@@ -13,7 +16,7 @@
     <tbody>
       <% @errors.each do |error| %>
         <tr>
-          <td><%= l error.created_at %></td>
+          <td><%= l(error.created_at, format: :long) %></td>
           <td><%= error.exercise.title %></td>
           <td><%= error.question.title %></td>
           <td><%= error.correct_answer.iteration %></td>

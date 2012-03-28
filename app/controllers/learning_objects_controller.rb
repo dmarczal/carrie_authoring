@@ -80,9 +80,4 @@ class LearningObjectsController < ApplicationController
     render nothing: true
   end
 
-  private
-    def all_published
-      LearningObject.where(published: true)
-    end
-
 end

@@ -14,21 +14,22 @@
         <h2> Objetos de Aprendizagem Cadastrados</h2>
     </header>
 
-    <table class="table table-bordered table-striped" id="learning_objects">
-      <tr>
-        <th>Objeto de Aprendizagem</th>
-        <th>Ver em modo publicado</th>
-      </tr>
-
-      <% @learning_objects.each do |lo| %>
-        <tr>
-          <td><%= lo.name %></td>
-          <td><%= link_to 'Ver em modo publicado', published_fractal_path(lo) %></td>
-        </tr>
-      <% end %>
-    </table>
-
+    <section>
+      <ul class="thumbnails small-thumbnails">
+        <% @learning_objects.each do |lo| %>
+          <li class="span2">
+            <% link = capture do %>
+              <div class="thumbnail">
+                <h4><%= lo.name %></h4>
+              </div>
+            <% end %>
+            <%= link_to link, published_fractal_path(lo) %>
+          </li>
+        <% end %>
+      </ul>
+    </section>
   </article>
+
   <article>
     <header>
         <h2> Alunos Matriculados</h2>
@@ -36,6 +37,7 @@
 
     <table class="table table-bordered table-striped" id="learning_objects">
       <tr>
+        <th>Mais Iformações</th>
         <th>Aprendiz</th>
         <th>Email</th>
         <th class="gravatar">Gravatar</th>
@@ -43,6 +45,7 @@
 
       <% @learning_group.users.each do |user| %>
         <tr>
+          <td><%= link_to 'Detalhes',  user_learning_group_path(@learning_group, user)  %></td>
           <td><%= user.name %></td>
           <td><%= user.email %></td>
           <td class="gravatar">

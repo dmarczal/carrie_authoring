@@ -6,6 +6,7 @@
 *= require fractals
 *= require exercises
 *= require questions
+*= require answers
 *= require published/fractals
 *= require_self
 *= require learning_groups
@@ -52,7 +53,7 @@ section{
   }
 
   article {
-    margin-top: 50px;
+    margin-top: 20px;
     clear: both;
   }
 }

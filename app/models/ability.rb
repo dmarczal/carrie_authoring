@@ -13,6 +13,7 @@ class Ability
       can :manage, Exercise
       can :manage, Question
       can :manage, Answer
+      can [:user_errors], Answer
       can :manage, CorrectAnswer
       can :manage, Introduction
       can :manage, LearningGroup, :owner_id => user.id

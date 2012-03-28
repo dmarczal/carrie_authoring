@@ -1,7 +1,9 @@
 Carrie_mongodb::Application.routes.draw do
 
   get "help/index"
-  get "answers/errors"
+  match "answers/learning_object/:id/errors" => "answers#errors", as: "learning_objects_current_user_errors"
+  match "answers/user_errors/:id/learning_objects/:learning_object_id" => "answers#user_errors",
+        as: "user_learning_object_errors"
 
   mount Ckeditor::Engine => '/ckeditor'
 
@@ -9,8 +11,10 @@ Carrie_mongodb::Application.routes.draw do
     post :enroll
     get 'my_groups', action: :my_groups, :on => :collection
     get 'my_group', action: :my_group, :on => :member
-    get 'my_group/learning_object/:learning_object', action: :learning_object, :on => :member, as: 'learning_object'
+    get 'my_group/learning_object/:learning_object',
+        action: :learning_object, :on => :member, as: 'learning_object'
     get 'all_groups', action: :all_groups, :on => :collection
+    get 'user/:user_id', action: :user, :on => :member, as: 'user'
   end
 
   devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
