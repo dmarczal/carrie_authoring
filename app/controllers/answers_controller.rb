@@ -7,11 +7,13 @@ class AnswersController < ApplicationController
   def errors
     @lo = LearningObject.find_by_slug(params[:id])
     @errors = current_user.answers.where(correct: false, learning_object_id: @lo.id ).order_by([[ :created_at, :desc ]])
+    authorize! :errors, Answer
   end
 
   def user_errors
     user = User.find(params[:id])
     @lo = LearningObject.find_by_slug(params[:learning_object_id])
     @errors = user.answers.where(correct: false, learning_object_id: @lo.id).order_by([[ :created_at, :desc ]])
+    authorize! :user_errors, Answer
   end
 end
