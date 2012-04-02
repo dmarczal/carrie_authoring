@@ -39,10 +39,11 @@ class User
   has_many :fractals, dependent: :nullify
   has_many :learning_objects
   has_many :answers
+  has_many :last_user_answers
 
   has_and_belongs_to_many :learning_groups
 
-  validates :type, inclusion: { in: %w(professor student)}
+  validates :type, inclusion: { in: %w(professor student admin)}
   validates_uniqueness_of :email
 
   def student?

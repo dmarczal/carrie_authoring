@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :change_mass_assignment, :only => [:update]
+  before_filter :change_mass_assignment_create, :only => [:create]
   before_filter :add_breadcrumb_edit, :only => :edit
   before_filter :add_breadcrumb_new, :only => [:new, :create]
 
@@ -8,6 +9,12 @@ class RegistrationsController < Devise::RegistrationsController
     unless current_user.admin? && current_user.id != params[:user][:id]
       params[:user].delete(:type)
       params[:user].delete(:email)
+    end
+  end
+
+  def change_mass_assignment_create
+    unless current_user.present? && current_user.admin?
+      params[:user].delete(:type) if params[:user][:type].eql?('admin')
     end
   end
 

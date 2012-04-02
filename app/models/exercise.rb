@@ -20,7 +20,7 @@ class Exercise
   validates_uniqueness_of :title
 
   before_create :set_position
-  after_save :update_questions_correct_answers
+  after_update :update_questions_correct_answers
 
   def markdown_desc
     options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
@@ -36,6 +36,15 @@ class Exercise
     {length: self.questions.length, questions: _questions}
   end
 
+  def last_user_answers(user)
+    questions.order_by([[ :position, :asc ]]).map do |question|
+      question.correct_answers.order_by([[ :iteration, :asc ]]).map do |correct_answer|
+        last_answer = correct_answer.last_user_answers.where(user_id: user.id).last
+        last_answer ? {response: last_answer.response, correct: last_answer.correct} : {}
+      end
+    end
+  end
+
 private
   def set_position
     lo = learning_object.exercises.order_by([[ :position, :desc ]])
@@ -45,6 +54,7 @@ private
       self.position= lo.first.position + 1
     end
   end
+
   # needs update questions answers as iterations
   def update_questions_correct_answers
       self.questions.each {|question| question.update_correct_answers}

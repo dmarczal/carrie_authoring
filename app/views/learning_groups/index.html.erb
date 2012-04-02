@@ -1,5 +1,5 @@
 <section>
-  <header>
+  <header class="clearfix">
     <h1 class="left">Turmas que criei</h1>
     <div class="btn-group right">
       <%= link_to 'Nova turma', new_learning_group_path, :class => "btn"%>
@@ -33,7 +33,7 @@
 </section>
 
 <section>
-  <header>
+  <header class="clearfix">
     <h1 class="left">Turmas que estou está matriculado </h1>
   </header>
 
@@ -47,7 +47,7 @@
 
       <% @my_groups.each do |group| %>
         <tr>
-          <td><%= group.name %></td>
+          <td><%= link_to group.name, my_group_learning_group_path(group) %></td>
           <td><%= creator(group.owner) %></td>
         </tr>
       <% end %>

@@ -8,22 +8,33 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.professor?
-      can :manage, Fractal, :user_id => user.id
-      can :manage, LearningObject, :user_id => user.id
+      can :manage, Fractal, user_id: user.id
+      can :manage, LearningObject, user_id: user.id
       can :manage, Exercise
       can :manage, Question
       can [:user_errors, :errors], Answer
       can :manage, CorrectAnswer
       can :manage, Introduction
       can :manage, LearningGroup, :owner_id => user.id
-      can :read, :all
+      can [:enroll, :my_group, :learning_object], LearningGroup
+      can :read, Fractal
+
+      can :view_published_learning_object, LearningObject do |lo|
+        intersection = lo.learning_groups & user.learning_groups
+        !intersection.empty?
+      end
+
     elsif user.student?
       can :manage, Fractal, :user_id => user.id
       can [:my_groups, :all_groups, :enroll, :my_group, :learning_object], LearningGroup
       can :verify_and_save_answer, Question
       can :errors, Answer, user_id: user.id
+      can :view_published_learning_object, LearningObject do |lo|
+        intersection = lo.learning_groups & user.learning_groups
+        !intersection.empty?
+      end
     else
-      can :read, Fractal
+     can :read, Fractal
       can [:index], Ckeditor::Asset
     end
 

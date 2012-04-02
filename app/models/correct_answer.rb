@@ -9,12 +9,13 @@ class CorrectAnswer
   validates_presence_of :response, :iteration
   validates :ask, :inclusion => {:in => [true, false]}
 
-  embedded_in :question, inverse_of: :correct_answers
+  belongs_to :question, inverse_of: :correct_answers
   has_many :answers
+  has_many :last_user_answers
 
   validates_associated :question
 
   def tokens
-    {id: _id, ask: ask, response: (ask? ? "" : response) }
+    {id: _id, ask: ask, response: (ask? ? "" : response)}
   end
 end

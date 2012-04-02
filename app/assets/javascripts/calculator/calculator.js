@@ -9,23 +9,7 @@ $(document).ready(function() {
 
       var sendAnswer =  function (answer, cell) {
          $.post(url, { response: answer, answer_id: answer_id }, function(response) {
-            var div = $("<div>");
-            var span = $("<span>");
-            var legend = $("<span class='text-in-border'>")
-
-            if (response == true) {
-               $(div).addClass('right-answer');
-               $(legend).html("Correto");
-            }
-            else {
-               $(div).addClass('wrong-answer');
-               $(legend).html("Incorreto");
-            }
-
-            $(div).html("<div>"+ answer +"</div>");
-            $(cell).html(div);
-            $(cell).prepend(legend);
-
+            setAnswer(answer, response, cell);
          }, 'json');
       }
 

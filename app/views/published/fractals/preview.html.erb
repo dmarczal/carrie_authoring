@@ -5,7 +5,7 @@
 
   <% if @page.instance_of? Introduction %>
     <%= render 'introduction' %>
-  <% else %>
+  <% elsif @page.instance_of? Exercise %>
     <%= render 'exercise' %>
   <% end %>
 

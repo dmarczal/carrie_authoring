@@ -5,7 +5,7 @@ namespace :db do
   task :populate => :environment do
     require 'faker'
 
-    [LearningObject, Fractal, Exercise, LearningGroup].each(&:destroy_all)
+    [LearningObject, Fractal, Exercise, LearningGroup, CorrectAnswer, Answer, LastUserAnswer].each(&:destroy_all)
 
     User.delete_all
     User.create(email: 'carrie.ufpr@gmail.com', password: 'carrie123', type: 'admin',
@@ -56,12 +56,12 @@ namespace :db do
         exe = oa.exercises.create!(:title => Faker::Name.title, :enunciation => Faker::Lorem.paragraphs(3).join,
                             :fractal_exercise => fractals_exerc.sample)
         3.times do |i|
-          question = exe.questions.build( title: "Lado Maior #{i}", enunciation: "Enunciado #{i}")
+          question = exe.questions.create!( title: "Lado Maior #{i}", enunciation: "Enunciado #{i}")
           its = exe.fractal.infinite? ? (exe.fractal.iterations + 1) : exe.fractal.iterations.times
           its.times do |it|
-            question.correct_answers.build( response: it, iteration: it, ask: true)
+            question.correct_answers.create!( response: it, iteration: it, ask: true)
           end
-          question.save!
+          #question.save!
         end
 
       end

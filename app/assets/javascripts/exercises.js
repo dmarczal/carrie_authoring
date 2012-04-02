@@ -83,6 +83,7 @@ var show_exercise = function () {
                                     id:        $(exercTable).data('id'),
                                     fractal:   $(exercTable).data('fractal'),
                                     questions: $(exercTable).data('questions'),
+                                    last_answers: $(exercTable).data('last-answers'),
                                     oaId:     $(exercTable).data('oa-id')
                                    });
     exercise.loadTable();
@@ -137,6 +138,7 @@ var Exercise = Exercise || {
     this.table = data.table;
     this.fractal = data.fractal;
     this.questions = data.questions;
+    this.last_answers = data.last_answers;
     this.oaId = data.oaId;
     var that = this;
 
@@ -182,12 +184,21 @@ var Exercise = Exercise || {
     var createQuestions = function (row, index) {
        for(var i = 0; i < that.questions.length; i++){
           var answer = that.questions.questions[i].answers[index];
-          //console.log(answer);
-          //console.log(index);
-          var calculator = answer.ask == true ? "calculator" : "";
-          var td = $('<td data-row=' + index +' data-col=' + new Number(i+2)
-                     +' class="' + calculator +'" data-answer-id="'+ answer.id +'">');
-          $(td).html(answer.response);
+
+          var td = $('<td data-row=' + index +' data-col=' + new Number(i+2) +' data-answer-id="'+ answer.id +'">');
+
+          if (answer.ask === false) {
+             $(td).html(answer.response);
+          } else {
+             $(td).addClass("calculator");
+
+             if (that.last_answers !== null && that.last_answers !== undefined ) {
+                var last_answer = that.last_answers[i][index];
+                if (last_answer.hasOwnProperty("response")) {
+                   setAnswer(last_answer.response, last_answer.correct, td);
+                 }
+             }
+          }
           row.append(td);
        }
     };

@@ -10,7 +10,7 @@
 
   <table id="exercise_table" class="table table-bordered" data-fractal="<%= @page.fractal.to_json %>"
     data-questions="<%= @page.tokens.to_json %>" data-id="<%= @page.slug %>"
-    data-oa-id="<%= @lo.slug %>"
+    data-last-answers="<%= @last_answers.to_json  %>" data-oa-id="<%= @lo.slug %>"
     >
     <thead>
       <tr>

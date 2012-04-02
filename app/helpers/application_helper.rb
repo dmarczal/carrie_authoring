@@ -46,8 +46,8 @@ module ApplicationHelper
     link_to(content, object) if can?(:read, object)
   end
 
-  def edit_link(object, content = "Edit")
-    link_to(content, [:edit, object]) if can?(:update, object)
+  def edit_link(object, content = "Edit", kclass = "" )
+    link_to(content, [:edit, object], class: kclass) if can?(:update, object)
   end
 
   def destroy_link(object, content = "Destroy")

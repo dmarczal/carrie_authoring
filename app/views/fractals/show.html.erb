@@ -5,7 +5,7 @@
     <div class="btn-group right">
       <a href="#" id="next_it" class="btn">Próxima Iteração</a>
       <a data-toggle="modal" href="#details" class="btn" >Detalhes</a>
-      <%= link_to 'Editar', edit_fractal_path(@fractal), class: "btn"  %>
+      <%= edit_link @fractal, 'Editar', "btn"  %>
       <%= link_to 'Voltar', :back, :class => "btn" %>
     </div>
 

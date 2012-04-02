@@ -19,3 +19,25 @@ function remove_fields(link) {
    $(link).up("fields").hide();
 }
 
+/*
+ * Set the answer in a object
+ * Uses to set a answer in a table cell
+ */
+function setAnswer(response, correct, object){
+   var div = $("<div>");
+   var span = $("<span>");
+   var legend = $("<span class='text-in-border'>")
+
+   if (correct === true) {
+      $(div).addClass('right-answer');
+      $(legend).html("Correto");
+   }
+   else {
+      $(div).addClass('wrong-answer');
+      $(legend).html("Incorreto");
+   }
+
+   $(div).html("<div>"+ response +"</div>");
+   $(object).html(div);
+   $(object).prepend(legend);
+}

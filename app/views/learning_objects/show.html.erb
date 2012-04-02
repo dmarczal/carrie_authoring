@@ -1,7 +1,6 @@
 <section id="show-learning_object">
-  <header>
-    <h1 class="clear"> Objeto de Aprendizagem: <em><%= @learning_object.name %> </h1>
-    </header>
+  <header class="clearfix">
+    <h1 class="left"> Objeto de Aprendizagem: <em><%= @learning_object.name %> </h1>
 
     <div class="right btn-los">
       <div class="btn-group">
@@ -10,6 +9,7 @@
         <%= link_to 'Modo publicado', preview_published_fractal_path(@learning_object), :class => "btn" %>
       </div>
     </div>
+  </header>
 
   <article>
      <div class="do_hover">
@@ -18,12 +18,12 @@
   </article>
 
   <section>
-    <header>
+    <header class="clearfix">
       <h1 class='left'> Introduções </h1>
-      <p class='right'>
+      <div class='right'>
         <%= link_to "Criar nova Introdução", new_learning_object_introduction_path(@learning_object),
           :class => "btn large" %>
-      </p>
+      </div>
     </header>
 
     <article>
@@ -58,13 +58,13 @@
 
 
   <section>
-    <header>
+    <header class="clearfix">
       <h1 class='left'> Exercícios </h1>
-      <p class='right'>
+      <div class='right'>
         <% if can? :manage, Exercise %>
-          <%= link_to 'Criar novo Exercício', new_learning_object_exercise_path(@learning_object), :class => "btn large" %>
+        <%= link_to 'Criar novo Exercício', new_learning_object_exercise_path(@learning_object), :class => "btn large" %>
         <% end %>
-      </p>
+      </div>
     </header>
 
     <article>

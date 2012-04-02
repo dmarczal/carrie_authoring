@@ -1,11 +1,11 @@
 <section>
-  <header>
+  <header class="clearfix">
     <h1 class="left"> Fractais </h1>
-    <p class="right">
+    <div class="right">
       <% if can? :manage, Fractal %>
         <%= link_to 'Criar novo Fractal', new_fractal_path, :class => "btn" %>
       <% end %>
-    </p>
+    </div>
   </header>
 
   <article>

@@ -1,20 +1,28 @@
 #encoding: utf-8
 class Published::FractalsController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def show
     published_fractal
-    breadcumb(@page)
+    breadcumb
+
+    if @page.instance_of? Exercise
+      @last_answers = @page.last_user_answers(current_user)
+    end
 
     @pagination_url = "/published/fractals/#{@lo.slug}/page/"
     @save = true
+    authorize! :view_published_learning_object, @lo
   end
 
   def preview
     published_fractal
-    breadcumb(@page, preview=" - Preview")
+    breadcumb_preview
 
     @pagination_url = "/published/fractals/#{@lo.slug}/preview/page/"
     @save = false
+    authorize! :manage, @lo
   end
 
 private
@@ -25,11 +33,19 @@ private
     @pagination = @lo.pages_with_name
   end
 
-  def breadcumb(page, preview = "")
-    if page.instance_of? Introduction
-      add_breadcrumb "OA #{@lo.name} - Introdução #{preview}", :published_fractal_path
+  def breadcumb_preview
+    if @page.instance_of? Introduction
+      add_breadcrumb "OA #{@lo.name} - Introdução Preview", preview_published_fractal_path
     else
-      add_breadcrumb "OA #{@lo.name} - Exercício #{preview}", :published_fractal_path
+      add_breadcrumb "OA #{@lo.name} - Exercício Preview", preview_published_fractal_path
+    end
+  end
+
+  def breadcumb
+    if @page.instance_of? Introduction
+      add_breadcrumb "OA #{@lo.name} - Introdução ", published_fractal_path
+    else
+      add_breadcrumb "OA #{@lo.name} - Exercício ", published_fractal_path
     end
   end
 end

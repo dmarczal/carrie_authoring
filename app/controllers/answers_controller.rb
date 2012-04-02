@@ -2,7 +2,6 @@
 class AnswersController < ApplicationController
 
   before_filter :authenticate_user!
-  #load_and_authorize_resource
 
   def errors
     @lo = LearningObject.find_by_slug(params[:id])

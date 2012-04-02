@@ -2,8 +2,9 @@
 class LearningObjectsController < ApplicationController
 
   before_filter :authenticate_user!
-  add_breadcrumb "Objetos de Aprendizagem", :learning_objects_path
   load_and_authorize_resource :find_by => :slug
+
+  add_breadcrumb "Objetos de Aprendizagem", :learning_objects_path
 
   def index
     @learning_objects = current_user.learning_objects.page(params[:page]).per(6)
@@ -17,7 +18,7 @@ class LearningObjectsController < ApplicationController
   end
 
   def show
-    @learning_object = LearningObject.find_by_slug(params[:id])
+    @learning_object = current_user.learning_objects.find_by_slug(params[:id])
     @exercises = @learning_object.exercises.order_by([[ :position, :asc ]])
     @introductions = @learning_object.introductions.order_by([[ :position, :asc ]])
 
@@ -25,17 +26,17 @@ class LearningObjectsController < ApplicationController
   end
 
   def new
-    @learning_object = LearningObject.new
+    @learning_object = current_user.learning_objects.new
     add_breadcrumb "Novo Objeto de Aprendizagem", :new_learning_object_path
   end
 
   def edit
-    @learning_object = LearningObject.find_by_slug(params[:id])
+    @learning_object = current_user.learning_objects.find_by_slug(params[:id])
     add_breadcrumb "Editar #{@learning_object.name}", :edit_learning_object_path
   end
 
   def create
-    @learning_object = LearningObject.new(params[:learning_object])
+    @learning_object = current_user.learning_objects.new(params[:learning_object])
 
     if @learning_object.save
       redirect_to @learning_object, notice: 'OA criado com sucesso.'
@@ -45,7 +46,7 @@ class LearningObjectsController < ApplicationController
   end
 
   def update
-    @learning_object = LearningObject.find_by_slug(params[:id])
+    @learning_object = current_user.learning_objects.find_by_slug(params[:id])
 
     respond_to do |format|
       if  @learning_object.update_attributes(params[:learning_object])
@@ -60,7 +61,7 @@ class LearningObjectsController < ApplicationController
   end
 
   def destroy
-    @learning_object = LearningObject.find_by_slug(params[:id])
+    @learning_object = current_user.learning_objects.find_by_slug(params[:id])
     @learning_object.destroy
 
     redirect_to learning_objects_url, notice: "OA deletado com sucesso"

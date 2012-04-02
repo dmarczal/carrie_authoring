@@ -25,7 +25,6 @@ class LearningObject
     markdown.render(self.description).html_safe
   end
 
-
   def pages
     intro = self.introductions.order_by([[ :position, :asc ]])
     exer = self.exercises.order_by([[ :position, :asc ]])
