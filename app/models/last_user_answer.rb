@@ -24,4 +24,8 @@ class LastUserAnswer
        last_answer.save
     end
   end
+
+  def exercise
+    correct_answer.exercise
+  end
 end

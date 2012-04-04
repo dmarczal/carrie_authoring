@@ -2,7 +2,7 @@
 <html lang="<%= I18n.locale %>">
   <head>
     <meta charset="UTF-8">
-    <title>Carrie_mongodb</title>
+    <title>Carrie</title>
     <%= stylesheet_link_tag "application" %>
     <link rel="shortcut icon" href="/favicon.ico">
     <%= javascript_include_tag "application" %>
@@ -18,9 +18,9 @@
       <%= render "shared/breadcrumbs" %>
 
       <%= render :partial => "shared/flash", :locals => {:flash => flash} %>
-	 
+
 	  <div class="loading"></div>
-	
+
       <%= yield %>
     </div>
   </body>

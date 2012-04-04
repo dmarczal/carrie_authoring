@@ -7,7 +7,7 @@ class LearningObjectsController < ApplicationController
   add_breadcrumb "Objetos de Aprendizagem", :learning_objects_path
 
   def index
-    @learning_objects = current_user.learning_objects.page(params[:page]).per(6)
+    @learning_objects = current_user.learning_objects.order_by([[:created_at, :desc]]).page(params[:page]).per(6)
 
     if params[:q]
       @lo_json = current_user.learning_objects.where(name: /#{params[:q]}/i)

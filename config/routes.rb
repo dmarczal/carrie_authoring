@@ -43,6 +43,7 @@ Carrie_mongodb::Application.routes.draw do
        get ':id/page/:page', action: :show, :on => :collection
        get  :preview, :on => :member
        get 'preview/page/:page', :action => :preview, :on => :member
+       delete ':learning_object_id', action: :destroy, on: :member, as: :destroy_last_answers
     end
   end
 

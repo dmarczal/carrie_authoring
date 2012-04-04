@@ -8,6 +8,14 @@
     <%= markdown @page.enunciation %>
   </article>
 
+  <% if controller.action_name != 'preview' %>
+    <div class="clearfix">
+      <div class="right">
+        <%= link_to "Limpar Respostas do Exercício", destroy_last_answers_published_fractal_path(@page, @lo), class: "btn btn-danger btn-mini", confirm: 'Tem certeza?', method: :delete %>
+      </div>
+    </div>
+  <% end %>
+
   <table id="exercise_table" class="table table-bordered" data-fractal="<%= @page.fractal.to_json %>"
     data-questions="<%= @page.tokens.to_json %>" data-id="<%= @page.slug %>"
     data-last-answers="<%= @last_answers.to_json  %>" data-oa-id="<%= @lo.slug %>"
