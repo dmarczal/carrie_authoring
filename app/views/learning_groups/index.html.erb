@@ -11,6 +11,7 @@
     <table class="table table-bordered table-striped" id="learning_objects">
       <tr>
         <th>Nome da turma</th>
+        <th>Criada em</th>
         <th>Código</th>
         <th>Opções</th>
       </tr>
@@ -18,6 +19,7 @@
       <% @learning_groups.each do |learning_group| %>
         <tr>
           <td><%= learning_group.name %></td>
+          <td><%= l learning_group.created_at %></td>
           <td><%= learning_group.code %></td>
           <td class="list-actions">
             <ul>

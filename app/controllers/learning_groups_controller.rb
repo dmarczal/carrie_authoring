@@ -5,8 +5,8 @@ class LearningGroupsController < ApplicationController
   before_filter :breadcrumb
 
   def index
-    @learning_groups = LearningGroup.where(owner_id: current_user.id)
-    @my_groups = current_user.learning_groups
+    @learning_groups = LearningGroup.where(owner_id: current_user.id).desc(:created_at)
+    @my_groups = current_user.learning_groups.desc(:created_at)
   end
 
   def show
@@ -54,6 +54,7 @@ class LearningGroupsController < ApplicationController
 
   def destroy
     @learning_group = LearningGroup.where(owner_id: current_user.id).find_by_slug(params[:id])
+    @learning_group.destroy
 
     respond_to do |format|
       format.html { redirect_to learning_groups_url, notice: 'Turma deletada com sucesso' }

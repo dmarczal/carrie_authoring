@@ -5,7 +5,7 @@ namespace :db do
   task :populate => :environment do
     require 'faker'
 
-    [LearningObject, Fractal, Exercise, LearningGroup, CorrectAnswer, Answer, LastUserAnswer].each(&:destroy_all)
+    [LearningObject, Fractal, Exercise, LearningGroup, CorrectAnswer, Answer, LastUserAnswer, Question].each(&:destroy_all)
 
     User.delete_all
     User.create(email: 'carrie.ufpr@gmail.com', password: 'carrie123', type: 'admin',

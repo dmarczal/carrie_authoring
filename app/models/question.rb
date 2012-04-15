@@ -6,10 +6,10 @@ class Question
   field :enunciation, :type => String
 
   referenced_in :exercise, :inverse_of => :questions
-  has_many :correct_answers
 
-  has_many :answers
-  has_many :last_user_answers
+  has_many :correct_answers, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :last_user_answers, dependent: :destroy
 
   validates_presence_of :title, :enunciation
   validates_associated :exercise
@@ -22,26 +22,9 @@ class Question
     it.times { |i| self.correct_answers.build(iteration: i) }
   end
 
-  # TODO: verify correct answer
-  def correct_answer?(id, value)
-    correct_answer = correct_answers.find(id)
-    return correct_answer.response.to_f === value.to_f
-  end
-
-  def correct_and_save_answer?(id, value, user, lo, exercise, question)
-    correct_answer = correct_answers.find(id)
-    correct = correct_answer.response.to_f === value.to_f
-
-    answer = Answer.create!(user: user, response: value, correct_answer: correct_answer, correct: correct,
-                  learning_object: lo, exercise: exercise, question: question)
-
-    LastUserAnswer.create_or_update(answer)
-    correct
-  end
-
   # Tokens for create exercises
   def tokens
-    _correct_answers = correct_answers.map {|an| an.tokens}
+    _correct_answers = correct_answers.asc(:iteration).map {|an| an.tokens}
     {answers: _correct_answers}
   end
 
@@ -62,5 +45,23 @@ class Question
         its += 1
       end
     end
+  end
+
+
+  # TODO: verify correct answer
+  def correct_answer?(id, value)
+    correct_answer = correct_answers.find(id)
+    return correct_answer.response.to_f === value.to_f
+  end
+
+  def correct_and_save_answer?(id, value, user, lo, exercise, question)
+    correct_answer = correct_answers.find(id)
+    correct = correct_answer.response.to_f === value.to_f
+
+    answer = Answer.create!(user: user, response: value, correct_answer: correct_answer, correct: correct,
+                  learning_object: lo, exercise: exercise, question: question)
+
+    LastUserAnswer.create_or_update(answer)
+    correct
   end
 end

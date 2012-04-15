@@ -37,8 +37,8 @@ class User
   references_many :learning_group, :dependent => :delete
 
   has_many :fractals, dependent: :nullify
-  has_many :learning_objects
-  has_many :answers
+  has_many :learning_objects, dependent: :nullify
+  has_many :answers, dependent: :destroy
   has_many :last_user_answers
 
   has_and_belongs_to_many :learning_groups

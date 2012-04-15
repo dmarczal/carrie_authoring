@@ -13,7 +13,7 @@ class LearningObject
   belongs_to :user
 
   has_and_belongs_to_many :learning_groups
-  has_many :answers
+  has_many :answers, dependent: :destroy
 
   validates_presence_of :name, :description
   validates_uniqueness_of :name
