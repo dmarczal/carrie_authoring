@@ -8,13 +8,13 @@
 //= require jquery/jquery.tablesorter
 //= require jquery/jquery.tokeninput
 
-//= require util
 //= require lsystem/lsystems
 //= require lsystem/jquery.lsystem
 //= require lsystem/jquery.observe_field
 
 //= require_self
 
+//= require util
 //= require fractal
 //= require endless_page
 //= require exercises
@@ -27,8 +27,12 @@
 
 //= require published/fractals
 
+//= require calculator/parser
 //= require calculator/calculator
 //= require ckeditor/init
+
+// namespace
+var Carrie = {};
 
 $(document).ready(function() {
   function request_info (){
@@ -40,16 +44,9 @@ $(document).ready(function() {
   window.request = new request_info();
 
   $('.best_in_place').best_in_place();
+  // $('.best_in_place').bind("ajax:success", function () {}
 
-// $('.best_in_place').bind("ajax:success", function () {}
-//  $(".alert-message").alert()
-  $(".tabs").button()
-//  $(".carousel").carousel()
-//  $(".collapse").collapse()
-//  $(".dropdown-toggle").dropdown()
-    $(".modal").modal
-//  $("a[rel]").popover
-//  $(".navbar").scrollspy()
-//  $(".tooltip").tooltip
-//  $(".typeahead").typeahead()
+  $(".tabs").button();
 });
+
+

@@ -1,11 +1,15 @@
 Carrie_mongodb::Application.routes.draw do
 
+  mount JasmineRails::Engine => "/specs" unless Rails.env.production?
+  mount Ckeditor::Engine => '/ckeditor'
+  mathjax 'mathjax'
+
+
+
   get "help/index"
   match "answers/learning_object/:id/errors" => "answers#errors", as: "learning_objects_current_user_errors"
   match "answers/user_errors/:id/learning_objects/:learning_object_id" => "answers#user_errors",
         as: "user_learning_object_errors"
-
-  mount Ckeditor::Engine => '/ckeditor'
 
   resources :learning_groups do
     post :enroll

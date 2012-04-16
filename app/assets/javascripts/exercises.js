@@ -4,25 +4,6 @@ $(document).ready(function() {
 
     if (request.controller == "exercises") {
        if (request.action == "show") {
-
- /*         $("#dialog-calc").hide();
-          $("#dialog:ui-dialog" ).dialog( "destroy" );
-          $("#dialog-calc" ).dialog({
-            autoOpen: false,
-            height: 410,
-            width: 480,
-            modal: true,
-            resizable: false, /*,
-            buttons: {
-              "OK" : function() {
-                $(this).dialog("close");
-              }
-            }*/
-       /*     close: function() {
-              $("input.input").val("");
-            }
-          });
-       */
           show_exercise();
        } else if (request.action == "new" || request.action === "create") {
           observe_fields();

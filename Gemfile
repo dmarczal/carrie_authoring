@@ -24,6 +24,8 @@ gem "thin"
 gem "ckeditor", "3.7.0.rc3"
 gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
 
+gem 'mathjax-rails', git: 'git://github.com/sharespost/mathjax-rails.git'
+
 group :assets do
   gem 'sass-rails', "~> 3.2.3"
   gem 'uglifier', ">= 1.0.3"
@@ -35,9 +37,9 @@ group :development, :test do
   gem "awesome_print", :require => false
   gem "pry", :require => false
   gem "rspec-rails"
+  gem 'jasmine-rails'
   #gem "rb-fsevent"
 end
-
 
 group :test do
   gem 'database_cleaner'
