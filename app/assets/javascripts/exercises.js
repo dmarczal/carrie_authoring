@@ -176,7 +176,7 @@ var Exercise = Exercise || {
              if (that.last_answers !== null && that.last_answers !== undefined ) {
                 var last_answer = that.last_answers[i][index];
                 if (last_answer.hasOwnProperty("response")) {
-                   setAnswer(last_answer.response, last_answer.correct, td);
+                   setAnswer(last_answer.response, last_answer.correct, td, "$"+last_answer.response+"$");
                  }
              }
           }

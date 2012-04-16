@@ -12,19 +12,19 @@ $.fn.calculator = function (calc) {
    var answer_id = object.data('answer-id');
    var url = $($('table th').get(col)).data('verify-answer-url');
 
-   var sendAnswer =  function (answer, cell) {
+   var sendAnswer =  function (answer, cell, exp) {
       $.post(url, { response: answer, answer_id: answer_id }, function(response) {
-         setAnswer(answer, response, cell);
+         setAnswer(answer, response, cell, exp);
       }, 'json');
    }
 
    object.click(function () {
-      var val = object.find('div div').html() ;
+      var val = object.find('div div').attr('title') ;
       val = val ? val : "";
       calc.open({
          value: val,
-         onSend: function (response){
-            sendAnswer(response, object);
+         onSend: function (response, exp){
+            sendAnswer(response, object, exp);
          }
       });
    });
@@ -125,7 +125,7 @@ Carrie.Calc = Carrie.Calc || {
             case 'send':
                var val = that.input.val();
                if (validateExpression(val)){
-                  that.callBack(val);
+                  that.callBack(val, that.display.html());
                   $("#dialog-calc").dialog('close');
                }else{
                   that.input.next().show();

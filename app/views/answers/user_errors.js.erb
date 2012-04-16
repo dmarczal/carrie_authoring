@@ -1,2 +1,3 @@
 $("#side-content").html('<%= j render "errors", locals: { errors: @errors }%>');
 $("#errors_table").tablesorter();
+MathJax.Hub.Queue(["Typeset",MathJax.Hub,"errors_table"]);

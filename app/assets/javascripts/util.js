@@ -23,7 +23,7 @@ function remove_fields(link) {
  * Set the answer in a object
  * Uses to set a answer in a table cell
  */
-function setAnswer(response, correct, object){
+function setAnswer(response, correct, object, exp){
    var div = $("<div>");
    var span = $("<span>");
    var legend = $("<span class='text-in-border'>")
@@ -37,7 +37,12 @@ function setAnswer(response, correct, object){
       $(legend).html("Incorreto");
    }
 
-   $(div).html("<div>"+ response +"</div>");
+   //response = (response === undefined) ? "" : response;
+
+   $(div).html("<div title="+response+">" + exp + "</div>");
+   //console.log(div);
+   //MathJax.Hub.Queue(["Typeset",MathJax.Hub, div]);
+
    $(object).html(div);
    $(object).prepend(legend);
 }
