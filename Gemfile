@@ -33,6 +33,9 @@ end
 
 gem 'jquery-rails'
 
+# Deploy with Capistrano
+gem 'capistrano'
+
 group :development, :test do
   gem "awesome_print", :require => false
   gem "pry", :require => false

@@ -7,3 +7,4 @@ tmp/
 *.sw[onp]
 public/ckeditor_assets/*
 *.tmproj
+public/assets
