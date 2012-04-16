@@ -1,17 +1,17 @@
 GIT
-  remote: git://github.com/sharespost/mathjax-rails.git
-  revision: 8bc6928b0b38a6bfe3e45bcd35ee9dae0faca7bc
-  specs:
-    mathjax-rails (0.0.5)
-      railties (~> 3.0)
-
-GIT
-  remote: git@github.com:dmarczal/best_in_place.git
+  remote: git://github.com/dmarczal/best_in_place.git
   revision: 7049b2e610dcd4cc3123eb232964b8b9a85db92f
   specs:
     best_in_place (1.0.6.preMongo)
       jquery-rails
       rails (~> 3.1)
+
+GIT
+  remote: git://github.com/sharespost/mathjax-rails.git
+  revision: 8bc6928b0b38a6bfe3e45bcd35ee9dae0faca7bc
+  specs:
+    mathjax-rails (0.0.5)
+      railties (~> 3.0)
 
 GEM
   remote: http://rubygems.org/
