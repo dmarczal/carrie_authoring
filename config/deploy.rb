@@ -1,12 +1,6 @@
 require "bundler/capistrano"
-
-#load "config/recipes/base"
-#load "config/recipes/nginx"
-#load "config/recipes/unicorn"
-#load "config/recipes/sqlite"
-#load "config/recipes/nodejs"
-#load "config/recipes/rbenv"
-#load "config/recipes/check"
+set :rvm_ruby_string, 'ruby-1.9.3-p0@carrie'
+require "rvm/capistrano"
 
 server "173.246.40.9", :web, :app, :db, primary: true
 
@@ -17,15 +11,36 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "apps@173.246.40.9:/home/apps/repos/carrie.marczal.com.git"
+set :repository, "/home/#{user}/repos/#{application}.git"
+set :local_repository, "#{user}@173.246.40.9:/home/#{user}/repos/#{application}.git"
 set :branch, "master"
 
-default_run_options[:pty] = true
+set :copy_exclude, %w(.git/* .svn/* log/* tmp/* .gitignore)
+
+set :rails_env,       "production"
+
+#default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :deploy do
+
+  task :start, :roles => :app do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+
+  task :stop do ; end
+
+  desc "Run this after every successful deployment"
+    task :after_default do
+    run "ln -s #{deploy_to}/shared/ckeditor_assets #{release_path}/public/ckeditor_assets"
+  end
+
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+
   namespace :assets do
     desc "Precompile assets on local machine and upload them to the server."
     task :precompile, roles: :web, except: {no_release: true} do

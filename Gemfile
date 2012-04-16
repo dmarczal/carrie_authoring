@@ -8,7 +8,7 @@ gem "devise"
 gem "cancan"
 gem "truncate_html", "~> 0.5.1"
 
-gem 'best_in_place', '1.0.6.preMongo', git: 'git@github.com:dmarczal/best_in_place.git'
+gem 'best_in_place', '1.0.6.preMongo', git: 'git://github.com/dmarczal/best_in_place.git'
 
 gem "breadcrumbs_on_rails"
 gem 'redcarpet'
@@ -35,6 +35,7 @@ gem 'jquery-rails'
 
 # Deploy with Capistrano
 gem 'capistrano'
+gem 'rvm-capistrano'
 
 group :development, :test do
   gem "awesome_print", :require => false
