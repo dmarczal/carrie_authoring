@@ -8,13 +8,18 @@ class QuestionsController < ApplicationController
   def new
     @question = @exercise.questions.new
     @question.load_correct_answers
+    @correct_answers = @question.correct_answers
     add_breadcrumb "Nova questão", :new_learning_object_exercise_question_path
   end
 
   def create
     @question = @exercise.questions.new(params[:question])
     @question.correct_answers.each_with_index {|answer, i| answer.iteration=i}
+
     if @question.save
+      @question.correct_answers.each do |ca|
+        ca.save
+      end
       redirect_to [@learning_object, @exercise], :notice => "Questão criada com sucesso"
     else
       render :new
@@ -23,6 +28,7 @@ class QuestionsController < ApplicationController
 
   def edit
     @question  = @exercise.questions.find(params[:id])
+    @correct_answers = @question.correct_answers.asc(:iteration)
   end
 
   def update
@@ -34,6 +40,7 @@ class QuestionsController < ApplicationController
                       notice: "A questão #{@question.title} foi atualizada.") }
         format.json { respond_with_bip(@question) }
       else
+        @correct_answers = @question.correct_answers.asc(:iteration)
         render :edit
       end
     end
@@ -41,7 +48,6 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question  = @exercise.questions.find(params[:id])
-
     @question.destroy
     redirect_to [@learning_object, @exercise ], notice: "Questão deletada com sucesso"
   end

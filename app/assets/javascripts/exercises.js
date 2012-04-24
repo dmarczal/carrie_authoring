@@ -19,8 +19,8 @@ $(document).ready(function() {
              }
           });
           $('#sortable').disableSelection();
-       }
-    }
+      }
+  }
 });
 
 var observe_fields = function () {

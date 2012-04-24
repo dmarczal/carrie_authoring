@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody id='abody'>
-    <%= f.fields_for :correct_answers, @question.correct_answers.asc(:iteration) do |builder| %>
+    <%= f.fields_for :correct_answers, @correct_answers do |builder| %>
       <%= render "answer_fields", :f => builder %>
     <% end %>
   </tbody>
