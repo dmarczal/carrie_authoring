@@ -1,0 +1,15 @@
+<%- content_for(:head) do -%>
+  <%- #mathjax_tag :config=>'AM_HTMLorMML-full.js' -%>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full">
+  </script>
+  <script type="text/x-mathjax-config">
+    //<![CDATA[
+    MathJax.Hub.Config({
+      asciimath2jax: {
+        delimiters: [['`','`'], ['$','$']]
+      }
+    });
+    //]]>
+  </script>
+<%- end -%>

@@ -9,5 +9,5 @@ test:
 # set these environment variables on your prod server
 production:
   host: localhost
-  port: 28017
+  #port: 28017
   database: carrie_production
