@@ -17,5 +17,10 @@
       - can view and create fractals
 
 
+- Math answer
+ - any, acept any response
+ - resp_it, where it is the iteration
+ - n, enésima iteração
+
 - TODO:
   - Pagination and search learning groups

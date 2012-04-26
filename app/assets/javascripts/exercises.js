@@ -194,14 +194,3 @@ var Exercise = Exercise || {
     };
   }
 };
-
-/*
-var row;
-var col;
-var openDialog = function(element) {
-  row = element.data('row');
-  col = element.data('col');
-  formula = "";
-  $("#dialog-calc" ).dialog( "open");
-}
-*/

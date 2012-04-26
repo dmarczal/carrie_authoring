@@ -7,6 +7,13 @@ GIT
       rails (~> 3.1)
 
 GIT
+  remote: git://github.com/dmarczal/math_engine.git
+  revision: 900241468e5c339d4e20265bddd76527450e271e
+  specs:
+    math_engine (0.3.0)
+      lexr (>= 0.2.2)
+
+GIT
   remote: git://github.com/sharespost/mathjax-rails.git
   revision: 8bc6928b0b38a6bfe3e45bcd35ee9dae0faca7bc
   specs:
@@ -146,6 +153,7 @@ GEM
     less-rails (2.1.6)
       actionpack (>= 3.1)
       less (~> 2.0.7)
+    lexr (0.2.3)
     libv8 (3.3.10.4)
     mail (2.4.1)
       i18n (>= 0.4.0)
@@ -298,6 +306,7 @@ DEPENDENCIES
   jasmine-rails
   jquery-rails
   kaminari
+  math_engine (~> 0.3.0)!
   mathjax-rails!
   mongoid
   mongoid-paperclip

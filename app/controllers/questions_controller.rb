@@ -56,7 +56,7 @@ class QuestionsController < ApplicationController
     @question  = @exercise.questions.find(params[:question_id])
 
     respond_to do |format|
-      if @question.correct_answer?(params[:answer_id], params[:response])
+      if @question.correct_answer?(params[:answer_id], params[:response], params[:question_answers])
         format.json { render :json => true }
       else
         format.json { render :json => false }
@@ -68,8 +68,8 @@ class QuestionsController < ApplicationController
     @question  = @exercise.questions.find(params[:question_id])
 
     respond_to do |format|
-      if @question.correct_and_save_answer?(params[:answer_id], params[:response], current_user,
-                                           @learning_object, @exercise, @question)
+      if @question.correct_and_save_answer?(params[:answer_id], params[:response],
+                                  params[:question_answers], current_user, @learning_object, @exercise, @question)
         format.json { render :json => true }
       else
         format.json { render :json => false }

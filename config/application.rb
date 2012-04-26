@@ -15,7 +15,7 @@ end
 
 module Carrie_mongodb
   class Application < Rails::Application
-    config.autoload_paths += %W[#{config.root}/lib]
+    config.autoload_paths += %W[#{config.root}/lib/**/]
 
     config.time_zone = "Brasilia"
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml").to_s]
@@ -28,5 +28,8 @@ module Carrie_mongodb
     config.assets.enabled = true
     config.assets.version = '1.0'
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+
+    config.assets.paths << "#{Rails.root}/app/assets/images/jquery-ui"
+    #config.assets.paths << Rails.root.join("app", "assets", "images", "jquery-ui")
   end
 end

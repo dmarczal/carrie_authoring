@@ -25,6 +25,7 @@ gem "ckeditor", "3.7.0.rc3"
 gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
 
 gem 'mathjax-rails', git: 'git://github.com/sharespost/mathjax-rails.git'
+gem 'math_engine', '~> 0.3.0', :git => 'git://github.com/dmarczal/math_engine.git'
 
 group :assets do
   gem 'sass-rails', "~> 3.2.3"

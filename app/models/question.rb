@@ -49,19 +49,44 @@ class Question
 
 
   # TODO: verify correct answer
-  def correct_answer?(id, value)
+  def correct_answer?(id, value, question_answers)
     correct_answer = correct_answers.find(id)
-    return correct_answer.response.to_f === value.to_f
+    correct_response = correct_answer.response
+    iteration = correct_answer.iteration
+
+    if correct_response.eql?("any")
+      return true
+    else
+      if correct_response.match(/resp_(\d+)/)
+        it = correct_response.match(/resp_(\d+)/)[1].to_i
+        correct_response.gsub!("resp_#{it}",question_answers[it])
+      end
+      return eqlMathExp?(correct_response, value, {n: 0.8, l: 311.43});
+    end
   end
 
-  def correct_and_save_answer?(id, value, user, lo, exercise, question)
-    correct_answer = correct_answers.find(id)
-    correct = correct_answer.response.to_f === value.to_f
+  def correct_and_save_answer?(id, value, question_answers, user, lo, exercise, question)
+    correct = correct_answer?(id, value, question_answers)
 
-    answer = Answer.create!(user: user, response: value, correct_answer: correct_answer, correct: correct,
+    answer = Answer.create!(user: user, response: value, correct_answer_id: id, correct: correct,
                   learning_object: lo, exercise: exercise, question: question)
 
     LastUserAnswer.create_or_update(answer)
     correct
+  end
+
+private
+  require 'math_engine'
+
+  def eqlMathExp?(exp_a, exp_b, variables = {})
+    evaluate(exp_a, variables) == evaluate(exp_b, variables)
+  end
+
+  def evaluate(exp, variables)
+    engine = MathEngine::MathEngine.new
+    variables.each do |key, value|
+      engine.evaluate("#{key} = #{value}")
+    end
+    engine.evaluate(exp)
   end
 end

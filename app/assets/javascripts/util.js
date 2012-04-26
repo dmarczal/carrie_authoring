@@ -39,10 +39,11 @@ function setAnswer(response, correct, object, exp){
 
    //response = (response === undefined) ? "" : response;
 
-   $(div).html("<div title="+response+">" + exp + "</div>");
+   $(div).html("<div>" + exp + "</div>");
    //console.log(div);
    //MathJax.Hub.Queue(["Typeset",MathJax.Hub, div]);
 
+   $(object).attr('title', response);
    $(object).html(div);
    $(object).prepend(legend);
 }
@@ -95,4 +96,13 @@ $.fn.insertAtCursor = function(val) {
    $(this).val(value);
    var cursor = startPos + val.length;
    $(this).setSelection(cursor, cursor);
+}
+
+/** Table */
+$.fn.row = function(i) {
+    return $('tr:nth-child('+(i+1)+') td', this);
+}
+
+$.fn.column = function(i) {
+    return $('tr td:nth-child('+(i+1)+')', this);
 }

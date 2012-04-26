@@ -13,14 +13,22 @@ $.fn.calculator = function (calc) {
    var url = $($('table th').get(col)).data('verify-answer-url');
 
    var sendAnswer =  function (answer, cell, exp) {
-      $.post(url, { response: answer, answer_id: answer_id }, function(response) {
-         setAnswer(answer, response, cell, exp);
+      /* é necessário enviar todas as repostas da questão */
+      var question_answers = [];
+      $('table').column(col).each(function (index) {
+         var title = $(this).attr('title')
+         question_answers[index] = (title !== undefined) ? title : "";
+      });
+
+      $.post(url, { response: answer, answer_id: answer_id, question_answers: question_answers }, function(response) {
+          setAnswer(answer, response, cell, exp);
       }, 'json');
    }
 
    object.click(function () {
-      var val = object.find('div div').attr('title') ;
-      val = val ? val : "";
+      var val = object.attr('title');
+      val = val !== undefined ? val : "";
+
       calc.open({
          value: val,
          onSend: function (response, exp){
@@ -71,9 +79,9 @@ Carrie.Calc = Carrie.Calc || {
             var vars = {};
 
             if (!$('#n').hasClass('disabled'))
-               vars.n = 0;
+               vars.n = 0.8;
             if (!$('#l').hasClass('disabled'))
-               vars.l = 0;
+               vars.l = 311.43;
 
             rst = Parser.evaluate(exp, vars);
 
