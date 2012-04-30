@@ -4,6 +4,7 @@ class Answer
 
   field :correct, type: Boolean
   field :response
+  field :right_response
 
   belongs_to :user
   belongs_to :correct_answer

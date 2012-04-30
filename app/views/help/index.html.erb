@@ -3,9 +3,10 @@
       <h1 id=""> Ajuda </h1>
   </header>
 
-  <article id="lsystem">
+  <article id="lsystem" class="help">
     <header>
       <h1> Como usar o L-system </h1>
+    </header>
       <ul id="help-lsystem" class="itens">
         <li>L-Systems (Abreviação de Sistemas de Lindenmayer), é um conjunto de regras e símbolos que modelam um processo de crescimento. O sistema de Lindenmayer foi proposto por Aristid Lindenmayer para simular e modelar o crescimento de algumas plantas e hoje é usado em áreas como a matemática. Os L-systens são da seguinte forma:<p/>
         <ul>
@@ -81,18 +82,17 @@
           IMAGEM 8
         </p>
       </ul>
-    </header>
   </article>
 
-  <article id="formula">
+  <article id="formula" class="help">
     <header>
       <h1> Como construir fórmulas </h1>
     </header>
 
     <h3> Variáveis disponíveis </h3>
     <ul id="var_help" class="itens">
-      <li>X representa a resposta do usuário à primeira questão</li>
-      <li>It representa o número da iteração</li>
+      <li><strong>resp_x</strong> Resposta da iteração x, e.g. resp_0 representa a resposta da iteração 0</li>
+      <li><strong>n</strong> Representa a e-néssima iteração</li>
     </ul><!-- /help -->
 
     <h3>Operações Disponíveis</h3>
@@ -103,13 +103,13 @@
       <li>Exponenciação: b ^ e, substituindo-se <emph>b</emph> pela base e <emph>e</emph> pelo expoente </li>
     </ul><!-- /op_help -->
 
-    <p> Por exemplo, para criarmos uma fórmula para o lado do Triângulo de Sierpinski, podemos utilizar a seguinte forma: </p>
+    <p> Por exemplo, para criarmos uma fórmula para o determinar o tamanho do lado do menor do triângulo do fractal Triângulo de Sierpinski, podemos utilizar as seguintes formas: </p>
 
-    <p id="code"> Fórmula: X / 2 ^ It </p>
+    <p>Resposta de acordo com o tamanho do lado inicial do Triângulo de Sierpiski</p>
+    <p id="code"> Fórmula: Resp_0 / 2 ^ n </p>
 
-    <p> Se o aluno entrar com 32 na primeira resposta, o software irá dar um feedback positivo. </p>
-    <p> Na 2ª iteração, o usuário deverá entrar com 16 como resposta, para satisfazer a fórmula: 32 / 2<sup>1</sup> = 16. Caso entre com outra resposta, o software dará um feedback negativo. E assim sucessivamente. </p>
-
+    <p>Resposta de acordo com o tamanho l do lado inicial do Triângulo de Sierpiski</p>
+    <p id="code"> Fórmula: l / 2 ^ n </p>
   </article>
 
 </section>

@@ -59,17 +59,25 @@ class Question
     else
       if correct_response.match(/resp_(\d+)/)
         it = correct_response.match(/resp_(\d+)/)[1].to_i
-        correct_response.gsub!("resp_#{it}",question_answers[it])
+        correct_response.gsub!("resp_#{it}", question_answers[it])
       end
       return eqlMathExp?(correct_response, value, {n: 0.8, l: 311.43});
     end
   end
 
   def correct_and_save_answer?(id, value, question_answers, user, lo, exercise, question)
+    correct_answer = correct_answers.find(id)
+    correct_response = correct_answer.response
+
+    if correct_response.match(/resp_(\d+)/)
+      it = correct_response.match(/resp_(\d+)/)[1].to_i
+      correct_response.gsub!("resp_#{it}", question_answers[it])
+    end
+
     correct = correct_answer?(id, value, question_answers)
 
     answer = Answer.create!(user: user, response: value, correct_answer_id: id, correct: correct,
-                  learning_object: lo, exercise: exercise, question: question)
+                  learning_object: lo, exercise: exercise, question: question, right_response: correct_response)
 
     LastUserAnswer.create_or_update(answer)
     correct
