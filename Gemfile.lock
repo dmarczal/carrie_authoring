@@ -308,7 +308,7 @@ DEPENDENCIES
   kaminari
   math_engine (~> 0.3.0)!
   mathjax-rails!
-  mongoid
+  mongoid (= 2.4.5)
   mongoid-paperclip
   mongoid-rspec
   mongoid_slug

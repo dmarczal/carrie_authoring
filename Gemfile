@@ -1,7 +1,7 @@
 source :rubygems
 
 gem "rails", "3.2.1"
-gem "mongoid"
+gem "mongoid", "2.4.5"
 gem "bson_ext"
 gem "simple_form"
 gem "devise"

@@ -32,6 +32,7 @@ class LearningGroup
       self.errors.messages.delete :enroll
       unless self.users.include?(user)
         self.users << user
+        user.learning_groups << self
         self.save
       end
     else
