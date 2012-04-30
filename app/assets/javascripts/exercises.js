@@ -169,7 +169,7 @@ var Exercise = Exercise || {
           var td = $('<td data-row=' + index +' data-col=' + new Number(i+2) +' data-answer-id="'+ answer.id +'">');
 
           if (answer.ask === false) {
-             $(td).html(answer.response);
+             $(td).html("$"+answer.response+"$");
           } else {
              $(td).addClass("calculator");
 
