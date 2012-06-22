@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     if (request.controller == "exercises") {
        if (request.action == "show") {
-          show_exercise();
+          show_exercise({resize: true});
        } else if (request.action == "new" || request.action === "create") {
           observe_fields();
        } else if (request.action == "edit" || request.action == "update" ) {
@@ -57,7 +57,9 @@ var observe_fields = function () {
   }
 };
 
-var show_exercise = function () {
+var show_exercise = function (options) {
+    var resize = (options && options.resize) || false;
+
     var exercTable = $('#exercise_table');
 
     var exercise = Exercise.create({table:     exercTable,
@@ -70,7 +72,7 @@ var show_exercise = function () {
     exercise.loadTable();
 
     // Resize the fractal
-    if (request.namespace !== "published") {
+    if (resize) {
        ( function () {
           $(".resizable").resizable({ aspectRatio: 1,
              helper: "ui-resizable-helper",
@@ -131,6 +133,7 @@ var Exercise = Exercise || {
 
     var loadTable = function () {
        var fracCanvas = Fractal.create(that.fractal);
+
        var i;
        for (i = 0; i < that.fractal.iterations; i++) {
           var row = $('<tr>');
@@ -167,6 +170,7 @@ var Exercise = Exercise || {
           var answer = that.questions.questions[i].answers[index];
 
           var td = $('<td data-row=' + index +' data-col=' + new Number(i+2) +' data-answer-id="'+ answer.id +'">');
+          $(td).addClass("answer-input");
 
           if (answer.ask === false) {
              $(td).html("$"+answer.response+"$");

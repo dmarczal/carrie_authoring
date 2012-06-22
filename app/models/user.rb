@@ -38,8 +38,8 @@ class User
 
   has_many :fractals, dependent: :nullify
   has_many :learning_objects, dependent: :nullify
-  has_many :answers, dependent: :destroy
   has_many :last_user_answers
+  has_many :answers, order: :created_at.desc
 
   has_and_belongs_to_many :learning_groups
 

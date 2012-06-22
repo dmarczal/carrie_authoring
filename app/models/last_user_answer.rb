@@ -13,7 +13,7 @@ class LastUserAnswer
   validates_presence_of :response
 
   def self.create_or_update(answer)
-    last_answer = LastUserAnswer.where(user_id: answer.user.id, correct_answer_id: answer.correct_answer_id).last
+    last_answer = LastUserAnswer.where(user_id: answer.user.id, correct_answer_id: answer.correct_answer.id).last
 
     unless last_answer
        LastUserAnswer.create!(user: answer.user, response: answer.response,

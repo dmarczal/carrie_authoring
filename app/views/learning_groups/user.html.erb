@@ -1,23 +1,32 @@
 <section>
   <header>
-    <h1> Aprendiz: <%= name_or_email(@user) %> </h1>
+    <h1> Respostas do Aprendiz <%= name_or_email(@user) %> </h1>
   </header>
 
   <article>
     <div class="row-fluid">
       <div class="span2">
         <!--Sidebar content-->
-        <h4 class="margin-bottom">Objetos de Aprendizagens</h4>
-        <div class="tabbable tabs-left">
-          <ul class="nav nav-tabs">
-            <% @learning_group.learning_objects.each do |lo| %>
+        <nav class="well">
+          <ul id="lo-options" class="nav nav-list">
+            <li class="header">
+                <h4 class="margin-bottom">Objetos de Aprendizagens</h4>
+            </li>
+           <% @learning_group.learning_objects.each do |lo| %>
+              <li class="header">
+                   <%= lo.name  %>
+              </li>
               <li>
-                <%= link_to lo.name, user_learning_object_errors_url(@user, lo) , remote: true,
-                     class: "load", "data-toggle" => "tab" %>
+                <%= link_to 'Respostas Erradas', user_learning_object_errors_url(@user, lo) , remote: true,
+                  class: "load", "data-toggle" => "tab" %>
+              </li>
+              <li>
+                <%= link_to 'Respostas Corretas', user_learning_object_corrects_url(@user, lo) , remote: true,
+                  class: "load", "data-toggle" => "tab" %>
               </li>
             <% end %>
           </ul>
-        </div>
+        </nav>
       </div>
 
       <div class="span10">

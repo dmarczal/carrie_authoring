@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">×</button>
+  <h2 class='center'>Objeto de Aprendizagem: </em><%= @answer.lo.name %></em></h2>
+  <h4>Erro no exercício <%= @answer.exercise['title'] %></h4>
+  <p>
+     <strong>Iteração:</strong> <%= @answer.correct_answer.iteration %>
+     <strong>Resposta:</strong> <%= @answer.response %>
+     <strong>Resposta Correta:</strong> <%= @answer.right_response %>
+  </p>
+</div>
+<div class="modal-body">
+  <section class="exercise" >
+  <table id="exercise_table" class="table table-bordered"
+    data-fractal="<%= @answer.exercise['fractal_exercise'].to_json %>"
+    data-questions="<%= @answer.tokens.to_json %>" data-id="<%= @answer.exercise['slug'] %>"
+    data-oa-id="<%= @answer.lo.slug %>" data-last-answers="<%= @answer.exercise_responses.to_json %>">
+    <thead>
+      <tr>
+        <th>
+          Número de Iterações: <%= @answer.exercise['fractal_exercise']['iterations'] %>
+      </th>
+      <th>Fractal: <%= @answer.exercise['fractal_exercise']['name'] %></th>
+      <% @answer.exercise['questions'].each do |question| %>
+        <th data-original-title='<%= question['title'] %>' data-content='<%= question['enunciation'] %>'
+          data-verify-answer-url='<%= verify_answer_url(@answer, question['_id']) %>'
+          data-placement="top" rel="popover" >
+          <%= question['title'] %>
+        </th>
+      <%end%>
+    </tr>
+    </thead>
+    <tbody id='abody'>
+    </tbody>
+  </table>
+
+  <div id="dialog-calc"> <%= render "/calculator/calc" %> </div>
+</section>
+</div>
+
+<div class="modal-footer">
+  <a href="#" class="btn" data-dismiss="modal">Fechar</a>
+</div>

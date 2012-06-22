@@ -49,14 +49,15 @@ class QuestionsController < ApplicationController
   def destroy
     @question  = @exercise.questions.find(params[:id])
     @question.destroy
-    redirect_to [@learning_object, @exercise ], notice: "Questão deletada com sucesso"
+    redirect_to [@learning_object, @exercise], notice: "Questão deletada com sucesso"
   end
 
   def verify_answer
     @question  = @exercise.questions.find(params[:question_id])
 
     respond_to do |format|
-      if @question.correct_answer?(params[:answer_id], params[:response], params[:question_answers])
+      if @question.correct_answer?(params[:correct_answer_id], params[:response],
+                                   params[:question_responses])
         format.json { render :json => true }
       else
         format.json { render :json => false }
@@ -68,8 +69,9 @@ class QuestionsController < ApplicationController
     @question  = @exercise.questions.find(params[:question_id])
 
     respond_to do |format|
-      if @question.correct_and_save_answer?(params[:answer_id], params[:response],
-                                  params[:question_answers], current_user, @learning_object, @exercise, @question)
+      if @question.correct_and_save_answer?(params[:correct_answer_id], params[:response],
+                                            params[:question_responses], current_user, @learning_object,
+                                            @exercise, @question)
         format.json { render :json => true }
       else
         format.json { render :json => false }

@@ -4,12 +4,18 @@ Carrie_mongodb::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   mathjax 'mathjax'
 
-
-
   get "help/index"
   match "answers/learning_object/:id/errors" => "answers#errors", as: "learning_objects_current_user_errors"
+  match "answers/learning_object/:id/corrects" => "answers#corrects", as: "learning_objects_current_user_corrects"
+
   match "answers/user_errors/:id/learning_objects/:learning_object_id" => "answers#user_errors",
         as: "user_learning_object_errors"
+  match "answers/user_corrects/:id/learning_objects/:learning_object_id" => "answers#user_corrects",
+        as: "user_learning_object_corrects"
+
+  match "/answers/:id" => "answers#show", as: 'answers'
+  post "/verify_answer/answer/:id/question/:question_id" => "answers#verify_answer", as: 'verify_answer'
+
 
   resources :learning_groups do
     post :enroll

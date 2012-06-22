@@ -29,9 +29,8 @@ class Published::FractalsController < ApplicationController
     lo = LearningObject.find_by_slug(params[:learning_object_id])
     authorize! :view_published_learning_object, lo
     exer = lo.exercises.find_by_slug(params[:id])
-    exer.answers.each do |answer|
-        answer.correct_answer.last_user_answers.destroy
-    end
+    exer.destroy_last_user_answers(current_user)
+
     redirect_to action: :show, id: lo.slug, page: (exer.position + lo.introductions.count)
   end
 

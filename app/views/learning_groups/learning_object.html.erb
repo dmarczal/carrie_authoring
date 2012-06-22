@@ -7,8 +7,8 @@
     <div class="row-fluid">
       <div class="span2">
         <!--Sidebar content-->
-        <aside class="well">
-          <ul id="lo-options" class="nav nav-list">
+        <nav class="well">
+          <ul class="nav nav-list">
             <li class="nav-header">
               Objeto de Aprendizagem
             </li>
@@ -17,13 +17,15 @@
               Minhas Respostas
             </li>
             <li>
-              <%= link_to "Erradas", learning_objects_current_user_errors_url(@lo) , remote: true, class: "load"  %>
+              <%= link_to "Respostas Erradas", learning_objects_current_user_errors_url(@lo),
+                  remote: true, class: "load"  %>
             </li>
-           <!-- <li>
-              <a href="#">Certas</a>
-            </li> -->
+           <li>
+             <%= link_to "Respostas Certas", learning_objects_current_user_corrects_url(@lo),
+                 remote: true, class: "load"  %>
+            </li>
           </ul>
-        </aside>
+        </nav>
       </div>
 
       <div class="span10">

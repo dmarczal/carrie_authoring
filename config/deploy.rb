@@ -23,6 +23,7 @@ set :rails_env,       "production"
 ssh_options[:forward_agent] = true
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
+after "deploy", "ckeditor_link"
 
 namespace :deploy do
 
@@ -32,8 +33,8 @@ namespace :deploy do
 
   task :stop do ; end
 
-  desc "Run this after every successful deployment"
-    task :after_default do
+  desc "Create ckeditor link"
+  task :ckeditor_link do
     run "ln -s #{deploy_to}/shared/ckeditor_assets #{release_path}/public/ckeditor_assets"
   end
 

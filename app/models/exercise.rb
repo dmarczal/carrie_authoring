@@ -10,10 +10,8 @@ class Exercise
 
   referenced_in :learning_object
 
-  references_many :questions
+  references_many :questions, :order => :position.asc
   embeds_one :fractal_exercise
-
-  has_many :answers, dependent: :destroy
 
   validates_presence_of :title, :enunciation, :fractal_exercise, :fractal
   validates_associated :learning_object, :fractal_exercise
@@ -41,6 +39,15 @@ class Exercise
       question.correct_answers.order_by([[ :iteration, :asc ]]).map do |correct_answer|
         last_answer = correct_answer.last_user_answers.where(user_id: user.id).last
         last_answer ? {response: last_answer.response, correct: last_answer.correct} : {}
+      end
+    end
+  end
+
+  def destroy_last_user_answers(user)
+    questions.map do |question|
+      question.correct_answers.map do |correct_answer|
+        last_answer = correct_answer.last_user_answers.where(user_id: user.id).last
+        last_answer.destroy if last_answer
       end
     end
   end

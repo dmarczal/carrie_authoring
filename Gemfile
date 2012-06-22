@@ -43,6 +43,7 @@ group :development, :test do
   gem "pry", :require => false
   gem "rspec-rails"
   gem 'jasmine-rails'
+  gem 'railroady'
   #gem "rb-fsevent"
 end
 

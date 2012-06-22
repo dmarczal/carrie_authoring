@@ -12,7 +12,7 @@ class Ability
       can :manage, LearningObject, user_id: user.id
       can :manage, Exercise
       can :manage, Question
-      can [:user_errors, :errors], Answer
+      can [:user_answers, :answers], Answer
       can :manage, CorrectAnswer
       can :manage, Introduction
       can :manage, LearningGroup, :owner_id => user.id
@@ -28,7 +28,7 @@ class Ability
       can :manage, Fractal, :user_id => user.id
       can [:my_groups, :all_groups, :enroll, :my_group, :learning_object], LearningGroup
       can :verify_and_save_answer, Question
-      can :errors, Answer, user_id: user.id
+      can :answers, Answer, user_id: user.id
       can :view_published_learning_object, LearningObject do |lo|
         intersection = lo.learning_groups & user.learning_groups
         !intersection.empty?

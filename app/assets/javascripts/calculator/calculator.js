@@ -10,25 +10,42 @@ $.fn.calculator = function (calc) {
    var col = object.data('col');
    var row = object.data('row');
    var answer_id = object.data('answer-id');
-   var url = $($('table th').get(col)).data('verify-answer-url');
+   var url = $($('#exercise_table th').get(col)).data('verify-answer-url');
 
    var sendAnswer =  function (answer, cell, exp) {
+      console.log(url);
+
       /* é necessário enviar todas as repostas da questão */
-      var question_answers = [];
-      $('table').column(col).each(function (index) {
-         var title = $(this).attr('title')
-         question_answers[index] = (title !== undefined) ? title : "";
+      /*var exercise_responses = [];
+      var rows = $("table tr:gt(0)");
+      rows.each(function (i, row) {
+         exercise_responses[i] = [];
+         $(row).find('td').each(function (j, obj) {
+            var title = $(this).attr('title');
+            exercise_responses[i][j] = (title !== undefined) ? title : '';
+         });
+      });
+      exercise_responses[row][col] = answer;*/
+
+
+      question_responses = [];
+      $('#exercise_table').column(col).each(function (index) {
+         var title = $(this).attr('title');
+         question_responses[index] = (title !== undefined) ? title : "";
       });
 
-      $.post(url, { response: answer, answer_id: answer_id, question_answers: question_answers }, function(response) {
-          setAnswer(answer, response, cell, exp);
-      }, 'json');
+      $.post(url, { response: answer, correct_answer_id: answer_id,
+                    question_responses: question_responses
+                  },
+                  function(response) {
+                     setAnswer(answer, response, cell, exp);
+                  },
+                  'json');
    }
 
    object.click(function () {
       var val = object.attr('title');
       val = val !== undefined ? val : "";
-
       calc.open({
          value: val,
          onSend: function (response, exp){
@@ -69,6 +86,7 @@ Carrie.Calc = Carrie.Calc || {
          modal: true,
          dialogClass: '',
          title: 'Teclado Virtual',
+         zIndex: 1051,
          close: function (){
            that.input.val('');
          }
@@ -146,6 +164,9 @@ Carrie.Calc = Carrie.Calc || {
       };
 
       var open = function(data){
+        that.input = $("#calc_input");
+        that.display = $('#display');
+
         $("#dialog-calc").dialog('open');
         setInput(data.value);
         that.callBack = data.onSend;

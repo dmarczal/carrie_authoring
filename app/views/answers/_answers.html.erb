@@ -1,0 +1,36 @@
+<section class="answers">
+  <header>
+    <h2 id="">Respostas <%= title %> do OA <%= @lo.name  %></h2>
+  </header>
+  <table id="answers_table" class="table table-bordered table-striped tablesorter">
+    <thead>
+      <tr>
+	<th>Visualizar</th>
+	<th>Data e Hora</th>
+        <th>Exercício</th>
+        <th>Questão</th>
+        <th>Iteração</th>
+        <th>Sua Resposta</th>
+        <th>Resposta Correta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @answers.each do |answer| %>
+        <tr>
+          <td><%= link_to 'Visualizar',  answers_url(answer.id), remote: true, class: 'load', options: {
+            'data-toggle' => "modal"} %></td>
+          <td><%= l(answer.created_at, format: :long) %></td>
+          <td><%= answer.exercise['title'] %></td>
+          <td><%= answer.question.title %></td>
+          <td><%= answer.correct_answer.iteration %></td>
+          <td>$<%= answer.response %>$</td>
+          <td>$<%= answer.right_response %>$</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="modal hide" id="answer_content">
+  </div>
+
+</section>

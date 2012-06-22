@@ -6,12 +6,12 @@
 *= require fractals
 *= require exercises
 *= require questions
-*= require answers
 *= require published/fractals
 *= require_self
 *= require learning_groups
 *= require calculator
 *= require help
+*= require answers
 */
 
 /* styles **/
@@ -112,11 +112,18 @@ section{
   }
 }
 
+th.gravatar, td.gravatar {
+  width: 50px;
+  text-align: center;
+}
+
 #navigation {
   margin-top: 10px;
 }
 
-th.gravatar, td.gravatar {
-  width: 50px;
-  text-align: center;
+nav.well {
+  padding: 8px 0;
+}
+nav.well li a {
+  padding-left: 25px;
 }
