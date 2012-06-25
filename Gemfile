@@ -38,6 +38,9 @@ gem 'jquery-rails'
 gem 'capistrano'
 gem 'rvm-capistrano'
 
+gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
+gem 'haml'
+
 group :development, :test do
   gem "awesome_print", :require => false
   gem "pry", :require => false

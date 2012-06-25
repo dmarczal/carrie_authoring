@@ -1,0 +1,8 @@
+<div class="headline">
+  <% unless comment.created_at.nil? %>
+    <%= name_or_email(current_user)  %>
+    <strong><%= time_ago_in_words comment.created_at %> atrás</strong>
+  <% else %>
+    Novo comentário de <%= name_or_email(current_user)  %>
+  <% end %>
+</div>

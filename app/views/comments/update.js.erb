@@ -1,0 +1,7 @@
+<% if @comment.errors.present? %>
+  $("#<%= dom_id(@comment) %>").replaceWith("<%= escape_javascript render("comments/form",
+                                                 model: @model, comment: @comment) %>");
+<% else %>
+  $("#<%= dom_id(@comment) %>").replaceWith("<%= escape_javascript render(@comment, model: @model, comment: @comment) %>");
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, <%= dom_id(@comment) %>]);
+<% end %>

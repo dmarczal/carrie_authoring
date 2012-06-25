@@ -1,0 +1,68 @@
+<section class="exercise" >
+
+  <header>
+    <div class="clearfix">
+      <div class="left">
+        <h2>Erro no Objeto de Aprendizagem <%= @answer.lo.name %> </h2>
+      </div>
+      <div class="right">
+        <%= link_to "Voltar", :back, class: 'btn' %>
+      </div>
+    </div>
+    <div class="description">
+      <p><strong>Aprendiz:</strong> <%= name_or_email(@answer.user) %></p>
+      <p><strong>Exercício:</strong> <%= @answer.exercise['title'] %></p>
+      <p><strong>Data Hora:</strong> <%= l @answer.created_at %></p>
+      <p><strong>Iteração:</strong> <%= @answer.correct_answer.iteration %></p>
+      <p><strong>Resposta:</strong> <%= @answer.response %></p>
+      <p><strong>Resposta Correta:</strong> <%= @answer.right_response %></p>
+    </div>
+  </header>
+
+  <hr />
+  <section>
+    <article>
+      <header>
+        <h2>  <%= @answer.exercise['title'] %> </h2>
+      </header>
+
+      <%= markdown @answer.exercise['enunciation'] %>
+    </article>
+
+    <table id="exercise_table" class="table table-bordered"
+      data-fractal="<%= @answer.exercise['fractal_exercise'].to_json %>"
+      data-questions="<%= @answer.tokens.to_json %>" data-id="<%= @answer.exercise['slug'] %>"
+      data-oa-id="<%= @answer.lo.slug %>" data-last-answers="<%= @answer.exercise_responses.to_json %>">
+      <thead>
+        <tr>
+          <th>
+            Número de Iterações: <%= @answer.exercise['fractal_exercise']['iterations'] %>
+          </th>
+          <th>Fractal: <%= @answer.exercise['fractal_exercise']['name'] %></th>
+          <% @answer.exercise['questions'].each do |question| %>
+            <th data-original-title='<%= question['title'] %>' data-content='<%= question['enunciation'] %>'
+              data-verify-answer-url='<%= verify_answer_url(@answer, question['_id']) %>'
+              data-placement="top" rel="popover" >
+              <%= question['title'] %>
+            </th>
+          <%end%>
+        </tr>
+      </thead>
+      <tbody id='abody'>
+      </tbody>
+    </table>
+  </section>
+
+  <hr />
+  <section id="comments">
+    <header>
+        <h3> Comentários </h3>
+    </header>
+    <article id="comments_list">
+      <%= nested_comments(@answer.comments, @answer) %>
+    </article>
+    <%= render 'comments/form', model: @answer, comment: Comment.new %>
+  </section>
+</section>
+
+<div id="dialog-calc"> <%= render "/calculator/calc" %> </div>

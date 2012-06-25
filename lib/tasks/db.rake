@@ -9,7 +9,7 @@ namespace :db do
 
     User.delete_all
     User.create(email: 'carrie.ufpr@gmail.com', password: 'carrie123', type: 'admin',
-                password_confirmation: 'carrie')
+                password_confirmation: 'carrie123')
     professor = User.create(email: 'professor@gmail.com', password: 'professor', type: 'professor',
                 password_confirmation: 'professor')
     student = User.create(email: 'student@gmail.com', password: 'student', type: 'student',

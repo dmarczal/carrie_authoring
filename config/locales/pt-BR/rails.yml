@@ -148,6 +148,9 @@
       user:
         one: "Usuário"
         other: "Usuários"
+      comment:
+        one: "Comentário"
+        other: "Comentários"
 
     attributes:
       fractal_exercise:

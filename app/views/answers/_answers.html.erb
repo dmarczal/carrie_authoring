@@ -17,8 +17,7 @@
     <tbody>
       <% @answers.each do |answer| %>
         <tr>
-          <td><%= link_to 'Visualizar',  answers_url(answer.id), remote: true, class: 'load', options: {
-            'data-toggle' => "modal"} %></td>
+          <td><%= link_to 'Visualizar',  answer %></td>
           <td><%= l(answer.created_at, format: :long) %></td>
           <td><%= answer.exercise['title'] %></td>
           <td><%= answer.question.title %></td>

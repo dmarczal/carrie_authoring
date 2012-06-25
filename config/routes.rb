@@ -1,5 +1,7 @@
 Carrie_mongodb::Application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   mount JasmineRails::Engine => "/specs" unless Rails.env.production?
   mount Ckeditor::Engine => '/ckeditor'
   mathjax 'mathjax'
@@ -13,9 +15,11 @@ Carrie_mongodb::Application.routes.draw do
   match "answers/user_corrects/:id/learning_objects/:learning_object_id" => "answers#user_corrects",
         as: "user_learning_object_corrects"
 
-  match "/answers/:id" => "answers#show", as: 'answers'
   post "/verify_answer/answer/:id/question/:question_id" => "answers#verify_answer", as: 'verify_answer'
 
+  resources :answers, only: :show do
+    resources :comments
+  end
 
   resources :learning_groups do
     post :enroll

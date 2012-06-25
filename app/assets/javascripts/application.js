@@ -21,6 +21,7 @@
 //= require learning_objects
 //= require learning_groups
 //= require questions
+//= require answers
 
 //= require jquery.purr
 //= require best_in_place
@@ -47,4 +48,8 @@ $(document).ready(function() {
   // $('.best_in_place').bind("ajax:success", function () {}
 
   $(".tabs").button();
+
+  $(".markdown_link").live("click", function(e) {
+      $(this).next(".markdown_examples").slideToggle();
+  });
 });

@@ -1,8 +1,0 @@
-$('#answer_content').html('<%= j render "show" %>');
-$('#answer_content').modal({keyboard: false});
-show_exercise({resize: false});
-var calc = Carrie.Calc.create({});
-$('#exercise_table td.calculator').each(function (index, val) {
-  $(val).calculator(calc);
-});
-MathJax.Hub.Queue(["Typeset",MathJax.Hub,"answer_content"]);

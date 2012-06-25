@@ -13,10 +13,14 @@ class Answer
   field :correct, type: Boolean
 
   belongs_to :user
-
-  default_scope order_by([:created_at, :desc])
+  embeds_many :comments, :as => :commentable
+  index({ comments: 1})
 
   validates_associated :user
+  accepts_nested_attributes_for :comments
+
+
+  default_scope order_by([:created_at, :desc])
 
   scope :wrong, where(correct: false)
   scope :corrects, where(correct: true)
@@ -91,6 +95,10 @@ class Answer
     end
   end
 
+  def find_comments_recursively(id)
+    find_recursively(id, comments)
+  end
+
 private
   def find_correct_response(question_id, correct_answer_id)
     question = exercise['questions'].detect{|q| q['_id'] == BSON::ObjectId(question_id)}
@@ -98,6 +106,18 @@ private
                         ca['_id'] == BSON::ObjectId(correct_answer_id)
                      end
     correct_answer['response']
+  end
+
+  def find_recursively(id, elements)
+    elements.each do |element|
+      if element.id === BSON::ObjectId(id)
+        return element
+      else
+        el = find_recursively(id, element.child_comments)
+        return el if el
+      end
+    end
+    nil
   end
 
 end

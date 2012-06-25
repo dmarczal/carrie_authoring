@@ -1,0 +1,6 @@
+if ($("#comment_<%= params[:parent] %>").next(".nested_comments").children("#new_comment").length == 0) {
+  $("#comment_<%= params[:parent] %>").next(".nested_comments").append("<%= escape_javascript render("comments/form", model: @model, comment: @comment ) %>");
+  var comment = $("#comment_<%= params[:parent] %>").next(".nested_comments").find("#comment_content")[0];
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, comment]);
+  comment.focus();
+}

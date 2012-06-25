@@ -1,7 +1,8 @@
 <% if @learning_group.errors.messages.empty? %>
   $("span").removeClass('highlight');
   $("#<%= @learning_group.slug %>").hide();
-  $("#<%= @learning_group.slug %>").html("<span class='highlight'>Matriculado</span>");
+  $("#<%= @learning_group.slug %>").html("<span class='highlight'>Matriculado</span> " +
+                                    "<%= j link_to "Ir para turma: #{@learning_group.name}", @learning_group %>");
   $("#<%= @learning_group.slug %>").fadeIn('slow');
 <% else %>
   error = $("#<%= @learning_group.slug %> span");

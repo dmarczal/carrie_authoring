@@ -1,0 +1,19 @@
+<%= div_for comment do %>
+  <div class="avatar">
+      <%= gravatar_image_tag(current_user.email, :alt => "#{current_user.email}",  gravatar: { size: 64 }) %>
+  </div>
+  <div class="main">
+    <%= render  'comments/comment_headline', comment: comment %>
+    <div class="comment_content">
+      <%= render 'comments/markdown_options' %>
+      <%= simple_form_for [model, comment], remote: true do |f| %>
+        <% if comment.parent_comment %>
+          <%= f.input :parent, as: :hidden, input_html: { :value => comment.parent_comment.id } %>
+        <% end %>
+        <%= f.input :text, as: :text, label: false %>
+        <%= f.button :submit, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="clear"></div>
+<% end %>

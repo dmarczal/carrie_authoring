@@ -18,7 +18,7 @@
 
       <% @learning_groups.each do |learning_group| %>
         <tr>
-          <td><%= learning_group.name %></td>
+          <td><%= link_to learning_group.name , learning_group %></td>
           <td><%= l learning_group.created_at %></td>
           <td><%= learning_group.code %></td>
           <td class="list-actions">

@@ -72,4 +72,11 @@ module ApplicationHelper
   def name_or_email(user)
     creator(user)
   end
+
+   def nested_comments(comments, model)
+    comments.map do |comment|
+      render(comment, model: model) +
+         content_tag(:div, nested_comments(comment.child_comments, model), :class => "nested_comments")
+    end.join.html_safe
+  end
 end

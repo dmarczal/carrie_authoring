@@ -24,6 +24,11 @@ class Ability
         !intersection.empty?
       end
 
+      can :create, :comments
+      can [:update, :destroy], Comment do |comment|
+        comment.created_at >= 15.minutes.ago && comment.user_id == user.id
+      end
+
     elsif user.student?
       can :manage, Fractal, :user_id => user.id
       can [:my_groups, :all_groups, :enroll, :my_group, :learning_object], LearningGroup
@@ -33,8 +38,13 @@ class Ability
         intersection = lo.learning_groups & user.learning_groups
         !intersection.empty?
       end
+
+      can :create, :comments
+      can [:update, :destroy], Comment do |comment|
+        comment.created_at >= 15.minutes.ago && comment.user_id == user.id
+      end
     else
-     can :read, Fractal
+      can :read, Fractal
       can [:index], Ckeditor::Asset
     end
 

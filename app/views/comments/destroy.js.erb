@@ -1,0 +1,6 @@
+<% notice = "<div class='alert alert-info'>
+              <a class='close' data-dismiss='alert' href='#'>×</a>
+              #{flash.discard(:notice)}</div>
+"%>
+$("#<%= dom_id(@comment) %>").next('.nested_comments').remove();
+$("#<%= dom_id(@comment) %>").replaceWith("<%= j (notice.html_safe) %>");

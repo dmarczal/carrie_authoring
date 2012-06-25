@@ -1,0 +1,11 @@
+<% if @comment.parent_comment.present? %>
+  var container = $("#<%= dom_id(@comment.parent_comment) %>").next(".nested_comments");
+<% else %>
+  var container = $("#comments");
+<% end %>
+<% if @comment.errors.present? %>
+  container.children("#new_comment").replaceWith("<%= escape_javascript render("comments/form", comment: @comment, model: @model) %>");
+<% else %>
+  container.children("#new_comment").replaceWith("<%= escape_javascript render(@comment, model: @model) %>");
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, <%= dom_id(@comment) %>]);
+<% end %>
