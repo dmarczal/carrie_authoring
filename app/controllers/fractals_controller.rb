@@ -5,7 +5,7 @@ class FractalsController < ApplicationController
   load_and_authorize_resource :find_by => :slug, :except => [:index, :show]
 
   def index
-    @fractals = Fractal.order_by([[ :created_at, :asc ]]).page(params[:page]).per(6)
+    @fractals = Fractal.order_by([[ :created_at, :desc ]]).page(params[:page]).per(6)
   end
 
   def show
