@@ -19,42 +19,36 @@
       O ângulo define quanto tiver uma ‘operação’ (+ ou -) quantos graus a reta à direita da operação irá rotacionar.<p/>
       <p/>O axioma define o estado inicial do Fractal. No qual as próximas iterações iram se basear. <p/>Pode ser uma figura complexa ou apenas uma reta.<p/>
       A regras de substuições são o que definem como o Fractal irá se comportar em cada iteração. Ex: F=F+F, essa significa que a cada iteração todo F, da regra, deve ser substituído por F+F.<p/>
-      Vamos à um exemplo prático para a construção de um fractal. Vamos construir o fractal chamado a Curva de Koch. Que é da seguinte forma:
+      Vamos à um exemplo prático para a construção de um fractal. Vamos construir o fractal chamado Triangulo de Sierpinski. Que é da seguinte forma:
         </li>
         <p>
-          <%= image_tag('lsystem/img-0.png') %>
+           <%= image_tag "img-frac-ready.png" %>
         </p>
         <li>
-          Primeiramente, como podemos observar o esse fractal possui apenas ângulos retos, então o ângulo definiremos como 90º (Nota-se que poderia ser 270º também). também todas as retas têm o mesmo tamanho, o que nos faz concluir que possui apenas uma reta, que chamaremos de F.
+          Primeiramente, como podemos observar o esse fractal é um trinângulo isósceles, portanto a soma dos ângulos é 180º, logo divido por 3, pois temos três ângulos iguais, definiremos como 120º (Pois precisaremos de 2 vezes o valor de cada ângulo, pois se não, a rotação não será suficiente para fechar o triângulo). Também temos 2 retas, a base que tem um tamanho e os dois lados que possuem tamanhos iguals, então chamaremos uma reta F e outra de G.
         </li>
         <p>
-          <%= image_tag('lsystem/img-01.png') %>
+          <%= image_tag "img-tela-construcao.png" %>
         </p>
 
         <li>
-          Esta é a tela onde será criado o Fractal da Curva de Koch. Como já sabemos o ângulo e e que temos somente uma reta, vamos definir o axioma inicla como F, pois a primeira iteração desse fractal é apenas uma reta.
+          Esta é a tela onde será criado o Fractal do Triângulo de Sierpinski. Como já sabemos o ângulo e e que temos duas retas, vamos definir o axioma inicial como F-G-G, pois sabemos que temos 3 lados, pois é um triângulo e temos, dois lados iguais e um outro lado. Só com Axioma ainda não aparece nada, por isso vamos colocar a regra de geração como F=F
         </li>
         <p>
-          IMAGEM 2
+          <%= image_tag "img-axioma.png" %>
         </p>
         <li>
-          Podemos ver que ainda não aparece nada. Pois não temos uma regra de geração. Vamos colocar a regra como a mais básica, como F=F
+          Podemos ver que apenas na segunda iteraçao que apareceu um triângulo, mas ainda não é o que queremos, pois configuramos o fractal para trocar F por F, ou seja não fazer nada. Vamos colocar F=F-G+F, tentando colocar 2 lados, iguais e 1 diferente para formar um triângulo na primeira iteração
         </li>
         <p>
-          IMAGEM 3
-        </p>
-        <li>
-          Podemos ver que ficou apenas uma reta em todas as iterações, pois configuramos o fractal para trocar F por F, ou seja não fazer nada, e não rotacionar nada (nenhum sinal de + ou -). Agora vamos colocar F=F+F para ver o que teremos.
-        </li>
-        <p>
-          IMAGEM 4
+          <%= image_tag "img-frac-teste.png" %>
         </p>
         <li>
           Foi gerado um quadrado, pois na primeira iteração com a regra F=F+F, aconteceu o seguinte. F foi tranformado em F+F ou seja, a reta F, e logo após gira 90º sentido horário, e desenha F novamente, e ficou metade de um quadrado, ou seja na 3 iteração, geramos o quadro inteiro, pois colocamos novamente F+F.<p/><p/>
-	Agora para começar a dar forma ao fractal Curva de Kock, vamos analisar melhor a segunda iteração
+	Agora para começar a dar forma ao fractal Triângulo de Sierpinski, vamos analisar melhor a segunda iteração
         </li>
         <p>
-          IMAGEM da segunda iteração do Curva de Koch, numerar retas
+          IMAGEM da segunda iteração do Triângulo de Sierpinski, numerar retas
         </p>
         <li>
           Podemos ver que temos 5 retas F. Vamos Colocar F=F+F+F+F+F
@@ -63,7 +57,7 @@
           IMAGEM 5
         </p>
         <li>
-          Podemos ver que as retas se sobrepuseram. Mas analisando a imagem novamente, vemos que a Reta 3 da imagem da Curva de Koch, deve ser rotacionada com a operação -, pois assim tiraremos a forma do quadrado, pois as retas não irão se sobrepor.
+          Podemos ver que as retas se sobrepuseram. Mas analisando a imagem novamente, vemos que a Reta 3 da imagem da Triangulo de Sierpinski, deve ser rotacionada com a operação -, pois assim tiraremos a forma do quadrado, pois as retas não irão se sobrepor.
         </li>
         <p>
           IMAGEM 6
