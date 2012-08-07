@@ -66,6 +66,7 @@ if (canvas !== undefined && canvas !== null)
 
 
 this._colourList = ["rgba(0, 200, 0, 1)", "rgba(0, 0, 0, 1)", "rgba(48, 220, 48, 0.5)", "rgba(64, 255, 64, 0.5)"];
+//this._colourList = ["red", "#FFFF00", "blue", "yellow", "#FF00FF"];
 this._constants = [];
 
 return this;
@@ -303,7 +304,7 @@ LSystems.TurtleRenderer.prototype =
     }
 
     // start at grid 0,0 facing north with no colour index
-    var pos = new LSystems.Location(0.0, 0.0, 180.0, -1);
+    var pos = new LSystems.Location(0.0, 0.0, 0, -1);
 
     // process each command in turn
     var yOffset = this._yOffset, maxStackDepth = this._maxStackDepth;

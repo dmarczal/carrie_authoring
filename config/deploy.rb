@@ -23,7 +23,7 @@ set :rails_env,       "production"
 ssh_options[:forward_agent] = true
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
-after "deploy", "ckeditor_link"
+after "deploy", "deploy:ckeditor_link"
 
 namespace :deploy do
 

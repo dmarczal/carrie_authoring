@@ -9,7 +9,19 @@
     <%= yield(:head) -%>
     <%= csrf_meta_tag %>
   </head>
+  <script type="text/javascript">
 
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32923220-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+
+   </script>
   <body data-controller='<%= controller_name %>', data-action='<%= controller.action_name %>'
     data-url='<%= request.url %>' data-namespace='<%= controller_namespace  %>' >
 
